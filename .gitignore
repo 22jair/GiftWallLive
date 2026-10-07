@@ -17,3 +17,6 @@ Desktop.ini
 *.log
 tmp/
 temp/
+
+# Plan de trabajo local
+TASKS.md

@@ -20,6 +20,9 @@ GiftWallLive/
 ├── .gitignore
 ├── .agents/
 │   └── skills/
+│       ├── frontend-design/
+│       │   ├── SKILL.md
+│       │   └── LICENSE.txt
 │       └── giftwall-design/
 │           └── SKILL.md
 └── assets/
@@ -29,7 +32,7 @@ GiftWallLive/
 
 `AGENTS.md` contiene las instrucciones permanentes para trabajar con asistentes de IA dentro de este repositorio.
 
-La skill local `giftwall-design` concentra los criterios visuales que deben reutilizarse al crear o revisar la interfaz. Las decisiones generales del proyecto permanecen en `AGENTS.md`.
+La skill externa `frontend-design` guía la dirección artística y la implementación de interfaces distintivas. La skill local `giftwall-design` añade los criterios propios de GiftWallLive. Las decisiones generales del proyecto permanecen en `AGENTS.md`.
 
 ## Principios
 

@@ -31,7 +31,8 @@ GiftWallLive es una experiencia web vertical para TikTok LIVE. Muestra en una ci
 
 ## Mapa de skills
 
-- Para crear, rediseñar o revisar la interfaz visual, usar `.agents/skills/giftwall-design/SKILL.md`.
+- Para crear o rediseñar la interfaz, usar primero `.agents/skills/frontend-design/SKILL.md` para definir una dirección visual distintiva y después `.agents/skills/giftwall-design/SKILL.md` para aplicar las reglas específicas de GiftWallLive.
+- Para revisiones visuales pequeñas, usar únicamente `.agents/skills/giftwall-design/SKILL.md` cuando no sea necesario replantear la dirección artística.
 - Para generar fondos, texturas o ilustraciones raster, usar una skill de generación de imágenes únicamente cuando la tarea necesite esos recursos.
 - Para cambios sencillos de contenido o mantenimiento técnico, trabajar directamente sin cargar una skill de diseño.
 - Añadir nuevas skills solo cuando representen otro flujo repetible y distinto; no duplicar instrucciones que ya estén en este archivo.

@@ -1,0 +1,10 @@
+.top-three { position: relative; z-index: 3; grid-row: 1; align-self: center; margin: 0.65rem 1rem; padding: 0.55rem 0.7rem 0.65rem; color: var(--ink); background: #fff; text-align: center; }
+.top-three h1 { margin: 0 0 0.38rem; color: var(--ink); font-size: clamp(0.85rem, 3.8vw, 1.1rem); }
+.top-three__list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.45rem; }
+.leader { min-width: 0; padding: 0.25rem 0.2rem 0.3rem; border-right: 1px solid #ddd6dc; }
+.leader:last-child { border-right: 0; }
+.leader__place { display: block; color: var(--muted-ink); font-size: 0.62rem; font-weight: 700; }
+.leader__name { margin: 0.15rem 0 0; overflow: hidden; font-size: clamp(0.62rem, 2.7vw, 0.82rem); font-weight: 800; text-overflow: ellipsis; white-space: nowrap; }
+.leader__score { margin: 0.12rem 0 0; color: var(--ink); font-size: clamp(0.72rem, 3.2vw, 0.95rem); font-weight: 900; }
+.leader__score--changed { animation: score-tick 380ms ease-out; }
+@keyframes score-tick { 50% { color: #fff; transform: scale(1.12); } }

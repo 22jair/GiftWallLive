@@ -1,0 +1,18 @@
+.printer { position: relative; z-index: 2; grid-row: 2; min-height: 0; margin-top: 0.45rem; overflow: hidden; }
+.printer .printer-frame { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.printer__slot { position: relative; z-index: 3; height: 2.15rem; margin: 10% 16.5% 0; display: flex; align-items: center; justify-content: center; gap: 0.65rem; border: 2px solid #ff88d1; border-radius: 0.45rem; color: white; background: #4c0b3b; box-shadow: 0 0 0.8rem #ff3ca6, inset 0 0 0.45rem #ff55bd; }
+.printer__slot h2 { margin: 0; font-size: clamp(0.72rem, 3.2vw, 0.95rem); }
+.printer__slot span { color: #ff9dd8; font-size: 0.48rem; }
+.receipt { position: absolute; z-index: 1; inset: calc(10% + 1.75rem) 19% 0; overflow: hidden; color: var(--ink); background: linear-gradient(90deg, rgb(170 135 151 / 6%) 1px, transparent 1px) 0 0 / 0.35rem 100%, var(--paper); box-shadow: inset 0.7rem 0 1rem rgb(108 69 91 / 8%), inset -0.7rem 0 1rem rgb(108 69 91 / 8%); clip-path: polygon(0 0,100% 0,98.5% 5%,100% 10%,98.5% 15%,100% 20%,98.5% 25%,100% 30%,98.5% 35%,100% 40%,98.5% 45%,100% 50%,98.5% 55%,100% 60%,98.5% 65%,100% 70%,98.5% 75%,100% 80%,98.5% 85%,100% 90%,98.5% 95%,100% 100%,0 100%,1.5% 95%,0 90%,1.5% 85%,0 80%,1.5% 75%,0 70%,1.5% 65%,0 60%,1.5% 55%,0 50%,1.5% 45%,0 40%,1.5% 35%,0 30%,1.5% 25%,0 20%,1.5% 15%,0 10%,1.5% 5%); }
+.receipt__feed { padding: 0.9rem 0.85rem 0; }
+.receipt-item { position: relative; display: grid; align-items: center; border-bottom: 1px dashed #aaa0a7; transform-origin: top center; }
+.receipt-item--gift { grid-template-columns: 3.25rem minmax(0,1fr); gap: 0.65rem; min-height: 5rem; padding: 0.55rem 0.2rem; }
+.receipt-item--follow { grid-template-columns: 1fr auto; min-height: 2.5rem; padding: 0.34rem 0.3rem; }
+.receipt-item__avatar { width: 3.15rem; aspect-ratio: 1; display: grid; place-items: center; border: 2px solid var(--ink); border-radius: 0.2rem; color: white; background: var(--avatar); font-weight: 900; filter: grayscale(1) contrast(1.1); }
+.receipt-item__name { margin: 0; overflow: hidden; font-size: 0.9rem; font-weight: 900; text-overflow: ellipsis; white-space: nowrap; }
+.receipt-item__message { margin: 0.14rem 0 0; font-size: 0.72rem; }
+.receipt-item__total { margin: 0.18rem 0 0; color: var(--muted-ink); font-size: 0.62rem; }
+.receipt-item--follow .receipt-item__name { font-size: 0.72rem; }
+.receipt-item--follow .receipt-item__message { margin: 0; color: var(--muted-ink); font-size: 0.63rem; }
+.receipt-item--printing { animation: print-row 700ms cubic-bezier(.2,.8,.2,1) both; }
+@keyframes print-row { from { max-height: 0; min-height: 0; padding-block: 0; clip-path: inset(0 0 100%); transform: translateY(-1rem) scaleY(0.1); } to { max-height: 6rem; clip-path: inset(0); transform: translateY(0) scaleY(1); } }

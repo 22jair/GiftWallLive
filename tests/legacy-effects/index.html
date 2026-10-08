@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Muro digital de regalos para transmisiones TikTok LIVE.">
+    <title>GiftWallLive</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="live-stage" aria-label="Muro de regalos del LIVE">
+      <div class="stage-lights" aria-hidden="true"></div>
+      <header class="live-header">
+        <span class="live-header__crown" aria-hidden="true">♛</span>
+        <div class="live-header__title">
+          <span class="live-header__wing live-header__wing--left" aria-hidden="true">❮❮❮</span>
+          <h1>Top 3</h1>
+          <span class="live-header__wing live-header__wing--right" aria-hidden="true">❯❯❯</span>
+        </div>
+        <p><span aria-hidden="true">♥</span> del live <span aria-hidden="true">♥</span></p>
+      </header>
+      <section class="podium" aria-label="Mayores aportantes">
+        <div id="podium" class="podium__grid"></div>
+      </section>
+      <img class="frame-overlay" src="../../assets/images/printer-frame.png" alt="" aria-hidden="true">
+      <section class="gift-wall" aria-labelledby="gift-wall-title">
+        <header class="gift-wall__header">
+          <span aria-hidden="true">♡</span>
+          <h2 id="gift-wall-title">Últimos regalos</h2>
+          <span aria-hidden="true">♡</span>
+        </header>
+        <div id="gift-feed" class="gift-feed" aria-live="polite"></div>
+      </section>
+      <p class="live-message live-message--left">Gracias por hacer este live especial <span>♡</span></p>
+      <p class="live-message live-message--right">Tu apoyo hace esto posible <span>♡</span></p>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>

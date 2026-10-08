@@ -18,5 +18,5 @@ Desktop.ini
 tmp/
 temp/
 
-# Plan de trabajo local
-TASKS.md
+# Espacio de trabajo local (notas, datos y referencias privadas)
+.local/

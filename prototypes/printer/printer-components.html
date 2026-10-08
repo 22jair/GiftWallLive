@@ -109,6 +109,37 @@
       .gift-stellar__total { color: #8a8582; font-size: 8.5px; }
       .gift-stellar--focus { background: #f2f2f2; }
 
+      .gift-epic { height: 240px; display: grid; place-items: center; align-content: center; gap: 5px; border-bottom: 1px dashed #aaa5a2; overflow: hidden; background: linear-gradient(135deg, rgba(255,214,236,.62), rgba(219,231,255,.52), rgba(255,239,197,.62)); background-size: 220% 220%; text-align: center; animation: epic-background 7s ease-in-out infinite; }
+      .gift-epic__portrait { position: relative; width: 132px; height: 122px; display: grid; place-items: center; }
+      .gift-epic__portrait::before { content: ""; position: absolute; width: 122px; aspect-ratio: 1; border-radius: 50%; background: conic-gradient(from 0deg, #ff5b9d, #ffbd3e, #7c70ff, #43c8dc, #ff5b9d); animation: epic-ring-spin 4s linear infinite; }
+      .gift-epic__portrait::after { content: ""; position: absolute; width: 120px; aspect-ratio: 1; border-radius: 50%; box-shadow: 0 0 16px rgba(255,91,157,.5), 0 0 26px rgba(124,112,255,.34); animation: epic-glow 2.2s ease-in-out infinite; }
+      .gift-epic__avatar { position: relative; z-index: 2; width: 112px; aspect-ratio: 1; padding: 2px; overflow: hidden; border: 2px solid var(--paper); border-radius: 50%; background: var(--paper); animation: epic-avatar-breathe 2.2s ease-in-out infinite; }
+      .gift-epic__avatar img { width: 100%; height: 100%; display: block; border-radius: 50%; object-fit: cover; }
+      .gift-epic__spark { position: absolute; z-index: 3; color: #d44288; font-size: 12px; line-height: 1; opacity: .35; text-shadow: 0 0 5px currentColor; animation: epic-spark 1.8s ease-in-out infinite; }
+      .gift-epic__spark:nth-child(2) { top: 2px; left: 5px; }
+      .gift-epic__spark:nth-child(3) { top: 7px; right: 3px; color: #6f68e8; animation-delay: 450ms; }
+      .gift-epic__spark:nth-child(4) { bottom: 4px; left: 1px; color: #e99b21; animation-delay: 900ms; }
+      .gift-epic__spark:nth-child(5) { right: 0; bottom: 2px; color: #28aabd; animation-delay: 1.35s; }
+      .gift-epic__name { max-width: 100%; overflow: hidden; margin-top: 8px; font-size: 13px; font-weight: 750; text-overflow: ellipsis; white-space: nowrap; }
+      .gift-epic__gift { margin: 0; color: transparent; background: linear-gradient(100deg, #292b2e 0 38%, #d33f89 48%, #6d64db 53%, #292b2e 62% 100%); background-position: 100% 0; background-size: 260% 100%; background-clip: text; font-size: 12px; font-weight: 700; animation: epic-gift-shine 3.2s ease-in-out infinite; -webkit-background-clip: text; }
+      .gift-epic__total { color: #807b78; font-size: 10px; }
+      .gift-epic--focus { box-shadow: inset 0 0 18px rgba(210,70,137,.11); }
+
+      @keyframes epic-background { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+      @keyframes epic-ring-spin { to { transform: rotate(1turn); } }
+      @keyframes epic-avatar-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.035); } }
+      @keyframes epic-glow { 0%, 100% { opacity: .45; transform: scale(.96); } 50% { opacity: 1; transform: scale(1.08); } }
+
+      @keyframes epic-spark {
+        0%, 100% { opacity: .25; transform: scale(.65) rotate(-15deg); }
+        50% { opacity: 1; transform: scale(1.25) rotate(15deg); }
+      }
+
+      @keyframes epic-gift-shine {
+        from { background-position: 100% 0; }
+        to { background-position: -100% 0; }
+      }
+
       .anatomy { margin-top: 16px; padding: 12px 0 0; border-top: 1px solid #b7b7b7; }
       .anatomy strong { display: block; margin-bottom: 6px; font-size: 11px; }
       .anatomy p { margin-bottom: 0; color: var(--muted); font-size: 10px; line-height: 1.5; }
@@ -126,6 +157,12 @@
         .specification { border-right: 0; border-bottom: 1px solid #dedede; padding: 20px 0 28px; }
         .preview { min-height: 470px; padding: 34px 18px; }
       }
+
+      @media (prefers-reduced-motion: reduce) {
+        .gift-epic, .gift-epic__portrait::before, .gift-epic__portrait::after, .gift-epic__avatar, .gift-epic__gift, .gift-epic__spark { animation: none; }
+        .gift-epic__gift { color: var(--ink); background: none; }
+        .gift-epic__spark { opacity: .75; }
+      }
     </style>
   </head>
   <body>
@@ -135,7 +172,7 @@
           <h1>Catálogo de impresiones</h1>
           <p>Cada ficha define un componente antes de incorporarlo al printer en vivo.</p>
         </div>
-        <span class="status">4 componentes en diseño</span>
+        <span class="status">5 componentes en diseño</span>
       </header>
 
       <div class="catalog-layout">
@@ -145,6 +182,7 @@
           <a href="#regalo-basico">Regalo básico</a>
           <a href="#regalo-destacado">Regalo destacado</a>
           <a href="#regalo-estelar">Regalo estelar</a>
+          <a href="#regalo-epico">Regalo épico</a>
         </nav>
 
         <div class="catalog-content">
@@ -400,7 +438,69 @@
         </section>
       </article>
 
-      <p class="next-types">Siguiente ficha: Regalo épico desde 250 puntos</p>
+      <article class="component-sheet" id="regalo-epico">
+        <section class="specification" aria-labelledby="epic-gift-title">
+          <span class="type-number">Tipo 05</span>
+          <h2 id="epic-gift-title">Regalo épico</h2>
+          <p class="summary">Sube al tamaño de los niveles mayores y añade una capa de energía permanente mediante color, destellos y movimiento suave.</p>
+
+          <dl class="facts">
+            <div><dt>Evento</dt><dd>gift</dd></div>
+            <div><dt>Rango</dt><dd>250–550 puntos</dd></div>
+            <div><dt>Altura</dt><dd>240 px</dd></div>
+            <div><dt>Fotografía</dt><dd>112 px a color</dd></div>
+            <div><dt>Composición</dt><dd>Vertical centrada</dd></div>
+          </dl>
+
+          <h3 class="rule-title">Reglas del componente</h3>
+          <ul class="rules">
+            <li>La foto continúa siendo el elemento principal.</li>
+            <li>Un aro energético multicolor diferencia el nivel épico.</li>
+            <li>El nombre del regalo gana peso frente al acumulado.</li>
+            <li>Un aro multicolor gira permanentemente alrededor de la foto.</li>
+            <li>Cuatro chispas alternan su brillo sin ocultar el rostro.</li>
+            <li>El nombre del regalo recibe un destello de color continuo.</li>
+            <li>El fondo se desplaza lentamente entre tonos suaves.</li>
+          </ul>
+        </section>
+
+        <section class="preview" aria-label="Muestra a escala real del regalo épico">
+          <div class="receipt-stage">
+            <div class="measure"><span>244 px de ancho</span></div>
+            <div class="paper">
+              <div class="paper-heading"><span>Vista en el recibo</span><span>240 px por fila</span></div>
+              <article class="gift-epic gift-epic--focus">
+                <div class="gift-epic__portrait">
+                  <div class="gift-epic__avatar"><img alt="Foto de perfil dummy de Maritza" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%23d7a5b8'/%3E%3Ccircle cx='24' cy='18' r='10' fill='%23f1c9a5'/%3E%3Cpath d='M8 48c1-13 8-19 16-19s15 6 16 19' fill='%23713d59'/%3E%3Cpath d='M14 17c1-10 6-14 12-13 7 1 10 7 8 16-4-5-10-8-20-3' fill='%233a2730'/%3E%3C/svg%3E"></div>
+                  <span class="gift-epic__spark" aria-hidden="true">✦</span><span class="gift-epic__spark" aria-hidden="true">✦</span><span class="gift-epic__spark" aria-hidden="true">✦</span><span class="gift-epic__spark" aria-hidden="true">✦</span>
+                </div>
+                <strong class="gift-epic__name">@maritza</strong>
+                <p class="gift-epic__gift">Envió Cisne ×1</p>
+                <span class="gift-epic__total">Aporte acumulado: 520</span>
+              </article>
+              <article class="gift-epic">
+                <div class="gift-epic__portrait">
+                  <div class="gift-epic__avatar"><img alt="Foto de perfil dummy de Kevin" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%2386b5c2'/%3E%3Ccircle cx='24' cy='18' r='10' fill='%23c98f6c'/%3E%3Cpath d='M7 48c2-13 9-19 17-19s15 6 17 19' fill='%232d5264'/%3E%3Cpath d='M13 16C15 6 21 3 28 5c6 2 8 8 6 14-5-4-11-6-21-3' fill='%23262629'/%3E%3C/svg%3E"></div>
+                  <span class="gift-epic__spark" aria-hidden="true">✦</span><span class="gift-epic__spark" aria-hidden="true">✦</span><span class="gift-epic__spark" aria-hidden="true">✦</span><span class="gift-epic__spark" aria-hidden="true">✦</span>
+                </div>
+                <strong class="gift-epic__name">@kevin027</strong>
+                <p class="gift-epic__gift">Envió Tren ×1</p>
+                <span class="gift-epic__total">Aporte acumulado: 390</span>
+              </article>
+            </div>
+
+            <div class="anatomy">
+              <strong>Tamaño mayor y energía permanente</strong>
+              <p>La foto crece a 112 px y el aro, las chispas, el texto y el fondo permanecen en movimiento suave.</p>
+            </div>
+            <div class="legend" aria-label="Partes del regalo épico">
+              <span>Foto de 112 px</span><span>Aro energético</span><span>Regalo destacado</span><span>Acumulado</span>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <p class="next-types">Siguiente ficha: Regalo legendario desde 551 puntos</p>
         </div>
       </div>
     </main>

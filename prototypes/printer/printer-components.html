@@ -140,6 +140,35 @@
         to { background-position: -100% 0; }
       }
 
+      .gift-legendary { position: relative; height: 240px; display: grid; place-items: center; align-content: center; gap: 5px; border-bottom: 1px dashed #b9aa83; overflow: hidden; color: #5a482d; background: radial-gradient(circle at 50% 34%, rgba(255,231,154,.6), transparent 36%), radial-gradient(circle at 18% 80%, rgba(232,194,130,.24), transparent 30%), radial-gradient(circle at 86% 20%, rgba(255,244,206,.8), transparent 28%), #fffaf0; background-size: 150% 150%; text-align: center; animation: legendary-background 8s ease-in-out infinite; }
+      .gift-legendary::before { content: ""; position: absolute; inset: 0; opacity: .72; background-image: radial-gradient(circle, rgba(201,154,49,.45) 0 1.2px, transparent 1.8px); background-position: 0 0; background-size: 24px 24px; animation: legendary-dust 8s linear infinite; }
+      .gift-legendary::after { content: ""; position: absolute; inset: -45% -85%; background: linear-gradient(110deg, transparent 42%, rgba(255,255,255,.78) 49%, transparent 56%); animation: legendary-sweep 5.5s ease-in-out infinite; }
+      .gift-legendary > * { position: relative; z-index: 1; }
+      .gift-legendary__portrait { position: relative; isolation: isolate; width: 154px; height: 138px; display: grid; place-items: center; }
+      .gift-legendary__portrait::before { content: ""; position: absolute; z-index: 1; width: 142px; aspect-ratio: 1; border-radius: 50%; background: repeating-conic-gradient(from 8deg, #fff6d5 0 8deg, #d1a03a 8deg 14deg, #f1d58e 14deg 22deg, transparent 22deg 27deg); filter: drop-shadow(0 0 7px rgba(185,139,42,.38)); -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 10px), #000 calc(100% - 9px)); mask: radial-gradient(farthest-side, transparent calc(100% - 10px), #000 calc(100% - 9px)); animation: legendary-medallion 10s linear infinite; }
+      .gift-legendary__portrait::after { content: ""; position: absolute; z-index: 1; width: 124px; aspect-ratio: 1; border: 2px solid rgba(255,255,255,.95); border-radius: 50%; box-shadow: 0 0 0 3px rgba(209,160,58,.42), 0 0 18px rgba(215,177,91,.38), inset 0 0 10px rgba(255,232,167,.38); animation: legendary-glow 2.8s ease-in-out infinite; }
+      .gift-legendary__avatar { position: relative; z-index: 2; width: 112px; aspect-ratio: 1; padding: 2px; overflow: hidden; border: 2px solid #fff9e9; border-radius: 50%; background: #fff4c2; }
+      .gift-legendary__avatar img { width: 100%; height: 100%; display: block; border-radius: 50%; object-fit: cover; }
+      .gift-legendary__crown { position: absolute; z-index: 5; top: -11px; color: #d8a62f; font-size: 27px; line-height: 1; text-shadow: 0 1px 0 #fff4b0, 0 0 9px rgba(216,166,47,.55); animation: legendary-crown 2.4s ease-in-out infinite; }
+      .gift-legendary__ember { position: absolute; z-index: 4; width: 7px; aspect-ratio: 1; border: 1px solid #fff8da; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff 0 18%, #f5db8e 40%, #c7952e 76%); box-shadow: 0 0 7px rgba(198,149,46,.55); animation: legendary-particle 2.2s ease-in-out infinite; }
+      .gift-legendary__ember:nth-of-type(2) { left: 0; top: 26px; }
+      .gift-legendary__ember:nth-of-type(3) { right: 0; top: 31px; animation-delay: -.45s; }
+      .gift-legendary__ember:nth-of-type(4) { left: 9px; bottom: 20px; animation-delay: -.9s; }
+      .gift-legendary__ember:nth-of-type(5) { right: 9px; bottom: 17px; animation-delay: -1.35s; }
+      .gift-legendary__ember:nth-of-type(6) { left: 31px; top: 2px; animation-delay: -.65s; }
+      .gift-legendary__ember:nth-of-type(7) { right: 31px; top: 1px; animation-delay: -1.7s; }
+      .gift-legendary__name { max-width: 100%; overflow: hidden; margin-top: 8px; color: #5e492d; font-size: 13px; font-weight: 850; text-overflow: ellipsis; white-space: nowrap; }
+      .gift-legendary__gift { margin: 0; color: transparent; background: linear-gradient(100deg, #6d5532 0 38%, #d4a536 48%, #fff0ac 52%, #6d5532 62% 100%); background-position: 100% 0; background-size: 260% 100%; background-clip: text; font-size: 12px; font-weight: 800; animation: legendary-gift-shine 3.4s ease-in-out infinite; -webkit-background-clip: text; }
+      .gift-legendary__total { color: #8a7b65; font-size: 10px; }
+      @keyframes legendary-background { 0%, 100% { background-position: 20% 40%; } 50% { background-position: 80% 60%; } }
+      @keyframes legendary-dust { to { background-position: 24px -24px; } }
+      @keyframes legendary-medallion { to { transform: rotate(1turn); } }
+      @keyframes legendary-glow { 0%, 100% { opacity: .65; transform: scale(.98); } 50% { opacity: 1; transform: scale(1.04); } }
+      @keyframes legendary-sweep { 0%, 40% { transform: translateX(-35%); opacity: 0; } 55% { opacity: 1; } 75%, 100% { transform: translateX(35%); opacity: 0; } }
+      @keyframes legendary-particle { 0%, 100% { opacity: .3; transform: scale(.7) translateY(2px); } 50% { opacity: 1; transform: scale(1.25) translateY(-3px); } }
+      @keyframes legendary-crown { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-3px) rotate(2deg); } }
+      @keyframes legendary-gift-shine { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+
       .anatomy { margin-top: 16px; padding: 12px 0 0; border-top: 1px solid #b7b7b7; }
       .anatomy strong { display: block; margin-bottom: 6px; font-size: 11px; }
       .anatomy p { margin-bottom: 0; color: var(--muted); font-size: 10px; line-height: 1.5; }
@@ -162,6 +191,8 @@
         .gift-epic, .gift-epic__portrait::before, .gift-epic__portrait::after, .gift-epic__avatar, .gift-epic__gift, .gift-epic__spark { animation: none; }
         .gift-epic__gift { color: var(--ink); background: none; }
         .gift-epic__spark { opacity: .75; }
+        .gift-legendary, .gift-legendary::before, .gift-legendary::after, .gift-legendary__portrait::before, .gift-legendary__portrait::after, .gift-legendary__crown, .gift-legendary__ember, .gift-legendary__gift { animation: none; }
+        .gift-legendary__ember { opacity: .8; }
       }
     </style>
   </head>
@@ -172,7 +203,7 @@
           <h1>Catálogo de impresiones</h1>
           <p>Cada ficha define un componente antes de incorporarlo al printer en vivo.</p>
         </div>
-        <span class="status">5 componentes en diseño</span>
+        <span class="status">6 componentes en diseño</span>
       </header>
 
       <div class="catalog-layout">
@@ -183,6 +214,7 @@
           <a href="#regalo-destacado">Regalo destacado</a>
           <a href="#regalo-estelar">Regalo estelar</a>
           <a href="#regalo-epico">Regalo épico</a>
+          <a href="#regalo-legendario">Regalo legendario</a>
         </nav>
 
         <div class="catalog-content">
@@ -500,7 +532,70 @@
         </section>
       </article>
 
-      <p class="next-types">Siguiente ficha: Regalo legendario desde 551 puntos</p>
+      <article class="component-sheet" id="regalo-legendario">
+        <section class="specification" aria-labelledby="legendary-gift-title">
+          <span class="type-number">Tipo 06</span>
+          <h2 id="legendary-gift-title">Regalo legendario</h2>
+          <p class="summary">Mantiene la fotografía circular y la eleva con un medallón de oro y champaña, una corona discreta y pequeñas perlas de luz.</p>
+
+          <dl class="facts">
+            <div><dt>Evento</dt><dd>gift</dd></div>
+            <div><dt>Rango</dt><dd>551–999 puntos</dd></div>
+            <div><dt>Altura</dt><dd>240 px</dd></div>
+            <div><dt>Fotografía</dt><dd>112 px a color</dd></div>
+            <div><dt>Identidad</dt><dd>Medallón de champaña</dd></div>
+          </dl>
+
+          <h3 class="rule-title">Reglas del componente</h3>
+          <ul class="rules">
+            <li>La fotografía conserva la forma circular y permanece completamente visible.</li>
+            <li>El marco se construye con anillos concéntricos y segmentos de oro suave.</li>
+            <li>Una corona identifica inmediatamente el nivel legendario.</li>
+            <li>Seis perlas de luz rodean el medallón sin tapar la fotografía.</li>
+            <li>El fondo marfil usa polvo dorado y un reflejo cálido muy sutil.</li>
+            <li>Toda la composición utiliza una sola paleta de marfil, champaña y oro.</li>
+          </ul>
+        </section>
+
+        <section class="preview" aria-label="Muestra a escala real del regalo legendario">
+          <div class="receipt-stage">
+            <div class="measure"><span>244 px de ancho</span></div>
+            <div class="paper">
+              <div class="paper-heading"><span>Vista en el recibo</span><span>240 px por fila</span></div>
+              <article class="gift-legendary">
+                <div class="gift-legendary__portrait">
+                  <div class="gift-legendary__avatar"><img alt="Foto de perfil dummy de Jhonatan" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%2386b5c2'/%3E%3Ccircle cx='24' cy='18' r='10' fill='%23c98f6c'/%3E%3Cpath d='M7 48c2-13 9-19 17-19s15 6 17 19' fill='%232d5264'/%3E%3Cpath d='M13 16C15 6 21 3 28 5c6 2 8 8 6 14-5-4-11-6-21-3' fill='%23262629'/%3E%3C/svg%3E"></div>
+                  <span class="gift-legendary__crown" aria-hidden="true">♛</span>
+                  <span class="gift-legendary__ember" aria-hidden="true"></span><span class="gift-legendary__ember" aria-hidden="true"></span><span class="gift-legendary__ember" aria-hidden="true"></span><span class="gift-legendary__ember" aria-hidden="true"></span><span class="gift-legendary__ember" aria-hidden="true"></span><span class="gift-legendary__ember" aria-hidden="true"></span>
+                </div>
+                <strong class="gift-legendary__name">@jhonatan27</strong>
+                <p class="gift-legendary__gift">Envió León ×1</p>
+                <span class="gift-legendary__total">Aporte acumulado: 920</span>
+              </article>
+              <article class="gift-legendary">
+                <div class="gift-legendary__portrait">
+                  <div class="gift-legendary__avatar"><img alt="Foto de perfil dummy de Laura" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%23d7a5b8'/%3E%3Ccircle cx='24' cy='18' r='10' fill='%23f1c9a5'/%3E%3Cpath d='M8 48c1-13 8-19 16-19s15 6 16 19' fill='%23713d59'/%3E%3Cpath d='M14 17c1-10 6-14 12-13 7 1 10 7 8 16-4-5-10-8-20-3' fill='%233a2730'/%3E%3C/svg%3E"></div>
+                  <span class="gift-legendary__crown" aria-hidden="true">♛</span>
+                  <span class="gift-legendary__ember" aria-hidden="true"></span><span class="gift-legendary__ember" aria-hidden="true"></span><span class="gift-legendary__ember" aria-hidden="true"></span><span class="gift-legendary__ember" aria-hidden="true"></span><span class="gift-legendary__ember" aria-hidden="true"></span><span class="gift-legendary__ember" aria-hidden="true"></span>
+                </div>
+                <strong class="gift-legendary__name">@laura.diaz</strong>
+                <p class="gift-legendary__gift">Envió Carruaje ×1</p>
+                <span class="gift-legendary__total">Aporte acumulado: 780</span>
+              </article>
+            </div>
+
+            <div class="anatomy">
+              <strong>Medallón legendario de varias capas</strong>
+              <p>La profundidad nace del aro segmentado, el anillo interior, la corona y las perlas de luz, todo dentro de una paleta homogénea.</p>
+            </div>
+            <div class="legend" aria-label="Partes del regalo legendario">
+              <span>Foto de 112 px</span><span>Corona</span><span>Marco segmentado</span><span>Perlas de luz</span>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <p class="next-types">Siguiente ficha: Regalo mítico desde 1,000 puntos</p>
         </div>
       </div>
     </main>

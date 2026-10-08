@@ -246,6 +246,44 @@
       @keyframes celestial-sweep { 0%, 42% { opacity: 0; transform: translateX(-30%); } 55% { opacity: .85; } 72%, 100% { opacity: 0; transform: translateX(30%); } }
       @keyframes celestial-gift-shine { from { background-position: 100% 0; } to { background-position: -100% 0; } }
 
+      .gift-cosmic { position: relative; height: 240px; display: grid; place-items: center; align-content: center; gap: 4px; border-bottom: 1px dashed #7875b8; overflow: hidden; color: #f8fbff; background: radial-gradient(circle at 11% 16%, #fff 0 1px, transparent 1.7px), radial-gradient(circle at 87% 22%, #9de9ff 0 1px, transparent 1.8px), radial-gradient(circle at 18% 76%, #ffd98a 0 1px, transparent 1.8px), radial-gradient(circle at 78% 69%, #fff 0 1.2px, transparent 2px), radial-gradient(ellipse at 49% 32%, rgba(152,83,236,.72) 0 12%, rgba(58,117,218,.42) 29%, transparent 58%), radial-gradient(ellipse at 8% 88%, rgba(44,211,231,.25), transparent 36%), radial-gradient(ellipse at 96% 82%, rgba(245,81,188,.25), transparent 38%), linear-gradient(154deg, #111b55 0%, #20155a 46%, #091842 100%); background-size: 57px 61px, 71px 67px, 83px 79px, 97px 89px, 135% 135%, 125% 125%, 130% 130%, auto; box-shadow: inset 0 1px rgba(255,255,255,.3), inset 18px 0 30px rgba(3,8,35,.2), inset -18px 0 30px rgba(3,8,35,.2); text-align: center; animation: cosmic-space 16s ease-in-out infinite; }
+      .gift-cosmic::before { content: ""; position: absolute; z-index: 0; top: -66px; left: 50%; width: 268px; aspect-ratio: 1; border-radius: 50%; opacity: .58; background: conic-gradient(from 30deg, transparent 0 7%, rgba(93,224,255,.72) 10%, transparent 18% 31%, rgba(230,89,255,.66) 36%, transparent 47% 63%, rgba(255,196,83,.5) 68%, transparent 78% 91%, rgba(91,129,255,.62)); filter: blur(15px); transform: translateX(-50%) scale(.92); animation: cosmic-nebula 18s linear infinite; }
+      .gift-cosmic::after { content: ""; position: absolute; z-index: 2; inset: -56% -92%; background: linear-gradient(107deg, transparent 43%, rgba(181,236,255,.14) 47%, rgba(255,255,255,.62) 50%, rgba(212,164,255,.12) 54%, transparent 58%); pointer-events: none; animation: cosmic-sweep 6.8s ease-in-out infinite; }
+      .gift-cosmic > * { position: relative; z-index: 3; }
+      .gift-cosmic__portrait { position: relative; isolation: isolate; width: 198px; height: 148px; display: grid; place-items: center; }
+      .gift-cosmic__portrait::after { content: ""; position: absolute; z-index: 0; bottom: 1px; width: 154px; height: 24px; border-radius: 50%; background: radial-gradient(ellipse, rgba(87,143,255,.48), transparent 69%); filter: blur(6px); }
+      .gift-cosmic__galaxy { position: absolute; z-index: 1; width: 178px; aspect-ratio: 1; border-radius: 50%; opacity: .92; background: conic-gradient(from 8deg, #6ee7ff, #5654e8 18%, #d252e9 33%, #ff86c8 42%, #ffd578 51%, #8467f4 66%, #44d8f2 82%, #6ee7ff); box-shadow: 0 0 22px rgba(91,129,255,.48), 0 0 42px rgba(197,75,228,.22); filter: drop-shadow(0 8px 10px rgba(3,8,35,.34)); -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 16px), #000 calc(100% - 15px)); mask: radial-gradient(farthest-side, transparent calc(100% - 16px), #000 calc(100% - 15px)); animation: cosmic-galaxy 19s linear infinite; }
+      .gift-cosmic__galaxy::before { content: ""; position: absolute; inset: 8px; border: 1px solid rgba(255,255,255,.58); border-radius: 50%; box-shadow: inset 0 0 15px rgba(255,255,255,.28), 0 0 8px rgba(105,226,255,.5); }
+      .gift-cosmic__orbit { position: absolute; z-index: 3; width: 190px; height: 88px; border: 1px solid rgba(178,232,255,.82); border-radius: 50%; box-shadow: 0 0 7px rgba(90,217,255,.38), inset 0 0 5px rgba(255,255,255,.18); animation: cosmic-orbit-one 12s linear infinite; }
+      .gift-cosmic__orbit::before { content: ""; position: absolute; top: -5px; left: 50%; width: 9px; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff 0 14%, #80e9ff 24%, #5978e8 58%, #30296f 100%); box-shadow: 0 0 9px #72e4ff, 0 0 16px rgba(98,181,255,.55); }
+      .gift-cosmic__orbit--inner { width: 158px; height: 118px; border-color: rgba(255,213,120,.76); box-shadow: 0 0 6px rgba(255,201,96,.28), inset 0 0 5px rgba(255,255,255,.16); animation: cosmic-orbit-two 16s linear infinite reverse; }
+      .gift-cosmic__orbit--inner::before { top: auto; right: 12px; bottom: 3px; left: auto; width: 7px; background: radial-gradient(circle at 32% 28%, #fff 0 16%, #ffd571 27%, #f16d9d 62%, #7e326f 100%); box-shadow: 0 0 8px #ffd078, 0 0 14px rgba(245,106,171,.48); }
+      .gift-cosmic__avatar { position: relative; z-index: 5; width: 112px; aspect-ratio: 1; padding: 3px; overflow: hidden; border: 1px solid rgba(255,255,255,.98); border-radius: 50%; background: linear-gradient(145deg, #fff, #8edff4); box-shadow: 0 0 0 2px rgba(208,247,255,.94), 0 0 0 7px rgba(96,102,232,.35), 0 0 22px rgba(88,222,255,.62), 0 14px 30px rgba(2,6,32,.48), inset 0 0 0 1px rgba(255,255,255,.88); }
+      .gift-cosmic__avatar img { width: 100%; height: 100%; display: block; border-radius: 50%; object-fit: cover; }
+      .gift-cosmic__avatar::before { content: ""; position: absolute; z-index: 2; inset: 2px; border-radius: 50%; box-shadow: inset 5px 6px 8px rgba(255,255,255,.5), inset -6px -7px 11px rgba(32,24,98,.22); pointer-events: none; }
+      .gift-cosmic__avatar::after { content: ""; position: absolute; z-index: 3; inset: 3px; border-radius: 50%; background: linear-gradient(140deg, rgba(255,255,255,.5) 0 16%, transparent 33% 70%, rgba(95,220,255,.13)); pointer-events: none; }
+      .gift-cosmic__nova { position: absolute; z-index: 8; top: -8px; width: 31px; aspect-ratio: 1; background: radial-gradient(circle, #fff 0 11%, #9eefff 14% 24%, #ffd36d 30% 40%, rgba(225,104,255,.92) 47% 59%, transparent 62%); filter: drop-shadow(0 0 7px #93ebff) drop-shadow(0 0 13px rgba(255,185,77,.62)); clip-path: polygon(50% 0, 59% 36%, 85% 15%, 65% 42%, 100% 50%, 65% 58%, 85% 85%, 59% 64%, 50% 100%, 41% 64%, 15% 85%, 35% 58%, 0 50%, 35% 42%, 15% 15%, 41% 36%); animation: cosmic-nova 3.2s ease-in-out infinite; }
+      .gift-cosmic__comet { position: absolute; z-index: 7; top: 24px; left: 13px; width: 8px; aspect-ratio: 1; border-radius: 50%; background: #fff; box-shadow: 0 0 7px 2px #86e9ff; animation: cosmic-comet 5.4s ease-in-out infinite; }
+      .gift-cosmic__comet::after { content: ""; position: absolute; top: 3px; right: 4px; width: 45px; height: 2px; border-radius: 50%; background: linear-gradient(90deg, transparent, rgba(116,225,255,.15) 25%, rgba(255,255,255,.88)); filter: blur(.4px); transform: rotate(-18deg); transform-origin: right center; }
+      .gift-cosmic__star { position: absolute; z-index: 7; width: 4px; aspect-ratio: 1; background: #fff; box-shadow: 0 0 6px 1px rgba(139,225,255,.86); transform: rotate(45deg); animation: cosmic-star 3s ease-in-out infinite; }
+      .gift-cosmic__star--one { top: 39px; right: 15px; }
+      .gift-cosmic__star--two { top: 94px; left: 19px; animation-delay: -1s; }
+      .gift-cosmic__star--three { top: 100px; right: 25px; animation-delay: -2s; }
+      .gift-cosmic__seal { position: absolute; z-index: 9; bottom: -1px; min-width: 65px; padding: 2px 12px 3px; border: 1px solid rgba(216,246,255,.92); border-radius: 999px; color: #f8fbff; background: linear-gradient(105deg, #354fb2, #8a3db1 46%, #285f9e); box-shadow: 0 4px 11px rgba(2,6,32,.4), 0 0 10px rgba(97,215,255,.34), inset 0 1px rgba(255,255,255,.45); font-size: 8px; font-weight: 850; letter-spacing: .055em; line-height: 1; text-shadow: 0 1px 2px rgba(4,6,31,.5); }
+      .gift-cosmic__name { max-width: 100%; overflow: hidden; margin-top: 9px; color: #fff; font-size: 13px; font-weight: 850; text-shadow: 0 1px 3px #09072e, 0 0 8px rgba(108,220,255,.45); text-overflow: ellipsis; white-space: nowrap; }
+      .gift-cosmic__gift { margin: 0; color: transparent; background: linear-gradient(100deg, #c7f5ff 0 35%, #fff 43%, #ffd272 50%, #efa0ff 57%, #c7f5ff 67% 100%); background-position: 100% 0; background-size: 280% 100%; background-clip: text; font-size: 12px; font-weight: 850; filter: drop-shadow(0 1px 2px rgba(5,7,35,.62)); animation: cosmic-gift-shine 3.5s ease-in-out infinite; -webkit-background-clip: text; }
+      .gift-cosmic__total { color: #c8d8f4; font-size: 10px; text-shadow: 0 1px 2px rgba(4,6,31,.72); }
+      @keyframes cosmic-space { 0%, 100% { background-position: 0 0, 0 0, 0 0, 0 0, 20% 38%, 16% 70%, 82% 68%, 0 0; } 50% { background-position: 8px 5px, -7px 9px, 6px -5px, -8px -6px, 80% 54%, 70% 78%, 24% 62%, 0 0; } }
+      @keyframes cosmic-nebula { to { transform: translateX(-50%) rotate(1turn) scale(.92); } }
+      @keyframes cosmic-galaxy { to { transform: rotate(1turn); } }
+      @keyframes cosmic-orbit-one { from { transform: rotate(12deg); } to { transform: rotate(372deg); } }
+      @keyframes cosmic-orbit-two { from { transform: rotate(-28deg); } to { transform: rotate(332deg); } }
+      @keyframes cosmic-nova { 0%, 100% { filter: brightness(.92) drop-shadow(0 0 7px #93ebff) drop-shadow(0 0 13px rgba(255,185,77,.62)); transform: scale(.9) rotate(0); } 50% { filter: brightness(1.24) drop-shadow(0 0 10px #fff) drop-shadow(0 0 18px rgba(255,185,77,.8)); transform: scale(1.08) rotate(22.5deg); } }
+      @keyframes cosmic-comet { 0%, 18% { opacity: 0; transform: translate(-14px, 9px); } 36%, 68% { opacity: 1; } 82%, 100% { opacity: 0; transform: translate(170px, -18px); } }
+      @keyframes cosmic-star { 0%, 100% { opacity: .34; transform: rotate(45deg) scale(.65); } 50% { opacity: 1; transform: rotate(45deg) scale(1.28); } }
+      @keyframes cosmic-sweep { 0%, 48% { opacity: 0; transform: translateX(-30%); } 60% { opacity: .68; } 78%, 100% { opacity: 0; transform: translateX(30%); } }
+      @keyframes cosmic-gift-shine { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+
 
       .anatomy { margin-top: 16px; padding: 12px 0 0; border-top: 1px solid #b7b7b7; }
       .anatomy strong { display: block; margin-bottom: 6px; font-size: 11px; }
@@ -275,6 +313,8 @@
         .gift-mythic__gift { color: #385c63; background: none; }
         .gift-celestial, .gift-celestial::before, .gift-celestial::after, .gift-celestial__crown, .gift-celestial__halo, .gift-celestial__diadem, .gift-celestial__gem, .gift-celestial__shard, .gift-celestial__gift { animation: none; }
         .gift-celestial__gift { color: #6e403b; background: none; }
+        .gift-cosmic, .gift-cosmic::before, .gift-cosmic::after, .gift-cosmic__galaxy, .gift-cosmic__orbit, .gift-cosmic__nova, .gift-cosmic__comet, .gift-cosmic__star, .gift-cosmic__gift { animation: none; }
+        .gift-cosmic__gift { color: #c7f5ff; background: none; }
       }
     </style>
   </head>
@@ -285,7 +325,7 @@
           <h1>Catálogo de impresiones</h1>
           <p>Cada ficha define un componente antes de incorporarlo al printer en vivo.</p>
         </div>
-        <span class="status">8 componentes en diseño</span>
+        <span class="status">9 componentes en diseño</span>
       </header>
 
       <div class="catalog-layout">
@@ -299,6 +339,7 @@
           <a href="#regalo-legendario">Regalo legendario</a>
           <a href="#regalo-mitico">Regalo mítico</a>
           <a href="#regalo-celestial">Regalo celestial</a>
+          <a href="#regalo-cosmico">Regalo cósmico</a>
         </nav>
 
         <div class="catalog-content">
@@ -833,6 +874,83 @@
             </div>
             <div class="legend" aria-label="Partes del regalo celestial">
               <span>Foto de 112 px</span><span>Corona facetada</span><span>Diadema de gemas</span><span>Cristales laterales</span>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <article class="component-sheet" id="regalo-cosmico">
+        <section class="specification" aria-labelledby="cosmic-gift-title">
+          <span class="type-number">Tipo 09</span>
+          <h2 id="cosmic-gift-title">Regalo cósmico</h2>
+          <p class="summary">Presenta al donador dentro de un universo vivo: una galaxia circular, planetas en órbita y un cometa que cruza la escena.</p>
+
+          <dl class="facts">
+            <div><dt>Evento</dt><dd>gift</dd></div>
+            <div><dt>Rango</dt><dd>Por definir</dd></div>
+            <div><dt>Altura</dt><dd>240 px</dd></div>
+            <div><dt>Fotografía</dt><dd>112 px a color</dd></div>
+            <div><dt>Identidad</dt><dd>Lente de universo</dd></div>
+          </dl>
+
+          <h3 class="rule-title">Reglas del componente</h3>
+          <ul class="rules">
+            <li>Conserva los 240 px para integrarse al flujo actual del printer.</li>
+            <li>La fotografía permanece en el centro y funciona como núcleo del universo.</li>
+            <li>La galaxia exterior usa cian, violeta, rosa y oro sin repetir la paleta de Celestial.</li>
+            <li>Dos órbitas elípticas con planetas generan profundidad alrededor de la persona.</li>
+            <li>Un único cometa cruza la composición como momento de celebración.</li>
+            <li>Nombre, regalo y acumulado utilizan alto contraste para resistir la compresión del LIVE.</li>
+          </ul>
+        </section>
+
+        <section class="preview" aria-label="Muestra a escala real del regalo cósmico">
+          <div class="receipt-stage">
+            <div class="measure"><span>244 px de ancho</span></div>
+            <div class="paper">
+              <div class="paper-heading"><span>Vista en el recibo</span><span>240 px por fila</span></div>
+              <article class="gift-cosmic">
+                <div class="gift-cosmic__portrait">
+                  <span class="gift-cosmic__galaxy" aria-hidden="true"></span>
+                  <span class="gift-cosmic__orbit" aria-hidden="true"></span>
+                  <span class="gift-cosmic__orbit gift-cosmic__orbit--inner" aria-hidden="true"></span>
+                  <div class="gift-cosmic__avatar"><img alt="Foto de perfil dummy de Valentina" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%238eaee8'/%3E%3Ccircle cx='24' cy='18' r='10' fill='%23e5b58f'/%3E%3Cpath d='M7 48c2-13 9-19 17-19s15 6 17 19' fill='%23523d92'/%3E%3Cpath d='M13 18C13 8 18 3 25 4c8 1 11 7 9 17-5-5-12-8-21-3' fill='%2333293b'/%3E%3C/svg%3E"></div>
+                  <span class="gift-cosmic__nova" aria-hidden="true"></span>
+                  <span class="gift-cosmic__comet" aria-hidden="true"></span>
+                  <span class="gift-cosmic__star gift-cosmic__star--one" aria-hidden="true"></span>
+                  <span class="gift-cosmic__star gift-cosmic__star--two" aria-hidden="true"></span>
+                  <span class="gift-cosmic__star gift-cosmic__star--three" aria-hidden="true"></span>
+                  <span class="gift-cosmic__seal">Cósmico</span>
+                </div>
+                <strong class="gift-cosmic__name">@valentina</strong>
+                <p class="gift-cosmic__gift">Envió Universo TikTok ×1</p>
+                <span class="gift-cosmic__total">Aporte acumulado: 18,900</span>
+              </article>
+              <article class="gift-cosmic">
+                <div class="gift-cosmic__portrait">
+                  <span class="gift-cosmic__galaxy" aria-hidden="true"></span>
+                  <span class="gift-cosmic__orbit" aria-hidden="true"></span>
+                  <span class="gift-cosmic__orbit gift-cosmic__orbit--inner" aria-hidden="true"></span>
+                  <div class="gift-cosmic__avatar"><img alt="Foto de perfil dummy de Diego" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%237d9ed8'/%3E%3Ccircle cx='24' cy='18' r='10' fill='%23c88f6d'/%3E%3Cpath d='M7 48c2-13 9-19 17-19s15 6 17 19' fill='%233b5d84'/%3E%3Cpath d='M13 16C15 6 21 3 28 5c6 2 8 8 6 14-5-4-11-6-21-3' fill='%23262b36'/%3E%3C/svg%3E"></div>
+                  <span class="gift-cosmic__nova" aria-hidden="true"></span>
+                  <span class="gift-cosmic__comet" aria-hidden="true"></span>
+                  <span class="gift-cosmic__star gift-cosmic__star--one" aria-hidden="true"></span>
+                  <span class="gift-cosmic__star gift-cosmic__star--two" aria-hidden="true"></span>
+                  <span class="gift-cosmic__star gift-cosmic__star--three" aria-hidden="true"></span>
+                  <span class="gift-cosmic__seal">Cósmico</span>
+                </div>
+                <strong class="gift-cosmic__name">@diego.live</strong>
+                <p class="gift-cosmic__gift">Envió Viaje interestelar ×1</p>
+                <span class="gift-cosmic__total">Aporte acumulado: 16,240</span>
+              </article>
+            </div>
+
+            <div class="anatomy">
+              <strong>La persona como centro de un universo</strong>
+              <p>La galaxia exterior, las órbitas con planetas, la nova y el cometa convierten la foto en el núcleo de una escena espacial con profundidad propia.</p>
+            </div>
+            <div class="legend" aria-label="Partes del regalo cósmico">
+              <span>Foto de 112 px</span><span>Galaxia circular</span><span>Órbitas y planetas</span><span>Cometa animado</span>
             </div>
           </div>
         </section>

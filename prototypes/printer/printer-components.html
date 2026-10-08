@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Componentes del printer · GiftWallLive</title>
+    <style>
+      * { box-sizing: border-box; }
+
+      :root {
+        --canvas: #f3f3f1;
+        --panel: #f3f3f1;
+        --paper: #fffdf7;
+        --ink: #292b2e;
+        --muted: #70757b;
+        --receipt-width: 244px;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--canvas);
+        font-family: "Segoe UI", Arial, sans-serif;
+      }
+
+      html { scroll-behavior: smooth; }
+      .workbench { width: min(100% - 28px, 1040px); margin: 0 auto; padding: 42px 0 72px; }
+      .page-header { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 24px; margin-bottom: 24px; }
+      h1, h2, p { margin-top: 0; }
+      h1 { max-width: 560px; margin-bottom: 8px; font-size: clamp(22px, 4vw, 30px); line-height: 1.15; }
+      .page-header p { max-width: 540px; margin-bottom: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+      .status { color: #53585d; font-size: 12px; white-space: nowrap; }
+      .catalog-layout { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 20px; align-items: start; }
+      .component-menu { position: sticky; top: 20px; padding: 4px 0; border-left: 1px solid #c8c8c8; }
+      .component-menu strong { display: block; margin-bottom: 8px; font-size: 12px; }
+      .component-menu a { display: block; padding: 7px 10px; color: #444; font-size: 12px; text-decoration: none; }
+      .component-menu a:hover, .component-menu a:focus-visible { outline: 1px solid #777; outline-offset: -1px; }
+      .catalog-content { min-width: 0; }
+
+      .component-sheet {
+        display: grid;
+        grid-template-columns: minmax(270px, .9fr) minmax(320px, 1.1fr);
+        overflow: visible;
+        background: var(--panel);
+        scroll-margin-top: 20px;
+      }
+
+      .specification { padding: 18px 30px 18px 0; border-right: 1px solid #dedede; }
+      .type-number { display: block; margin-bottom: 18px; color: var(--muted); font-size: 12px; font-weight: 700; }
+      .specification h2 { margin-bottom: 7px; font-size: 25px; letter-spacing: -.025em; }
+      .summary { margin-bottom: 25px; color: var(--muted); font-size: 13px; line-height: 1.55; }
+
+      .facts { margin: 0; border-top: 1px solid #c5c9cd; }
+      .facts div { display: grid; grid-template-columns: 92px 1fr; gap: 12px; padding: 11px 0; border-bottom: 1px solid #c5c9cd; }
+      .facts dt { color: var(--muted); font-size: 11px; }
+      .facts dd { margin: 0; font-size: 12px; font-weight: 650; }
+      .rule-title { margin: 25px 0 9px; font-size: 13px; }
+      .rules { margin: 0; padding-left: 17px; color: var(--muted); font-size: 12px; line-height: 1.55; }
+      .rules li + li { margin-top: 5px; }
+
+      .preview { min-height: 520px; display: grid; place-items: center; padding: 40px 30px; background: var(--canvas); }
+      .receipt-stage { width: var(--receipt-width); }
+      .measure { display: flex; align-items: center; gap: 8px; margin-bottom: 9px; color: var(--muted); font-size: 10px; }
+      .measure::before, .measure::after { content: ""; height: 1px; flex: 1; background: #9fa5aa; }
+
+      .paper {
+        position: relative;
+        padding: 18px 12px 28px;
+        background: repeating-linear-gradient(90deg, rgba(65,60,50,.018) 0 1px, transparent 1px 4px), var(--paper);
+        border: 1px solid #dedbd4;
+        box-shadow: 0 6px 14px rgba(55,59,62,.08);
+      }
+
+      .paper::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: -6px;
+        left: 0;
+        height: 7px;
+        background: linear-gradient(135deg, transparent 5px, var(--paper) 0) 0 0/10px 10px repeat-x;
+      }
+
+      .paper-heading { display: flex; justify-content: space-between; margin-bottom: 10px; color: #85817f; font-size: 9px; }
+      .follower { height: 40px; display: grid; grid-template-columns: 18px minmax(0,1fr) auto; align-items: center; gap: 6px; border-bottom: 1px dashed #aaa5a2; overflow: hidden; }
+      .follower__mark { width: 17px; aspect-ratio: 1; display: grid; place-items: center; border: 1px solid #77716f; border-radius: 50%; color: #625d5b; font-size: 12px; line-height: 1; }
+      .follower__name { overflow: hidden; font-size: 11px; font-weight: 750; text-overflow: ellipsis; white-space: nowrap; }
+      .follower__message { color: #88827f; font-size: 9.5px; white-space: nowrap; }
+      .follower--focus { background: #f2f2f2; }
+
+      .anatomy { margin-top: 16px; padding: 12px 0 0; border-top: 1px solid #b7b7b7; }
+      .anatomy strong { display: block; margin-bottom: 6px; font-size: 11px; }
+      .anatomy p { margin-bottom: 0; color: var(--muted); font-size: 10px; line-height: 1.5; }
+      .legend { display: flex; flex-wrap: wrap; gap: 7px 13px; margin-top: 14px; color: #666b70; font-size: 10px; }
+      .legend span::before { content: ""; width: 5px; height: 5px; display: inline-block; margin-right: 5px; border-radius: 50%; background: #777; }
+      .next-types { margin-top: 18px; color: var(--muted); font-size: 12px; text-align: right; }
+
+      @media (max-width: 680px) {
+        .workbench { width: min(100% - 20px, 430px); padding-top: 24px; }
+        .page-header { grid-template-columns: 1fr; gap: 12px; }
+        .status { justify-self: start; }
+        .catalog-layout { grid-template-columns: 1fr; }
+        .component-menu { position: static; }
+        .component-sheet { grid-template-columns: 1fr; }
+        .specification { border-right: 0; border-bottom: 1px solid #dedede; padding: 20px 0 28px; }
+        .preview { min-height: 470px; padding: 34px 18px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="workbench">
+      <header class="page-header">
+        <div>
+          <h1>Catálogo de impresiones</h1>
+          <p>Cada ficha define un componente antes de incorporarlo al printer en vivo.</p>
+        </div>
+        <span class="status">1 componente en diseño</span>
+      </header>
+
+      <div class="catalog-layout">
+        <nav class="component-menu" aria-label="Tipos de impresión">
+          <strong>Componentes</strong>
+          <a href="#nuevo-seguidor">Nuevo seguidor</a>
+        </nav>
+
+        <div class="catalog-content">
+      <article class="component-sheet" id="nuevo-seguidor">
+        <section class="specification" aria-labelledby="follower-title">
+          <span class="type-number">Tipo 01</span>
+          <h2 id="follower-title">Nuevo seguidor</h2>
+          <p class="summary">La impresión más breve del sistema. Reconoce a quien acaba de seguir el LIVE sin competir visualmente con los regalos.</p>
+
+          <dl class="facts">
+            <div><dt>Evento</dt><dd>follow</dd></div>
+            <div><dt>Altura</dt><dd>40 px</dd></div>
+            <div><dt>Contenido</dt><dd>Nombre + mensaje</dd></div>
+            <div><dt>Fotografía</dt><dd>No utiliza</dd></div>
+            <div><dt>Prioridad</dt><dd>Básica</dd></div>
+          </dl>
+
+          <h3 class="rule-title">Reglas del componente</h3>
+          <ul class="rules">
+            <li>El nombre es el dato principal.</li>
+            <li>Los nombres largos terminan en puntos suspensivos.</li>
+            <li>El símbolo “+” permite reconocer el evento rápidamente.</li>
+            <li>Una línea punteada separa cada impresión.</li>
+          </ul>
+        </section>
+
+        <section class="preview" aria-label="Muestra a escala real del componente">
+          <div class="receipt-stage">
+            <div class="measure"><span>244 px de ancho</span></div>
+            <div class="paper">
+              <div class="paper-heading"><span>Vista en el recibo</span><span>40 px por fila</span></div>
+              <article class="follower follower--focus">
+                <span class="follower__mark" aria-hidden="true">+</span>
+                <span class="follower__name">@jhonatan27</span>
+                <span class="follower__message">Nuevo seguidor</span>
+              </article>
+              <article class="follower">
+                <span class="follower__mark" aria-hidden="true">+</span>
+                <span class="follower__name">@laura.diaz</span>
+                <span class="follower__message">Nuevo seguidor</span>
+              </article>
+              <article class="follower">
+                <span class="follower__mark" aria-hidden="true">+</span>
+                <span class="follower__name">@usuario_con_nombre_muy_largo</span>
+                <span class="follower__message">Nuevo seguidor</span>
+              </article>
+            </div>
+
+            <div class="anatomy">
+              <strong>Lectura de izquierda a derecha</strong>
+              <p>Indicador de acción, identidad del usuario y confirmación del evento.</p>
+            </div>
+            <div class="legend" aria-label="Partes del componente">
+              <span>Acción</span><span>Usuario</span><span>Mensaje</span>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <p class="next-types">Siguiente ficha: Regalo de 1–29 puntos</p>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

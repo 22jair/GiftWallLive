@@ -19,8 +19,8 @@
 .receipt-item--stellar { --item-height: 10rem; }
 .receipt-item--epic { --item-height: 12.5rem; }
 .receipt-item--legendary { --item-height: 15rem; }
-.receipt-item--mythic { --item-height: 20rem; }
-.receipt-item--ultimate { --item-height: 27.5rem; }
+.receipt-item--mythic { --item-height: 15rem; }
+.receipt-item--ultimate { --item-height: 15rem; }
 .receipt-item--featured,
 .receipt-item--stellar,
 .receipt-item--epic,
@@ -32,7 +32,7 @@
 .receipt-item--stellar .receipt-item__avatar { width: 4.5rem; }
 .receipt-item--epic .receipt-item__avatar { width: 6rem; }
 .receipt-item--legendary .receipt-item__avatar { width: 7rem; }
-.receipt-item--mythic .receipt-item__avatar { width: 9rem; }
-.receipt-item--ultimate .receipt-item__avatar { width: 11.25rem; }
+.receipt-item--mythic .receipt-item__avatar { width: 7rem; }
+.receipt-item--ultimate .receipt-item__avatar { width: 7rem; }
 .receipt-item--printing { animation: print-row 700ms cubic-bezier(.2,.8,.2,1) both; }
 @keyframes print-row { from { max-height: 0; min-height: 0; padding-block: 0; clip-path: inset(0 0 100%); transform: translateY(-1rem) scaleY(0.1); } to { max-height: var(--item-height, 6rem); clip-path: inset(0); transform: translateY(0) scaleY(1); } }

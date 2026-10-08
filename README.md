@@ -24,6 +24,12 @@ GiftWallLive/
 │   ├── data.js
 │   ├── feed.js
 │   └── top-three.js
+├── prototypes/
+│   └── printer/
+│       ├── printer-components.html
+│       └── printer-types.html
+├── tests/
+│   └── legacy-effects/
 ├── AGENTS.md
 ├── README.md
 ├── .gitignore
@@ -39,7 +45,22 @@ GiftWallLive/
     └── sounds/
 ```
 
-La versión visual experimental anterior se conserva en `tests/legacy-effects/` para poder recuperar sus efectos en el futuro.
+### Aplicación principal
+
+`index.html`, `css/`, `js/` y `assets/` forman la experiencia que se mostrará durante el LIVE.
+
+### Prototipos visuales
+
+La carpeta `prototypes/` contiene páginas independientes para definir y aprobar partes de la interfaz antes de incorporarlas a la aplicación principal. Se pueden abrir directamente en el navegador y no necesitan un servidor local.
+
+- [`printer/printer-types.html`](prototypes/printer/printer-types.html): compara la altura y el tamaño de imagen asignados a cada nivel de impresión.
+- [`printer/printer-components.html`](prototypes/printer/printer-components.html): laboratorio para diseñar cada componente del printer por separado antes de reutilizarlo en el loop principal.
+
+### Diseños conservados
+
+La versión visual experimental anterior se conserva en `tests/legacy-effects/` para poder recuperar sus efectos en el futuro. No forma parte del diseño principal actual.
+
+### Instrucciones para IA
 
 `AGENTS.md` contiene las instrucciones permanentes para trabajar con asistentes de IA dentro de este repositorio.
 
@@ -74,7 +95,7 @@ La altura de cada impresión representa la importancia de la acción. Estos valo
 | Regalo estelar | 100–999 puntos | 160 px |
 | Regalo épico | 1,000–2,999 puntos | 200 px |
 | Regalo legendario | 3,000–4,999 puntos | 240 px |
-| Regalo mítico | 5,000–9,999 puntos | 320 px |
-| Regalo máximo | 10,000 puntos o más | 440 px |
+| Regalo mítico | 5,000–9,999 puntos | 240 px |
+| Regalo máximo | 10,000 puntos o más | 240 px |
 
-Los seguidores no muestran fotografía. Los regalos normales conservan una composición horizontal y, desde `Regalo destacado`, la imagen se presenta centrada y aumenta progresivamente de tamaño.
+Los seguidores no muestran fotografía. Los regalos normales conservan una composición horizontal y, desde `Regalo destacado`, la imagen se presenta centrada y aumenta progresivamente hasta `Regalo legendario`. Los niveles `Legendario`, `Mítico` y `Máximo` comparten el mismo tamaño base; su jerarquía visual se definirá mediante estilos y animaciones.

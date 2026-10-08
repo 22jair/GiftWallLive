@@ -101,6 +101,14 @@
       .gift-basic--gray .gift-basic__avatar::after { content: ""; position: absolute; inset: 0; background: rgba(80,80,80,.28); }
       .gift-highlighted .gift-basic__avatar { border-color: #a4a09c; background: #ddd; }
 
+      .gift-stellar { height: 160px; display: grid; place-items: center; align-content: center; gap: 3px; border-bottom: 1px dashed #aaa5a2; overflow: hidden; text-align: center; }
+      .gift-stellar__avatar { width: 80px; aspect-ratio: 1; overflow: hidden; border: 1px solid #8d8986; border-radius: 50%; background: #ddd; }
+      .gift-stellar__avatar img { width: 100%; height: 100%; display: block; object-fit: cover; }
+      .gift-stellar__name { max-width: 100%; overflow: hidden; font-size: 11px; font-weight: 750; text-overflow: ellipsis; white-space: nowrap; }
+      .gift-stellar__gift { margin: 0; font-size: 10px; }
+      .gift-stellar__total { color: #8a8582; font-size: 8.5px; }
+      .gift-stellar--focus { background: #f2f2f2; }
+
       .anatomy { margin-top: 16px; padding: 12px 0 0; border-top: 1px solid #b7b7b7; }
       .anatomy strong { display: block; margin-bottom: 6px; font-size: 11px; }
       .anatomy p { margin-bottom: 0; color: var(--muted); font-size: 10px; line-height: 1.5; }
@@ -127,7 +135,7 @@
           <h1>Catálogo de impresiones</h1>
           <p>Cada ficha define un componente antes de incorporarlo al printer en vivo.</p>
         </div>
-        <span class="status">3 componentes en diseño</span>
+        <span class="status">4 componentes en diseño</span>
       </header>
 
       <div class="catalog-layout">
@@ -136,6 +144,7 @@
           <a href="#nuevo-seguidor">Nuevo seguidor</a>
           <a href="#regalo-basico">Regalo básico</a>
           <a href="#regalo-destacado">Regalo destacado</a>
+          <a href="#regalo-estelar">Regalo estelar</a>
         </nav>
 
         <div class="catalog-content">
@@ -334,7 +343,64 @@
         </section>
       </article>
 
-      <p class="next-types">Siguiente ficha: Regalo estelar desde 100 puntos</p>
+      <article class="component-sheet" id="regalo-estelar">
+        <section class="specification" aria-labelledby="stellar-gift-title">
+          <span class="type-number">Tipo 04</span>
+          <h2 id="stellar-gift-title">Regalo estelar</h2>
+          <p class="summary">El primer nivel de exposición ampliada. Duplica la altura de los regalos anteriores y lleva la fotografía al centro para dar más protagonismo al donador.</p>
+
+          <dl class="facts">
+            <div><dt>Evento</dt><dd>gift</dd></div>
+            <div><dt>Rango</dt><dd>100–249 puntos</dd></div>
+            <div><dt>Altura</dt><dd>160 px</dd></div>
+            <div><dt>Fotografía</dt><dd>80 px a color</dd></div>
+            <div><dt>Composición</dt><dd>Vertical centrada</dd></div>
+          </dl>
+
+          <h3 class="rule-title">Reglas del componente</h3>
+          <ul class="rules">
+            <li>La fotografía es el elemento principal.</li>
+            <li>La identidad y el aporte se colocan debajo de la imagen.</li>
+            <li>Todos los elementos conservan sus colores originales.</li>
+            <li>No utiliza brillos ni animaciones especiales todavía.</li>
+          </ul>
+        </section>
+
+        <section class="preview" aria-label="Muestra a escala real del regalo estelar">
+          <div class="receipt-stage">
+            <div class="measure"><span>244 px de ancho</span></div>
+            <div class="paper">
+              <div class="paper-heading"><span>Vista en el recibo</span><span>160 px por fila</span></div>
+              <article class="gift-stellar gift-stellar--focus">
+                <div class="gift-stellar__avatar">
+                  <img alt="Foto de perfil dummy de Jhonatan" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%2386b5c2'/%3E%3Ccircle cx='24' cy='18' r='10' fill='%23c98f6c'/%3E%3Cpath d='M7 48c2-13 9-19 17-19s15 6 17 19' fill='%232d5264'/%3E%3Cpath d='M13 16C15 6 21 3 28 5c6 2 8 8 6 14-5-4-11-6-21-3' fill='%23262629'/%3E%3C/svg%3E">
+                </div>
+                <strong class="gift-stellar__name">@jhonatan27</strong>
+                <p class="gift-stellar__gift">Envió Castillo ×1</p>
+                <span class="gift-stellar__total">Aporte acumulado: 760</span>
+              </article>
+              <article class="gift-stellar">
+                <div class="gift-stellar__avatar">
+                  <img alt="Foto de perfil dummy de Oscar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%23d7a5b8'/%3E%3Ccircle cx='24' cy='18' r='10' fill='%23f1c9a5'/%3E%3Cpath d='M8 48c1-13 8-19 16-19s15 6 16 19' fill='%23713d59'/%3E%3Cpath d='M14 17c1-10 6-14 12-13 7 1 10 7 8 16-4-5-10-8-20-3' fill='%233a2730'/%3E%3C/svg%3E">
+                </div>
+                <strong class="gift-stellar__name">@oscar</strong>
+                <p class="gift-stellar__gift">Envió Corazón ×5</p>
+                <span class="gift-stellar__total">Aporte acumulado: 430</span>
+              </article>
+            </div>
+
+            <div class="anatomy">
+              <strong>Primera composición vertical</strong>
+              <p>La altura adicional se utiliza para ampliar la foto, no para añadir decoración.</p>
+            </div>
+            <div class="legend" aria-label="Partes del regalo estelar">
+              <span>Foto central</span><span>Usuario</span><span>Regalo</span><span>Acumulado</span>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <p class="next-types">Siguiente ficha: Regalo épico desde 250 puntos</p>
         </div>
       </div>
     </main>

@@ -5,34 +5,3 @@
 .printer__slot span { color: #ff9dd8; font-size: 0.48rem; }
 .receipt { position: absolute; z-index: 1; inset: calc(10% + 1.75rem) 19% 0; overflow: hidden; color: var(--ink); background: linear-gradient(90deg, rgb(170 135 151 / 6%) 1px, transparent 1px) 0 0 / 0.35rem 100%, var(--paper); box-shadow: inset 0.7rem 0 1rem rgb(108 69 91 / 8%), inset -0.7rem 0 1rem rgb(108 69 91 / 8%); clip-path: polygon(0 0,100% 0,98.5% 5%,100% 10%,98.5% 15%,100% 20%,98.5% 25%,100% 30%,98.5% 35%,100% 40%,98.5% 45%,100% 50%,98.5% 55%,100% 60%,98.5% 65%,100% 70%,98.5% 75%,100% 80%,98.5% 85%,100% 90%,98.5% 95%,100% 100%,0 100%,1.5% 95%,0 90%,1.5% 85%,0 80%,1.5% 75%,0 70%,1.5% 65%,0 60%,1.5% 55%,0 50%,1.5% 45%,0 40%,1.5% 35%,0 30%,1.5% 25%,0 20%,1.5% 15%,0 10%,1.5% 5%); }
 .receipt__feed { padding: 0.9rem 0.85rem 0; }
-.receipt-item { position: relative; display: grid; align-items: center; overflow: hidden; border-bottom: 1px dashed #aaa0a7; transform-origin: top center; }
-.receipt-item--gift { --item-height: 5rem; height: var(--item-height); grid-template-columns: 3.25rem minmax(0,1fr); gap: 0.65rem; padding: 0.55rem 0.2rem; }
-.receipt-item--follow { grid-template-columns: 1fr auto; min-height: 2.5rem; padding: 0.34rem 0.3rem; }
-.receipt-item__avatar { width: 3.15rem; aspect-ratio: 1; display: grid; place-items: center; border: 2px solid var(--ink); border-radius: 0.2rem; color: white; background: var(--avatar); font-weight: 900; filter: grayscale(1) contrast(1.1); }
-.receipt-item__tier { margin: 0 0 0.2rem; color: var(--muted-ink); font-size: 0.6rem; }
-.receipt-item__name { margin: 0; overflow: hidden; font-size: 0.9rem; font-weight: 900; text-overflow: ellipsis; white-space: nowrap; }
-.receipt-item__message { margin: 0.14rem 0 0; font-size: 0.72rem; }
-.receipt-item__total { margin: 0.18rem 0 0; color: var(--muted-ink); font-size: 0.62rem; }
-.receipt-item--follow .receipt-item__name { font-size: 0.72rem; }
-.receipt-item--follow .receipt-item__message { margin: 0; color: var(--muted-ink); font-size: 0.63rem; }
-.receipt-item--featured { --item-height: 7.5rem; }
-.receipt-item--stellar { --item-height: 10rem; }
-.receipt-item--epic { --item-height: 12.5rem; }
-.receipt-item--legendary { --item-height: 15rem; }
-.receipt-item--mythic { --item-height: 15rem; }
-.receipt-item--ultimate { --item-height: 15rem; }
-.receipt-item--featured,
-.receipt-item--stellar,
-.receipt-item--epic,
-.receipt-item--legendary,
-.receipt-item--mythic,
-.receipt-item--ultimate { grid-template-columns: 1fr; justify-items: center; align-content: center; gap: 0.4rem; text-align: center; }
-.receipt-item--featured { gap: 0.2rem; }
-.receipt-item--featured .receipt-item__avatar { width: 3rem; }
-.receipt-item--stellar .receipt-item__avatar { width: 4.5rem; }
-.receipt-item--epic .receipt-item__avatar { width: 6rem; }
-.receipt-item--legendary .receipt-item__avatar { width: 7rem; }
-.receipt-item--mythic .receipt-item__avatar { width: 7rem; }
-.receipt-item--ultimate .receipt-item__avatar { width: 7rem; }
-.receipt-item--printing { animation: print-row 700ms cubic-bezier(.2,.8,.2,1) both; }
-@keyframes print-row { from { max-height: 0; min-height: 0; padding-block: 0; clip-path: inset(0 0 100%); transform: translateY(-1rem) scaleY(0.1); } to { max-height: var(--item-height, 6rem); clip-path: inset(0); transform: translateY(0) scaleY(1); } }

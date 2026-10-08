@@ -17,12 +17,14 @@ GiftWallLive/
 ├── index.html
 ├── css/
 │   ├── base.css
+│   ├── printer-components.css
 │   ├── printer.css
 │   └── top-three.css
 ├── js/
 │   ├── app.js
 │   ├── data.js
 │   ├── feed.js
+│   ├── printer-components.js
 │   └── top-three.js
 ├── prototypes/
 │   └── printer/
@@ -80,12 +82,16 @@ La skill externa `frontend-design` guía la dirección artística y la implement
 - Registro de regalo con avatar, nombre, agradecimiento, cantidad e icono del regalo.
 - Registro de seguidor a media altura, sin fotografía.
 - Catálogo visual con nueve niveles de regalo: Basic, Featured, Stellar, Epic, Legendary, Mythic, Celestial, Primordial y Cosmic.
-- Loop de impresión con datos simulados.
+- Loop de impresión con datos simulados que recorre New Follower y los nueve componentes visuales.
+- `js/printer-components.js`: genera el HTML de cada componente reutilizable del printer.
+- `css/printer-components.css`: contiene su presentación, jerarquía visual y animaciones.
 - `assets/images/printer-frame.png`: marco transparente de la impresora; el contenido del papel continúa siendo HTML dinámico.
 
 ## Configuración futura de rangos
 
 Los rangos de puntos no forman parte de los componentes visuales. Se definirán durante la integración del catálogo con el loop principal y, posteriormente, con los eventos reales de TikTok.
+
+Mientras se validan los diseños, cada evento de `js/data.js` declara explícitamente su propiedad `tier`. Esto permite probar cualquier componente sin convertir sus puntos en una regla de producto prematura.
 
 Cuando se establezcan los valores definitivos, se centralizarán en un archivo como `js/gift-tiers.js`. Ese archivo exportará una constante ordenada con el identificador del componente, su nombre y sus límites mínimo y máximo. La función que clasifique cada regalo consumirá esa configuración, evitando rangos duplicados en HTML, CSS o documentación.
 

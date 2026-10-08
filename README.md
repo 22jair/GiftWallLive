@@ -26,8 +26,7 @@ GiftWallLive/
 │   └── top-three.js
 ├── prototypes/
 │   └── printer/
-│       ├── printer-components.html
-│       └── printer-types.html
+│       └── printer-components.html
 ├── tests/
 │   └── legacy-effects/
 ├── AGENTS.md
@@ -53,8 +52,9 @@ GiftWallLive/
 
 La carpeta `prototypes/` contiene páginas independientes para definir y aprobar partes de la interfaz antes de incorporarlas a la aplicación principal. Se pueden abrir directamente en el navegador y no necesitan un servidor local.
 
-- [`printer/printer-types.html`](prototypes/printer/printer-types.html): compara la altura y el tamaño de imagen asignados a cada nivel de impresión.
 - [`printer/printer-components.html`](prototypes/printer/printer-components.html): laboratorio para diseñar cada componente del printer por separado antes de reutilizarlo en el loop principal.
+
+El catálogo se concentra únicamente en la estructura y presentación visual de cada componente. No asigna rangos de puntos, porque esa decisión pertenece a la lógica de la aplicación.
 
 ### Diseños conservados
 
@@ -77,25 +77,16 @@ La skill externa `frontend-design` guía la dirección artística y la implement
 
 - Top 3 compacto que solo se actualiza cuando cambia un aporte.
 - Recibo continuo que calcula automáticamente cuántos registros necesita para llenar la altura disponible.
-- Registro de regalo con avatar, nombre, regalo, cantidad y aporte acumulado.
+- Registro de regalo con avatar, nombre, agradecimiento, cantidad e icono del regalo.
 - Registro de seguidor a media altura, sin fotografía.
-- Siete niveles de regalo simulados, desde impresión normal hasta impresión máxima, con exposición proporcional a sus puntos.
+- Catálogo visual con nueve niveles de regalo: Basic, Featured, Stellar, Epic, Legendary, Mythic, Celestial, Primordial y Cosmic.
 - Loop de impresión con datos simulados.
 - `assets/images/printer-frame.png`: marco transparente de la impresora; el contenido del papel continúa siendo HTML dinámico.
 
-## Escala inicial de puntos
+## Configuración futura de rangos
 
-La altura de cada impresión representa la importancia de la acción. Estos valores son la base de prueba y podrán ajustarse después de validar la integración real con TikTok.
+Los rangos de puntos no forman parte de los componentes visuales. Se definirán durante la integración del catálogo con el loop principal y, posteriormente, con los eventos reales de TikTok.
 
-| Acción o nivel | Rango | Altura base |
-| --- | ---: | ---: |
-| Nuevo seguidor | Sin puntos | 40 px |
-| Regalo básico | 1–30 puntos | 80 px |
-| Regalo destacado | 31–99 puntos | 80 px |
-| Regalo estelar | 100–999 puntos | 160 px |
-| Regalo épico | 1,000–2,999 puntos | 200 px |
-| Regalo legendario | 3,000–4,999 puntos | 240 px |
-| Regalo mítico | 5,000–9,999 puntos | 240 px |
-| Regalo máximo | 10,000 puntos o más | 240 px |
+Cuando se establezcan los valores definitivos, se centralizarán en un archivo como `js/gift-tiers.js`. Ese archivo exportará una constante ordenada con el identificador del componente, su nombre y sus límites mínimo y máximo. La función que clasifique cada regalo consumirá esa configuración, evitando rangos duplicados en HTML, CSS o documentación.
 
-Los seguidores no muestran fotografía. `Regalo básico` y `Regalo destacado` comparten la composición horizontal de 80 px: el básico aplica una capa gris sobre la foto y el destacado conserva sus colores originales. Desde `Regalo estelar`, la imagen se presenta centrada y aumenta progresivamente hasta `Regalo legendario`. Los niveles `Legendario`, `Mítico` y `Máximo` comparten el mismo tamaño base; su jerarquía visual se definirá mediante estilos y animaciones.
+No se crea todavía ese archivo porque los valores siguen pendientes y no tendría un consumidor real dentro de la versión actual.

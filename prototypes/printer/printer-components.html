@@ -83,6 +83,8 @@
       }
 
       .paper-heading { display: flex; justify-content: space-between; margin-bottom: 10px; color: #85817f; font-size: 9px; }
+      .gift-message { display: inline-flex; align-items: center; justify-content: center; gap: 4px; }
+      .gift-message__icon { width: 18px; height: 18px; flex: 0 0 auto; object-fit: contain; }
       .follower { height: 40px; display: grid; grid-template-columns: 18px minmax(0,1fr) auto; align-items: center; gap: 6px; border-bottom: 1px dashed #aaa5a2; overflow: hidden; }
       .follower__mark { width: 17px; aspect-ratio: 1; display: grid; place-items: center; border: 1px solid #77716f; border-radius: 50%; color: #625d5b; font-size: 12px; line-height: 1; }
       .follower__name { overflow: hidden; font-size: 11px; font-weight: 750; text-overflow: ellipsis; white-space: nowrap; }
@@ -95,7 +97,6 @@
       .gift-basic__content { min-width: 0; }
       .gift-basic__name { display: block; overflow: hidden; margin-bottom: 2px; font-size: 11px; font-weight: 750; text-overflow: ellipsis; white-space: nowrap; }
       .gift-basic__gift { margin: 0 0 2px; overflow: hidden; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
-      .gift-basic__total { display: block; color: #8a8582; font-size: 8.5px; }
       .gift-basic--focus { background: #f2f2f2; }
       .gift-basic--gray .gift-basic__avatar img { filter: grayscale(1); }
       .gift-basic--gray .gift-basic__avatar::after { content: ""; position: absolute; inset: 0; background: rgba(80,80,80,.28); }
@@ -106,7 +107,6 @@
       .gift-stellar__avatar img { width: 100%; height: 100%; display: block; object-fit: cover; }
       .gift-stellar__name { max-width: 100%; overflow: hidden; font-size: 11px; font-weight: 750; text-overflow: ellipsis; white-space: nowrap; }
       .gift-stellar__gift { margin: 0; font-size: 10px; }
-      .gift-stellar__total { color: #8a8582; font-size: 8.5px; }
       .gift-stellar--focus { background: #f2f2f2; }
 
       .gift-epic { height: 240px; display: grid; place-items: center; align-content: center; gap: 5px; border-bottom: 1px dashed #aaa5a2; overflow: hidden; background: linear-gradient(135deg, rgba(255,214,236,.62), rgba(219,231,255,.52), rgba(255,239,197,.62)); background-size: 220% 220%; text-align: center; animation: epic-background 7s ease-in-out infinite; }
@@ -123,7 +123,6 @@
       .gift-epic__seal { position: absolute; z-index: 5; bottom: -1px; min-width: 50px; padding: 2px 10px 3px; border: 1px solid rgba(255,255,255,.88); border-radius: 999px; color: #fff; background: linear-gradient(100deg, #d33f89, #7668e6 58%, #3aaabd); box-shadow: 0 3px 8px rgba(104,83,199,.28), inset 0 1px rgba(255,255,255,.36); font-size: 8px; font-weight: 800; letter-spacing: .04em; line-height: 1; }
       .gift-epic__name { max-width: 100%; overflow: hidden; margin-top: 8px; font-size: 13px; font-weight: 750; text-overflow: ellipsis; white-space: nowrap; }
       .gift-epic__gift { margin: 0; color: transparent; background: linear-gradient(100deg, #292b2e 0 38%, #d33f89 48%, #6d64db 53%, #292b2e 62% 100%); background-position: 100% 0; background-size: 260% 100%; background-clip: text; font-size: 12px; font-weight: 700; animation: epic-gift-shine 3.2s ease-in-out infinite; -webkit-background-clip: text; }
-      .gift-epic__total { color: #807b78; font-size: 10px; }
       .gift-epic--focus { box-shadow: inset 0 0 18px rgba(210,70,137,.11); }
 
       @keyframes epic-background { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
@@ -161,7 +160,6 @@
       .gift-legendary__seal { position: absolute; z-index: 6; bottom: -1px; min-width: 62px; padding: 2px 11px 3px; border: 1px solid rgba(255,250,220,.94); border-radius: 999px; color: #60471f; background: linear-gradient(180deg, #fffbe7 0 25%, #f2d179 58%, #d6a33a 100%); box-shadow: 0 4px 9px rgba(151,108,28,.28), inset 0 1px rgba(255,255,255,.94); font-size: 8px; font-weight: 850; letter-spacing: .035em; line-height: 1; text-shadow: 0 1px rgba(255,255,255,.58); }
       .gift-legendary__name { max-width: 100%; overflow: hidden; margin-top: 8px; color: #5e492d; font-size: 13px; font-weight: 850; text-overflow: ellipsis; white-space: nowrap; }
       .gift-legendary__gift { margin: 0; color: transparent; background: linear-gradient(100deg, #6d5532 0 38%, #d4a536 48%, #fff0ac 52%, #6d5532 62% 100%); background-position: 100% 0; background-size: 260% 100%; background-clip: text; font-size: 12px; font-weight: 800; animation: legendary-gift-shine 3.4s ease-in-out infinite; -webkit-background-clip: text; }
-      .gift-legendary__total { color: #8a7b65; font-size: 10px; }
       @keyframes legendary-background { 0%, 100% { background-position: 20% 40%; } 50% { background-position: 80% 60%; } }
       @keyframes legendary-dust { to { background-position: 24px -24px; } }
       @keyframes legendary-medallion { to { transform: rotate(1turn); } }
@@ -195,7 +193,6 @@
       .gift-mythic__seal { position: absolute; z-index: 9; bottom: -1px; min-width: 54px; padding: 2px 10px 3px; border: 1px solid rgba(255,255,255,.82); border-radius: 999px; color: #31565d; background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(185,216,214,.92)); box-shadow: 0 3px 8px rgba(44,88,95,.22), inset 0 1px rgba(255,255,255,.95); font-size: 8px; font-weight: 800; letter-spacing: .04em; line-height: 1; }
       .gift-mythic__name { max-width: 100%; overflow: hidden; margin-top: 9px; color: #223a40; font-size: 13px; font-weight: 850; letter-spacing: .005em; text-shadow: 0 1px rgba(255,255,255,.65); text-overflow: ellipsis; white-space: nowrap; }
       .gift-mythic__gift { margin: 0; color: transparent; background: linear-gradient(100deg, #385c63 0 37%, #68b7b5 47%, #b6dfeb 53%, #385c63 63% 100%); background-position: 100% 0; background-size: 260% 100%; background-clip: text; font-size: 12px; font-weight: 800; animation: mythic-gift-shine 3.5s ease-in-out infinite; -webkit-background-clip: text; }
-      .gift-mythic__total { color: #627b80; font-size: 10px; }
       @keyframes mythic-veil { 0%, 100% { background-position: 0 0, 46% 50%, 0 0, 0 0, 0 0, 0 0, 46% 50%; } 50% { background-position: 0 0, 54% 50%, 0 0, 0 0, 0 0, 0 0, 54% 50%; } }
       @keyframes mythic-aura { from { transform: translateX(-50%) rotate(0); } to { transform: translateX(-50%) rotate(1turn); } }
       @keyframes mythic-ring { to { transform: rotate(1turn); } }
@@ -237,7 +234,6 @@
       .gift-celestial__seal { position: absolute; z-index: 9; bottom: -1px; min-width: 60px; padding: 2px 11px 3px; border: 1px solid rgba(255,255,255,.9); border-radius: 999px; color: #81423f; background: linear-gradient(180deg, #fffef9 0 34%, #f6cf9f 54%, #e9ae7b 100%); box-shadow: 0 4px 9px rgba(133,61,56,.24), inset 0 1px rgba(255,255,255,.98), inset 0 -1px rgba(150,66,58,.13); font-size: 8px; font-weight: 850; letter-spacing: .035em; line-height: 1; text-shadow: 0 1px rgba(255,255,255,.62); }
       .gift-celestial__name { max-width: 100%; overflow: hidden; margin-top: 9px; color: #573735; font-size: 13px; font-weight: 850; text-shadow: 0 1px rgba(255,255,255,.68); text-overflow: ellipsis; white-space: nowrap; }
       .gift-celestial__gift { margin: 0; color: transparent; background: linear-gradient(100deg, #6e403b 0 36%, #d94869 46%, #f0a62f 53%, #6e403b 64% 100%); background-position: 100% 0; background-size: 260% 100%; background-clip: text; font-size: 12px; font-weight: 850; animation: celestial-gift-shine 3s ease-in-out infinite; -webkit-background-clip: text; }
-      .gift-celestial__total { color: #8b6860; font-size: 10px; }
       @keyframes celestial-sky { 0%, 100% { background-position: 0 0, 18% 45%, 18% 45%, 18% 45%, 18% 45%; } 50% { background-position: 0 0, 82% 55%, 82% 55%, 82% 55%, 82% 55%; } }
       @keyframes celestial-rays { to { transform: translateX(-50%) rotate(1turn); } }
       @keyframes celestial-crown { to { transform: rotate(1turn); } }
@@ -288,7 +284,6 @@
       .gift-primordial__seal { position: absolute; z-index: 9; bottom: -1px; min-width: 72px; padding: 3px 13px 4px; border: 1px solid rgba(238,226,179,.9); border-radius: 3px 7px 3px 7px; color: #f8f6e7; background: linear-gradient(145deg, #739388 0%, #1f403d 47%, #52776d 72%, #b99a50 100%); box-shadow: 0 5px 10px rgba(21,56,51,.34), 0 0 8px rgba(218,248,232,.42), inset 0 1px rgba(255,255,255,.35); font-size: 8px; font-weight: 850; letter-spacing: .055em; line-height: 1; text-shadow: 0 1px 2px rgba(8,30,28,.68); }
       .gift-primordial__name { max-width: 100%; overflow: hidden; margin-top: 9px; color: #29433f; font-size: 13px; font-weight: 850; text-shadow: 0 1px rgba(255,255,255,.62); text-overflow: ellipsis; white-space: nowrap; }
       .gift-primordial__gift { margin: 0; color: transparent; background: linear-gradient(100deg, #365751 0 33%, #cf5d42 42%, #2f999b 49%, #7f62a8 56%, #ad852d 63%, #365751 72% 100%); background-position: 100% 0; background-size: 300% 100%; background-clip: text; font-size: 12px; font-weight: 850; animation: primordial-gift-shine 3.2s ease-in-out infinite; -webkit-background-clip: text; }
-      .gift-primordial__total { color: #657972; font-size: 10px; }
       @keyframes primordial-ground { 0%, 100% { opacity: .5; transform: scaleX(.92); } 50% { opacity: .78; transform: scaleX(1.05); } }
       @keyframes primordial-aura { 0%, 100% { filter: blur(5px) brightness(.9) drop-shadow(0 0 11px rgba(255,255,255,.8)); opacity: .3; transform: scale(.97); } 50% { filter: blur(4px) brightness(1.14) drop-shadow(0 0 15px rgba(255,255,255,.92)); opacity: .55; transform: scale(1.025); } }
       @keyframes primordial-bloom { 0%, 100% { filter: blur(5px) brightness(.96); opacity: .62; transform: scale(.95); } 50% { filter: blur(4px) brightness(1.16); opacity: .9; transform: scale(1.06); } }
@@ -328,7 +323,6 @@
       .gift-cosmic__seal { position: absolute; z-index: 9; bottom: -1px; min-width: 65px; padding: 2px 12px 3px; border: 1px solid rgba(216,246,255,.92); border-radius: 999px; color: #f8fbff; background: linear-gradient(105deg, #354fb2, #8a3db1 46%, #285f9e); box-shadow: 0 4px 11px rgba(2,6,32,.4), 0 0 10px rgba(97,215,255,.34), inset 0 1px rgba(255,255,255,.45); font-size: 8px; font-weight: 850; letter-spacing: .055em; line-height: 1; text-shadow: 0 1px 2px rgba(4,6,31,.5); }
       .gift-cosmic__name { max-width: 100%; overflow: hidden; margin-top: 9px; color: #fff; font-size: 13px; font-weight: 850; text-shadow: 0 1px 3px #09072e, 0 0 8px rgba(108,220,255,.45); text-overflow: ellipsis; white-space: nowrap; }
       .gift-cosmic__gift { margin: 0; color: transparent; background: linear-gradient(100deg, #c7f5ff 0 35%, #fff 43%, #ffd272 50%, #efa0ff 57%, #c7f5ff 67% 100%); background-position: 100% 0; background-size: 280% 100%; background-clip: text; font-size: 12px; font-weight: 850; filter: drop-shadow(0 1px 2px rgba(5,7,35,.62)); animation: cosmic-gift-shine 3.5s ease-in-out infinite; -webkit-background-clip: text; }
-      .gift-cosmic__total { color: #c8d8f4; font-size: 10px; text-shadow: 0 1px 2px rgba(4,6,31,.72); }
       @keyframes cosmic-space { 0%, 100% { background-position: 0 0, 0 0, 0 0, 0 0, 20% 38%, 16% 70%, 82% 68%, 0 0; } 50% { background-position: 8px 5px, -7px 9px, 6px -5px, -8px -6px, 80% 54%, 70% 78%, 24% 62%, 0 0; } }
       @keyframes cosmic-nebula { to { transform: translateX(-50%) rotate(1turn) scale(.92); } }
       @keyframes cosmic-galaxy { to { transform: rotate(1turn); } }
@@ -478,7 +472,7 @@
             <li>Incluye la foto de perfil del donador.</li>
             <li>Una capa gris cubre la fotografía y elimina su color.</li>
             <li>El regalo y la cantidad se leen como una sola acción.</li>
-            <li>El acumulado permanece visible, pero con menor contraste.</li>
+            <li>El agradecimiento y el icono del regalo comparten una sola línea.</li>
             <li>No utiliza color de nivel, brillos ni efectos decorativos.</li>
             <li>La composición siempre se mantiene horizontal.</li>
           </ul>
@@ -493,34 +487,31 @@
                 <div class="gift-basic__avatar"><img alt="Foto de perfil dummy de Laura" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%23d7a5b8'/%3E%3Ccircle cx='24' cy='18' r='10' fill='%23f1c9a5'/%3E%3Cpath d='M8 48c1-13 8-19 16-19s15 6 16 19' fill='%23713d59'/%3E%3Cpath d='M14 17c1-10 6-14 12-13 7 1 10 7 8 16-4-5-10-8-20-3' fill='%233a2730'/%3E%3C/svg%3E"></div>
                 <div class="gift-basic__content">
                   <strong class="gift-basic__name">@laura.diaz</strong>
-                  <p class="gift-basic__gift">Envió Rosa ×1</p>
-                  <span class="gift-basic__total">Aporte acumulado: 28</span>
+                  <p class="gift-basic__gift gift-message"><span>Thanks for ×1</span><img class="gift-message__icon" data-tiktok-gift-icon alt="Icono del regalo de TikTok" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='9' width='18' height='12' rx='3' fill='%23ff4f9a'/%3E%3Cpath d='M12 9v12M3 13h18M12 9C8 9 6 7 7 5c1-2 4 0 5 4Zm0 0c4 0 6-2 5-4-1-2-4 0-5 4Z' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E"></p>
                 </div>
               </article>
               <article class="gift-basic gift-basic--gray">
                 <div class="gift-basic__avatar"><img alt="Foto de perfil dummy de Carlos" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%2386b5c2'/%3E%3Ccircle cx='24' cy='18' r='10' fill='%23c98f6c'/%3E%3Cpath d='M7 48c2-13 9-19 17-19s15 6 17 19' fill='%232d5264'/%3E%3Cpath d='M13 16C15 6 21 3 28 5c6 2 8 8 6 14-5-4-11-6-21-3' fill='%23262629'/%3E%3C/svg%3E"></div>
                 <div class="gift-basic__content">
                   <strong class="gift-basic__name">@carlos</strong>
-                  <p class="gift-basic__gift">Envió GG ×5</p>
-                  <span class="gift-basic__total">Aporte acumulado: 19</span>
+                  <p class="gift-basic__gift gift-message"><span>Thanks for ×5</span><img class="gift-message__icon" data-tiktok-gift-icon alt="Icono del regalo de TikTok" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='9' width='18' height='12' rx='3' fill='%23ff4f9a'/%3E%3Cpath d='M12 9v12M3 13h18M12 9C8 9 6 7 7 5c1-2 4 0 5 4Zm0 0c4 0 6-2 5-4-1-2-4 0-5 4Z' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E"></p>
                 </div>
               </article>
               <article class="gift-basic gift-basic--gray">
                 <div class="gift-basic__avatar"><img alt="Foto de perfil dummy de usuario con nombre largo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%23e3bd73'/%3E%3Ccircle cx='24' cy='18' r='10' fill='%23e6b18b'/%3E%3Cpath d='M7 48c2-13 9-19 17-19s15 6 17 19' fill='%23884d3e'/%3E%3Cpath d='M13 19C12 9 18 4 24 4c8 0 12 6 11 17-5-5-13-8-22-2' fill='%23643f29'/%3E%3C/svg%3E"></div>
                 <div class="gift-basic__content">
                   <strong class="gift-basic__name">@usuario_con_nombre_muy_largo</strong>
-                  <p class="gift-basic__gift">Envió Corazón ×2</p>
-                  <span class="gift-basic__total">Aporte acumulado: 12</span>
+                  <p class="gift-basic__gift gift-message"><span>Thanks for ×2</span><img class="gift-message__icon" data-tiktok-gift-icon alt="Icono del regalo de TikTok" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='9' width='18' height='12' rx='3' fill='%23ff4f9a'/%3E%3Cpath d='M12 9v12M3 13h18M12 9C8 9 6 7 7 5c1-2 4 0 5 4Zm0 0c4 0 6-2 5-4-1-2-4 0-5 4Z' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E"></p>
                 </div>
               </article>
             </div>
 
             <div class="anatomy">
               <strong>Lectura compacta en tres líneas</strong>
-              <p>Identidad, acción realizada y aporte acumulado del usuario.</p>
+              <p>Identidad del usuario y agradecimiento por el regalo recibido.</p>
             </div>
             <div class="legend" aria-label="Partes del regalo básico">
-              <span>Avatar</span><span>Usuario</span><span>Regalo</span><span>Acumulado</span>
+              <span>Avatar</span><span>Usuario</span><span>Agradecimiento</span><span>Icono del regalo</span>
             </div>
           </div>
         </section>
@@ -560,8 +551,7 @@
                 </div>
                 <div class="gift-basic__content">
                   <strong class="gift-basic__name">@maritza</strong>
-                  <p class="gift-basic__gift">Envió Perfume ×1</p>
-                  <span class="gift-basic__total">Aporte acumulado: 84</span>
+                  <p class="gift-basic__gift gift-message"><span>Thanks for ×1</span><img class="gift-message__icon" data-tiktok-gift-icon alt="Icono del regalo de TikTok" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='9' width='18' height='12' rx='3' fill='%23ff4f9a'/%3E%3Cpath d='M12 9v12M3 13h18M12 9C8 9 6 7 7 5c1-2 4 0 5 4Zm0 0c4 0 6-2 5-4-1-2-4 0-5 4Z' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E"></p>
                 </div>
               </article>
               <article class="gift-basic gift-highlighted">
@@ -570,8 +560,7 @@
                 </div>
                 <div class="gift-basic__content">
                   <strong class="gift-basic__name">@kevin027</strong>
-                  <p class="gift-basic__gift">Envió Rosa ×40</p>
-                  <span class="gift-basic__total">Aporte acumulado: 91</span>
+                  <p class="gift-basic__gift gift-message"><span>Thanks for ×40</span><img class="gift-message__icon" data-tiktok-gift-icon alt="Icono del regalo de TikTok" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='9' width='18' height='12' rx='3' fill='%23ff4f9a'/%3E%3Cpath d='M12 9v12M3 13h18M12 9C8 9 6 7 7 5c1-2 4 0 5 4Zm0 0c4 0 6-2 5-4-1-2-4 0-5 4Z' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E"></p>
                 </div>
               </article>
               <article class="gift-basic gift-highlighted">
@@ -580,8 +569,7 @@
                 </div>
                 <div class="gift-basic__content">
                   <strong class="gift-basic__name">@andrea</strong>
-                  <p class="gift-basic__gift">Envió Corazón ×3</p>
-                  <span class="gift-basic__total">Aporte acumulado: 62</span>
+                  <p class="gift-basic__gift gift-message"><span>Thanks for ×3</span><img class="gift-message__icon" data-tiktok-gift-icon alt="Icono del regalo de TikTok" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='9' width='18' height='12' rx='3' fill='%23ff4f9a'/%3E%3Cpath d='M12 9v12M3 13h18M12 9C8 9 6 7 7 5c1-2 4 0 5 4Zm0 0c4 0 6-2 5-4-1-2-4 0-5 4Z' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E"></p>
                 </div>
               </article>
             </div>
@@ -591,7 +579,7 @@
               <p>La estructura no cambia; la fotografía y los recursos visuales conservan sus colores originales.</p>
             </div>
             <div class="legend" aria-label="Partes del regalo con foto">
-              <span>Foto a color</span><span>Contenido a color</span><span>Regalo</span><span>Acumulado</span>
+              <span>Foto a color</span><span>Contenido a color</span><span>Agradecimiento</span><span>Icono del regalo</span>
             </div>
           </div>
         </section>
@@ -630,16 +618,14 @@
                   <img alt="Foto de perfil dummy de Jhonatan" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%2386b5c2'/%3E%3Ccircle cx='24' cy='18' r='10' fill='%23c98f6c'/%3E%3Cpath d='M7 48c2-13 9-19 17-19s15 6 17 19' fill='%232d5264'/%3E%3Cpath d='M13 16C15 6 21 3 28 5c6 2 8 8 6 14-5-4-11-6-21-3' fill='%23262629'/%3E%3C/svg%3E">
                 </div>
                 <strong class="gift-stellar__name">@jhonatan27</strong>
-                <p class="gift-stellar__gift">Envió Castillo ×1</p>
-                <span class="gift-stellar__total">Aporte acumulado: 760</span>
+                <p class="gift-stellar__gift gift-message"><span>Thanks for ×1</span><img class="gift-message__icon" data-tiktok-gift-icon alt="Icono del regalo de TikTok" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='9' width='18' height='12' rx='3' fill='%23ff4f9a'/%3E%3Cpath d='M12 9v12M3 13h18M12 9C8 9 6 7 7 5c1-2 4 0 5 4Zm0 0c4 0 6-2 5-4-1-2-4 0-5 4Z' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E"></p>
               </article>
               <article class="gift-stellar">
                 <div class="gift-stellar__avatar">
                   <img alt="Foto de perfil dummy de Oscar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%23d7a5b8'/%3E%3Ccircle cx='24' cy='18' r='10' fill='%23f1c9a5'/%3E%3Cpath d='M8 48c1-13 8-19 16-19s15 6 16 19' fill='%23713d59'/%3E%3Cpath d='M14 17c1-10 6-14 12-13 7 1 10 7 8 16-4-5-10-8-20-3' fill='%233a2730'/%3E%3C/svg%3E">
                 </div>
                 <strong class="gift-stellar__name">@oscar</strong>
-                <p class="gift-stellar__gift">Envió Corazón ×5</p>
-                <span class="gift-stellar__total">Aporte acumulado: 430</span>
+                <p class="gift-stellar__gift gift-message"><span>Thanks for ×5</span><img class="gift-message__icon" data-tiktok-gift-icon alt="Icono del regalo de TikTok" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='9' width='18' height='12' rx='3' fill='%23ff4f9a'/%3E%3Cpath d='M12 9v12M3 13h18M12 9C8 9 6 7 7 5c1-2 4 0 5 4Zm0 0c4 0 6-2 5-4-1-2-4 0-5 4Z' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E"></p>
               </article>
             </div>
 
@@ -648,7 +634,7 @@
               <p>La altura adicional se utiliza para ampliar la foto, no para añadir decoración.</p>
             </div>
             <div class="legend" aria-label="Partes del regalo estelar">
-              <span>Foto central</span><span>Usuario</span><span>Regalo</span><span>Acumulado</span>
+              <span>Foto central</span><span>Usuario</span><span>Agradecimiento</span><span>Icono del regalo</span>
             </div>
           </div>
         </section>
@@ -672,7 +658,7 @@
           <ul class="rules">
             <li>La foto continúa siendo el elemento principal.</li>
             <li>Un aro energético multicolor diferencia el nivel épico.</li>
-            <li>El nombre del regalo gana peso frente al acumulado.</li>
+            <li>El agradecimiento y el icono ganan peso dentro de la composición.</li>
             <li>Un aro multicolor gira permanentemente alrededor de la foto.</li>
             <li>Cuatro chispas alternan su brillo sin ocultar el rostro.</li>
             <li>El nombre del regalo recibe un destello de color continuo.</li>
@@ -692,8 +678,7 @@
                   <span class="gift-epic__seal">Epic</span>
                 </div>
                 <strong class="gift-epic__name">@maritza</strong>
-                <p class="gift-epic__gift">Envió Cisne ×1</p>
-                <span class="gift-epic__total">Aporte acumulado: 520</span>
+                <p class="gift-epic__gift gift-message"><span>Thanks for ×1</span><img class="gift-message__icon" data-tiktok-gift-icon alt="Icono del regalo de TikTok" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='9' width='18' height='12' rx='3' fill='%23ff4f9a'/%3E%3Cpath d='M12 9v12M3 13h18M12 9C8 9 6 7 7 5c1-2 4 0 5 4Zm0 0c4 0 6-2 5-4-1-2-4 0-5 4Z' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E"></p>
               </article>
               <article class="gift-epic">
                 <div class="gift-epic__portrait">
@@ -702,8 +687,7 @@
                   <span class="gift-epic__seal">Epic</span>
                 </div>
                 <strong class="gift-epic__name">@kevin027</strong>
-                <p class="gift-epic__gift">Envió Tren ×1</p>
-                <span class="gift-epic__total">Aporte acumulado: 390</span>
+                <p class="gift-epic__gift gift-message"><span>Thanks for ×1</span><img class="gift-message__icon" data-tiktok-gift-icon alt="Icono del regalo de TikTok" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='9' width='18' height='12' rx='3' fill='%23ff4f9a'/%3E%3Cpath d='M12 9v12M3 13h18M12 9C8 9 6 7 7 5c1-2 4 0 5 4Zm0 0c4 0 6-2 5-4-1-2-4 0-5 4Z' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E"></p>
               </article>
             </div>
 
@@ -712,7 +696,7 @@
               <p>La foto crece a 112 px y el aro, las chispas, el texto y el fondo permanecen en movimiento suave.</p>
             </div>
             <div class="legend" aria-label="Partes del regalo épico">
-              <span>Foto de 112 px</span><span>Aro energético</span><span>Regalo destacado</span><span>Acumulado</span>
+              <span>Foto de 112 px</span><span>Aro energético</span><span>Agradecimiento</span><span>Icono del regalo</span>
             </div>
           </div>
         </section>
@@ -756,8 +740,7 @@
                   <span class="gift-legendary__seal">Legendary</span>
                 </div>
                 <strong class="gift-legendary__name">@jhonatan27</strong>
-                <p class="gift-legendary__gift">Envió León ×1</p>
-                <span class="gift-legendary__total">Aporte acumulado: 920</span>
+                <p class="gift-legendary__gift gift-message"><span>Thanks for ×1</span><img class="gift-message__icon" data-tiktok-gift-icon alt="Icono del regalo de TikTok" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='9' width='18' height='12' rx='3' fill='%23ff4f9a'/%3E%3Cpath d='M12 9v12M3 13h18M12 9C8 9 6 7 7 5c1-2 4 0 5 4Zm0 0c4 0 6-2 5-4-1-2-4 0-5 4Z' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E"></p>
               </article>
               <article class="gift-legendary">
                 <div class="gift-legendary__portrait">
@@ -767,8 +750,7 @@
                   <span class="gift-legendary__seal">Legendary</span>
                 </div>
                 <strong class="gift-legendary__name">@laura.diaz</strong>
-                <p class="gift-legendary__gift">Envió Carruaje ×1</p>
-                <span class="gift-legendary__total">Aporte acumulado: 780</span>
+                <p class="gift-legendary__gift gift-message"><span>Thanks for ×1</span><img class="gift-message__icon" data-tiktok-gift-icon alt="Icono del regalo de TikTok" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='9' width='18' height='12' rx='3' fill='%23ff4f9a'/%3E%3Cpath d='M12 9v12M3 13h18M12 9C8 9 6 7 7 5c1-2 4 0 5 4Zm0 0c4 0 6-2 5-4-1-2-4 0-5 4Z' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E"></p>
               </article>
             </div>
 
@@ -828,8 +810,7 @@
                   <span class="gift-mythic__seal">Mythic</span>
                 </div>
                 <strong class="gift-mythic__name">@diego.live</strong>
-                <p class="gift-mythic__gift">Envió Universo ×1</p>
-                <span class="gift-mythic__total">Aporte acumulado: 2,260</span>
+                <p class="gift-mythic__gift gift-message"><span>Thanks for ×1</span><img class="gift-message__icon" data-tiktok-gift-icon alt="Icono del regalo de TikTok" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='9' width='18' height='12' rx='3' fill='%23ff4f9a'/%3E%3Cpath d='M12 9v12M3 13h18M12 9C8 9 6 7 7 5c1-2 4 0 5 4Zm0 0c4 0 6-2 5-4-1-2-4 0-5 4Z' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E"></p>
               </article>
               <article class="gift-mythic">
                 <div class="gift-mythic__portrait">
@@ -845,8 +826,7 @@
                   <span class="gift-mythic__seal">Mythic</span>
                 </div>
                 <strong class="gift-mythic__name">@valentina</strong>
-                <p class="gift-mythic__gift">Envió Galaxia ×1</p>
-                <span class="gift-mythic__total">Aporte acumulado: 1,480</span>
+                <p class="gift-mythic__gift gift-message"><span>Thanks for ×1</span><img class="gift-message__icon" data-tiktok-gift-icon alt="Icono del regalo de TikTok" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='9' width='18' height='12' rx='3' fill='%23ff4f9a'/%3E%3Cpath d='M12 9v12M3 13h18M12 9C8 9 6 7 7 5c1-2 4 0 5 4Zm0 0c4 0 6-2 5-4-1-2-4 0-5 4Z' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E"></p>
               </article>
             </div>
 
@@ -907,8 +887,7 @@
                   <span class="gift-celestial__seal">Celestial</span>
                 </div>
                 <strong class="gift-celestial__name">@andrea</strong>
-                <p class="gift-celestial__gift">Envió Castillo fantástico ×1</p>
-                <span class="gift-celestial__total">Aporte acumulado: 12,800</span>
+                <p class="gift-celestial__gift gift-message"><span>Thanks for ×1</span><img class="gift-message__icon" data-tiktok-gift-icon alt="Icono del regalo de TikTok" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='9' width='18' height='12' rx='3' fill='%23ff4f9a'/%3E%3Cpath d='M12 9v12M3 13h18M12 9C8 9 6 7 7 5c1-2 4 0 5 4Zm0 0c4 0 6-2 5-4-1-2-4 0-5 4Z' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E"></p>
               </article>
               <article class="gift-celestial">
                 <div class="gift-celestial__portrait">
@@ -926,8 +905,7 @@
                   <span class="gift-celestial__seal">Celestial</span>
                 </div>
                 <strong class="gift-celestial__name">@carlos</strong>
-                <p class="gift-celestial__gift">Envió León y tigre ×1</p>
-                <span class="gift-celestial__total">Aporte acumulado: 10,450</span>
+                <p class="gift-celestial__gift gift-message"><span>Thanks for ×1</span><img class="gift-message__icon" data-tiktok-gift-icon alt="Icono del regalo de TikTok" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='9' width='18' height='12' rx='3' fill='%23ff4f9a'/%3E%3Cpath d='M12 9v12M3 13h18M12 9C8 9 6 7 7 5c1-2 4 0 5 4Zm0 0c4 0 6-2 5-4-1-2-4 0-5 4Z' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E"></p>
               </article>
             </div>
 
@@ -997,8 +975,7 @@
                   <span class="gift-primordial__seal">Primordial</span>
                 </div>
                 <strong class="gift-primordial__name">@andrea</strong>
-                <p class="gift-primordial__gift">Envió Fénix ancestral ×1</p>
-                <span class="gift-primordial__total">Aporte acumulado: 24,800</span>
+                <p class="gift-primordial__gift gift-message"><span>Thanks for ×1</span><img class="gift-message__icon" data-tiktok-gift-icon alt="Icono del regalo de TikTok" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='9' width='18' height='12' rx='3' fill='%23ff4f9a'/%3E%3Cpath d='M12 9v12M3 13h18M12 9C8 9 6 7 7 5c1-2 4 0 5 4Zm0 0c4 0 6-2 5-4-1-2-4 0-5 4Z' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E"></p>
               </article>
               <article class="gift-primordial">
                 <div class="gift-primordial__portrait">
@@ -1025,8 +1002,7 @@
                   <span class="gift-primordial__seal">Primordial</span>
                 </div>
                 <strong class="gift-primordial__name">@kevin027</strong>
-                <p class="gift-primordial__gift">Envió Guardián elemental ×1</p>
-                <span class="gift-primordial__total">Aporte acumulado: 21,390</span>
+                <p class="gift-primordial__gift gift-message"><span>Thanks for ×1</span><img class="gift-message__icon" data-tiktok-gift-icon alt="Icono del regalo de TikTok" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='9' width='18' height='12' rx='3' fill='%23ff4f9a'/%3E%3Cpath d='M12 9v12M3 13h18M12 9C8 9 6 7 7 5c1-2 4 0 5 4Zm0 0c4 0 6-2 5-4-1-2-4 0-5 4Z' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E"></p>
               </article>
             </div>
 
@@ -1062,7 +1038,7 @@
             <li>La galaxia exterior usa cian, violeta, rosa y oro sin repetir la paleta de Celestial.</li>
             <li>Dos órbitas elípticas con planetas generan profundidad alrededor de la persona.</li>
             <li>Un único cometa cruza la composición como momento de celebración.</li>
-            <li>Nombre, regalo y acumulado utilizan alto contraste para resistir la compresión del LIVE.</li>
+            <li>Nombre, agradecimiento e icono utilizan alto contraste para resistir la compresión del LIVE.</li>
           </ul>
         </section>
 
@@ -1085,8 +1061,7 @@
                   <span class="gift-cosmic__seal">Cosmic</span>
                 </div>
                 <strong class="gift-cosmic__name">@valentina</strong>
-                <p class="gift-cosmic__gift">Envió Universo TikTok ×1</p>
-                <span class="gift-cosmic__total">Aporte acumulado: 18,900</span>
+                <p class="gift-cosmic__gift gift-message"><span>Thanks for ×1</span><img class="gift-message__icon" data-tiktok-gift-icon alt="Icono del regalo de TikTok" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='9' width='18' height='12' rx='3' fill='%23ff4f9a'/%3E%3Cpath d='M12 9v12M3 13h18M12 9C8 9 6 7 7 5c1-2 4 0 5 4Zm0 0c4 0 6-2 5-4-1-2-4 0-5 4Z' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E"></p>
               </article>
               <article class="gift-cosmic">
                 <div class="gift-cosmic__portrait">
@@ -1102,8 +1077,7 @@
                   <span class="gift-cosmic__seal">Cosmic</span>
                 </div>
                 <strong class="gift-cosmic__name">@diego.live</strong>
-                <p class="gift-cosmic__gift">Envió Viaje interestelar ×1</p>
-                <span class="gift-cosmic__total">Aporte acumulado: 16,240</span>
+                <p class="gift-cosmic__gift gift-message"><span>Thanks for ×1</span><img class="gift-message__icon" data-tiktok-gift-icon alt="Icono del regalo de TikTok" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='9' width='18' height='12' rx='3' fill='%23ff4f9a'/%3E%3Cpath d='M12 9v12M3 13h18M12 9C8 9 6 7 7 5c1-2 4 0 5 4Zm0 0c4 0 6-2 5-4-1-2-4 0-5 4Z' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E"></p>
               </article>
             </div>
 

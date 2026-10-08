@@ -1,12 +1,13 @@
-const { people, gifts, sequence } = window.GWL_DATA;
+const { people, events } = window.GWL_DATA;
 const podium = document.querySelector("#podium");
 const feed = document.querySelector("#activity-feed");
 let cursor = 0;
 
 function nextEvent(updateScore = true) {
-  const type = sequence[cursor % sequence.length];
-  const person = people[cursor % people.length];
-  const gift = gifts[cursor % gifts.length];
+  const template = events[cursor % events.length];
+  const type = template.type;
+  const person = people[template.personIndex];
+  const gift = template.gift;
   cursor += 1;
   if (type === "gift" && updateScore) person.score += gift.points;
   return { type, person, gift };

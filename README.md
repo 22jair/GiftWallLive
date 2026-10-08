@@ -55,8 +55,26 @@ La skill externa `frontend-design` guía la dirección artística y la implement
 ## Componentes actuales
 
 - Top 3 compacto que solo se actualiza cuando cambia un aporte.
-- Recibo continuo con alrededor de seis registros visibles.
+- Recibo continuo que calcula automáticamente cuántos registros necesita para llenar la altura disponible.
 - Registro de regalo con avatar, nombre, regalo, cantidad y aporte acumulado.
 - Registro de seguidor a media altura, sin fotografía.
+- Siete niveles de regalo simulados, desde impresión normal hasta impresión máxima, con exposición proporcional a sus puntos.
 - Loop de impresión con datos simulados.
 - `assets/images/printer-frame.png`: marco transparente de la impresora; el contenido del papel continúa siendo HTML dinámico.
+
+## Escala inicial de puntos
+
+La altura de cada impresión representa la importancia de la acción. Estos valores son la base de prueba y podrán ajustarse después de validar la integración real con TikTok.
+
+| Acción o nivel | Rango | Altura base |
+| --- | ---: | ---: |
+| Nuevo seguidor | Sin puntos | 40 px |
+| Regalo | 1–29 puntos | 80 px |
+| Regalo destacado | 30–99 puntos | 120 px |
+| Regalo estelar | 100–999 puntos | 160 px |
+| Regalo épico | 1,000–2,999 puntos | 200 px |
+| Regalo legendario | 3,000–4,999 puntos | 240 px |
+| Regalo mítico | 5,000–9,999 puntos | 320 px |
+| Regalo máximo | 10,000 puntos o más | 440 px |
+
+Los seguidores no muestran fotografía. Los regalos normales conservan una composición horizontal y, desde `Regalo destacado`, la imagen se presenta centrada y aumenta progresivamente de tamaño.

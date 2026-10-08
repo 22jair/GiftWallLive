@@ -1,12 +1,23 @@
 window.GWLFeed = (() => {
   const formatter = new Intl.NumberFormat("es-PE");
 
+  function giftTier(points) {
+    if (points < 30) return { className: "standard", label: "Regalo" };
+    if (points < 100) return { className: "featured", label: "Regalo destacado" };
+    if (points < 1000) return { className: "stellar", label: "Regalo estelar" };
+    if (points < 3000) return { className: "epic", label: "Regalo épico" };
+    if (points < 5000) return { className: "legendary", label: "Regalo legendario" };
+    if (points < 10000) return { className: "mythic", label: "Regalo mítico" };
+    return { className: "ultimate", label: "Regalo máximo" };
+  }
+
   function markup(event, animate) {
     const printingClass = animate ? " receipt-item--printing" : "";
     if (event.type === "follow") {
       return `<article class="receipt-item receipt-item--follow${printingClass}"><p class="receipt-item__name">${event.person.name}</p><p class="receipt-item__message">Nuevo seguidor</p></article>`;
     }
-    return `<article class="receipt-item receipt-item--gift${printingClass}"><span class="receipt-item__avatar" style="--avatar:${event.person.avatar}" aria-hidden="true">${event.person.initials}</span><div><h3 class="receipt-item__name">${event.person.name}</h3><p class="receipt-item__message">Envió ${event.gift.name} ×${event.gift.amount}</p><p class="receipt-item__total">Aporte acumulado: ${formatter.format(event.person.score)}</p></div></article>`;
+    const tier = giftTier(event.gift.points);
+    return `<article class="receipt-item receipt-item--gift receipt-item--${tier.className}${printingClass}"><span class="receipt-item__avatar" style="--avatar:${event.person.avatar}" aria-hidden="true">${event.person.initials}</span><div class="receipt-item__content"><p class="receipt-item__tier">${tier.label}</p><h3 class="receipt-item__name">${event.person.name}</h3><p class="receipt-item__message">Envió ${event.gift.name} ×${event.gift.amount}</p><p class="receipt-item__total">${formatter.format(event.gift.points)} puntos · Acumulado: ${formatter.format(event.person.score)}</p></div></article>`;
   }
 
   function trimToReceipt(container) {

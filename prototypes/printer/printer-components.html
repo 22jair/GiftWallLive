@@ -44,6 +44,7 @@
         background: var(--panel);
         scroll-margin-top: 20px;
       }
+      .component-sheet + .component-sheet { margin-top: 72px; }
 
       .specification { padding: 18px 30px 18px 0; border-right: 1px solid #dedede; }
       .type-number { display: block; margin-bottom: 18px; color: var(--muted); font-size: 12px; font-weight: 700; }
@@ -88,6 +89,18 @@
       .follower__message { color: #88827f; font-size: 9.5px; white-space: nowrap; }
       .follower--focus { background: #f2f2f2; }
 
+      .gift-basic { height: 80px; display: grid; grid-template-columns: 48px minmax(0,1fr); align-items: center; gap: 10px; border-bottom: 1px dashed #aaa5a2; overflow: hidden; }
+      .gift-basic__avatar { position: relative; width: 48px; aspect-ratio: 1; display: grid; place-items: center; overflow: hidden; border: 1px solid #8d8986; border-radius: 50%; background: #e7e5e1; color: #5f5b58; font-size: 15px; font-weight: 700; }
+      .gift-basic__avatar img { width: 100%; height: 100%; display: block; object-fit: cover; }
+      .gift-basic__content { min-width: 0; }
+      .gift-basic__name { display: block; overflow: hidden; margin-bottom: 2px; font-size: 11px; font-weight: 750; text-overflow: ellipsis; white-space: nowrap; }
+      .gift-basic__gift { margin: 0 0 2px; overflow: hidden; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+      .gift-basic__total { display: block; color: #8a8582; font-size: 8.5px; }
+      .gift-basic--focus { background: #f2f2f2; }
+      .gift-basic--gray .gift-basic__avatar img { filter: grayscale(1); }
+      .gift-basic--gray .gift-basic__avatar::after { content: ""; position: absolute; inset: 0; background: rgba(80,80,80,.28); }
+      .gift-highlighted .gift-basic__avatar { border-color: #a4a09c; background: #ddd; }
+
       .anatomy { margin-top: 16px; padding: 12px 0 0; border-top: 1px solid #b7b7b7; }
       .anatomy strong { display: block; margin-bottom: 6px; font-size: 11px; }
       .anatomy p { margin-bottom: 0; color: var(--muted); font-size: 10px; line-height: 1.5; }
@@ -114,13 +127,15 @@
           <h1>Catálogo de impresiones</h1>
           <p>Cada ficha define un componente antes de incorporarlo al printer en vivo.</p>
         </div>
-        <span class="status">1 componente en diseño</span>
+        <span class="status">3 componentes en diseño</span>
       </header>
 
       <div class="catalog-layout">
         <nav class="component-menu" aria-label="Tipos de impresión">
           <strong>Componentes</strong>
           <a href="#nuevo-seguidor">Nuevo seguidor</a>
+          <a href="#regalo-basico">Regalo básico</a>
+          <a href="#regalo-destacado">Regalo destacado</a>
         </nav>
 
         <div class="catalog-content">
@@ -180,7 +195,146 @@
         </section>
       </article>
 
-      <p class="next-types">Siguiente ficha: Regalo de 1–29 puntos</p>
+      <article class="component-sheet" id="regalo-basico">
+        <section class="specification" aria-labelledby="basic-gift-title">
+          <span class="type-number">Tipo 02</span>
+          <h2 id="basic-gift-title">Regalo básico</h2>
+          <p class="summary">La impresión habitual para regalos de valor bajo. Incluye la foto del usuario, pero aplica una capa gris a todo el componente para mantener una exposición básica.</p>
+
+          <dl class="facts">
+            <div><dt>Evento</dt><dd>gift</dd></div>
+            <div><dt>Rango</dt><dd>1–30 puntos</dd></div>
+            <div><dt>Altura</dt><dd>80 px</dd></div>
+            <div><dt>Contenido</dt><dd>Foto + aporte</dd></div>
+            <div><dt>Estilo</dt><dd>Escala de grises</dd></div>
+            <div><dt>Prioridad</dt><dd>Normal</dd></div>
+          </dl>
+
+          <h3 class="rule-title">Reglas del componente</h3>
+          <ul class="rules">
+            <li>Incluye la foto de perfil del donador.</li>
+            <li>Una capa gris cubre la fotografía y elimina su color.</li>
+            <li>El regalo y la cantidad se leen como una sola acción.</li>
+            <li>El acumulado permanece visible, pero con menor contraste.</li>
+            <li>No utiliza color de nivel, brillos ni efectos decorativos.</li>
+            <li>La composición siempre se mantiene horizontal.</li>
+          </ul>
+        </section>
+
+        <section class="preview" aria-label="Muestra a escala real del regalo básico">
+          <div class="receipt-stage">
+            <div class="measure"><span>244 px de ancho</span></div>
+            <div class="paper">
+              <div class="paper-heading"><span>Vista en el recibo</span><span>80 px por fila</span></div>
+              <article class="gift-basic gift-basic--gray gift-basic--focus">
+                <div class="gift-basic__avatar"><img alt="Foto de perfil dummy de Laura" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%23d7a5b8'/%3E%3Ccircle cx='24' cy='18' r='10' fill='%23f1c9a5'/%3E%3Cpath d='M8 48c1-13 8-19 16-19s15 6 16 19' fill='%23713d59'/%3E%3Cpath d='M14 17c1-10 6-14 12-13 7 1 10 7 8 16-4-5-10-8-20-3' fill='%233a2730'/%3E%3C/svg%3E"></div>
+                <div class="gift-basic__content">
+                  <strong class="gift-basic__name">@laura.diaz</strong>
+                  <p class="gift-basic__gift">Envió Rosa ×1</p>
+                  <span class="gift-basic__total">Aporte acumulado: 28</span>
+                </div>
+              </article>
+              <article class="gift-basic gift-basic--gray">
+                <div class="gift-basic__avatar"><img alt="Foto de perfil dummy de Carlos" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%2386b5c2'/%3E%3Ccircle cx='24' cy='18' r='10' fill='%23c98f6c'/%3E%3Cpath d='M7 48c2-13 9-19 17-19s15 6 17 19' fill='%232d5264'/%3E%3Cpath d='M13 16C15 6 21 3 28 5c6 2 8 8 6 14-5-4-11-6-21-3' fill='%23262629'/%3E%3C/svg%3E"></div>
+                <div class="gift-basic__content">
+                  <strong class="gift-basic__name">@carlos</strong>
+                  <p class="gift-basic__gift">Envió GG ×5</p>
+                  <span class="gift-basic__total">Aporte acumulado: 19</span>
+                </div>
+              </article>
+              <article class="gift-basic gift-basic--gray">
+                <div class="gift-basic__avatar"><img alt="Foto de perfil dummy de usuario con nombre largo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%23e3bd73'/%3E%3Ccircle cx='24' cy='18' r='10' fill='%23e6b18b'/%3E%3Cpath d='M7 48c2-13 9-19 17-19s15 6 17 19' fill='%23884d3e'/%3E%3Cpath d='M13 19C12 9 18 4 24 4c8 0 12 6 11 17-5-5-13-8-22-2' fill='%23643f29'/%3E%3C/svg%3E"></div>
+                <div class="gift-basic__content">
+                  <strong class="gift-basic__name">@usuario_con_nombre_muy_largo</strong>
+                  <p class="gift-basic__gift">Envió Corazón ×2</p>
+                  <span class="gift-basic__total">Aporte acumulado: 12</span>
+                </div>
+              </article>
+            </div>
+
+            <div class="anatomy">
+              <strong>Lectura compacta en tres líneas</strong>
+              <p>Identidad, acción realizada y aporte acumulado del usuario.</p>
+            </div>
+            <div class="legend" aria-label="Partes del regalo básico">
+              <span>Avatar</span><span>Usuario</span><span>Regalo</span><span>Acumulado</span>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <article class="component-sheet" id="regalo-destacado">
+        <section class="specification" aria-labelledby="color-gift-title">
+          <span class="type-number">Tipo 03</span>
+          <h2 id="color-gift-title">Regalo destacado</h2>
+          <p class="summary">Conserva el tamaño y la lectura del regalo básico, pero elimina la capa gris. La foto y los elementos visuales disponibles se muestran con sus colores originales.</p>
+
+          <dl class="facts">
+            <div><dt>Evento</dt><dd>gift</dd></div>
+            <div><dt>Rango</dt><dd>31–99 puntos</dd></div>
+            <div><dt>Altura</dt><dd>80 px</dd></div>
+            <div><dt>Contenido</dt><dd>Foto + aporte</dd></div>
+            <div><dt>Estilo</dt><dd>A color</dd></div>
+          </dl>
+
+          <h3 class="rule-title">Reglas del componente</h3>
+          <ul class="rules">
+            <li>Utiliza la foto de perfil recibida desde TikTok.</li>
+            <li>No utiliza la capa gris del regalo básico.</li>
+            <li>La fotografía y los recursos visuales se muestran a color y sin filtros.</li>
+            <li>Si la foto no carga, se muestran las iniciales del usuario.</li>
+          </ul>
+        </section>
+
+        <section class="preview" aria-label="Muestra a escala real del regalo destacado">
+          <div class="receipt-stage">
+            <div class="measure"><span>244 px de ancho</span></div>
+            <div class="paper">
+              <div class="paper-heading"><span>Vista en el recibo</span><span>80 px por fila</span></div>
+              <article class="gift-basic gift-highlighted gift-basic--focus">
+                <div class="gift-basic__avatar">
+                  <img alt="Foto de perfil dummy de Maritza" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%23d7a5b8'/%3E%3Ccircle cx='24' cy='18' r='10' fill='%23f1c9a5'/%3E%3Cpath d='M8 48c1-13 8-19 16-19s15 6 16 19' fill='%23713d59'/%3E%3Cpath d='M14 17c1-10 6-14 12-13 7 1 10 7 8 16-4-5-10-8-20-3' fill='%233a2730'/%3E%3C/svg%3E">
+                </div>
+                <div class="gift-basic__content">
+                  <strong class="gift-basic__name">@maritza</strong>
+                  <p class="gift-basic__gift">Envió Perfume ×1</p>
+                  <span class="gift-basic__total">Aporte acumulado: 84</span>
+                </div>
+              </article>
+              <article class="gift-basic gift-highlighted">
+                <div class="gift-basic__avatar">
+                  <img alt="Foto de perfil dummy de Kevin" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%2386b5c2'/%3E%3Ccircle cx='24' cy='18' r='10' fill='%23c98f6c'/%3E%3Cpath d='M7 48c2-13 9-19 17-19s15 6 17 19' fill='%232d5264'/%3E%3Cpath d='M13 16C15 6 21 3 28 5c6 2 8 8 6 14-5-4-11-6-21-3' fill='%23262629'/%3E%3C/svg%3E">
+                </div>
+                <div class="gift-basic__content">
+                  <strong class="gift-basic__name">@kevin027</strong>
+                  <p class="gift-basic__gift">Envió Rosa ×40</p>
+                  <span class="gift-basic__total">Aporte acumulado: 91</span>
+                </div>
+              </article>
+              <article class="gift-basic gift-highlighted">
+                <div class="gift-basic__avatar">
+                  <img alt="Foto de perfil dummy de Andrea" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%23e3bd73'/%3E%3Ccircle cx='24' cy='18' r='10' fill='%23e6b18b'/%3E%3Cpath d='M7 48c2-13 9-19 17-19s15 6 17 19' fill='%23884d3e'/%3E%3Cpath d='M13 19C12 9 18 4 24 4c8 0 12 6 11 17-5-5-13-8-22-2' fill='%23643f29'/%3E%3C/svg%3E">
+                </div>
+                <div class="gift-basic__content">
+                  <strong class="gift-basic__name">@andrea</strong>
+                  <p class="gift-basic__gift">Envió Corazón ×3</p>
+                  <span class="gift-basic__total">Aporte acumulado: 62</span>
+                </div>
+              </article>
+            </div>
+
+            <div class="anatomy">
+              <strong>Sin capa gris</strong>
+              <p>La estructura no cambia; la fotografía y los recursos visuales conservan sus colores originales.</p>
+            </div>
+            <div class="legend" aria-label="Partes del regalo con foto">
+              <span>Foto a color</span><span>Contenido a color</span><span>Regalo</span><span>Acumulado</span>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <p class="next-types">Siguiente ficha: Regalo estelar desde 100 puntos</p>
         </div>
       </div>
     </main>

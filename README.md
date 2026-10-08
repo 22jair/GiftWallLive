@@ -90,12 +90,12 @@ La altura de cada impresión representa la importancia de la acción. Estos valo
 | Acción o nivel | Rango | Altura base |
 | --- | ---: | ---: |
 | Nuevo seguidor | Sin puntos | 40 px |
-| Regalo | 1–29 puntos | 80 px |
-| Regalo destacado | 30–99 puntos | 120 px |
+| Regalo básico | 1–30 puntos | 80 px |
+| Regalo destacado | 31–99 puntos | 80 px |
 | Regalo estelar | 100–999 puntos | 160 px |
 | Regalo épico | 1,000–2,999 puntos | 200 px |
 | Regalo legendario | 3,000–4,999 puntos | 240 px |
 | Regalo mítico | 5,000–9,999 puntos | 240 px |
 | Regalo máximo | 10,000 puntos o más | 240 px |
 
-Los seguidores no muestran fotografía. Los regalos normales conservan una composición horizontal y, desde `Regalo destacado`, la imagen se presenta centrada y aumenta progresivamente hasta `Regalo legendario`. Los niveles `Legendario`, `Mítico` y `Máximo` comparten el mismo tamaño base; su jerarquía visual se definirá mediante estilos y animaciones.
+Los seguidores no muestran fotografía. `Regalo básico` y `Regalo destacado` comparten la composición horizontal de 80 px: el básico aplica una capa gris sobre la foto y el destacado conserva sus colores originales. Desde `Regalo estelar`, la imagen se presenta centrada y aumenta progresivamente hasta `Regalo legendario`. Los niveles `Legendario`, `Mítico` y `Máximo` comparten el mismo tamaño base; su jerarquía visual se definirá mediante estilos y animaciones.

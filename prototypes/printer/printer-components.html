@@ -205,6 +205,48 @@
       @keyframes mythic-sweep { 0%, 100% { opacity: .42; transform: translate3d(-2%, 1%, 0); } 48% { opacity: .78; } 52% { opacity: .88; transform: translate3d(2%, -1%, 0); } }
       @keyframes mythic-gift-shine { from { background-position: 100% 0; } to { background-position: -100% 0; } }
 
+      .gift-celestial { position: relative; height: 240px; display: grid; place-items: center; align-content: center; gap: 4px; border-bottom: 1px dashed #c79d87; overflow: hidden; color: #593d39; background: repeating-linear-gradient(112deg, rgba(255,255,255,.06) 0 1px, transparent 1px 8px), radial-gradient(ellipse at 50% 38%, rgba(255,255,255,.98) 0 23%, rgba(255,226,194,.92) 43%, rgba(239,157,142,.38) 68%, transparent 86%), radial-gradient(circle at 8% 14%, rgba(255,197,93,.45), transparent 25%), radial-gradient(circle at 92% 78%, rgba(230,92,125,.3), transparent 28%), linear-gradient(145deg, #f5bd72 0%, #ffe6cb 48%, #e99a9d 100%); background-size: auto, 140% 140%, 140% 140%, 140% 140%, 140% 140%; box-shadow: inset 0 1px rgba(255,255,255,.84), inset 14px 0 24px rgba(121,58,53,.08), inset -14px 0 24px rgba(121,58,53,.08); text-align: center; animation: celestial-sky 12s ease-in-out infinite; }
+      .gift-celestial::before { content: ""; position: absolute; top: -12px; left: 50%; width: 202px; aspect-ratio: 1; border-radius: 50%; opacity: .42; background: repeating-conic-gradient(from -1deg, rgba(255,255,255,.72) 0 1deg, transparent 1deg 10deg, rgba(201,72,92,.2) 10deg 11deg, transparent 11deg 22.5deg); filter: drop-shadow(0 0 9px rgba(255,186,97,.45)); transform: translateX(-50%); animation: celestial-rays 26s linear infinite; }
+      .gift-celestial::after { content: ""; position: absolute; inset: -55% -90%; background: linear-gradient(108deg, transparent 42%, rgba(255,255,255,.72) 49%, transparent 56%); animation: celestial-sweep 5.8s ease-in-out infinite; }
+      .gift-celestial > * { position: relative; z-index: 1; }
+      .gift-celestial__portrait { position: relative; isolation: isolate; width: 180px; height: 148px; display: grid; place-items: center; }
+      .gift-celestial__portrait::after { content: ""; position: absolute; z-index: 0; bottom: 4px; width: 124px; height: 20px; border-radius: 50%; background: radial-gradient(ellipse, rgba(113,49,48,.3), transparent 68%); filter: blur(4px); transform: scaleX(1.08); }
+      .gift-celestial__crown { position: absolute; z-index: 1; width: 166px; aspect-ratio: 1; background: repeating-conic-gradient(from -2deg, #fff7dd 0 2.5deg, #f3ad3f 2.5deg 6deg, transparent 6deg 16deg, #df5b67 16deg 19deg, transparent 19deg 22.5deg); filter: drop-shadow(0 5px 7px rgba(171,78,62,.25)) drop-shadow(0 0 10px rgba(255,182,73,.45)); clip-path: polygon(50% 0, 56% 11%, 69% 4%, 70% 17%, 85% 15%, 82% 29%, 96% 31%, 87% 42%, 100% 50%, 87% 58%, 96% 69%, 82% 71%, 85% 85%, 70% 83%, 69% 96%, 56% 89%, 50% 100%, 44% 89%, 31% 96%, 30% 83%, 15% 85%, 18% 71%, 4% 69%, 13% 58%, 0 50%, 13% 42%, 4% 31%, 18% 29%, 15% 15%, 30% 17%, 31% 4%, 44% 11%); animation: celestial-crown 18s linear infinite; }
+      .gift-celestial__crown::before { content: ""; position: absolute; inset: 19px; border: 1px solid rgba(255,255,255,.74); border-radius: 50%; box-shadow: inset 0 0 9px rgba(255,255,255,.44), 0 0 8px rgba(255,197,98,.3); }
+      .gift-celestial__crown::after { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,.48) 0 15%, transparent 31% 67%, rgba(151,45,66,.14)); mix-blend-mode: screen; }
+      .gift-celestial__halo { position: absolute; z-index: 2; width: 138px; aspect-ratio: 1; border-radius: 50%; background: conic-gradient(from 25deg, #fff9e8, #e66a69 16%, #ffbf4f 31%, #fff 43%, #d84670 58%, #ffd67f 74%, #ef7768 88%, #fff9e8); box-shadow: 0 0 0 1px rgba(255,255,255,.85), 0 8px 18px rgba(154,72,61,.22); filter: drop-shadow(0 3px 4px rgba(115,54,51,.18)) drop-shadow(0 0 7px rgba(255,207,126,.36)); -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 6px), #000 calc(100% - 5px)); mask: radial-gradient(farthest-side, transparent calc(100% - 6px), #000 calc(100% - 5px)); animation: celestial-halo 12s linear infinite reverse; }
+      .gift-celestial__diadem { position: absolute; z-index: 4; width: 150px; aspect-ratio: 1; border: 1px solid rgba(255,250,229,.76); border-radius: 50%; background: radial-gradient(circle at 50% 1%, #fff 0 1.5px, #f8be4d 2px 3.5px, transparent 4.3px), radial-gradient(circle at 84.5% 15.5%, #fff 0 1.4px, #e86967 2px 3.4px, transparent 4.2px), radial-gradient(circle at 99% 50%, #fff 0 1.5px, #f8be4d 2px 3.5px, transparent 4.3px), radial-gradient(circle at 84.5% 84.5%, #fff 0 1.4px, #d4486d 2px 3.4px, transparent 4.2px), radial-gradient(circle at 50% 99%, #fff 0 1.5px, #f8be4d 2px 3.5px, transparent 4.3px), radial-gradient(circle at 15.5% 84.5%, #fff 0 1.4px, #e86967 2px 3.4px, transparent 4.2px), radial-gradient(circle at 1% 50%, #fff 0 1.5px, #f8be4d 2px 3.5px, transparent 4.3px), radial-gradient(circle at 15.5% 15.5%, #fff 0 1.4px, #d4486d 2px 3.4px, transparent 4.2px); box-shadow: 0 0 0 2px rgba(255,255,255,.16), 0 0 12px rgba(231,111,93,.18), inset 0 0 10px rgba(255,255,255,.3); animation: celestial-diadem 4.6s ease-in-out infinite; }
+      .gift-celestial__diadem::before { content: ""; position: absolute; top: 13px; right: 14px; width: 4px; aspect-ratio: 1; background: #fff; box-shadow: 0 0 6px 1px rgba(255,236,183,.92), -119px 96px 0 -1px rgba(255,255,255,.8); transform: rotate(45deg); }
+      .gift-celestial__avatar { position: relative; z-index: 5; width: 112px; aspect-ratio: 1; padding: 3px; overflow: hidden; border: 1px solid rgba(255,255,255,.98); border-radius: 50%; background: linear-gradient(145deg, #fff, #eeb88c); box-shadow: 0 0 0 2px rgba(255,243,216,.9), 0 0 0 6px rgba(222,91,92,.24), 0 12px 27px rgba(133,60,58,.28), inset 0 0 0 1px rgba(255,255,255,.86); }
+      .gift-celestial__avatar img { width: 100%; height: 100%; display: block; border-radius: 50%; object-fit: cover; }
+      .gift-celestial__avatar::before { content: ""; position: absolute; z-index: 2; inset: 2px; border-radius: 50%; box-shadow: inset 4px 5px 7px rgba(255,255,255,.48), inset -5px -6px 9px rgba(120,45,49,.16); pointer-events: none; }
+      .gift-celestial__avatar::after { content: ""; position: absolute; z-index: 3; inset: 3px; border-radius: 50%; background: linear-gradient(140deg, rgba(255,255,255,.52) 0 16%, transparent 33% 69%, rgba(255,166,120,.16)); box-shadow: inset 9px 9px 14px rgba(255,255,255,.18), inset -8px -9px 16px rgba(122,45,48,.1); pointer-events: none; }
+      .gift-celestial__gem { position: absolute; z-index: 8; top: -6px; width: 25px; height: 21px; background: linear-gradient(145deg, #fff 0 17%, #ffd36f 35%, #eb7166 68%, #b93662 100%); box-shadow: 0 5px 10px rgba(151,58,64,.3), 0 0 12px rgba(255,188,77,.55); clip-path: polygon(50% 0, 100% 36%, 74% 100%, 26% 100%, 0 36%); animation: celestial-gem 2.8s ease-in-out infinite; }
+      .gift-celestial__gem::before { content: ""; position: absolute; inset: 2px 4px 5px; background: linear-gradient(135deg, rgba(255,255,255,.92), transparent 38%), linear-gradient(45deg, transparent 48%, rgba(255,255,255,.55) 49% 52%, transparent 53%); clip-path: polygon(50% 0, 100% 42%, 70% 100%, 30% 100%, 0 42%); }
+      .gift-celestial__gem::after { content: ""; position: absolute; top: 3px; bottom: 4px; left: 50%; width: 1px; background: rgba(255,255,255,.48); box-shadow: -6px 5px 0 rgba(255,236,185,.28), 6px 5px 0 rgba(150,43,71,.16); transform: translateX(-50%); }
+      .gift-celestial__shard { position: absolute; z-index: 7; top: 61px; width: 9px; height: 19px; background: linear-gradient(160deg, #fff 0 18%, #ffd474 35%, #e95f75 72%, #bd3e62); box-shadow: 0 0 8px rgba(234,100,94,.36); clip-path: polygon(50% 0, 100% 45%, 67% 100%, 25% 88%, 0 42%); animation: celestial-shard 3.4s ease-in-out infinite; }
+      .gift-celestial__shard::after { content: ""; position: absolute; inset: 2px 3px 4px; background: linear-gradient(180deg, rgba(255,255,255,.82), transparent 54%); clip-path: polygon(50% 0, 100% 44%, 66% 100%, 0 42%); }
+      .gift-celestial__shard--left { left: 8px; transform: rotate(-28deg); }
+      .gift-celestial__shard--right { right: 8px; transform: rotate(28deg); animation-delay: -1.7s; }
+      .gift-celestial__shard--left-mid { top: 39px; left: 17px; width: 7px; height: 15px; opacity: .82; transform: rotate(-12deg); animation-delay: -.7s; }
+      .gift-celestial__shard--right-mid { top: 39px; right: 17px; width: 7px; height: 15px; opacity: .82; transform: rotate(12deg); animation-delay: -2.2s; }
+      .gift-celestial__shard--left-low { top: 84px; left: 18px; width: 7px; height: 14px; opacity: .72; transform: rotate(-43deg); animation-delay: -1.2s; }
+      .gift-celestial__shard--right-low { top: 84px; right: 18px; width: 7px; height: 14px; opacity: .72; transform: rotate(43deg); animation-delay: -2.7s; }
+      .gift-celestial__seal { position: absolute; z-index: 9; bottom: -1px; min-width: 60px; padding: 2px 11px 3px; border: 1px solid rgba(255,255,255,.9); border-radius: 999px; color: #81423f; background: linear-gradient(180deg, #fffef9 0 34%, #f6cf9f 54%, #e9ae7b 100%); box-shadow: 0 4px 9px rgba(133,61,56,.24), inset 0 1px rgba(255,255,255,.98), inset 0 -1px rgba(150,66,58,.13); font-size: 8px; font-weight: 850; letter-spacing: .035em; line-height: 1; text-shadow: 0 1px rgba(255,255,255,.62); }
+      .gift-celestial__name { max-width: 100%; overflow: hidden; margin-top: 9px; color: #573735; font-size: 13px; font-weight: 850; text-shadow: 0 1px rgba(255,255,255,.68); text-overflow: ellipsis; white-space: nowrap; }
+      .gift-celestial__gift { margin: 0; color: transparent; background: linear-gradient(100deg, #6e403b 0 36%, #d94869 46%, #f0a62f 53%, #6e403b 64% 100%); background-position: 100% 0; background-size: 260% 100%; background-clip: text; font-size: 12px; font-weight: 850; animation: celestial-gift-shine 3s ease-in-out infinite; -webkit-background-clip: text; }
+      .gift-celestial__total { color: #8b6860; font-size: 10px; }
+      @keyframes celestial-sky { 0%, 100% { background-position: 0 0, 18% 45%, 18% 45%, 18% 45%, 18% 45%; } 50% { background-position: 0 0, 82% 55%, 82% 55%, 82% 55%, 82% 55%; } }
+      @keyframes celestial-rays { to { transform: translateX(-50%) rotate(1turn); } }
+      @keyframes celestial-crown { to { transform: rotate(1turn); } }
+      @keyframes celestial-halo { to { transform: rotate(1turn); } }
+      @keyframes celestial-diadem { 0%, 100% { filter: brightness(.94); transform: scale(.985); } 50% { filter: brightness(1.08); transform: scale(1.015); } }
+      @keyframes celestial-gem { 0%, 100% { filter: brightness(.95); transform: translateY(0) scale(.94); } 50% { filter: brightness(1.18); transform: translateY(-3px) scale(1.04); } }
+      @keyframes celestial-shard { 0%, 100% { filter: brightness(.92); opacity: .7; } 50% { filter: brightness(1.2); opacity: 1; } }
+      @keyframes celestial-sweep { 0%, 42% { opacity: 0; transform: translateX(-30%); } 55% { opacity: .85; } 72%, 100% { opacity: 0; transform: translateX(30%); } }
+      @keyframes celestial-gift-shine { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+
+
       .anatomy { margin-top: 16px; padding: 12px 0 0; border-top: 1px solid #b7b7b7; }
       .anatomy strong { display: block; margin-bottom: 6px; font-size: 11px; }
       .anatomy p { margin-bottom: 0; color: var(--muted); font-size: 10px; line-height: 1.5; }
@@ -231,6 +273,8 @@
         .gift-legendary__ember { opacity: .8; }
         .gift-mythic, .gift-mythic::before, .gift-mythic::after, .gift-mythic__portrait::before, .gift-mythic__bezel, .gift-mythic__orbit, .gift-mythic__crescent, .gift-mythic__gem, .gift-mythic__gift { animation: none; }
         .gift-mythic__gift { color: #385c63; background: none; }
+        .gift-celestial, .gift-celestial::before, .gift-celestial::after, .gift-celestial__crown, .gift-celestial__halo, .gift-celestial__diadem, .gift-celestial__gem, .gift-celestial__shard, .gift-celestial__gift { animation: none; }
+        .gift-celestial__gift { color: #6e403b; background: none; }
       }
     </style>
   </head>
@@ -241,7 +285,7 @@
           <h1>Catálogo de impresiones</h1>
           <p>Cada ficha define un componente antes de incorporarlo al printer en vivo.</p>
         </div>
-        <span class="status">7 componentes en diseño</span>
+        <span class="status">8 componentes en diseño</span>
       </header>
 
       <div class="catalog-layout">
@@ -254,6 +298,7 @@
           <a href="#regalo-epico">Regalo épico</a>
           <a href="#regalo-legendario">Regalo legendario</a>
           <a href="#regalo-mitico">Regalo mítico</a>
+          <a href="#regalo-celestial">Regalo celestial</a>
         </nav>
 
         <div class="catalog-content">
@@ -712,7 +757,88 @@
         </section>
       </article>
 
-      <p class="next-types">Siguiente ficha: Regalo máximo desde 3,000 puntos</p>
+      <article class="component-sheet" id="regalo-celestial">
+        <section class="specification" aria-labelledby="celestial-gift-title">
+          <span class="type-number">Tipo 08</span>
+          <h2 id="celestial-gift-title">Regalo celestial</h2>
+          <p class="summary">Presenta al donador dentro de una corona solar prismática, construida con cristal cálido, una gema suspendida y una iluminación de amanecer.</p>
+
+          <dl class="facts">
+            <div><dt>Evento</dt><dd>gift</dd></div>
+            <div><dt>Rango</dt><dd>Por definir</dd></div>
+            <div><dt>Altura</dt><dd>240 px</dd></div>
+            <div><dt>Fotografía</dt><dd>112 px a color</dd></div>
+            <div><dt>Identidad</dt><dd>Corona solar prismática</dd></div>
+          </dl>
+
+          <h3 class="rule-title">Reglas del componente</h3>
+          <ul class="rules">
+            <li>Conserva los 240 px definidos para los niveles de mayor exposición.</li>
+            <li>La fotografía circular continúa siendo el centro de toda la composición.</li>
+            <li>Una corona facetada de dieciséis puntas crea una silueta propia.</li>
+            <li>El halo interior y una diadema de ocho gemas utilizan cristal coral, ámbar y blanco.</li>
+            <li>Una gema superior y seis fragmentos laterales comunican el salto de nivel.</li>
+            <li>El fondo permanece luminoso para conservar la lectura del nombre y del regalo.</li>
+          </ul>
+        </section>
+
+        <section class="preview" aria-label="Muestra a escala real del regalo celestial">
+          <div class="receipt-stage">
+            <div class="measure"><span>244 px de ancho</span></div>
+            <div class="paper">
+              <div class="paper-heading"><span>Vista en el recibo</span><span>240 px por fila</span></div>
+              <article class="gift-celestial">
+                <div class="gift-celestial__portrait">
+                  <span class="gift-celestial__crown" aria-hidden="true"></span>
+                  <span class="gift-celestial__halo" aria-hidden="true"></span>
+                  <span class="gift-celestial__diadem" aria-hidden="true"></span>
+                  <div class="gift-celestial__avatar"><img alt="Foto de perfil dummy de Andrea" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%23efb18f'/%3E%3Ccircle cx='24' cy='18' r='10' fill='%23f1c9a5'/%3E%3Cpath d='M8 48c1-13 8-19 16-19s15 6 16 19' fill='%238a4557'/%3E%3Cpath d='M14 17c1-10 6-14 12-13 7 1 10 7 8 16-4-5-10-8-20-3' fill='%233a2730'/%3E%3C/svg%3E"></div>
+                  <span class="gift-celestial__gem" aria-hidden="true"></span>
+                  <span class="gift-celestial__shard gift-celestial__shard--left" aria-hidden="true"></span>
+                  <span class="gift-celestial__shard gift-celestial__shard--right" aria-hidden="true"></span>
+                  <span class="gift-celestial__shard gift-celestial__shard--left-mid" aria-hidden="true"></span>
+                  <span class="gift-celestial__shard gift-celestial__shard--right-mid" aria-hidden="true"></span>
+                  <span class="gift-celestial__shard gift-celestial__shard--left-low" aria-hidden="true"></span>
+                  <span class="gift-celestial__shard gift-celestial__shard--right-low" aria-hidden="true"></span>
+                  <span class="gift-celestial__seal">Celestial</span>
+                </div>
+                <strong class="gift-celestial__name">@andrea</strong>
+                <p class="gift-celestial__gift">Envió Castillo fantástico ×1</p>
+                <span class="gift-celestial__total">Aporte acumulado: 12,800</span>
+              </article>
+              <article class="gift-celestial">
+                <div class="gift-celestial__portrait">
+                  <span class="gift-celestial__crown" aria-hidden="true"></span>
+                  <span class="gift-celestial__halo" aria-hidden="true"></span>
+                  <span class="gift-celestial__diadem" aria-hidden="true"></span>
+                  <div class="gift-celestial__avatar"><img alt="Foto de perfil dummy de Carlos" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%23e5b479'/%3E%3Ccircle cx='24' cy='18' r='10' fill='%23c98f6c'/%3E%3Cpath d='M7 48c2-13 9-19 17-19s15 6 17 19' fill='%237b4148'/%3E%3Cpath d='M13 16C15 6 21 3 28 5c6 2 8 8 6 14-5-4-11-6-21-3' fill='%23262629'/%3E%3C/svg%3E"></div>
+                  <span class="gift-celestial__gem" aria-hidden="true"></span>
+                  <span class="gift-celestial__shard gift-celestial__shard--left" aria-hidden="true"></span>
+                  <span class="gift-celestial__shard gift-celestial__shard--right" aria-hidden="true"></span>
+                  <span class="gift-celestial__shard gift-celestial__shard--left-mid" aria-hidden="true"></span>
+                  <span class="gift-celestial__shard gift-celestial__shard--right-mid" aria-hidden="true"></span>
+                  <span class="gift-celestial__shard gift-celestial__shard--left-low" aria-hidden="true"></span>
+                  <span class="gift-celestial__shard gift-celestial__shard--right-low" aria-hidden="true"></span>
+                  <span class="gift-celestial__seal">Celestial</span>
+                </div>
+                <strong class="gift-celestial__name">@carlos</strong>
+                <p class="gift-celestial__gift">Envió León y tigre ×1</p>
+                <span class="gift-celestial__total">Aporte acumulado: 10,450</span>
+              </article>
+            </div>
+
+            <div class="anatomy">
+              <strong>Una corona de cristal alrededor de la persona</strong>
+              <p>La silueta solar, la diadema engastada, el halo prismático y los cristales laterales elevan el nivel sin oscurecer el recibo ni aumentar su altura.</p>
+            </div>
+            <div class="legend" aria-label="Partes del regalo celestial">
+              <span>Foto de 112 px</span><span>Corona facetada</span><span>Diadema de gemas</span><span>Cristales laterales</span>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <p class="next-types">Los rangos de puntos se definirán en una etapa posterior.</p>
         </div>
       </div>
     </main>

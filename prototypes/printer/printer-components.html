@@ -246,6 +246,60 @@
       @keyframes celestial-sweep { 0%, 42% { opacity: 0; transform: translateX(-30%); } 55% { opacity: .85; } 72%, 100% { opacity: 0; transform: translateX(30%); } }
       @keyframes celestial-gift-shine { from { background-position: 100% 0; } to { background-position: -100% 0; } }
 
+      .gift-primordial { position: relative; height: 240px; display: grid; place-items: center; align-content: center; gap: 4px; border-bottom: 1px dashed #93afa4; overflow: hidden; color: #28413f; background: radial-gradient(ellipse at 50% 29%, rgba(255,255,255,.94) 0 15%, rgba(230,249,240,.58) 34%, transparent 63%), radial-gradient(circle at 8% 18%, rgba(238,104,75,.2), transparent 29%), radial-gradient(circle at 92% 17%, rgba(63,176,176,.24), transparent 30%), radial-gradient(circle at 12% 85%, rgba(135,102,191,.15), transparent 31%), radial-gradient(circle at 90% 86%, rgba(220,173,71,.17), transparent 31%), repeating-linear-gradient(104deg, rgba(46,91,82,.035) 0 1px, transparent 1px 8px), linear-gradient(145deg, #c7ddd4 0%, #f7f4ec 47%, #d9dfee 100%); box-shadow: inset 0 1px rgba(255,255,255,.84), inset 16px 0 26px rgba(45,91,82,.07), inset -16px 0 26px rgba(77,73,116,.06); text-align: center; }
+      .gift-primordial::before { content: ""; position: absolute; z-index: 0; inset: 0; opacity: .58; background: linear-gradient(68deg, transparent 0 25%, rgba(255,255,255,.48) 25.5% 26.2%, transparent 26.7% 71%, rgba(255,255,255,.28) 71.5% 72%, transparent 72.5%), linear-gradient(73deg, transparent 0 16%, rgba(43,85,77,.12) 16.3% 16.7%, transparent 17% 54%, rgba(43,85,77,.08) 54.3% 54.7%, transparent 55%), linear-gradient(113deg, transparent 0 35%, rgba(255,255,255,.38) 35.3% 35.8%, transparent 36.1% 78%, rgba(87,75,122,.08) 78.3% 78.7%, transparent 79%); }
+      .gift-primordial::after { content: ""; position: absolute; z-index: 0; right: 12px; bottom: 42px; left: 12px; height: 48px; border-radius: 50%; background: radial-gradient(ellipse, rgba(225,247,234,.72), rgba(50,103,92,.12) 42%, transparent 70%); filter: blur(4px); animation: primordial-ground 4.6s ease-in-out infinite; }
+      .gift-primordial > * { position: relative; z-index: 3; }
+      .gift-primordial__portrait { position: relative; isolation: isolate; width: 212px; height: 148px; display: grid; place-items: center; }
+      .gift-primordial__aura { position: absolute; z-index: 0; top: -4px; width: 192px; height: 153px; opacity: .42; background: conic-gradient(from 10deg, #f7d66e, #5de4df 24%, #a581e0 49%, #ef7654 73%, #f8f3db); filter: blur(5px) drop-shadow(0 0 11px rgba(255,255,255,.8)); clip-path: polygon(50% 0, 64% 8%, 78% 5%, 87% 18%, 98% 30%, 93% 45%, 100% 57%, 91% 72%, 95% 86%, 76% 93%, 62% 100%, 50% 94%, 36% 100%, 23% 93%, 5% 86%, 9% 72%, 0 57%, 7% 45%, 2% 30%, 13% 18%, 22% 5%, 36% 8%); animation: primordial-aura 4.8s ease-in-out infinite; }
+      .gift-primordial__bloom { position: absolute; z-index: 0; top: 2px; width: 178px; height: 139px; border-radius: 50%; opacity: .78; background: radial-gradient(ellipse, #fff 0 16%, rgba(229,255,243,.92) 26%, rgba(116,216,188,.34) 48%, rgba(249,215,124,.18) 62%, transparent 76%); filter: blur(5px); animation: primordial-bloom 4.8s ease-in-out infinite; }
+      .gift-primordial__monolith { position: absolute; z-index: 1; top: 0; width: 166px; height: 146px; background: linear-gradient(153deg, rgba(255,255,255,.36), transparent 22%), linear-gradient(118deg, #73998a 0 17%, #1f403d 18% 39%, #8cae9c 40% 56%, #2b514c 57% 76%, #9bb8a2 77%); box-shadow: 0 14px 23px rgba(25,63,57,.34), 0 0 0 1px rgba(232,255,243,.36), inset 12px 0 20px rgba(7,35,32,.24), inset -10px 0 16px rgba(227,255,238,.17); filter: drop-shadow(0 0 9px rgba(190,236,216,.3)); clip-path: polygon(50% 0, 72% 6%, 88% 20%, 85% 36%, 98% 53%, 91% 75%, 72% 92%, 50% 100%, 29% 93%, 9% 77%, 2% 55%, 14% 37%, 11% 20%, 29% 6%); animation: primordial-monolith 4.8s ease-in-out infinite; }
+      .gift-primordial__monolith::before { content: ""; position: absolute; inset: 7px; opacity: .72; background: radial-gradient(circle at 18% 19%, rgba(255,255,255,.22) 0 1px, transparent 1.8px), radial-gradient(circle at 74% 29%, rgba(10,38,35,.26) 0 1.2px, transparent 2px), radial-gradient(circle at 28% 76%, rgba(196,239,220,.18) 0 1px, transparent 2px), repeating-linear-gradient(104deg, rgba(255,255,255,.04) 0 1px, transparent 1px 7px); }
+      .gift-primordial__monolith::after { content: ""; position: absolute; inset: 9px 12px; background: linear-gradient(71deg, transparent 0 23%, rgba(15,51,47,.44) 23.5% 24.2%, transparent 24.7% 61%, rgba(15,51,47,.31) 61.4% 62%, transparent 62.5%), linear-gradient(118deg, transparent 0 42%, rgba(193,240,218,.18) 42.4% 43%, transparent 43.5% 74%, rgba(15,49,46,.34) 74.4% 75%, transparent 75.5%); filter: drop-shadow(0 0 2px rgba(11,43,39,.2)); }
+      .gift-primordial__roots { position: absolute; z-index: 0; bottom: -2px; width: 202px; height: 43px; opacity: .68; background: linear-gradient(18deg, transparent 0 46%, rgba(49,83,75,.78) 47% 51%, transparent 52%) 0 0 / 58% 100%, linear-gradient(-18deg, transparent 0 46%, rgba(62,98,87,.78) 47% 51%, transparent 52%) 100% 0 / 58% 100%, linear-gradient(32deg, transparent 0 47%, rgba(118,157,136,.72) 48% 51%, transparent 52%) 0 0 / 42% 84%, linear-gradient(-32deg, transparent 0 47%, rgba(118,157,136,.72) 48% 51%, transparent 52%) 100% 0 / 42% 84%; background-repeat: no-repeat; filter: drop-shadow(0 4px 3px rgba(38,72,65,.18)); }
+      .gift-primordial__pedestal { position: absolute; z-index: 2; bottom: 0; width: 176px; height: 24px; background: linear-gradient(180deg, #f8f6e9 0 10%, #b7d9c9 19%, #42675e 48%, #203f3c 70%, #95b9a8 88%, #f0e7c6 100%); box-shadow: 0 7px 12px rgba(27,65,59,.28), 0 0 9px rgba(217,247,232,.55), inset 0 1px rgba(255,255,255,.88); clip-path: polygon(13% 0, 87% 0, 100% 42%, 92% 100%, 8% 100%, 0 42%); }
+      .gift-primordial__pedestal::before { content: ""; position: absolute; top: 2px; right: 17px; left: 17px; height: 2px; border-radius: 50%; background: linear-gradient(90deg, transparent, rgba(255,245,201,.92) 20%, #fff 50%, rgba(192,244,222,.9) 80%, transparent); box-shadow: 0 0 7px rgba(234,255,244,.82); }
+      .gift-primordial__inlay { position: absolute; z-index: 2; width: 154px; height: 140px; background: conic-gradient(from 10deg, #fff 0 7%, #e7c978 11% 18%, #f5f5e9 24% 31%, #8fd5c1 37% 45%, #fff 50% 57%, #c1abe0 63% 71%, #f1cc82 78% 88%, #fff 94% 100%); box-shadow: 0 9px 19px rgba(27,65,59,.25), 0 0 17px rgba(232,255,244,.72); clip-path: polygon(50% 0, 69% 5%, 84% 17%, 96% 36%, 91% 54%, 98% 72%, 79% 91%, 58% 96%, 42% 100%, 21% 91%, 4% 72%, 9% 53%, 2% 34%, 17% 16%, 32% 8%); animation: primordial-inlay 4.8s ease-in-out infinite; }
+      .gift-primordial__inlay::after { content: ""; position: absolute; inset: 3px; opacity: .72; background: linear-gradient(132deg, rgba(255,255,255,.92) 0 9%, transparent 21% 66%, rgba(255,244,197,.55) 77%, transparent 89%); clip-path: inherit; mix-blend-mode: screen; }
+      .gift-primordial__geode { position: absolute; z-index: 3; width: 142px; height: 128px; background: conic-gradient(from 10deg, #f7fff9, #ed8064 11%, #f3d482 23%, #fffdf1 34%, #6bc8c1 47%, #e4f8ef 58%, #ad91d4 71%, #f0e7f7 82%, #dbba68 92%, #f7fff9); box-shadow: 0 10px 18px rgba(24,62,56,.3), 0 0 16px rgba(213,252,234,.58), inset 0 0 5px rgba(255,255,255,.7); clip-path: polygon(50% 0, 69% 5%, 84% 17%, 96% 36%, 91% 54%, 98% 72%, 79% 91%, 58% 96%, 42% 100%, 21% 91%, 4% 72%, 9% 53%, 2% 34%, 17% 16%, 32% 8%); animation: primordial-geode 4.8s ease-in-out infinite; }
+      .gift-primordial__geode::before { content: ""; position: absolute; inset: 8px; background: linear-gradient(145deg, #cfe5dc, #3c625b 52%, #a9c7b9); clip-path: polygon(50% 0, 69% 5%, 84% 17%, 96% 36%, 91% 54%, 98% 72%, 79% 91%, 58% 96%, 42% 100%, 21% 91%, 4% 72%, 9% 53%, 2% 34%, 17% 16%, 32% 8%); box-shadow: inset 0 0 16px rgba(16,54,49,.35); }
+      .gift-primordial__vein { position: absolute; z-index: 4; width: 50px; height: 6px; border-radius: 50%; border-top: 1px solid rgba(255,255,255,.78); background-size: 220% 100%; filter: drop-shadow(0 0 6px currentColor); animation: primordial-vein 2.8s ease-in-out infinite; }
+      .gift-primordial__vein::after { content: ""; position: absolute; top: -4px; right: 9px; width: 19px; height: 1px; background: currentColor; box-shadow: 7px 7px 0 currentColor; transform: rotate(31deg); opacity: .64; }
+      .gift-primordial__vein--fire { top: 39px; left: 20px; color: #ff7148; background: linear-gradient(90deg, transparent, #ff7148 34%, #ffd064 71%, #fff); transform: rotate(21deg); }
+      .gift-primordial__vein--water { top: 39px; right: 20px; color: #4ed8d7; background: linear-gradient(90deg, transparent, #4ed8d7 34%, #a7f2e7 71%, #fff); transform: scaleX(-1) rotate(21deg); animation-delay: -.7s; }
+      .gift-primordial__vein--aether { bottom: 29px; left: 20px; color: #9d6adb; background: linear-gradient(90deg, transparent, #9d6adb 34%, #e2a4e8 71%, #fff); transform: rotate(-21deg); animation-delay: -1.4s; }
+      .gift-primordial__vein--light { right: 20px; bottom: 29px; color: #e8b646; background: linear-gradient(90deg, transparent, #e8b646 34%, #ffe398 71%, #fff); transform: scaleX(-1) rotate(-21deg); animation-delay: -2.1s; }
+      .gift-primordial__avatar { position: relative; z-index: 5; width: 112px; aspect-ratio: 1; padding: 3px; overflow: hidden; border: 1px solid rgba(245,255,249,.96); border-radius: 48% 52% 45% 55% / 54% 44% 56% 46%; background: #e6f2ec; box-shadow: 0 0 0 2px rgba(218,247,232,.84), 0 0 0 6px rgba(238,222,164,.18), 0 12px 22px rgba(20,57,52,.38), inset 0 0 0 1px rgba(255,255,255,.8); }
+      .gift-primordial__avatar img { width: 100%; height: 100%; display: block; border-radius: inherit; object-fit: cover; }
+      .gift-primordial__avatar::before { content: ""; position: absolute; z-index: 2; inset: 2px; border-radius: inherit; box-shadow: inset 5px 6px 8px rgba(255,255,255,.4), inset -6px -7px 10px rgba(24,67,61,.16); pointer-events: none; }
+      .gift-primordial__avatar::after { content: ""; position: absolute; z-index: 3; inset: 3px; border-radius: inherit; background: linear-gradient(142deg, rgba(255,255,255,.42) 0 15%, transparent 32% 72%, rgba(74,182,171,.12)); pointer-events: none; }
+      .gift-primordial__heartstone { position: absolute; z-index: 8; top: -8px; width: 28px; height: 31px; background: linear-gradient(155deg, #fff 0 12%, #f0d279 24%, #e87654 39%, #60c7bf 56%, #a57bd0 74%, #f0c85d 100%); box-shadow: 0 0 9px rgba(255,245,207,.95), 0 0 17px rgba(157,224,198,.42), 0 7px 11px rgba(25,60,55,.32); clip-path: polygon(50% 0, 88% 22%, 100% 66%, 67% 100%, 32% 92%, 0 61%, 13% 19%); animation: primordial-heartstone 2.9s ease-in-out infinite; }
+      .gift-primordial__shine { position: absolute; z-index: 6; top: -23px; left: 50%; width: 29px; height: 190px; opacity: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.88), transparent); filter: blur(2px); pointer-events: none; transform: translateX(-150px) rotate(18deg); animation: primordial-shine 5.6s ease-in-out infinite; }
+      .gift-primordial__glint { position: absolute; z-index: 9; width: 17px; aspect-ratio: 1; opacity: .86; background: radial-gradient(circle, #fff 0 12%, rgba(255,246,202,.95) 15% 23%, transparent 26%), linear-gradient(90deg, transparent 45%, #fff 48% 52%, transparent 55%), linear-gradient(0deg, transparent 45%, #fff 48% 52%, transparent 55%); filter: drop-shadow(0 0 5px rgba(255,255,255,.95)); clip-path: polygon(50% 0, 58% 42%, 100% 50%, 58% 58%, 50% 100%, 42% 58%, 0 50%, 42% 42%); animation: primordial-glint 2.7s ease-in-out infinite; }
+      .gift-primordial__glint--left { top: 37px; left: 25px; }
+      .gift-primordial__glint--right { top: 82px; right: 24px; animation-delay: -1.35s; }
+      .gift-primordial__dust { position: absolute; z-index: 7; width: 4px; height: 6px; border-radius: 50%; background: currentColor; box-shadow: 0 0 5px currentColor; animation: primordial-dust 3.6s ease-in-out infinite; }
+      .gift-primordial__dust--one { top: 85px; left: 13px; color: #e77045; }
+      .gift-primordial__dust--two { top: 70px; right: 13px; color: #4fbcb9; animation-delay: -.9s; }
+      .gift-primordial__dust--three { top: 111px; left: 31px; color: #9265bd; animation-delay: -1.8s; }
+      .gift-primordial__dust--four { top: 105px; right: 29px; color: #d7a83f; animation-delay: -2.7s; }
+      .gift-primordial__seal { position: absolute; z-index: 9; bottom: -1px; min-width: 72px; padding: 3px 13px 4px; border: 1px solid rgba(238,226,179,.9); border-radius: 3px 7px 3px 7px; color: #f8f6e7; background: linear-gradient(145deg, #739388 0%, #1f403d 47%, #52776d 72%, #b99a50 100%); box-shadow: 0 5px 10px rgba(21,56,51,.34), 0 0 8px rgba(218,248,232,.42), inset 0 1px rgba(255,255,255,.35); font-size: 8px; font-weight: 850; letter-spacing: .055em; line-height: 1; text-shadow: 0 1px 2px rgba(8,30,28,.68); }
+      .gift-primordial__name { max-width: 100%; overflow: hidden; margin-top: 9px; color: #29433f; font-size: 13px; font-weight: 850; text-shadow: 0 1px rgba(255,255,255,.62); text-overflow: ellipsis; white-space: nowrap; }
+      .gift-primordial__gift { margin: 0; color: transparent; background: linear-gradient(100deg, #365751 0 33%, #cf5d42 42%, #2f999b 49%, #7f62a8 56%, #ad852d 63%, #365751 72% 100%); background-position: 100% 0; background-size: 300% 100%; background-clip: text; font-size: 12px; font-weight: 850; animation: primordial-gift-shine 3.2s ease-in-out infinite; -webkit-background-clip: text; }
+      .gift-primordial__total { color: #657972; font-size: 10px; }
+      @keyframes primordial-ground { 0%, 100% { opacity: .5; transform: scaleX(.92); } 50% { opacity: .78; transform: scaleX(1.05); } }
+      @keyframes primordial-aura { 0%, 100% { filter: blur(5px) brightness(.9) drop-shadow(0 0 11px rgba(255,255,255,.8)); opacity: .3; transform: scale(.97); } 50% { filter: blur(4px) brightness(1.14) drop-shadow(0 0 15px rgba(255,255,255,.92)); opacity: .55; transform: scale(1.025); } }
+      @keyframes primordial-bloom { 0%, 100% { filter: blur(5px) brightness(.96); opacity: .62; transform: scale(.95); } 50% { filter: blur(4px) brightness(1.16); opacity: .9; transform: scale(1.06); } }
+      @keyframes primordial-monolith { 0%, 100% { filter: brightness(.94) drop-shadow(0 0 8px rgba(190,236,216,.22)); transform: translateY(1px); } 50% { filter: brightness(1.07) drop-shadow(0 0 11px rgba(192,242,218,.36)); transform: translateY(-1px); } }
+      @keyframes primordial-inlay { 0%, 100% { filter: brightness(.94); } 50% { filter: brightness(1.14); } }
+      @keyframes primordial-geode { 0%, 100% { filter: brightness(.94); } 50% { filter: brightness(1.12); } }
+      @keyframes primordial-vein { 0%, 100% { background-position: 0 0; filter: brightness(.9) drop-shadow(0 0 4px currentColor); opacity: .65; } 50% { background-position: 100% 0; filter: brightness(1.22) drop-shadow(0 0 8px currentColor); opacity: 1; } }
+      @keyframes primordial-heartstone { 0%, 100% { filter: brightness(.94); transform: translateY(0) scale(.92); } 50% { filter: brightness(1.2); transform: translateY(-2px) scale(1.05); } }
+      @keyframes primordial-shine { 0%, 42% { opacity: 0; transform: translateX(-150px) rotate(18deg); } 54% { opacity: .82; } 70%, 100% { opacity: 0; transform: translateX(122px) rotate(18deg); } }
+      @keyframes primordial-glint { 0%, 100% { filter: brightness(.9) drop-shadow(0 0 4px rgba(255,255,255,.9)); opacity: .35; transform: scale(.72); } 50% { filter: brightness(1.28) drop-shadow(0 0 7px #fff); opacity: 1; transform: scale(1.16); } }
+      @keyframes primordial-dust { 0%, 100% { opacity: 0; transform: translateY(8px) scale(.7); } 35%, 65% { opacity: .9; } 80% { opacity: 0; transform: translateY(-12px) scale(1.05); } }
+      @keyframes primordial-gift-shine { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+
       .gift-cosmic { position: relative; height: 240px; display: grid; place-items: center; align-content: center; gap: 4px; border-bottom: 1px dashed #7875b8; overflow: hidden; color: #f8fbff; background: radial-gradient(circle at 11% 16%, #fff 0 1px, transparent 1.7px), radial-gradient(circle at 87% 22%, #9de9ff 0 1px, transparent 1.8px), radial-gradient(circle at 18% 76%, #ffd98a 0 1px, transparent 1.8px), radial-gradient(circle at 78% 69%, #fff 0 1.2px, transparent 2px), radial-gradient(ellipse at 49% 32%, rgba(152,83,236,.72) 0 12%, rgba(58,117,218,.42) 29%, transparent 58%), radial-gradient(ellipse at 8% 88%, rgba(44,211,231,.25), transparent 36%), radial-gradient(ellipse at 96% 82%, rgba(245,81,188,.25), transparent 38%), linear-gradient(154deg, #111b55 0%, #20155a 46%, #091842 100%); background-size: 57px 61px, 71px 67px, 83px 79px, 97px 89px, 135% 135%, 125% 125%, 130% 130%, auto; box-shadow: inset 0 1px rgba(255,255,255,.3), inset 18px 0 30px rgba(3,8,35,.2), inset -18px 0 30px rgba(3,8,35,.2); text-align: center; animation: cosmic-space 16s ease-in-out infinite; }
       .gift-cosmic::before { content: ""; position: absolute; z-index: 0; top: -66px; left: 50%; width: 268px; aspect-ratio: 1; border-radius: 50%; opacity: .58; background: conic-gradient(from 30deg, transparent 0 7%, rgba(93,224,255,.72) 10%, transparent 18% 31%, rgba(230,89,255,.66) 36%, transparent 47% 63%, rgba(255,196,83,.5) 68%, transparent 78% 91%, rgba(91,129,255,.62)); filter: blur(15px); transform: translateX(-50%) scale(.92); animation: cosmic-nebula 18s linear infinite; }
       .gift-cosmic::after { content: ""; position: absolute; z-index: 2; inset: -56% -92%; background: linear-gradient(107deg, transparent 43%, rgba(181,236,255,.14) 47%, rgba(255,255,255,.62) 50%, rgba(212,164,255,.12) 54%, transparent 58%); pointer-events: none; animation: cosmic-sweep 6.8s ease-in-out infinite; }
@@ -313,6 +367,8 @@
         .gift-mythic__gift { color: #385c63; background: none; }
         .gift-celestial, .gift-celestial::before, .gift-celestial::after, .gift-celestial__crown, .gift-celestial__halo, .gift-celestial__diadem, .gift-celestial__gem, .gift-celestial__shard, .gift-celestial__gift { animation: none; }
         .gift-celestial__gift { color: #6e403b; background: none; }
+        .gift-primordial, .gift-primordial::after, .gift-primordial__aura, .gift-primordial__bloom, .gift-primordial__monolith, .gift-primordial__inlay, .gift-primordial__geode, .gift-primordial__vein, .gift-primordial__heartstone, .gift-primordial__shine, .gift-primordial__glint, .gift-primordial__dust, .gift-primordial__gift { animation: none; }
+        .gift-primordial__gift { color: #365751; background: none; }
         .gift-cosmic, .gift-cosmic::before, .gift-cosmic::after, .gift-cosmic__galaxy, .gift-cosmic__orbit, .gift-cosmic__nova, .gift-cosmic__comet, .gift-cosmic__star, .gift-cosmic__gift { animation: none; }
         .gift-cosmic__gift { color: #c7f5ff; background: none; }
       }
@@ -325,7 +381,7 @@
           <h1>Catálogo de impresiones</h1>
           <p>Cada ficha define un componente antes de incorporarlo al printer en vivo.</p>
         </div>
-        <span class="status">9 componentes en diseño</span>
+        <span class="status">10 componentes en diseño</span>
       </header>
 
       <div class="catalog-layout">
@@ -339,6 +395,7 @@
           <a href="#regalo-legendario">Regalo legendario</a>
           <a href="#regalo-mitico">Regalo mítico</a>
           <a href="#regalo-celestial">Regalo celestial</a>
+          <a href="#regalo-primordial">Regalo primordial</a>
           <a href="#regalo-cosmico">Regalo cósmico</a>
         </nav>
 
@@ -879,9 +936,108 @@
         </section>
       </article>
 
+      <article class="component-sheet" id="regalo-primordial">
+        <section class="specification" aria-labelledby="primordial-gift-title">
+          <span class="type-number">Tipo 09</span>
+          <h2 id="primordial-gift-title">Regalo primordial</h2>
+          <p class="summary">Incrusta la fotografía del donador en una geoda viva dentro de un monolito antiguo recorrido por cuatro vetas elementales.</p>
+
+          <dl class="facts">
+            <div><dt>Evento</dt><dd>gift</dd></div>
+            <div><dt>Rango</dt><dd>Por definir</dd></div>
+            <div><dt>Altura</dt><dd>240 px</dd></div>
+            <div><dt>Fotografía</dt><dd>112 px a color</dd></div>
+            <div><dt>Identidad</dt><dd>Monolito elemental</dd></div>
+          </dl>
+
+          <h3 class="rule-title">Reglas del componente</h3>
+          <ul class="rules">
+            <li>Conserva los 240 px y la misma área segura de los niveles superiores.</li>
+            <li>La fotografía adopta una abertura orgánica, no un marco circular perfecto.</li>
+            <li>El monolito de jade crea una silueta vertical, profunda y reconocible.</li>
+            <li>Un bisel opalino separa la geoda de la piedra y protege la fotografía.</li>
+            <li>Las raíces y el pedestal metálico refuerzan su peso visual.</li>
+            <li>No utiliza galaxias, órbitas, coronas ni rotaciones decorativas.</li>
+          </ul>
+        </section>
+
+        <section class="preview" aria-label="Muestra a escala real del regalo primordial">
+          <div class="receipt-stage">
+            <div class="measure"><span>244 px de ancho</span></div>
+            <div class="paper">
+              <div class="paper-heading"><span>Vista en el recibo</span><span>240 px por fila</span></div>
+              <article class="gift-primordial">
+                <div class="gift-primordial__portrait">
+                  <span class="gift-primordial__aura" aria-hidden="true"></span>
+                  <span class="gift-primordial__bloom" aria-hidden="true"></span>
+                  <span class="gift-primordial__roots" aria-hidden="true"></span>
+                  <span class="gift-primordial__pedestal" aria-hidden="true"></span>
+                  <span class="gift-primordial__monolith" aria-hidden="true"></span>
+                  <span class="gift-primordial__inlay" aria-hidden="true"></span>
+                  <span class="gift-primordial__geode" aria-hidden="true"></span>
+                  <span class="gift-primordial__vein gift-primordial__vein--fire" aria-hidden="true"></span>
+                  <span class="gift-primordial__vein gift-primordial__vein--water" aria-hidden="true"></span>
+                  <span class="gift-primordial__vein gift-primordial__vein--aether" aria-hidden="true"></span>
+                  <span class="gift-primordial__vein gift-primordial__vein--light" aria-hidden="true"></span>
+                  <div class="gift-primordial__avatar"><img alt="Foto de perfil dummy de Andrea" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%23e7b78e'/%3E%3Ccircle cx='24' cy='18' r='10' fill='%23efb895'/%3E%3Cpath d='M7 48c2-13 9-19 17-19s15 6 17 19' fill='%23794d65'/%3E%3Cpath d='M13 18C13 8 18 3 25 4c8 1 11 7 9 17-5-5-12-8-21-3' fill='%2331283b'/%3E%3C/svg%3E"></div>
+                  <span class="gift-primordial__heartstone" aria-hidden="true"></span>
+                  <span class="gift-primordial__shine" aria-hidden="true"></span>
+                  <span class="gift-primordial__glint gift-primordial__glint--left" aria-hidden="true"></span>
+                  <span class="gift-primordial__glint gift-primordial__glint--right" aria-hidden="true"></span>
+                  <span class="gift-primordial__dust gift-primordial__dust--one" aria-hidden="true"></span>
+                  <span class="gift-primordial__dust gift-primordial__dust--two" aria-hidden="true"></span>
+                  <span class="gift-primordial__dust gift-primordial__dust--three" aria-hidden="true"></span>
+                  <span class="gift-primordial__dust gift-primordial__dust--four" aria-hidden="true"></span>
+                  <span class="gift-primordial__seal">Primordial</span>
+                </div>
+                <strong class="gift-primordial__name">@andrea</strong>
+                <p class="gift-primordial__gift">Envió Fénix ancestral ×1</p>
+                <span class="gift-primordial__total">Aporte acumulado: 24,800</span>
+              </article>
+              <article class="gift-primordial">
+                <div class="gift-primordial__portrait">
+                  <span class="gift-primordial__aura" aria-hidden="true"></span>
+                  <span class="gift-primordial__bloom" aria-hidden="true"></span>
+                  <span class="gift-primordial__roots" aria-hidden="true"></span>
+                  <span class="gift-primordial__pedestal" aria-hidden="true"></span>
+                  <span class="gift-primordial__monolith" aria-hidden="true"></span>
+                  <span class="gift-primordial__inlay" aria-hidden="true"></span>
+                  <span class="gift-primordial__geode" aria-hidden="true"></span>
+                  <span class="gift-primordial__vein gift-primordial__vein--fire" aria-hidden="true"></span>
+                  <span class="gift-primordial__vein gift-primordial__vein--water" aria-hidden="true"></span>
+                  <span class="gift-primordial__vein gift-primordial__vein--aether" aria-hidden="true"></span>
+                  <span class="gift-primordial__vein gift-primordial__vein--light" aria-hidden="true"></span>
+                  <div class="gift-primordial__avatar"><img alt="Foto de perfil dummy de Kevin" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%2398d1cf'/%3E%3Ccircle cx='24' cy='18' r='10' fill='%23c98f6c'/%3E%3Cpath d='M7 48c2-13 9-19 17-19s15 6 17 19' fill='%23476c70'/%3E%3Cpath d='M13 16C15 6 21 3 28 5c6 2 8 8 6 14-5-4-11-6-21-3' fill='%23252a34'/%3E%3C/svg%3E"></div>
+                  <span class="gift-primordial__heartstone" aria-hidden="true"></span>
+                  <span class="gift-primordial__shine" aria-hidden="true"></span>
+                  <span class="gift-primordial__glint gift-primordial__glint--left" aria-hidden="true"></span>
+                  <span class="gift-primordial__glint gift-primordial__glint--right" aria-hidden="true"></span>
+                  <span class="gift-primordial__dust gift-primordial__dust--one" aria-hidden="true"></span>
+                  <span class="gift-primordial__dust gift-primordial__dust--two" aria-hidden="true"></span>
+                  <span class="gift-primordial__dust gift-primordial__dust--three" aria-hidden="true"></span>
+                  <span class="gift-primordial__dust gift-primordial__dust--four" aria-hidden="true"></span>
+                  <span class="gift-primordial__seal">Primordial</span>
+                </div>
+                <strong class="gift-primordial__name">@kevin027</strong>
+                <p class="gift-primordial__gift">Envió Guardián elemental ×1</p>
+                <span class="gift-primordial__total">Aporte acumulado: 21,390</span>
+              </article>
+            </div>
+
+            <div class="anatomy">
+              <strong>Una fotografía tallada dentro de piedra viva</strong>
+              <p>El monolito de jade, el doble bisel opalino, el pedestal y las vetas luminosas construyen una pieza orgánica con profundidad real, sin recurrir al lenguaje espacial.</p>
+            </div>
+            <div class="legend" aria-label="Partes del regalo primordial">
+              <span>Foto orgánica de 112 px</span><span>Monolito de jade</span><span>Doble bisel opalino</span><span>Raíces y pedestal</span>
+            </div>
+          </div>
+        </section>
+      </article>
+
       <article class="component-sheet" id="regalo-cosmico">
         <section class="specification" aria-labelledby="cosmic-gift-title">
-          <span class="type-number">Tipo 09</span>
+          <span class="type-number">Tipo 10</span>
           <h2 id="cosmic-gift-title">Regalo cósmico</h2>
           <p class="summary">Presenta al donador dentro de un universo vivo: una galaxia circular, planetas en órbita y un cometa que cruza la escena.</p>
 

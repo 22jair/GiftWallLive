@@ -1,4 +1,20 @@
 window.GWLFeed = (() => {
+  function updateShowcase(event) {
+    const activeTier = event.type === "gift" ? event.gift.tier : null;
+    document.querySelectorAll("[data-tier-card]").forEach((item) => {
+      item.classList.toggle("is-active", item.dataset.tierCard === activeTier);
+    });
+
+    const label = document.querySelector("#active-tier-label");
+    if (!label) return;
+    if (event.type === "follow") {
+      label.textContent = "Nuevo seguidor";
+      return;
+    }
+    const activeItem = document.querySelector(`[data-tier-card="${activeTier}"] strong`);
+    label.textContent = activeItem ? `${activeItem.textContent} recibido` : "Regalo recibido";
+  }
+
   function trimToReceipt(container) {
     const availableHeight = container.parentElement.clientHeight;
     while (container.children.length > 1) {
@@ -12,6 +28,7 @@ window.GWLFeed = (() => {
   function insert(container, event, animate = true) {
     const previous = new Map([...container.children].map((item) => [item, item.getBoundingClientRect().top]));
     container.insertAdjacentHTML("afterbegin", window.GWLPrinterComponents.render(event));
+    updateShowcase(event);
     const fresh = container.firstElementChild;
     if (!animate) return;
 

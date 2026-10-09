@@ -1,6 +1,6 @@
 # GiftWallLive
 
-GiftWallLive será una página web visual para usar como contenido principal de un TikTok LIVE. Representará los regalos de los espectadores en una cinta digital animada y mostrará un Top 3 según el aporte acumulado.
+GiftWallLive será una página web visual para usar como contenido principal de un TikTok LIVE. Representará los regalos de los espectadores en una cinta digital animada y mostrará los tres envíos de regalos más valiosos del LIVE.
 
 ## Estado
 
@@ -17,6 +17,7 @@ GiftWallLive/
 ├── index.html
 ├── css/
 │   ├── base.css
+│   ├── gift-showcase.css
 │   ├── printer-components.css
 │   ├── printer.css
 │   └── top-three.css
@@ -77,7 +78,9 @@ La skill externa `frontend-design` guía la dirección artística y la implement
 
 ## Componentes actuales
 
-- Top 3 compacto que solo se actualiza cuando cambia un aporte.
+- Top Gifts compacto con foto, usuario, cantidad, icono y valor total; oro, platino y cobre distinguen visualmente cada posición.
+- Escenario premium de obsidiana con el Top 3 a todo el ancho.
+- Zona inferior dividida entre una colección de tiers y el printer en vivo; en pantallas estrechas, la colección se convierte en una banda horizontal.
 - Recibo continuo que calcula automáticamente cuántos registros necesita para llenar la altura disponible.
 - Registro de regalo con avatar, nombre, agradecimiento, cantidad e icono del regalo.
 - Registro de seguidor a media altura, sin fotografía.
@@ -85,7 +88,11 @@ La skill externa `frontend-design` guía la dirección artística y la implement
 - Loop de impresión con datos simulados que recorre New Follower y los nueve componentes visuales.
 - `js/printer-components.js`: genera el HTML de cada componente reutilizable del printer.
 - `css/printer-components.css`: contiene su presentación, jerarquía visual y animaciones.
-- `assets/images/printer-frame.png`: marco transparente de la impresora; el contenido del papel continúa siendo HTML dinámico.
+- `assets/images/printer-frame-obsidian.png`: marco transparente activo del printer, construido con obsidiana, acero, detalles champaña y luz cian; el papel continúa siendo HTML dinámico.
+- `assets/images/printer-frame.png`: versión arcade anterior conservada como referencia visual.
+- `assets/images/obsidian-gallery-bg.png`: fondo vertical de la galería premium que organiza visualmente el Top 3, la colección de tiers y la bahía del printer.
+
+En los datos simulados, `gift.points` representa el valor unitario del regalo. El valor mostrado y sumado para cada envío se calcula como `gift.points × gift.amount`; por ejemplo, dos regalos de 30,000 puntos producen un envío de 60,000 puntos.
 
 ## Configuración futura de rangos
 

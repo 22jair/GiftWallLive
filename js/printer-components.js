@@ -75,5 +75,5 @@ window.GWLPrinterComponents = (() => {
     return (renderers[event.gift.tier] || renderers.basic)(event);
   }
 
-  return { render };
+  return { render, avatarImage, giftIconPlaceholder };
 })();

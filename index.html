@@ -7,22 +7,50 @@
     <title>GiftWallLive</title>
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/top-three.css">
+    <link rel="stylesheet" href="css/gift-showcase.css">
     <link rel="stylesheet" href="css/printer.css">
     <link rel="stylesheet" href="css/printer-components.css">
   </head>
   <body>
     <main class="live-stage" aria-label="Recibo de actividad del LIVE">
       <section class="top-three" aria-labelledby="top-title">
-        <h1 id="top-title">Top 3 del LIVE</h1>
+        <div class="top-three__heading">
+          <span class="top-three__live" aria-hidden="true"></span>
+          <h1 id="top-title">Top Gifts del LIVE</h1>
+          <span class="top-three__edition">GiftWall Collection</span>
+        </div>
         <div id="podium" class="top-three__list"></div>
       </section>
-      <section class="printer" aria-labelledby="receipt-title">
-        <img class="printer-frame" src="assets/images/printer-frame.png" alt="" aria-hidden="true">
-        <header class="printer__slot">
-          <span aria-hidden="true">●</span><h2 id="receipt-title">Actividad en vivo</h2><span aria-hidden="true">●</span>
-        </header>
-        <div class="receipt"><div id="activity-feed" class="receipt__feed" aria-live="polite"></div></div>
-      </section>
+      <div class="live-body">
+        <aside class="gift-showcase" aria-labelledby="gift-showcase-title">
+          <header class="gift-showcase__header">
+            <span class="gift-showcase__monogram" aria-hidden="true">G</span>
+            <div><h2 id="gift-showcase-title">Gift collection</h2><p>Niveles del printer</p></div>
+          </header>
+          <ol class="gift-showcase__list">
+            <li class="gift-tier" data-tier-card="basic" style="--tier-accent:#a7adb7"><span class="gift-tier__number">01</span><span class="gift-tier__gem"></span><strong>Basic</strong></li>
+            <li class="gift-tier" data-tier-card="featured" style="--tier-accent:#e889b5"><span class="gift-tier__number">02</span><span class="gift-tier__gem"></span><strong>Featured</strong></li>
+            <li class="gift-tier" data-tier-card="stellar" style="--tier-accent:#6ebbd1"><span class="gift-tier__number">03</span><span class="gift-tier__gem"></span><strong>Stellar</strong></li>
+            <li class="gift-tier" data-tier-card="epic" style="--tier-accent:#9d70ed"><span class="gift-tier__number">04</span><span class="gift-tier__gem"></span><strong>Epic</strong></li>
+            <li class="gift-tier" data-tier-card="legendary" style="--tier-accent:#dfb95d"><span class="gift-tier__number">05</span><span class="gift-tier__gem"></span><strong>Legendary</strong></li>
+            <li class="gift-tier" data-tier-card="mythic" style="--tier-accent:#79c7c1"><span class="gift-tier__number">06</span><span class="gift-tier__gem"></span><strong>Mythic</strong></li>
+            <li class="gift-tier" data-tier-card="celestial" style="--tier-accent:#f19d73"><span class="gift-tier__number">07</span><span class="gift-tier__gem"></span><strong>Celestial</strong></li>
+            <li class="gift-tier" data-tier-card="primordial" style="--tier-accent:#86b39b"><span class="gift-tier__number">08</span><span class="gift-tier__gem"></span><strong>Primordial</strong></li>
+            <li class="gift-tier" data-tier-card="cosmic" style="--tier-accent:#7694ff"><span class="gift-tier__number">09</span><span class="gift-tier__gem"></span><strong>Cosmic</strong></li>
+          </ol>
+          <p class="gift-showcase__status"><span aria-hidden="true"></span><strong id="active-tier-label">Esperando regalo</strong></p>
+        </aside>
+        <div class="printer-bay">
+          <section class="printer" aria-labelledby="receipt-title">
+            <img class="printer-frame" src="assets/images/printer-frame-obsidian.png" alt="" aria-hidden="true">
+            <header class="printer__slot">
+              <span aria-hidden="true">●</span><h2 id="receipt-title">Actividad en vivo</h2><span aria-hidden="true">●</span>
+            </header>
+            <div class="printer__output" aria-hidden="true"><span></span></div>
+            <div class="receipt"><div id="activity-feed" class="receipt__feed" aria-live="polite"></div></div>
+          </section>
+        </div>
+      </div>
     </main>
     <script src="js/data.js" defer></script>
     <script src="js/top-three.js" defer></script>

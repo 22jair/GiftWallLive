@@ -1,14 +1,17 @@
 const { people, events } = window.GWL_DATA;
 const podium = document.querySelector("#podium");
 const feed = document.querySelector("#activity-feed");
+const tierList = document.querySelector("#gift-tier-list");
 const topGiftEvents = [];
 let cursor = 0;
+
+window.GWLGiftTiers.renderShowcase(tierList);
 
 function nextEvent(updateScore = true) {
   const template = events[cursor % events.length];
   const type = template.type;
   const person = people[template.personIndex];
-  const gift = template.gift;
+  const gift = template.gift ? { ...template.gift, tier: window.GWLGiftTiers.fromPoints(template.gift.points).id } : undefined;
   cursor += 1;
   const event = { id: cursor, type, person, gift };
   if (type === "gift") {

@@ -1,9 +1,17 @@
 window.GWLFeed = (() => {
-  function updateShowcase(event) {
-    const activeTier = event.type === "gift" ? event.gift.tier : null;
+  function updateShowcase(event, animate) {
+    const activeTier = event.type === "gift" ? event.gift.tier : "follow";
+    let activeItem = null;
     document.querySelectorAll("[data-tier-card]").forEach((item) => {
-      item.classList.toggle("is-active", item.dataset.tierCard === activeTier);
+      const isActive = item.dataset.tierCard === activeTier;
+      item.classList.toggle("is-active", isActive);
+      if (isActive) activeItem = item;
     });
+
+    if (activeItem) {
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      activeItem.scrollIntoView({ behavior: animate && !reduceMotion ? "smooth" : "auto", block: "nearest", inline: "center" });
+    }
 
     const label = document.querySelector("#active-tier-label");
     if (!label) return;
@@ -11,8 +19,8 @@ window.GWLFeed = (() => {
       label.textContent = "Nuevo seguidor";
       return;
     }
-    const activeItem = document.querySelector(`[data-tier-card="${activeTier}"] strong`);
-    label.textContent = activeItem ? `${activeItem.textContent} recibido` : "Regalo recibido";
+    const activeName = activeItem?.querySelector("strong");
+    label.textContent = activeName ? `${activeName.textContent} recibido` : "Regalo recibido";
   }
 
   function trimToReceipt(container) {
@@ -28,7 +36,7 @@ window.GWLFeed = (() => {
   function insert(container, event, animate = true) {
     const previous = new Map([...container.children].map((item) => [item, item.getBoundingClientRect().top]));
     container.insertAdjacentHTML("afterbegin", window.GWLPrinterComponents.render(event));
-    updateShowcase(event);
+    updateShowcase(event, animate);
     const fresh = container.firstElementChild;
     if (!animate) return;
 

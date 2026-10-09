@@ -25,6 +25,7 @@ GiftWallLive/
 │   ├── app.js
 │   ├── data.js
 │   ├── feed.js
+│   ├── gift-tiers.js
 │   ├── printer-components.js
 │   └── top-three.js
 ├── prototypes/
@@ -72,6 +73,7 @@ La skill externa `frontend-design` guía la dirección artística y la implement
 ## Principios
 
 - Una sola página web vertical.
+- Zona segura superior adaptable para barras de estado, notch y Dynamic Island en móviles.
 - HTML, CSS y JavaScript nativos.
 - Datos y regalos simulados durante la primera versión.
 - Sin frameworks, backend, base de datos ni autenticación mientras no sean necesarios.
@@ -79,8 +81,8 @@ La skill externa `frontend-design` guía la dirección artística y la implement
 ## Componentes actuales
 
 - Top Gifts compacto con foto, usuario, cantidad, icono y valor total; oro, platino y cobre distinguen visualmente cada posición.
-- Escenario premium de obsidiana con el Top 3 a todo el ancho.
-- Zona inferior dividida entre una colección de tiers y el printer en vivo; en pantallas estrechas, la colección se convierte en una banda horizontal.
+- Escenario premium de obsidiana con Top Gifts a todo el ancho.
+- Zona inferior dividida entre una colección de tiers y el printer en vivo; en pantallas estrechas, los tiers usan una cinta horizontal deslizable que centra el nivel del último evento.
 - Recibo continuo que calcula automáticamente cuántos registros necesita para llenar la altura disponible.
 - Registro de regalo con avatar, nombre, agradecimiento, cantidad e icono del regalo.
 - Registro de seguidor a media altura, sin fotografía.
@@ -94,12 +96,21 @@ La skill externa `frontend-design` guía la dirección artística y la implement
 
 En los datos simulados, `gift.points` representa el valor unitario del regalo. El valor mostrado y sumado para cada envío se calcula como `gift.points × gift.amount`; por ejemplo, dos regalos de 30,000 puntos producen un envío de 60,000 puntos.
 
-## Configuración futura de rangos
+## Rangos de regalos
 
-Los rangos de puntos no forman parte de los componentes visuales. Se definirán durante la integración del catálogo con el loop principal y, posteriormente, con los eventos reales de TikTok.
+`js/gift-tiers.js` es la fuente única para clasificar regalos y generar los rangos visibles en `Gift collection`. La clasificación utiliza el valor unitario del regalo; enviar varias unidades multiplica el valor mostrado en Top Gifts, pero no cambia el componente visual seleccionado.
 
-Mientras se validan los diseños, cada evento de `js/data.js` declara explícitamente su propiedad `tier`. Esto permite probar cualquier componente sin convertir sus puntos en una regla de producto prematura.
+| Evento o tier | Valor unitario |
+| --- | ---: |
+| New Follow | Sin monedas |
+| Basic | 1–10 |
+| Featured | 11–29 |
+| Stellar | 30–50 |
+| Epic | 51–100 |
+| Legendary | 101–350 |
+| Mythic | 351–499 |
+| Celestial | 500–1,500 |
+| Primordial | 1,501–4,800 |
+| Cosmic | 4,801 o más |
 
-Cuando se establezcan los valores definitivos, se centralizarán en un archivo como `js/gift-tiers.js`. Ese archivo exportará una constante ordenada con el identificador del componente, su nombre y sus límites mínimo y máximo. La función que clasifique cada regalo consumirá esa configuración, evitando rangos duplicados en HTML, CSS o documentación.
-
-No se crea todavía ese archivo porque los valores siguen pendientes y no tendría un consumidor real dentro de la versión actual.
+Los datos dummy de `js/data.js` solo declaran los puntos y la cantidad. La aplicación obtiene automáticamente el `tier` desde esta configuración antes de imprimir cada evento.

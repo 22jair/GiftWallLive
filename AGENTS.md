@@ -18,6 +18,7 @@ GiftWallLive es una experiencia web vertical para TikTok LIVE. Muestra en una ci
 - No crear autenticación, panel administrativo, SaaS ni infraestructura no solicitada.
 - Conservar los recursos visuales en `assets/images/` y los sonidos en `assets/sounds/`.
 - Mantener accesibilidad básica: HTML semántico, contraste suficiente, texto alternativo y respeto por `prefers-reduced-motion`.
+- Reservar en móviles una zona segura superior para la barra de estado, notch o Dynamic Island. Usar `env(safe-area-inset-top)` con un mínimo de 44 px y no colocar información esencial dentro de ese espacio.
 - Evitar secretos, tokens y datos personales en el repositorio.
 
 ## Forma de trabajo

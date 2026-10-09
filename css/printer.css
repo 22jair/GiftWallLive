@@ -12,3 +12,6 @@
 .printer__output > span::after { right: -.32rem; }
 .receipt { position: absolute; z-index: 2; inset: calc(var(--printer-head-offset) + 2.65rem) 19% 0; overflow: hidden; color: var(--ink); background: linear-gradient(90deg, rgb(170 135 151 / 6%) 1px, transparent 1px) 0 0 / 0.35rem 100%, var(--paper); box-shadow: inset 0.45rem 0 0.8rem rgb(108 69 91 / 6%), inset -0.45rem 0 0.8rem rgb(108 69 91 / 6%), 0 0.25rem 0.9rem rgb(0 0 0 / 20%); }
 .receipt__feed { padding: 0.9rem 0.85rem 0; }
+@media (min-width: 900px) and (orientation: portrait) {
+  .receipt__feed { width: 66.666667%; zoom: 1.5; }
+}

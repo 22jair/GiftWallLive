@@ -73,6 +73,9 @@ La skill externa `frontend-design` guía la dirección artística y la implement
 ## Principios
 
 - Una sola página web vertical.
+- Lienzo maestro 9:16 con salida objetivo en 720 × 1280 y 1080 × 1920.
+- La composición se selecciona por orientación y relación vertical, no únicamente por el ancho del viewport.
+- Top Gifts arriba y zona inferior dividida en 36% para rangos y 64% para el printer en ambas resoluciones objetivo.
 - Zona segura superior adaptable para barras de estado, notch y Dynamic Island en móviles.
 - HTML, CSS y JavaScript nativos.
 - Datos y regalos simulados durante la primera versión.
@@ -82,7 +85,7 @@ La skill externa `frontend-design` guía la dirección artística y la implement
 
 - Top Gifts compacto con foto, usuario, cantidad, icono y valor total; oro, platino y cobre distinguen visualmente cada posición.
 - Escenario premium de obsidiana con Top Gifts a todo el ancho.
-- Zona inferior dividida entre una colección de tiers y el printer en vivo; en pantallas estrechas, los tiers usan una cinta horizontal deslizable que centra el nivel del último evento.
+- Zona inferior dividida entre una colección vertical de tiers y el printer en vivo; esta composición de dos columnas se conserva en todo lienzo vertical, incluido Full HD.
 - Recibo continuo que calcula automáticamente cuántos registros necesita para llenar la altura disponible.
 - Registro de regalo con avatar, nombre, agradecimiento, cantidad e icono del regalo.
 - Registro de seguidor a media altura, sin fotografía.

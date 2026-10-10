@@ -25,6 +25,6 @@ body { background: #080e16; font-family: "Bahnschrift", "Segoe UI", sans-serif; 
 .printer-bay::before { display: none; }
 @media (min-width: 900px) and (orientation: portrait) {
   :root { font-size: 16px; }
-  .live-body { grid-template-columns: minmax(0,36fr) minmax(0,64fr); }
+  .live-body { grid-template-columns: minmax(0,25fr) minmax(0,75fr); }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }

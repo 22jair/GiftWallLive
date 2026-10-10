@@ -15,3 +15,22 @@
 @media (min-width: 900px) and (orientation: portrait) {
   .receipt__feed { width: 66.666667%; zoom: 1.5; }
 }
+/* Machined housing and luminous thermal head, drawn at native resolution. */
+.printer { --printer-head-offset: 0%; padding-top: .35rem; }
+.printer .printer-frame { display: none; }
+.printer::before { content: ""; position: absolute; inset: 1rem 0 0; border-radius: 1.3rem 1.3rem 0 0; border: 1px solid #b8d3dd42; background: linear-gradient(90deg,#07111b, #34444e 1.5%, #101c26 4%, transparent 8% 92%, #101c26 96%, #34444e 98.5%, #07111b), linear-gradient(#192934,#09131e 12%); box-shadow: inset 0 1px #e0f3fc66; }
+.printer::after { content: ""; position: absolute; z-index: 1; inset: 6rem 3% 0; border-left: 1px solid #85dede70; border-right: 1px solid #85dede70; box-shadow: -3px 0 16px #62cadc20,3px 0 16px #62cadc20; pointer-events: none; }
+.printer__slot { height: 4.6rem; margin: 0; padding-bottom: .9rem; border-radius: 1.2rem 1.2rem .4rem .4rem; border: 1px solid #a3bac45e; background: radial-gradient(ellipse at 50% 0,#50708066,transparent 70%), linear-gradient(#354550,#182630 48%,#0c1721 50%,#263640); box-shadow: inset 0 2px #d7eaf077,inset 0 -2px #080f16,0 8px 20px #0007; }
+.printer__slot h2 { font-size: 1.15rem; letter-spacing: -.04em; color: #f1f8f8; }
+.printer__slot span { color: #8defdc; font-size: .35rem; box-shadow: 0 0 12px #83ffe0; }
+.printer__output { top: 3.5rem; left: 5%; right: 5%; height: 1.25rem; z-index: 5; border-radius: 8px; background: linear-gradient(#9da9aa,#283b42 22%,#080f17 48%,#1b2a31 85%,#b0c0bf); border-color: #7a9ca5; box-shadow: 0 8px 12px #0009; }
+.printer__output::after { left: 4%; right: 4%; bottom: .2rem; background: #bdfff0; box-shadow: 0 0 8px #70ffe2,0 3px 14px #70ffe280; }
+.printer__output > span { left: 4%; right: 4%; }
+.receipt { inset: 4.5rem 6% 0; box-shadow: 0 0 0 1px #fff8, 0 8px 24px #0008; background: repeating-linear-gradient(90deg,#00000002 0 1px,transparent 1px 4px),var(--paper); }
+.receipt__feed { padding: 12px 8px 0; }
+@media (min-width: 600px) and (orientation: portrait) {
+  .receipt__feed { width: 71.428571%; zoom: 1.4; }
+}
+@media (min-width: 900px) and (orientation: portrait) {
+  .receipt__feed { width: 47.619048%; zoom: 2.1; }
+}

@@ -44,3 +44,24 @@
   .gift-tier small { width: 100%; font-size: clamp(.38rem, 1.65vw, .5rem); }
   .gift-showcase__status { right: .45rem; bottom: .42rem; left: .45rem; gap: .3rem; padding-top: .42rem; font-size: .48rem; }
 }
+/* Slim collection rail; readable tiers with the amount underneath. */
+.gift-showcase { padding: .6rem .15rem 2rem; border: 0; border-right: 1px solid #afcbd51c; background: transparent; box-shadow: none; backdrop-filter: none; }
+.gift-showcase::before { display: none; }
+.gift-showcase__list { gap: .35rem; margin: 0; }
+.gift-showcase__list::before { left: .63rem; background: linear-gradient(transparent,#a4c5ce38,transparent); }
+.gift-tier { grid-template-columns: .9rem minmax(0,1fr); gap: .35rem; min-height: 4rem; padding: .35rem .25rem; border-radius: .35rem; }
+.gift-tier__number { display: none; }
+.gift-tier__gem { width: .6rem; border-radius: 2px; }
+.gift-tier__copy { display: grid; justify-items: start; gap: .25rem; }
+.gift-tier strong { font-family: "Bahnschrift","Segoe UI",sans-serif; font-size: .73rem; font-weight: 600; color: #c4d1d8; }
+.gift-tier small { font-size: .62rem; color: #91a5b1; }
+.gift-tier::after { left: 1.5rem; background: linear-gradient(90deg,#adc5d015,transparent); }
+.gift-tier.is-active { transform: none; background: linear-gradient(90deg,color-mix(in srgb,var(--tier-accent) 20%,transparent),transparent); box-shadow: inset 2px 0 var(--tier-accent); }
+.gift-showcase__status { left: .2rem; right: .4rem; bottom: .8rem; font-size: .55rem; line-height: 1.4; }
+.gift-showcase__status strong { white-space: normal; }
+@media (max-width: 480px) {
+  .gift-tier { grid-template-columns: .55rem minmax(0,1fr); gap: .2rem; min-height: 3.45rem; }
+  .gift-tier strong { font-size: .53rem; }
+  .gift-tier small { font-size: .48rem; }
+  .gift-tier__gem { width: .4rem; }
+}

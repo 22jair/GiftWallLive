@@ -283,6 +283,49 @@
   100% { opacity: 0; transform: translate(var(--spark-x), var(--spark-y)) scale(1.15) rotate(90deg); }
 }
 
+/* Collector editions: ink, foil, precious metal, crystal and deep space. */
+.receipt-item { isolation: isolate; }
+.follower { height: 40px; padding-inline: 9px; background: #edf0ed; border-bottom: 1px dashed #a8b6b0; }
+.follower__mark { border: 0; background: #d5e3dc; color: #427560; font-size: 15px; }
+.follower__name { color: #41574e; }
+.follower__message { color: #64766e; font-size: 9px; }
+.gift-basic { padding-inline: 12px; background: #f4f4f1; border-bottom-color: #b2b8b7; }
+.gift-basic__avatar { border: 2px solid #fff; box-shadow: 0 0 0 1px #bdc4c1,0 3px 7px #15251d22; }
+.gift-basic__name { color: #33413f; }
+.gift-highlighted { background: linear-gradient(110deg,#e4f0ec,#f6f7f2 65%); box-shadow: inset 3px 0 #75a994; }
+.gift-highlighted .gift-basic__avatar { border-color: #fff; box-shadow: 0 0 0 2px #8abdaa55,0 3px 8px #244c3e22; }
+.gift-stellar { background: radial-gradient(ellipse at 50% 35%,#fff 0 22%,#d6e8ed 70%,#bed3df); border-bottom-color: #8cabbc; box-shadow: inset 0 1px #fff; }
+.gift-stellar__avatar { border: 3px solid #f8fdff; box-shadow: 0 0 0 2px #83b9cd,0 0 0 6px #ffffff70,0 8px 18px #315b7733; }
+.gift-stellar__name { color: #244b60; font-size: 12px; }
+.gift-epic { background: radial-gradient(ellipse at 50% 34%,#fff 0 15%,#ece5ff 40%,transparent 65%),linear-gradient(145deg,#dddafa,#fae5f0 55%,#d9eff4); box-shadow: inset 0 0 0 1px #a086ca44,inset 0 0 30px #b77df31a; }
+.gift-epic__portrait::before { background: conic-gradient(#d161ce,#edd8ff,#766bea,#82e5e1,#fff1c6,#d161ce); }
+.gift-epic__avatar { box-shadow: 0 8px 20px #6b3f982a; }
+.gift-legendary { background: radial-gradient(ellipse at 50% 35%,#fff9df 0 18%,#f2dd9d 55%,#c69748 100%); color: #59380f; border-bottom-color: #977235; box-shadow: inset 0 0 0 1px #fff4c3,inset 0 0 0 5px #a76c2120,inset 0 0 32px #a16c3130; }
+.gift-legendary::before { background-image: radial-gradient(circle,#fff6c7 0 1.2px,transparent 2px); opacity: .9; }
+.gift-legendary__portrait::before { background: repeating-conic-gradient(#fff9ce 0 5deg,#8b5923 6deg 8deg,#e6b955 9deg 19deg,#fff2bb 20deg 22deg,transparent 23deg 28deg); }
+.gift-legendary__avatar { box-shadow: 0 8px 18px #5e350c38; }
+.gift-legendary__name { color: #4c3113; text-shadow: 0 1px #fff9; }
+.gift-mythic { background: radial-gradient(ellipse at 50% 35%,#f7ffff 0 18%,#cde8e8 46%,#88b8bf 100%); box-shadow: inset 0 0 0 1px #e0ffff,inset 0 0 0 5px #284f6420,inset 12px 0 30px #346b7424,inset -12px 0 30px #346b7424; }
+.gift-mythic__avatar { box-shadow: 0 0 0 3px #e9ffff,0 0 0 7px #55879966,0 12px 24px #1a505d44; }
+.gift-mythic__name { color: #193f4e; }
+.gift-celestial { background: radial-gradient(ellipse at 50% 34%,#fffbde 0 16%,#ffd994 42%,transparent 67%),linear-gradient(145deg,#b84237,#f8b271 48%,#b84a5e); box-shadow: inset 0 0 0 1px #ffdf9b,inset 0 0 0 5px #ffd98030,inset 0 -25px 40px #b5303429; }
+.gift-celestial::before { opacity: .65; width: 250px; background: repeating-conic-gradient(#fff4c6 0 1deg,transparent 2deg 12deg,#ffd86b66 13deg 15deg,transparent 16deg 24deg); }
+.gift-celestial__crown { filter: drop-shadow(0 0 9px #ff953d) drop-shadow(0 -8px 14px #ffda7680); }
+.gift-celestial__name { color: #562b22; text-shadow: 0 1px #ffe8c7; }
+.gift-primordial { background: radial-gradient(ellipse at 50% 29%,#effff0 0 14%,#c3e0c5 40%,transparent 65%),repeating-linear-gradient(115deg,transparent 0 45px,#eac78524 46px 47px,transparent 48px 80px),linear-gradient(145deg,#3a7167,#c0d7bd 52%,#7fa89d); box-shadow: inset 0 0 0 1px #e1edbf,inset 0 0 0 5px #d8e9c425,inset 0 -25px 40px #1d4d3e25; }
+.gift-primordial__monolith { filter: drop-shadow(0 9px 10px #163e3c66); }
+.gift-primordial__geode { filter: drop-shadow(0 0 7px #fcf5bcaa); }
+.gift-primordial__name { color: #173c33; text-shadow: 0 1px #efffea88; }
+.gift-cosmic { background: radial-gradient(circle at 10% 17%,#eaffff 0 1px,transparent 2px),radial-gradient(circle at 88% 73%,#edafff 0 1px,transparent 2px),radial-gradient(ellipse at 50% 32%,#8379df 0,#314d79 33%,transparent 64%),radial-gradient(ellipse at 0 100%,#633471,transparent 55%),linear-gradient(155deg,#070b20,#152a43 65%,#151631); background-size: 43px 57px,71px 83px,100% 100%,100% 100%,auto; box-shadow: inset 0 0 0 1px #a5cbed99,inset 0 0 0 5px #94c9e51a,inset 0 -25px 40px #03071755; }
+.gift-cosmic__galaxy { box-shadow: 0 0 20px #93d7ff88,0 0 45px #ce83ff55; }
+.gift-cosmic__avatar { box-shadow: 0 0 0 2px #f0ffff,0 0 0 7px #8b9ee955,0 0 25px #9cecff99,0 14px 30px #02062088; }
+.gift-card-sparks { z-index: 2 !important; }
+.gift-card-sparks--celestial .gift-card-sparks__spark { --spark-color: #fff0a9; width: 10px; }
+.gift-card-sparks--primordial .gift-card-sparks__spark { --spark-color: #e5ffd8; }
+.gift-message { gap: 8px; }
+.gift-message__icon { width: 26px; height: 26px; }
+.gift-basic__gift { font-size: 10px; }
+.gift-epic__gift .gift-message__icon,.gift-legendary__gift .gift-message__icon,.gift-mythic__gift .gift-message__icon,.gift-celestial__gift .gift-message__icon,.gift-primordial__gift .gift-message__icon,.gift-cosmic__gift .gift-message__icon { width: 36px; height: 36px; }
 .receipt-item--printing { transform-origin: top center; animation: print-row 700ms cubic-bezier(.2,.8,.2,1) both; }
 @keyframes print-row {
   from { max-height: 0; min-height: 0; padding-block: 0; clip-path: inset(0 0 100%); transform: translateY(-1rem) scaleY(.1); }

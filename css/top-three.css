@@ -26,3 +26,24 @@
   .leader__avatar { width: 2.15rem; }
   .leader__place { left: .08rem; }
 }
+/* Three individually minted podium plates. */
+.top-three { margin: .3rem .75rem 0; padding: 0; border: 0; background: none; box-shadow: none; overflow: visible; backdrop-filter: none; }
+.top-three::before { display: none; }
+.top-three__list { gap: .45rem; }
+.leader, .leader:last-child { min-height: 5.7rem; padding: .8rem .55rem .5rem; grid-template-columns: 2.8rem minmax(0,1fr); gap: 0 .45rem; border: 1px solid color-mix(in srgb,var(--rank) 36%,transparent); border-radius: .65rem .65rem .2rem .2rem; background: radial-gradient(ellipse at 0 0,var(--rank-glow),transparent 80%),linear-gradient(130deg,#24323c,#111c26 65%); box-shadow: inset 0 1px #fff2,0 4px 10px #0003; }
+.leader::before { left: 10%; right: 10%; background: linear-gradient(90deg,transparent,var(--rank),transparent); }
+.leader__avatar { width: 2.8rem; padding: 2px; box-shadow: 0 0 0 3px #07111c,0 0 0 4px color-mix(in srgb,var(--rank) 35%,transparent),0 5px 15px #0007; }
+.leader__place { top: .2rem; left: .45rem; font-size: .52rem; border: 0; background: transparent; box-shadow: none; color: var(--rank); padding: 0; }
+.leader__name { font-size: .7rem; }
+.leader__gift { font-size: .55rem; gap: .25rem; }
+.leader__gift img { width: 1.55rem; }
+.leader__total strong { font-family: "Bahnschrift", "Segoe UI",sans-serif; font-size: 1rem; font-weight: 700; }
+.leader__emblem { top: .25rem; right: .35rem; font-size: .85rem; }
+@media (max-width: 480px) {
+  .leader, .leader:last-child { grid-template-columns: 1.8rem minmax(0,1fr); column-gap: .3rem; padding-inline: .3rem; min-height: 4.8rem; }
+  .leader__avatar { width: 1.8rem; }
+  .leader__name { font-size: .52rem; }
+  .leader__gift { font-size: .43rem; }
+  .leader__gift img { width: 1.15rem; }
+  .leader__total strong { font-size: .8rem; }
+}

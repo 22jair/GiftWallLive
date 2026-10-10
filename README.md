@@ -108,7 +108,7 @@ La skill externa `frontend-design` guía la dirección artística y la implement
 - Una sola página web vertical.
 - Lienzo maestro 9:16 con salida objetivo en 720 × 1280 y 1080 × 1920.
 - La composición se selecciona por orientación y relación vertical, no únicamente por el ancho del viewport.
-- Top Gifts arriba y zona inferior dividida en 36% para rangos y 64% para el printer en ambas resoluciones objetivo.
+- Top Gifts arriba y zona inferior dividida en 22% para rangos y 78% para el printer (descontando el espacio entre columnas).
 - Zona segura superior adaptable para barras de estado, notch y Dynamic Island en móviles.
 - HTML, CSS y JavaScript nativos.
 - Datos y regalos simulados durante la primera versión.
@@ -117,7 +117,7 @@ La skill externa `frontend-design` guía la dirección artística y la implement
 ## Componentes actuales
 
 - Top Gifts compacto con foto, usuario, cantidad, icono y valor total; oro, platino y cobre distinguen visualmente cada posición. Las tres posiciones permanecen visibles con valor `0` hasta recibir regalos reales.
-- Escenario premium de obsidiana con Top Gifts a todo el ancho.
+- Dirección visual experimental de prensa de coleccionista: acero oscuro, salida térmica iluminada y papel perlado; Top Gifts con placas de oro, platino y cobre.
 - Zona inferior dividida entre una colección vertical de tiers y el printer en vivo; esta composición de dos columnas se conserva en todo lienzo vertical, incluido Full HD.
 - Recibo continuo que calcula automáticamente cuántos registros necesita para llenar la altura disponible.
 - Registro de regalo con avatar, nombre, agradecimiento, cantidad e icono del regalo.
@@ -126,9 +126,10 @@ La skill externa `frontend-design` guía la dirección artística y la implement
 - Loop de impresión con datos simulados que recorre New Follower y los nueve componentes visuales.
 - `js/printer-components.js`: genera el HTML de cada componente reutilizable del printer.
 - `css/printer-components.css`: contiene su presentación, jerarquía visual y animaciones.
-- `assets/images/printer-frame-obsidian.png`: marco transparente activo del printer, construido con obsidiana, acero, detalles champaña y luz cian; el papel continúa siendo HTML dinámico.
+- La carcasa del printer y el escenario se dibujan con CSS. La colección progresa desde tinta monocroma hasta acabados iridiscentes, oro, cristal, luz solar, mineral y espacio profundo. Se respeta `prefers-reduced-motion`.
+- `assets/images/printer-frame-obsidian.png`: marco de la versión anterior conservado como recurso; no se muestra en la propuesta visual actual.
 - `assets/images/printer-frame.png`: versión arcade anterior conservada como referencia visual.
-- `assets/images/obsidian-gallery-bg.png`: fondo vertical de la galería premium que organiza visualmente el Top 3, la colección de tiers y la bahía del printer.
+- `assets/images/obsidian-gallery-bg.png`: fondo de la galería anterior conservado como recurso.
 
 En los datos simulados, `gift.points` representa el valor unitario del regalo. El aporte total de cada envío se calcula como `gift.points × gift.amount`; por ejemplo, veinte regalos de 1 punto producen un envío de 20 puntos.
 

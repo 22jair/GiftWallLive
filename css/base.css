@@ -14,4 +14,13 @@ body { margin: 0; display: grid; place-items: center; overflow: hidden; backgrou
   .live-stage { grid-template-rows: auto minmax(0,1fr); padding-top: var(--safe-top); }
   .live-body { grid-template-columns: minmax(0,36%) minmax(0,64%); gap: clamp(.45rem, 1.2vw, .8rem); padding: 0 clamp(.65rem, 2vw, 1.15rem) 1rem; }
 }
+/* Collector press: the receipt owns the stage. */
+:root { --paper: #f4f4ef; --ink: #39434b; --champagne: #e7ca8a; --cyan: #90e4e4; }
+body { background: #080e16; font-family: "Bahnschrift", "Segoe UI", sans-serif; }
+.live-stage { background: radial-gradient(ellipse at 80% 15%, #213c48 0, transparent 48%), radial-gradient(ellipse at 0 80%, #1c2336, transparent 60%), #0c1520; box-shadow: inset 0 0 0 1px #425260; }
+.live-stage::before { background: repeating-linear-gradient(115deg, transparent 0 80px, #b9d6dd05 81px 82px); }
+.live-stage::after { border-color: #b1c7ce30; box-shadow: inset 0 0 2rem #03081055; }
+.live-body { grid-template-columns: minmax(0,22fr) minmax(0,78fr); gap: .6rem; padding: .5rem .75rem 0; }
+.printer-bay { border: 0; background: transparent; box-shadow: none; backdrop-filter: none; }
+.printer-bay::before { display: none; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }

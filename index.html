@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Recibo digital de regalos y seguidores para TikTok LIVE.">
+    <meta name="description" content="Digital gift and follower receipt for TikTok LIVE.">
     <title>GiftWallLive</title>
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/top-three.css">
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/printer-components.css">
   </head>
   <body>
-    <main class="live-stage" aria-label="Recibo de actividad del LIVE">
+    <main class="live-stage" aria-label="LIVE activity receipt">
       <section class="top-three" aria-labelledby="top-title">
         <h1 id="top-title" class="visually-hidden">Top Gifts del LIVE</h1>
         <div id="podium" class="top-three__list"></div>
@@ -20,14 +20,14 @@
       <div class="live-body">
         <aside class="gift-showcase" aria-labelledby="gift-showcase-title">
           <h2 id="gift-showcase-title" class="visually-hidden">Gift collection</h2>
-          <ol id="gift-tier-list" class="gift-showcase__list" aria-label="Rangos de regalos" tabindex="0"></ol>
-          <p class="gift-showcase__status"><span aria-hidden="true"></span><strong id="active-tier-label">Esperando regalo</strong></p>
+          <ol id="gift-tier-list" class="gift-showcase__list" aria-label="Gift tiers" tabindex="0"></ol>
+          <p class="gift-showcase__status"><span aria-hidden="true"></span><strong id="active-tier-label">Waiting for a gift</strong></p>
         </aside>
         <div class="printer-bay">
           <section class="printer" aria-labelledby="receipt-title">
             <img class="printer-frame" src="assets/images/printer-frame-obsidian.png" alt="" aria-hidden="true">
             <header class="printer__slot">
-              <span aria-hidden="true">●</span><h2 id="receipt-title">Actividad en vivo</h2><span aria-hidden="true">●</span>
+              <span aria-hidden="true">●</span><h2 id="receipt-title">Now Printing</h2><span aria-hidden="true">●</span>
             </header>
             <div class="printer__output" aria-hidden="true"><span></span></div>
             <div class="receipt"><div id="activity-feed" class="receipt__feed" aria-live="polite"></div></div>
@@ -40,6 +40,7 @@
     <script src="js/top-three.js" defer></script>
     <script src="js/printer-components.js" defer></script>
     <script src="js/feed.js" defer></script>
+    <script src="js/live-events.js" defer></script>
     <script src="js/app.js" defer></script>
   </body>
 </html>

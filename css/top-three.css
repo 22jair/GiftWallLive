@@ -17,6 +17,9 @@
 .leader__total { display: flex; align-items: center; gap: .25rem; margin: .08rem 0 0; color: var(--rank); }
 .leader__total > span { color: var(--rank); font-size: .5rem; text-shadow: 0 0 .4rem var(--rank); }
 .leader__total strong { overflow: hidden; font-family: Georgia, "Times New Roman", serif; font-size: clamp(.62rem, 1.7vw, .82rem); font-weight: 600; text-overflow: ellipsis; }
+.leader--empty .leader__avatar { filter: grayscale(1); opacity: .52; }
+.leader--empty .leader__name, .leader--empty .leader__gift { color: #7f8995; }
+.leader--empty .leader__emblem { opacity: .42; }
 @media (max-width: 699px) {
   .top-three { margin: .32rem .5rem .08rem; padding: .3rem .3rem .34rem; }
   .leader { grid-template-columns: 2.15rem minmax(0,1fr); column-gap: .32rem; padding: .32rem .28rem .34rem; }

@@ -17,7 +17,7 @@ npm install
 npm start -- nombre_del_creador
 ```
 
-El estado queda disponible en `http://127.0.0.1:8081/health` y los eventos en `ws://127.0.0.1:8081/live`. Esta conexión todavía no alimenta el printer principal.
+El estado queda disponible en `http://127.0.0.1:8081/health` y los eventos en `ws://127.0.0.1:8081/live`. La página usa automáticamente el LIVE cuando el servidor confirma la conexión y conserva el loop dummy como respaldo cuando no está disponible.
 
 ## Estructura
 
@@ -35,6 +35,7 @@ GiftWallLive/
 │   ├── data.js
 │   ├── feed.js
 │   ├── gift-tiers.js
+│   ├── live-events.js
 │   ├── printer-components.js
 │   └── top-three.js
 ├── prototypes/
@@ -90,6 +91,7 @@ La carpeta `server/` contiene la integración experimental con proveedores de LI
 - `mappers/` convierte esos datos al contrato común de GiftWallLive.
 - `domain/live-event.js` define la forma estable que recibe el frontend.
 - `live-bridge.js` publica estados y eventos normalizados en `/live`.
+- `js/live-events.js` consume ese contrato y reintenta la conexión automáticamente.
 
 El printer no debe depender del formato particular de PirateTok. Un proveedor futuro, como TikFinity, tendrá su propio provider y mapper, pero emitirá el mismo contrato.
 
@@ -112,7 +114,7 @@ La skill externa `frontend-design` guía la dirección artística y la implement
 
 ## Componentes actuales
 
-- Top Gifts compacto con foto, usuario, cantidad, icono y valor total; oro, platino y cobre distinguen visualmente cada posición.
+- Top Gifts compacto con foto, usuario, cantidad, icono y valor total; oro, platino y cobre distinguen visualmente cada posición. Las tres posiciones permanecen visibles con valor `0` hasta recibir regalos reales.
 - Escenario premium de obsidiana con Top Gifts a todo el ancho.
 - Zona inferior dividida entre una colección vertical de tiers y el printer en vivo; esta composición de dos columnas se conserva en todo lienzo vertical, incluido Full HD.
 - Recibo continuo que calcula automáticamente cuántos registros necesita para llenar la altura disponible.
@@ -126,13 +128,13 @@ La skill externa `frontend-design` guía la dirección artística y la implement
 - `assets/images/printer-frame.png`: versión arcade anterior conservada como referencia visual.
 - `assets/images/obsidian-gallery-bg.png`: fondo vertical de la galería premium que organiza visualmente el Top 3, la colección de tiers y la bahía del printer.
 
-En los datos simulados, `gift.points` representa el valor unitario del regalo. El valor mostrado y sumado para cada envío se calcula como `gift.points × gift.amount`; por ejemplo, dos regalos de 30,000 puntos producen un envío de 60,000 puntos.
+En los datos simulados, `gift.points` representa el valor unitario del regalo. El aporte total de cada envío se calcula como `gift.points × gift.amount`; por ejemplo, veinte regalos de 1 punto producen un envío de 20 puntos.
 
 ## Rangos de regalos
 
-`js/gift-tiers.js` es la fuente única para clasificar regalos y generar los rangos visibles en `Gift collection`. La clasificación utiliza el valor unitario del regalo; enviar varias unidades multiplica el valor mostrado en Top Gifts, pero no cambia el componente visual seleccionado.
+`js/gift-tiers.js` es la fuente única para clasificar regalos y generar los rangos visibles en `Gift collection`. La clasificación utiliza el aporte total de la acción (`valor unitario × cantidad`), por lo que enviar varias unidades sí puede elevar el componente visual. Un regalo de 1 punto enviado 20 veces utiliza Featured.
 
-| Evento o tier | Valor unitario |
+| Evento o tier | Aporte total de la acción |
 | --- | ---: |
 | New Follow | Sin monedas |
 | Basic | 1–10 |

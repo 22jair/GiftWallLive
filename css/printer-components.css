@@ -1,5 +1,12 @@
-.gift-message { display: inline-flex; align-items: center; justify-content: center; gap: 4px; }
-.gift-message__icon { width: 18px; height: 18px; flex: 0 0 auto; object-fit: contain; }
+.gift-message { display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.gift-message__icon { width: 22px; height: 22px; flex: 0 0 auto; object-fit: contain; filter: drop-shadow(0 2px 3px rgba(31,24,28,.24)); }
+.gift-stellar__gift .gift-message__icon { width: 26px; height: 26px; }
+.gift-epic__gift .gift-message__icon,
+.gift-legendary__gift .gift-message__icon,
+.gift-mythic__gift .gift-message__icon,
+.gift-celestial__gift .gift-message__icon,
+.gift-primordial__gift .gift-message__icon,
+.gift-cosmic__gift .gift-message__icon { width: 32px; height: 32px; filter: drop-shadow(0 2px 4px rgba(24,18,35,.3)) drop-shadow(0 0 5px rgba(255,255,255,.3)); }
 .follower { height: 40px; display: grid; grid-template-columns: 18px minmax(0,1fr) auto; align-items: center; gap: 6px; border-bottom: 1px dashed #aaa5a2; overflow: hidden; }
 .follower__mark { width: 17px; aspect-ratio: 1; display: grid; place-items: center; border: 1px solid #77716f; border-radius: 50%; color: #625d5b; font-size: 12px; line-height: 1; }
 .follower__name { overflow: hidden; font-size: 11px; font-weight: 750; text-overflow: ellipsis; white-space: nowrap; }

@@ -12,6 +12,7 @@ window.GWLPrinterComponents = (() => {
   }
 
   function avatarImage(person) {
+    if (/^(https?:|data:|blob:)/i.test(person.avatar || "")) return person.avatar;
     const palettes = [
       ["#d7a5b8", "#f1c9a5", "#713d59", "#3a2730"],
       ["#86b5c2", "#c98f6c", "#2d5264", "#262629"],
@@ -25,7 +26,7 @@ window.GWLPrinterComponents = (() => {
   }
 
   function avatar(person, className) {
-    return `<div class="${className}"><img alt="Avatar dummy de ${escapeText(person.name)}" src="${avatarImage(person)}"></div>`;
+    return `<div class="${className}"><img alt="Avatar of ${escapeText(person.name)}" src="${avatarImage(person)}"></div>`;
   }
 
   function message(gift, className) {
@@ -70,7 +71,7 @@ window.GWLPrinterComponents = (() => {
 
   function render(event) {
     if (event.type === "follow") {
-      return `<article class="receipt-item follower"><span class="follower__mark" aria-hidden="true">+</span><strong class="follower__name">${escapeText(event.person.name)}</strong><span class="follower__message">Nuevo seguidor</span></article>`;
+      return `<article class="receipt-item follower"><span class="follower__mark" aria-hidden="true">+</span><strong class="follower__name">${escapeText(event.person.name)}</strong><span class="follower__message">New follower</span></article>`;
     }
     return (renderers[event.gift.tier] || renderers.basic)(event);
   }

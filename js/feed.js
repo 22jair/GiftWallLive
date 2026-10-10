@@ -16,11 +16,11 @@ window.GWLFeed = (() => {
     const label = document.querySelector("#active-tier-label");
     if (!label) return;
     if (event.type === "follow") {
-      label.textContent = "Nuevo seguidor";
+      label.textContent = "New follower";
       return;
     }
     const activeName = activeItem?.querySelector("strong");
-    label.textContent = activeName ? `${activeName.textContent} recibido` : "Regalo recibido";
+    label.textContent = activeName ? `${activeName.textContent} received` : "Gift received";
   }
 
   function trimToReceipt(container) {

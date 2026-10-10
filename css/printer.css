@@ -26,3 +26,6 @@
 .receipt { inset: 4.5rem 6% 0; box-shadow: 0 0 0 1px #fff8, 0 8px 24px #0008; background: repeating-linear-gradient(90deg,#00000002 0 1px,transparent 1px 4px),var(--paper); }
 .receipt__feed { padding: 12px 8px 0; }
 .receipt__feed { width: 100%; zoom: 1; }
+@media (min-width: 900px) and (orientation: portrait) {
+  .receipt { right: 8%; left: 8%; }
+}

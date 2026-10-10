@@ -109,7 +109,7 @@ La skill externa `frontend-design` guía la dirección artística y la implement
 - Lienzo maestro 9:16 con salida objetivo en 720 × 1280 y 1080 × 1920.
 - Una única composición móvil de referencia de 464 px de ancho. El tamaño raíz se calcula como ancho del escenario / 29; tarjetas, avatares, texto, bordes y efectos usan `rem` para crecer juntos. No se amplía una captura ni se usa zoom de la fuente.
 - En ventanas anchas se centra el escenario 9:16 y el sobrante se rellena con fondo. En móviles más altos se utiliza todo el ancho y la altura disponible. No hay una variante de escritorio ni un límite aislado de 360/720 px para el printer.
-- Top Gifts arriba y zona inferior dividida en 22% para rangos y 78% para el printer (descontando el espacio entre columnas).
+- Tres columnas alineadas bajo la zona segura: niveles compactos a la izquierda, printer prioritario en el centro y Top 3 apilado a la derecha. Las columnas laterales miden 3.6 y 5.25 rem; el printer recibe el espacio restante.
 - Zona segura superior adaptable para barras de estado, notch y Dynamic Island en móviles.
 - HTML, CSS y JavaScript nativos.
 - Datos y regalos simulados durante la primera versión.
@@ -125,7 +125,8 @@ La previsualización de LIVE Studio puede mostrar la fuente reducida. Esa reducc
 
 - Top Gifts compacto con foto, usuario, cantidad, icono y valor total; oro, platino y cobre distinguen visualmente cada posición. Las tres posiciones permanecen visibles con valor `0` hasta recibir regalos reales.
 - Dirección visual experimental de prensa de coleccionista: acero oscuro, salida térmica iluminada y papel perlado; Top Gifts con placas de oro, platino y cobre.
-- Zona inferior dividida entre una colección vertical de tiers y el printer en vivo; esta composición de dos columnas se conserva en todo lienzo vertical, incluido Full HD.
+- Niveles identificados por número, color y rango exacto de monedas; el nombre completo se conserva para accesibilidad. El Top 3 vertical libera altura para el recibo.
+- Carcasa térmica con tapa elevada, rejillas, pantalla de estado, control decorativo, rodillo y borde de corte. Los diseños y animaciones de las cards permanecen independientes de la carcasa.
 - Recibo continuo que calcula automáticamente cuántos registros necesita para llenar la altura disponible.
 - Registro de regalo con avatar, nombre, agradecimiento, cantidad e icono del regalo.
 - Registro de seguidor a media altura, sin fotografía.

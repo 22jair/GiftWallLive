@@ -13,10 +13,6 @@
   </head>
   <body>
     <main class="live-stage" aria-label="LIVE activity receipt">
-      <section class="top-three" aria-labelledby="top-title">
-        <h1 id="top-title" class="visually-hidden">Top gifts of the LIVE</h1>
-        <div id="podium" class="top-three__list"></div>
-      </section>
       <div class="live-body">
         <aside class="gift-showcase" aria-labelledby="gift-showcase-title">
           <h2 id="gift-showcase-title" class="visually-hidden">Gift collection</h2>
@@ -25,14 +21,19 @@
         </aside>
         <div class="printer-bay">
           <section class="printer" aria-labelledby="receipt-title">
-            <img class="printer-frame" src="assets/images/printer-frame-obsidian.png" alt="" aria-hidden="true">
             <header class="printer__slot">
-              <span aria-hidden="true">●</span><h2 id="receipt-title">Now Printing</h2><span aria-hidden="true">●</span>
+              <div class="printer__lid" aria-hidden="true"><span class="printer__brand">GIFTWALL</span><span class="printer__vents"></span></div>
+              <div class="printer__display"><span class="printer__led" aria-hidden="true"></span><h2 id="receipt-title">Now Printing</h2></div>
+              <span class="printer__feed-control" aria-hidden="true">▴</span>
             </header>
             <div class="printer__output" aria-hidden="true"><span></span></div>
             <div class="receipt"><div id="activity-feed" class="receipt__feed" aria-live="polite"></div></div>
           </section>
         </div>
+        <aside class="top-three" aria-labelledby="top-title">
+          <h1 id="top-title" class="visually-hidden">Top gifts of the LIVE</h1>
+          <div id="podium" class="top-three__list"></div>
+        </aside>
       </div>
     </main>
     <script src="js/data.js" defer></script>

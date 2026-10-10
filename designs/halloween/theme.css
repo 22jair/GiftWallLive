@@ -31,145 +31,231 @@
 .printer__output::after { background: linear-gradient(#ffdc9b,#845d3c,#e1b574); }
 .receipt { background: #211825; box-shadow: 0 0 0 .06rem #ce9e6055,0 .5rem 1rem #0008; }
 .receipt__feed { padding: .5rem .35rem 0; }
-.haunt-card { --a: #edba7a; --b: #613648; position: relative; isolation: isolate; height: 14rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .25rem; overflow: hidden; padding: .8rem .5rem; color: #f6e5c8; border: .07rem solid #b3936570; border-bottom: .1rem dashed #c6a98270; background: radial-gradient(ellipse at 50% 35%,var(--b),transparent 70%),#261c2c; text-align: center; }
-.haunt-card__corners { position: absolute; inset: .35rem; border: .06rem solid color-mix(in srgb,var(--a),transparent 65%); pointer-events: none; }
-.haunt-card__corners::before,.haunt-card__corners::after { content: "✦"; position: absolute; top: -.4rem; color: var(--a); font-size: .7rem; }
-.haunt-card__corners::before { left: -.2rem; } .haunt-card__corners::after { right: -.2rem; }
-.haunt-card__hauntings { position: absolute; z-index: 0; inset: 0; overflow: hidden; pointer-events: none; color: #f1c985; opacity: .22; }
-.haunt-card__hauntings > span { position: absolute; display: block; }
-.haunt-card__hauntings svg { display: block; width: 100%; height: 100%; }
-.haunt-skull { top: .25rem; left: .45rem; width: 4.2rem; height: 4.2rem; color: #f0d5a5; filter: drop-shadow(0 0 .5rem #e8a55a); transform: rotate(-12deg); }
-.haunt-skull--small { top: auto; right: .45rem; bottom: .55rem; left: auto; width: 2.8rem; height: 2.8rem; opacity: .7; transform: rotate(14deg); }
-.haunt-bats { top: .25rem; right: -.5rem; width: 11rem; height: 4.5rem; color: #171020; opacity: .85; filter: drop-shadow(0 .2rem .2rem #0008); }
-.haunt-bats--faint { top: auto; bottom: 1.2rem; left: -.8rem; right: auto; transform: scale(.8) rotate(-7deg); opacity: .45; }
-.haunt-fangs { right: .8rem; bottom: .2rem; left: .8rem; height: 3.1rem; color: #f4e1bd; filter: drop-shadow(0 .15rem .2rem #0009); }
-.haunt-runner { right: .3rem; bottom: .2rem; left: .3rem; height: 4.7rem; color: #1a1123; filter: drop-shadow(0 .25rem .3rem #000b); opacity: .9; }
-.haunt-wolf { bottom: .35rem; left: .2rem; width: 6.8rem; height: 4.1rem; color: #10101b; opacity: .7; filter: drop-shadow(.2rem .2rem .3rem #000b); }
-.haunt-wolf--small { bottom: 1.1rem; left: auto; right: .3rem; width: 4.2rem; height: 2.7rem; opacity: .45; }
-.haunt-cracks { inset: 0; opacity: .38; background: linear-gradient(112deg,transparent 47%,#f7d8ba 48% 48.5%,transparent 49%),linear-gradient(66deg,transparent 42%,#e8b7d0 43% 43.5%,transparent 44%),linear-gradient(166deg,transparent 61%,#b985b5 62% 62.5%,transparent 63%); filter: drop-shadow(0 0 .4rem #e9a7de); }
-.haunt-impact { top: 47%; left: 50%; width: 1rem; height: 1rem; transform: translate(-50%,-50%); }
-.haunt-impact i { position: absolute; width: .45rem; height: .2rem; border-radius: 50%; background: #ffd998; box-shadow: 0 0 .35rem #f2a34f; }
-.haunt-impact i:nth-child(1) { left: -1.2rem; top: .2rem; transform: rotate(18deg); }
-.haunt-impact i:nth-child(2) { right: -1.2rem; top: -.15rem; transform: rotate(-18deg); }
-.haunt-impact i:nth-child(3) { left: -.5rem; top: -1rem; transform: rotate(-50deg); }
-.haunt-impact i:nth-child(4) { right: -.45rem; bottom: -1rem; transform: rotate(50deg); }
-.haunt-impact b { position: absolute; inset: -.85rem; border: .09rem solid #f5c77e; border-radius: 50%; opacity: .6; }
-.haunt-blood { top: -.1rem; right: .7rem; left: .7rem; height: 2.5rem; border-radius: 0 0 50% 50%; background: linear-gradient(180deg,#7e1939,#c72e43 65%,#5f1734); box-shadow: inset 0 .18rem .2rem #ff9b8b55,0 .3rem .35rem #3a0d25aa; clip-path: polygon(0 0,100% 0,100% 18%,91% 18%,88% 56%,83% 30%,76% 18%,70% 72%,65% 23%,57% 18%,53% 47%,48% 18%,40% 28%,35% 18%,28% 62%,22% 20%,13% 19%,9% 45%,5% 20%,0 20%); filter: drop-shadow(0 .15rem .2rem #2c0920); }
-.haunt-blood i { position: absolute; top: 1.25rem; width: .18rem; height: .65rem; border-radius: 50%; background: #dc3a4b; box-shadow: 0 .1rem .2rem #390d24; }
-.haunt-blood i:nth-child(1) { left: 25%; } .haunt-blood i:nth-child(2) { left: 51%; height: 1rem; } .haunt-blood i:nth-child(3) { left: 78%; height: .45rem; }
-.haunt-portrait, .haunt-seal, .haunt-name, .haunt-message { position: relative; z-index: 1; }
-.haunt-card__caption { z-index: 2; font: .66rem Georgia,serif; color: var(--a); letter-spacing: .035em; }
-.haunt-portrait { position: relative; display: grid; place-items: center; width: 10.7rem; max-width: 100%; height: 7.6rem; margin-top: .4rem; }
-.haunt-avatar { position: relative; z-index: 2; width: 5.9rem; height: 5.9rem; padding: .2rem; border: .1rem solid var(--a); border-radius: 50%; background: #211528; box-shadow: 0 0 0 .17rem #1a1322,0 0 0 .24rem var(--a),0 0 1.6rem color-mix(in srgb,var(--a),transparent 70%); }
-.haunt-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
-.haunt-ring { position: absolute; width: 7rem; height: 7rem; border: .07rem dashed var(--a); border-radius: 50%; opacity: .6; }
-.haunt-wings { position: absolute; width: 100%; top: 1.5rem; color: #663f79; filter: drop-shadow(0 .2rem .2rem #0007); }
-.haunt-wings svg,.haunt-charm svg,.haunt-follow svg { display: block; width: 100%; height: 100%; }
-.haunt-charm { position: absolute; z-index: 3; bottom: -.1rem; right: 1.1rem; width: 1.8rem; height: 1.8rem; filter: drop-shadow(0 0 .4rem #eec88866); }
-.haunt-seal { z-index: 3; padding: .16rem .65rem; border: .07rem solid var(--a); border-radius: .15rem; background: #25182d; color: var(--a); font: 600 .6rem Georgia,serif; }
-.haunt-name { z-index: 2; display: block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .85rem; margin-top: .3rem; }
-.haunt-message { z-index: 2; margin: .15rem 0 0; font-size: .7rem; color: #f0d9bf; }
-.haunt-message .gift-message__icon { width: 1.9rem; height: 1.9rem; }
-.haunt-motes { position: absolute; z-index: -1; inset: 0; opacity: .45; background: radial-gradient(circle at 10% 20%,var(--a) 0 .045rem,transparent .08rem),radial-gradient(circle at 80% 70%,var(--a) 0 .045rem,transparent .08rem); background-size: 3rem 4rem,4rem 3rem; }
-.haunt-card--compact { height: 5.5rem; display: grid; grid-template-columns: 3rem minmax(0,1fr); gap: .1rem .6rem; text-align: left; padding: .6rem; }
-.haunt-card--compact .haunt-portrait { grid-row: 1 / 5; width: 3rem; height: 3rem; margin: 0; }
-.haunt-card--compact .haunt-avatar { width: 2.6rem; height: 2.6rem; box-shadow: none; padding: .12rem; }
-.haunt-card--compact .haunt-ring,.haunt-card--compact .haunt-wings,.haunt-card--compact .haunt-charm,.haunt-card--compact .haunt-motes { display: none; }
-.haunt-card--compact .haunt-card__caption { font-size: .55rem; }
-.haunt-card--compact .haunt-name { font-size: .68rem; margin: 0; }
-.haunt-card--compact .haunt-seal { justify-self: start; font-size: .5rem; padding: .08rem .3rem; }
-.haunt-card--compact .haunt-message { justify-content: start; font-size: .58rem; }
-.haunt-card--compact .gift-message__icon { width: 1.3rem; height: 1.3rem; }
-.haunt-card--basic { --a: #ccbdab; background: #302a32; }
-.haunt-card--featured { --a: #f0b56d; background: linear-gradient(120deg,#5c3a31,#2d2230); border-left: .2rem solid var(--a); }
-.haunt-card--stellar { --a: #e7d8a8; --b: #455363; height: 11.5rem; }
-.haunt-card--stellar .haunt-wings { display: none; }
-.haunt-card--stellar .haunt-portrait { height: 5.5rem; }
-.haunt-card--stellar .haunt-avatar { width: 4.5rem; height: 4.5rem; }
-.haunt-card--stellar .haunt-ring { width: 5.2rem; height: 5.2rem; border: none; box-shadow: -.35rem -.2rem 0 .05rem #ede0ba; }
-.haunt-card--epic { --a: #d7a4ee; --b: #64437c; }
-.haunt-card--epic .haunt-wings { color: #8f5898; width: 110%; }
-.haunt-card--legendary { --a: #ffd08b; --b: #934322; background: radial-gradient(ellipse at 50% 40%,#a35224,#39232d 75%); }
-.haunt-card--legendary .haunt-avatar { border-radius: 42%; border-width: .3rem; box-shadow: -.7rem 0 0 -.3rem #eb8b36,.7rem 0 0 -.3rem #eb8b36,0 0 1.5rem #e67b3544; }
-.haunt-card--epic { height: 12.5rem; }
-.haunt-card--epic .haunt-ring { width: 8.5rem; height: 7.4rem; border-radius: 45% 45% 14% 14%; border-width: .18rem; transform: rotate(-4deg); box-shadow: 0 0 1.1rem #d7a4ee88, inset 0 0 .5rem #c98bda55; }
-.haunt-card--epic .haunt-portrait { height: 6.8rem; }
-.haunt-card--legendary { height: 14rem; }
-.haunt-card--legendary .haunt-ring { width: 8.8rem; height: 8.8rem; border-radius: 1.4rem .25rem 1.4rem .25rem; transform: rotate(45deg) scale(.76); border-width: .2rem; background: linear-gradient(135deg,#ffd88b22,#bd742b33); box-shadow: 0 0 0 .2rem #8e4b2b55,0 0 1.3rem #f4a44766; }
-.haunt-card--legendary .haunt-wings { display: none; }
-.haunt-card--legendary .haunt-charm { width: 2.5rem; height: 2rem; right: 4.1rem; bottom: -.3rem; }
-.haunt-card--mythic { --a: #b9f0ce; --b: #295751; background: radial-gradient(ellipse at 50% 35%,#38695d,#19282f 75%); }
-.haunt-card--mythic .haunt-avatar { border-radius: 45% 45% 18% 18%; box-shadow: 0 0 0 .2rem #28443c,0 0 1.5rem #8bdfba55; }
-.haunt-card--mythic .haunt-wings { opacity: .3; color: #b9f0ce; }
-.haunt-card--mythic .haunt-ring { border-radius: 45% 45% 15% 15%; border-style: double; border-width: .2rem; }
-.haunt-card--mythic { height: 15.5rem; }
-.haunt-card--mythic .haunt-ring { width: 8.9rem; height: 7.6rem; border-radius: 48% 48% 12% 12%; transform: rotate(-2deg); box-shadow: 0 0 1.4rem #8bdfba88; }
-.haunt-card--celestial { --a: #ffb09a; --b: #973b49; background: radial-gradient(circle at 50% 36%,#bc604b 0, #632d41 35%,#2a1a30 73%); }
-.haunt-card--celestial .haunt-ring { width: 8rem; height: 8rem; border: .12rem solid #ffbc96; box-shadow: 0 0 1.2rem #f66b55,inset 0 0 1rem #f66b55; }
-.haunt-card--celestial .haunt-wings { color: #481c38; width: 115%; }
-.haunt-card--celestial { height: 16.5rem; }
-.haunt-card--celestial .haunt-ring { width: 9.4rem; height: 8rem; border-radius: 50% 50% 18% 18%; transform: rotate(2deg); border-width: .17rem; }
-.haunt-card--primordial { --a: #c1e89c; --b: #435a38; background: repeating-conic-gradient(from 0deg at 50% 38%,#c1e89c08 0deg 1deg,transparent 1deg 30deg),radial-gradient(ellipse at 50% 35%,#4c6042,#211c30 75%); }
-.haunt-card--primordial .haunt-ring { border-radius: 0; transform: rotate(45deg); border-style: double; border-width: .2rem; box-shadow: 0 0 1rem #9ac87944; }
-.haunt-card--primordial .haunt-wings { color: #879b66; transform: rotate(180deg); }
-.haunt-card--primordial { height: 17.5rem; }
-.haunt-card--primordial .haunt-ring { width: 9.5rem; height: 8rem; clip-path: polygon(50% 0,91% 19%,100% 67%,68% 100%,31% 100%,0 67%,9% 19%); border-radius: 0; transform: rotate(45deg) scale(.73); border-width: .25rem; background: #c1e89c12; }
-.haunt-card--cosmic { --a: #edc4ff; --b: #673c83; background: radial-gradient(ellipse at 50% 34%,#81478a,#302341 48%,#160f22 80%); }
-.haunt-card--cosmic .haunt-avatar { box-shadow: 0 0 0 .25rem #10091b,0 0 0 .38rem #ecc5fa,0 0 1.7rem .3rem #c187ef77; }
-.haunt-card--cosmic .haunt-ring { width: 8.8rem; height: 8.8rem; border: .1rem double #e5c39e; transform: rotateX(55deg) rotate(-25deg); box-shadow: 0 0 .6rem #e5c39e; }
-.haunt-card--cosmic .haunt-wings { color: #9b69b4; width: 120%; }
-.haunt-card--cosmic .haunt-charm { top: -.4rem; left: 4.5rem; width: 1.4rem; height: 1.4rem; }
-.haunt-card--cosmic { height: 19rem; }
-.haunt-card--cosmic .haunt-ring { width: 10rem; height: 8.6rem; border-radius: 50% 8%; transform: rotateX(58deg) rotate(-26deg); border-width: .16rem; box-shadow: 0 0 .9rem #e5c39e,0 0 2rem #b778e866; }
-.haunt-follow { height: 3rem; display: grid; grid-template-columns: 1.4rem minmax(0,1fr) auto; align-items: center; gap: .3rem; padding: .4rem; border-bottom: .07rem dashed #b9a49b70; color: #e4d5dd; background: #302635; }
-.haunt-follow__ghost { width: 1.1rem; height: 1.5rem; }
-.haunt-follow strong { font-size: .6rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.haunt-follow > span:last-child { font-size: .48rem; color: #c2d8ca; }
-@media (prefers-reduced-motion: no-preference) {
-  /* Rare tiers get the premium motion language: one slow light pass, a breathing aura,
-     impact debris and small orbital movement. Basic through Stellar stay quiet. */
-  .haunt-card--epic::after,
-  .haunt-card--legendary::after,
-  .haunt-card--mythic::after,
-  .haunt-card--celestial::after,
-  .haunt-card--primordial::after,
-  .haunt-card--cosmic::after { content: ""; position: absolute; z-index: 0; inset: -45% -80%; pointer-events: none; background: linear-gradient(112deg, transparent 43%, #fff8 49%, transparent 56%); opacity: 0; transform: translateX(-35%) rotate(8deg); animation: haunt-sweep 6s ease-in-out infinite; }
-  .haunt-card--legendary .haunt-ring { animation: haunt-medallion 9s linear infinite; }
-  .haunt-card--legendary .haunt-skull { animation: haunt-skull-breathe 3.2s ease-in-out infinite; }
-  .haunt-card--legendary .haunt-fangs { animation: haunt-fangs 3.8s ease-in-out infinite; }
-  .haunt-card--legendary .haunt-charm { animation: haunt-float 2.8s ease-in-out infinite; }
-  .haunt-card--epic .haunt-cracks { animation: haunt-crack-flash 3.8s ease-in-out infinite; }
-  .haunt-card--epic .haunt-bats { animation: haunt-bat-flight 4.8s ease-in-out infinite; }
-  .haunt-card--mythic .haunt-ring { animation: haunt-rune-breathe 3.6s ease-in-out infinite; }
-  .haunt-card--mythic .haunt-wings { animation: haunt-wings 4.8s ease-in-out infinite; }
-  .haunt-card--mythic .haunt-bats { animation: haunt-bat-flight 5.4s ease-in-out infinite; }
-  .haunt-card--mythic .haunt-wolf { animation: haunt-wolf-howl 4.4s ease-in-out infinite; }
-  .haunt-card--celestial .haunt-ring { animation: haunt-blood-moon 4s ease-in-out infinite; }
-  .haunt-card--celestial .haunt-charm { animation: haunt-float 2.4s ease-in-out infinite -.6s; }
-  .haunt-card--celestial .haunt-fangs { animation: haunt-fangs 4.3s ease-in-out infinite -.7s; }
-  .haunt-card--primordial .haunt-ring { animation: haunt-relic 8s linear infinite; }
-  .haunt-card--primordial .haunt-wings { animation: haunt-wings 5.5s ease-in-out infinite reverse; }
-  .haunt-card--primordial .haunt-runner { animation: haunt-runner 5.6s ease-in-out infinite; }
-  .haunt-card--primordial .haunt-wolf { animation: haunt-wolf-howl 5.5s ease-in-out infinite -.8s; }
-  .haunt-card--cosmic .haunt-ring { animation: haunt-eclipse 7s ease-in-out infinite; }
-  .haunt-card--cosmic .haunt-charm { animation: haunt-float 2.2s ease-in-out infinite -.8s; }
-  .haunt-card--cosmic .haunt-runner { animation: haunt-runner 4.6s ease-in-out infinite reverse; }
-  .haunt-card--cosmic .haunt-bats { animation: haunt-bat-flight 4.2s ease-in-out infinite -.8s; }
-  .haunt-card--cosmic .haunt-wolf { animation: haunt-wolf-howl 3.8s ease-in-out infinite; }
-  .haunt-card--celestial .haunt-motes,.haunt-card--primordial .haunt-motes,.haunt-card--cosmic .haunt-motes { animation: haunt-drift 8s ease-in-out infinite alternate; }
-  @keyframes haunt-drift { to { transform: translateY(-.8rem); opacity: .7; } }
-  @keyframes haunt-sweep { 0%, 38% { opacity: 0; transform: translateX(-45%) rotate(8deg); } 52% { opacity: .5; } 72%, 100% { opacity: 0; transform: translateX(45%) rotate(8deg); } }
-  @keyframes haunt-medallion { to { transform: rotate(1turn); } }
-  @keyframes haunt-float { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-.35rem) rotate(3deg); } }
-  @keyframes haunt-rune-breathe { 0%, 100% { transform: scale(.96); opacity: .65; } 50% { transform: scale(1.04); opacity: 1; } }
-  @keyframes haunt-wings { 0%, 100% { transform: translateY(0) scale(.98); opacity: .25; } 50% { transform: translateY(-.2rem) scale(1.04); opacity: .6; } }
-  @keyframes haunt-blood-moon { 0%, 100% { transform: scale(.96); opacity: .65; } 50% { transform: scale(1.05); opacity: 1; } }
-  @keyframes haunt-relic { to { transform: rotate(405deg); } }
-  @keyframes haunt-eclipse { 0%, 100% { transform: rotateX(55deg) rotate(-25deg) scale(.96); opacity: .7; } 50% { transform: rotateX(55deg) rotate(-12deg) scale(1.04); opacity: 1; } }
-  @keyframes haunt-skull-breathe { 0%, 100% { opacity: .16; transform: rotate(-12deg) scale(.94); } 50% { opacity: .34; transform: rotate(-5deg) scale(1.05); } }
-  @keyframes haunt-fangs { 0%, 100% { opacity: .16; transform: translateY(.18rem); } 50% { opacity: .42; transform: translateY(-.08rem); } }
-  @keyframes haunt-crack-flash { 0%, 100% { opacity: .08; transform: scale(.96); } 48% { opacity: .6; transform: scale(1.03); } 56% { opacity: .18; transform: scale(1); } }
-  @keyframes haunt-bat-flight { 0%, 100% { transform: translateX(.4rem) translateY(0) rotate(2deg); } 50% { transform: translateX(-.7rem) translateY(-.45rem) rotate(-5deg); } }
-  @keyframes haunt-wolf-howl { 0%, 100% { transform: translateY(.15rem) scale(.95); opacity: .28; } 50% { transform: translateY(-.25rem) scale(1.04); opacity: .72; } }
-  @keyframes haunt-runner { 0%, 100% { opacity: .48; transform: translateX(.3rem) scale(.97); } 50% { opacity: .82; transform: translateX(-.25rem) scale(1.02); } }
+/* Halloween cards: compact keepsakes -> six cinematic, independently layered scenes.
+   All geometry follows the shared mobile rem scale. No viewport layout override. */
+.haunt-card, .haunt-follow {
+  --haunt-accent: #f3e4c6;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: #fff3e1;
+  background: #100d18;
+  border: 0;
+  border-bottom: .1rem solid #51404b;
+  text-align: center;
+}
+.haunt-card { height: 20rem; margin: 0; }
+.haunt-level {
+  position: absolute; z-index: 4; left: .65rem; top: .65rem;
+  padding: .16rem .55rem .22rem;
+  color: var(--haunt-accent);
+  background: #100d18e8;
+  border-left: .14rem solid var(--haunt-accent);
+  font: 600 .72rem/1.2 "Bahnschrift", "Segoe UI", sans-serif;
+  box-shadow: 0 .12rem .5rem #0008;
+}
+.haunt-avatar { position: relative; width: 100%; height: 100%; overflow: hidden; background: #302639; }
+.haunt-avatar img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.haunt-name {
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  max-width: 100%; min-width: 0; overflow-wrap: anywhere; overflow: hidden;
+  color: #fff8eb; font-size: 1.05rem; font-weight: 700; line-height: 1.18;
+  text-shadow: 0 .08rem .24rem #000, 0 .15rem .8rem #000;
+}
+.haunt-title { margin: 0 0 .4rem; color: var(--haunt-accent); font: 400 1.02rem/1.15 Georgia, serif; }
+.haunt-message {
+  display: flex; justify-content: center; align-items: center; gap: .45rem;
+  margin: .4rem 0 0; color: #fff1df; font-size: .72rem; line-height: 1.2;
+  text-shadow: 0 .1rem .25rem #000;
+}
+.haunt-message .gift-message__icon { width: 2.05rem; height: 2.05rem; object-fit: contain; filter: drop-shadow(0 .15rem .25rem #0009); }
+.haunt-follow { min-height: 3.5rem; display: flex; align-items: center; gap: .65rem; padding: .55rem .8rem; text-align: left; background: #191724; }
+.haunt-follow__ghost { width: 1.4rem; flex: 0 0 1.4rem; color: #c5d5cc; animation: haunt-hover 4s ease-in-out infinite; }
+.haunt-follow__ghost svg { width: 100%; display: block; }
+.haunt-follow > div { min-width: 0; }
+.haunt-follow strong { display: block; overflow-wrap: anywhere; color: #f1e9d9; font-size: .7rem; }
+.haunt-follow > div > span { display: block; margin-top: .2rem; color: #b1b9bd; font-size: .6rem; }
+
+/* Candle, sealed note and moon mirror are deliberately modest. */
+.haunt-card--basic, .haunt-card--featured {
+  height: 5.4rem; display: flex; align-items: center; padding: .65rem .85rem; gap: .65rem; text-align: left;
+  background: radial-gradient(ellipse at 0 100%,#5a3d2938,transparent 65%),#201a21;
+}
+.haunt-card--basic > .haunt-avatar, .haunt-card--featured > .haunt-avatar {
+  width: 2.45rem; height: 2.8rem; flex: 0 0 2.45rem;
+  border-radius: 45% 45% .3rem .3rem; box-shadow: 0 0 0 .08rem #716457;
+}
+.haunt-compact-content { min-width: 0; flex: 1; }
+.haunt-compact-content .haunt-level { position: static; padding: 0; border: 0; background: none; box-shadow: none; font-size: .55rem; color: #c9b9a6; }
+.haunt-compact-content .haunt-name { font-size: .76rem; margin-top: .1rem; }
+.haunt-compact-content .haunt-message { justify-content: flex-start; font-size: .61rem; gap: .3rem; margin-top: .2rem; }
+.haunt-compact-content .gift-message__icon { width: 1.3rem; height: 1.3rem; }
+.haunt-candle { position: absolute; right: .4rem; bottom: .1rem; width: .2rem; height: 1.1rem; background: #b18f6b; opacity: .5; }
+.haunt-candle::before { content: ""; position: absolute; top: -.6rem; left: -.07rem; width: .35rem; height: .6rem; border-radius: 60% 40% 60% 30%; background: #ffce83; box-shadow: 0 0 .6rem #ff9e42; animation: haunt-flame 2.4s ease-in-out infinite alternate; }
+.haunt-card--featured { height: 6.3rem; padding-right: 2.6rem; border-left: .18rem solid #b5566c; background: radial-gradient(ellipse at 0 30%,#73333b50,transparent 75%),#281923; }
+.haunt-card--featured > .haunt-avatar { border-radius: .15rem; transform: rotate(-4deg); border: .15rem solid #cdb591; }
+.haunt-wax { position: absolute; right: .5rem; bottom: 1.65rem; width: 1.9rem; height: 1.9rem; display: grid; place-items: center; color: #eeb097; font-size: 1.1rem; border-radius: 43% 49% 40% 50%; background: radial-gradient(at 35% 24%,#c75d64,#6d152a 70%); box-shadow: inset .08rem .12rem .14rem #ffcba266,inset -.1rem -.18rem .18rem #230613,0 .18rem .3rem #0009; }
+.haunt-card--stellar { --haunt-accent: #bcdaf2; height: 14rem; background: radial-gradient(ellipse at 50% 38%,#7283a343,transparent 60%),linear-gradient(140deg,#172335,#2a1e35 70%,#10141e); }
+.haunt-moon { position: absolute; top: 1.2rem; right: 2rem; width: 2.4rem; height: 2.4rem; border-radius: 50%; box-shadow: -.7rem .1rem 0 -.1rem #c9dced; transform: rotate(-20deg); opacity: .65; }
+.haunt-looking-glass { position: absolute; width: 4.45rem; height: 5.2rem; top: 1.25rem; left: calc(50% - 2.225rem); padding: .25rem; border-radius: 48% 48% .3rem .3rem; background: linear-gradient(115deg,#5e6279,#e3deeb 25%,#65798b 40%,#bdbbd3 80%,#454c68); box-shadow: 0 .3rem 1rem #0008,inset 0 0 0 .08rem #f3edfc80; }
+.haunt-looking-glass .haunt-avatar { border-radius: 48% 48% .2rem .2rem; }
+.haunt-looking-glass::after { content: ""; position: absolute; inset: .25rem; border-radius: inherit; background: linear-gradient(115deg,transparent 10%,#fff5 30%,transparent 48%); background-size: 220% 100%; animation: haunt-glass 7s ease-in-out infinite; }
+.haunt-card--stellar .haunt-identity { top: auto; bottom: .85rem; }
+.haunt-card--stellar .haunt-title { font-size: .76rem; color: #c2c9d9; }
+
+/* The donor is live HTML, never flattened into the illustrated set. */
+.haunt-scene, .haunt-art, .haunt-sculpture, .haunt-vignette { position: absolute; inset: 0; pointer-events: none; }
+.haunt-scene { z-index: 0; overflow: hidden; perspective: 40rem; }
+.haunt-art, .haunt-sculpture { background-image: var(--haunt-art); background-size: cover; background-position: center top; }
+.haunt-sculpture { display: none; }
+.haunt-vignette { background: linear-gradient(0deg,#080610d9,transparent 32%,transparent 87%,#08061038),radial-gradient(ellipse at 50% 70%,#080610a1,transparent 43%); }
+.haunt-portrait {
+  position: absolute; z-index: 2; top: 43%; left: calc(50% - 2.55rem);
+  width: 5.1rem; height: 5.55rem; padding: .19rem;
+  filter: drop-shadow(0 .45rem .5rem #000b);
+}
+.haunt-portrait__mount { position: absolute; inset: -.08rem; background: linear-gradient(130deg,#f1dfe1,var(--haunt-accent) 28%,#231927 45%,var(--haunt-accent) 75%,#fff1d1); clip-path: polygon(18% 0,82% 0,100% 20%,94% 82%,50% 100%,6% 82%,0 20%); }
+.haunt-portrait .haunt-avatar { clip-path: polygon(18% 0,82% 0,100% 20%,94% 82%,50% 100%,6% 82%,0 20%); }
+.haunt-identity { position: absolute; z-index: 3; bottom: .85rem; left: .9rem; right: .9rem; }
+.haunt-baseline { position: absolute; z-index: 2; bottom: .4rem; left: 20%; right: 20%; height: .08rem; background: linear-gradient(90deg,transparent,var(--haunt-accent),transparent); opacity: .6; }
+.haunt-mist { position: absolute; z-index: 1; left: -20%; right: -20%; top: 28%; height: 50%; opacity: .24; background: radial-gradient(ellipse at 20% 70%,var(--haunt-accent),transparent 45%),radial-gradient(ellipse at 80% 35%,var(--haunt-accent),transparent 42%); filter: blur(.8rem); animation: haunt-mist 9s ease-in-out infinite alternate; }
+
+/* Epic: the first small cinematic encounter, not the ultimate tier. */
+.haunt-card--epic { --haunt-accent: #c6afe9; --haunt-art: url("../../assets/images/halloween/epic-scene.webp"); height: 20rem; }
+.haunt-card--epic .haunt-portrait { width: 4.1rem; height: 4.4rem; left: calc(50% - 2.05rem); top: 40%; }
+.haunt-card--epic .haunt-identity { bottom: .85rem; }
+.haunt-card--epic .haunt-art { animation: haunt-breathe 9s ease-in-out infinite alternate; }
+.haunt-card--epic .haunt-title { font-size: 1.05rem; }
+
+/* Legendary: the skull drops onto its altar; fragments scatter once. */
+.haunt-card--legendary { --haunt-accent: #ffd78c; --haunt-art: url("../../assets/images/halloween/legendary-scene.webp"); height: 22rem; }
+.haunt-card--legendary .haunt-art { clip-path: inset(36% 0 0); }
+.haunt-card--legendary .haunt-sculpture { display: block; clip-path: inset(0 0 64%); transform-origin: 50% 24%; animation: haunt-relic-drop 1.2s .75s both; }
+.haunt-card--legendary .haunt-portrait { top: 40%; }
+.haunt-card--legendary .haunt-identity { bottom: .85rem; }
+.haunt-impact { position: absolute; top: 34%; left: 16%; width: 68%; height: 1.2rem; border: .1rem solid #ffcf78; border-radius: 50%; opacity: 0; animation: haunt-impact 1.3s 1.3s both; }
+.haunt-shards, .haunt-embers { position: absolute; inset: 0; }
+.haunt-shards i { position: absolute; width: .4rem; height: .9rem; top: 34%; left: var(--x); background: linear-gradient(120deg,#fff3c5,var(--haunt-accent) 45%,#553621); clip-path: polygon(0 25%,70% 0,100% 85%,20% 100%); opacity: 0; animation: haunt-shatter 1.7s calc(1.3s + var(--i) * .04s) both; }
+.haunt-embers i { position: absolute; left: var(--x); bottom: 10%; width: .12rem; height: .25rem; border-radius: 50%; background: #ffe4ae; box-shadow: 0 0 .3rem #ffb04b; opacity: 0; animation: haunt-ember 5s calc(var(--i) * -.65s) infinite; }
+
+/* Mythic: an apparition in cold silver, with souls rising in separate planes. */
+.haunt-card--mythic { --haunt-accent: #b2f8e9; --haunt-art: url("../../assets/images/halloween/mythic-scene.webp"); height: 23rem; }
+.haunt-card--mythic .haunt-art { animation: haunt-breathe 11s ease-in-out infinite alternate; }
+.haunt-card--mythic .haunt-portrait { top: 43%; width: 5rem; height: 5.6rem; left: calc(50% - 2.5rem); }
+.haunt-card--mythic .haunt-portrait__mount, .haunt-card--mythic .haunt-avatar { clip-path: none; border-radius: 48% 48% 10% 10%; }
+.haunt-card--mythic .haunt-portrait__mount { background: linear-gradient(120deg,#31666c,#e4ffff 25%,#5b8e92 40%,#caffed 70%,#2b555d); box-shadow: 0 0 1.1rem #a1eee13a; }
+.haunt-card--mythic .haunt-identity { bottom: .85rem; }
+.haunt-soul { position: absolute; z-index: 2; top: 54%; left: 5%; width: 2rem; color: #b2f8e9; opacity: .5; filter: drop-shadow(0 0 .45rem #a7ffdd); animation: haunt-soul 7s ease-in-out infinite; }
+.haunt-soul svg { width: 100%; }
+.haunt-soul--second { left: auto; right: 6%; top: 30%; width: 1.3rem; animation-delay: -3s; }
+
+/* Celestial: wet ruby and ivory, four independent falling droplets. */
+.haunt-card--celestial { --haunt-accent: #ffb4ba; --haunt-art: url("../../assets/images/halloween/celestial-scene.webp"); height: 24rem; }
+.haunt-card--celestial .haunt-portrait { top: 42%; width: 5.5rem; height: 6.25rem; left: calc(50% - 2.75rem); }
+.haunt-card--celestial .haunt-portrait__mount { background: linear-gradient(120deg,#300a17,#ffc1af 20%,#ad2540 40%,#5a1024 60%,#ffad9c 80%,#330b19); }
+.haunt-card--celestial .haunt-avatar, .haunt-card--celestial .haunt-portrait__mount { clip-path: polygon(28% 0,72% 0,100% 28%,78% 100%,22% 100%,0 28%); }
+.haunt-card--celestial .haunt-identity { bottom: .85rem; }
+.haunt-drips { position: absolute; z-index: 3; inset: 0; }
+.haunt-drips > i { position: absolute; top: 23%; left: 17%; width: .23rem; height: 2.5rem; transform-origin: top; border-radius: 10% 10% 45% 45%; background: linear-gradient(90deg,#430514,#d33747 44%,#ff9c9b 58%,#5e071c); box-shadow: .05rem .08rem .12rem #0008; animation: haunt-drip-neck 4.7s calc(var(--i) * -1.1s) ease-in-out infinite; }
+.haunt-drips > i:nth-child(2) { left: 26%; top: 28%; height: 1.7rem; }
+.haunt-drips > i:nth-child(3) { left: 73%; top: 27%; height: 2rem; }
+.haunt-drips > i:nth-child(4) { left: 81%; top: 22%; height: 3rem; }
+.haunt-drips b { position: absolute; bottom: -.38rem; left: -.09rem; width: .4rem; height: .65rem; border-radius: 65% 30% 65% 55%; background: radial-gradient(ellipse at 30% 35%,#ffc5be 0 6%,#c92b40 15%,#750a20 50%,#25030d); box-shadow: .08rem .15rem .15rem #0008; animation: haunt-drop 4.7s calc(var(--i) * -1.1s) ease-in infinite; }
+.haunt-ripple { position: absolute; z-index: 1; left: 15%; bottom: 1.7%; width: 70%; height: .65rem; border: .09rem solid #d5264c; border-radius: 50%; animation: haunt-pool 4.7s ease-out infinite; }
+
+/* Primordial: an original nocturnal vehicle, lit through volumetric headlight beams. */
+.haunt-card--primordial { --haunt-accent: #a8f6de; --haunt-art: url("../../assets/images/halloween/primordial-scene.webp"); height: 25rem; }
+.haunt-card--primordial .haunt-art { clip-path: inset(37% 0 0); }
+.haunt-card--primordial .haunt-sculpture { display: block; clip-path: inset(0 0 63%); animation: haunt-arrival 1.8s .7s both; }
+.haunt-card--primordial .haunt-portrait { top: 44%; width: 5.8rem; height: 6rem; left: calc(50% - 2.9rem); }
+.haunt-card--primordial .haunt-portrait__mount { background: linear-gradient(135deg,#030908,#a4e6d2 25%,#185e54 45%,#d5bb86 75%,#0c312f); }
+.haunt-card--primordial .haunt-avatar, .haunt-card--primordial .haunt-portrait__mount { clip-path: polygon(14% 0,86% 0,100% 14%,100% 80%,50% 100%,0 80%,0 14%); }
+.haunt-headlights { position: absolute; z-index: 2; inset: 0; opacity: .55; animation: haunt-lights 7s ease-in-out infinite alternate; }
+.haunt-headlights i { position: absolute; left: 40%; top: 26%; width: 8rem; height: 6rem; background: linear-gradient(135deg,#b3ffe6b0,transparent 65%); clip-path: polygon(0 0,100% 80%,38% 100%); filter: blur(.2rem); transform-origin: top left; }
+.haunt-headlights i + i { left: 77%; width: 5rem; opacity: .65; }
+.haunt-road { position: absolute; z-index: 1; top: 32%; width: 100%; height: 9%; background: repeating-linear-gradient(0deg,transparent 0 1rem,#8cffe933 1.02rem 1.08rem,transparent 1.1rem 2rem); transform: perspective(8rem) rotateX(65deg); animation: haunt-road 2s .7s both; }
+.haunt-card--primordial .haunt-identity { bottom: .85rem; }
+
+/* Cosmic: the whole set opens, not merely a different border. */
+.haunt-card--cosmic { --haunt-accent: #ffe0a2; --haunt-art: url("../../assets/images/halloween/cosmic-scene.webp"); height: 28rem; border-bottom-color: #bf9463; }
+.haunt-card--cosmic .haunt-art { animation: haunt-coronation 2.7s .7s both; }
+.haunt-card--cosmic .haunt-portrait { top: 43%; width: 6.25rem; height: 7rem; left: calc(50% - 3.125rem); }
+.haunt-card--cosmic .haunt-portrait__mount { inset: -.12rem; background: conic-gradient(from 15deg,#fff3ca,#ac7937,#eadaac,#422350,#ffe9ab,#97693b,#fff3ca); clip-path: polygon(50% 0,91% 13%,100% 65%,76% 91%,50% 100%,24% 91%,0 65%,9% 13%); }
+.haunt-card--cosmic .haunt-avatar { clip-path: polygon(50% 0,91% 13%,100% 65%,76% 91%,50% 100%,24% 91%,0 65%,9% 13%); }
+.haunt-card--cosmic .haunt-identity { bottom: .85rem; }
+.haunt-card--cosmic .haunt-title { max-width: 13rem; margin: 0 auto .55rem; font-size: 1.25rem; line-height: 1.05; color: #ffe8b4; text-shadow: 0 .1rem .4rem #000; }
+.haunt-card--cosmic .haunt-name { font-size: 1.2rem; }
+.haunt-card--cosmic .haunt-message { margin-top: .55rem; }
+.haunt-card--cosmic .haunt-message .gift-message__icon { width: 2.5rem; height: 2.5rem; }
+.haunt-eclipse { position: absolute; z-index: 1; top: 2%; left: 27%; width: 46%; aspect-ratio: 1; border-radius: 50%; background: transparent; box-shadow: 0 0 .6rem .18rem #ffe1a2,0 0 2.1rem .3rem #e9a44688; opacity: .55; animation: haunt-eclipse 6s ease-in-out infinite; }
+.haunt-gates { position: absolute; z-index: 4; inset: 0; perspective: 25rem; pointer-events: none; }
+.haunt-gates i { position: absolute; left: -1%; top: 0; width: 52%; height: 100%; background: repeating-linear-gradient(90deg,#0b0714 0 .55rem,#ac815e .57rem .61rem,#201426 .67rem .78rem),#120c1f; border-right: .2rem double #edc18a; box-shadow: 1rem 0 3rem #000; transform-origin: left; animation: haunt-gate-left 1.9s .75s both; }
+.haunt-gates i + i { left: auto; right: -1%; transform-origin: right; border-right: 0; border-left: .2rem double #edc18a; animation-name: haunt-gate-right; }
+.haunt-shards--orbit i { top: 38%; width: .35rem; height: .8rem; animation: haunt-orbit 8s calc(var(--i) * -.64s) ease-in-out infinite; }
+.haunt-card--cosmic .haunt-mist { top: 40%; opacity: .16; }
+
+/* Bats cross the foreground on staggered paths; their wings have their own motion. */
+.haunt-swarm { position: absolute; z-index: 5; inset: 0; pointer-events: none; }
+.haunt-bat { position: absolute; top: calc(8% + var(--i) * 4%); left: calc(8% + var(--i) * 12%); width: calc(1.2rem + var(--i) * .25rem); opacity: 0; color: #17101e; filter: drop-shadow(0 .2rem .15rem #0009); animation: haunt-flight 7.5s calc(.85s + var(--i) * .38s) ease-in-out infinite; }
+.haunt-bat svg { width: 100%; overflow: visible; fill: currentColor; stroke: #b099be; stroke-width: .8; }
+.bat-wing { transform-box: fill-box; transform-origin: right center; animation: haunt-wing .45s ease-in-out infinite alternate; }
+.bat-wing--right { transform-origin: left center; }
+.haunt-card--cosmic .haunt-bat { color: #24132b; }
+.haunt-card--cosmic .haunt-bat svg { stroke: #d3a75f; }
+
+@keyframes haunt-hover { 50% { transform: translateY(-.15rem) rotate(4deg); } }
+@keyframes haunt-flame { to { transform: scale(.8,1.12) rotate(-5deg); opacity: .7; } }
+@keyframes haunt-glass { 0%,20% { background-position: 100% 0; } 65%,100% { background-position: -100% 0; } }
+@keyframes haunt-mist { from { transform: translate(-3%,3%) scale(1.04); } to { transform: translate(5%,-4%) scale(1.13); } }
+@keyframes haunt-breathe { to { transform: scale(1.035) translateY(-.15rem); } }
+@keyframes haunt-relic-drop { 0% { transform: translateY(-4rem) rotate(-8deg); opacity: 0; } 50% { transform: translateY(.3rem) rotate(2deg); opacity: 1; } 68% { transform: translateY(-.2rem) rotate(-1deg); } 100% { transform: none; opacity: 1; } }
+@keyframes haunt-impact { 0% { transform: scale(.1); opacity: 0; } 15% { opacity: .7; } 100% { transform: scale(1.8,2); opacity: 0; } }
+@keyframes haunt-shatter { 0% { transform: translate(0,0) rotate(0); opacity: 0; } 15% { opacity: .85; } 100% { transform: translate(var(--drift),7rem) rotate(180deg); opacity: 0; } }
+@keyframes haunt-ember { 0%,100% { opacity: 0; transform: translateY(0); } 25% { opacity: .75; } 85% { opacity: 0; transform: translate(var(--drift),-12rem); } }
+@keyframes haunt-soul { 0%,100% { transform: translateY(1rem) rotate(-8deg); opacity: .1; } 50% { transform: translateY(-2.5rem) rotate(8deg); opacity: .6; } }
+@keyframes haunt-drip-neck { 0%,100% { transform: scaleY(.65); } 50%,75% { transform: scaleY(1.1); } }
+@keyframes haunt-drop { 0%,48% { transform: translateY(0) scale(.75,1); opacity: 1; } 55% { transform: translateY(.3rem) scale(.9,1.2); opacity: 1; } 78% { transform: translateY(10rem) scale(.6,1.4); opacity: 0; } 79%,100% { transform: none; opacity: 0; } }
+@keyframes haunt-pool { 0%,65% { transform: scale(.15); opacity: 0; } 72% { opacity: .6; } 100% { transform: scale(1.2); opacity: 0; } }
+@keyframes haunt-arrival { 0% { transform: translate(4rem,-.7rem) scale(.65); opacity: 0; } 60% { transform: translate(-.15rem,.08rem) scale(1.02); opacity: 1; } 100% { transform: none; opacity: 1; } }
+@keyframes haunt-lights { from { opacity: .22; transform: rotate(-2deg); } to { opacity: .55; transform: rotate(2deg); } }
+@keyframes haunt-road { from { opacity: .8; background-position: 0 -4rem; } to { opacity: 0; background-position: 0 4rem; } }
+@keyframes haunt-coronation { from { transform: scale(1.16); filter: brightness(.6); } to { transform: none; filter: brightness(1); } }
+@keyframes haunt-eclipse { 0%,100% { transform: scale(.88); opacity: .3; } 50% { transform: scale(1.06); opacity: .6; } }
+@keyframes haunt-gate-left { 0% { transform: rotateY(0); opacity: 1; } 80% { opacity: .8; } 100% { transform: rotateY(-110deg); opacity: 0; } }
+@keyframes haunt-gate-right { 0% { transform: rotateY(0); opacity: 1; } 80% { opacity: .8; } 100% { transform: rotateY(110deg); opacity: 0; } }
+@keyframes haunt-orbit { 0%,100% { transform: translate(0,1rem) rotate(0); opacity: .1; } 50% { transform: translate(var(--drift),-5rem) rotate(170deg); opacity: .85; } }
+@keyframes haunt-flight { 0% { transform: translate(0,3rem) scale(.25); opacity: 0; } 12% { opacity: .9; } 48% { transform: translate(calc(var(--flight) * 2rem),-2rem) scale(1.6) rotate(-12deg); opacity: .85; } 65%,100% { transform: translate(calc(var(--flight) * 8rem),-8rem) scale(2.3) rotate(12deg); opacity: 0; } }
+@keyframes haunt-wing { to { transform: scaleX(.5) rotateY(35deg); } }
+
+/* Fixed Default dimensions: luxury changes the scene, never the tape geometry. */
+.haunt-follow { height: 2.5rem; min-height: 0; padding-block: .25rem; }
+.haunt-follow__ghost { width: 1.1rem; flex-basis: 1.1rem; }
+.haunt-follow strong { font-size: .65rem; }
+.haunt-follow > div > span { margin-top: .08rem; font-size: .5rem; }
+.haunt-card--basic, .haunt-card--featured { height: 5rem; padding-block: .4rem; }
+.haunt-card--stellar { height: 10rem; }
+.haunt-card--stellar .haunt-looking-glass { top: 1.3rem; height: 3.8rem; width: 3.2rem; left: calc(50% - 1.6rem); }
+.haunt-card--stellar .haunt-identity { bottom: .35rem; }
+.haunt-card--stellar .haunt-title { display: none; }
+.haunt-card--epic, .haunt-card--legendary, .haunt-card--mythic,
+.haunt-card--celestial, .haunt-card--primordial, .haunt-card--cosmic { height: 15rem; }
+.haunt-card .haunt-portrait { top: 31%; width: 4rem; height: 4.3rem; left: calc(50% - 2rem); }
+.haunt-card .haunt-identity { bottom: .5rem; }
+.haunt-card .haunt-title { font-size: .85rem; line-height: 1.1; margin-bottom: .25rem; }
+.haunt-card .haunt-name { font-size: .85rem; line-height: 1.15; }
+.haunt-card .haunt-message { margin-top: .2rem; font-size: .64rem; }
+.haunt-card .haunt-message .gift-message__icon { width: 1.7rem; height: 1.7rem; }
+.haunt-card--cosmic .haunt-title { font-size: .95rem; max-width: none; }
+.haunt-card--cosmic .haunt-portrait { top: 29%; height: 4.5rem; }
+.haunt-card--stellar .haunt-name { font-size: .8rem; }
+.haunt-card .haunt-compact-content .haunt-name { font-size: .7rem; }
+.haunt-card .haunt-compact-content .haunt-message { font-size: .58rem; gap: .2rem; }
+.haunt-card .haunt-compact-content .gift-message__icon { width: 1.2rem; height: 1.2rem; }
+
+/* Bound work on the continuous tape: only the nearest three cards animate. */
+.receipt__feed > .receipt-item:nth-child(n+4) *, .receipt__feed > .receipt-item:nth-child(n+4) *::before, .receipt__feed > .receipt-item:nth-child(n+4) *::after { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .haunt-card *, .haunt-card *::before, .haunt-card *::after, .haunt-follow * { animation: none !important; transition: none !important; }
+  .haunt-gates, .haunt-swarm, .haunt-shards, .haunt-impact, .haunt-headlights, .haunt-road { display: none; }
+  .haunt-drips b { transform: none; }
 }

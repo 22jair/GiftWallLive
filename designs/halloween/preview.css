@@ -1,0 +1,21 @@
+/* Standalone inspection page, never loaded by the LIVE source. */
+:root { font-size: 16px; }
+body.collection-preview { display: block; overflow: auto; background: #100d18; color: #f3e4c6; padding: 2rem clamp(1rem,4vw,4rem) 4rem; }
+.preview-heading { width: 100%; max-width: 80rem; margin: 0 auto 2rem; }
+.preview-heading h1 { font: 400 clamp(2rem,5vw,3.5rem)/1.05 Georgia,serif; margin: 1.5rem 0 .6rem; }
+.preview-heading p { color: #ccbfcf; max-width: 45rem; line-height: 1.5; }
+.preview-heading nav { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; margin: 1.5rem 0; }
+.preview-heading .preview-note { font-size: .8rem; color: #ac9dab; }
+.collection-preview a { color: #efd49c; text-underline-offset: .2em; }
+.collection-preview button { font: inherit; border: 1px solid #92764e; background: #302332; color: #fff0d3; padding: .65rem 1rem; border-radius: .2rem; cursor: pointer; }
+.collection-preview button:hover { background: #473348; }
+.collection-preview :focus-visible { outline: 2px solid #efd49c; outline-offset: 4px; }
+.card-collection { max-width: 80rem; margin: auto; display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,17rem),1fr)); gap: 2rem 1.4rem; align-items: start; }
+.collection-specimen { min-width: 0; max-width: 16rem; width: 100%; justify-self: center; }
+.specimen-heading { display: flex; justify-content: space-between; align-items: baseline; gap: .5rem; margin-bottom: .65rem; }
+.specimen-heading h2 { margin: 0; font: 400 1.1rem Georgia,serif; }
+.specimen-heading span { color: #c6b7c4; font-size: .75rem; }
+.specimen-stage { box-shadow: 0 .5rem 2rem #0007; }
+.specimen-replay { margin-top: .75rem; width: 100%; }
+.collection-preview.motion-paused *, .collection-preview.motion-paused *::before, .collection-preview.motion-paused *::after { animation-play-state: paused !important; }
+@media (prefers-reduced-motion: reduce) { #motion-toggle { display: none; } }

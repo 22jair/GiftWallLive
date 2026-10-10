@@ -89,7 +89,15 @@ GiftWallLive/
 
 `index.html` es únicamente el selector. Cada página en `designs/` carga el mismo escenario de `js/printer-shell.js` y el motor común de `js/`. Los estilos existentes de `css/` conservan Default; Halloween añade su renderer y estilos sin copiar datos, rangos, ranking, WebSocket ni animación de avance.
 
-Halloween incluye diez variantes (seguidor y nueve tiers), monedas redondas, podio de retratos arqueados y una prensa de hierro violeta y cobre. Sus ilustraciones SVG se dibujan en `components.js`; no necesita imágenes externas ni fuentes descargadas. Véase `designs/README.md` para añadir otro diseño.
+Halloween incluye diez variantes (seguidor y nueve tiers), monedas redondas, podio de retratos arqueados y una prensa de hierro violeta y cobre. Las cards progresan desde un registro de vela hasta seis escenas cinematográficas ilustradas de Epic a Cosmic. Reutilizan los mismos avatares, regalos, rangos y datos; Default no cambia.
+
+Abre [el catálogo Halloween](designs/halloween/preview.html) para comparar todos los niveles, repetir una entrada o pausar el movimiento, sin WebSocket ni servidor. El catálogo usa los eventos de `js/data.js`, no un segundo juego de datos. Sus archivos son `preview.html`, `preview.css` y `preview.js` dentro del diseño.
+
+Los seis fondos originales se guardan en `assets/images/halloween/`: WebP de 1024 × 1536 (aproximadamente 1.6 MB en total), generados con imagegen y con prompts/procedencia documentados en su README. La profundidad es una composición 2.5D de arte, CSS y SVG, no modelos 3D. Los nombres, avatares y regalos permanecen en HTML a resolución nativa.
+
+Cada nivel premium tiene una acción propia: enjambre, caída de reliquia con fragmentos, aparición espectral, gotas de rubí, llegada de vehículo nocturno y apertura de la catedral del eclipse. Después queda movimiento ambiental acotado; solo las tres cards más cercanas del recibo animan. `prefers-reduced-motion` mantiene las escenas estáticas y todos los datos visibles. No se incorporan sonidos, flashes rápidos ni cambios en el valor de los regalos.
+
+Véase `designs/README.md` para añadir otro diseño. Las ideas futuras y alternativas al printer se conservan en `.local/`, ignorado por Git; no forman parte del sitio publicado.
 
 ### Prototipos visuales
 

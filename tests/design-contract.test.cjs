@@ -55,3 +55,55 @@ test("entrypoints reuse the common engine and local resource paths exist", () =>
     if (theme === "default") assert.ok(!html.includes("halloween"));
   }
 });
+
+test("Halloween scenes are local, bounded assets with distinct effects", () => {
+  const effects = {
+    epic: "haunt-swarm", legendary: "haunt-impact", mythic: "haunt-soul",
+    celestial: "haunt-drips", primordial: "haunt-headlights", cosmic: "haunt-gates",
+  };
+  const css = fs.readFileSync(path.join(root, "designs/halloween/theme.css"), "utf8");
+  for (const [tier, effect] of Object.entries(effects)) {
+    assert.ok(context(true).render(event(tier)).includes(effect));
+    const asset = path.join(root, "assets/images/halloween/" + tier + "-scene.webp");
+    assert.ok(fs.statSync(asset).size < 512 * 1024);
+    assert.equal(fs.readFileSync(asset).subarray(8, 12).toString(), "WEBP");
+    assert.ok(css.includes(tier + "-scene.webp"));
+  }
+  assert.ok(css.includes("prefers-reduced-motion: reduce"));
+  assert.ok(css.includes("nth-child(n+4)"));
+  const html = fs.readFileSync(path.join(root, "designs/halloween/preview.html"), "utf8");
+  assert.ok(html.includes("../../js/data.js"));
+  assert.ok(html.includes("../../js/gift-tiers.js"));
+  assert.ok(!html.includes("live-events.js"));
+  assert.ok(!html.includes("app.js"));
+});
+
+test("decorative animationend events cannot finish the paper reveal", () => {
+  let listener;
+  let removed = false;
+  const classes = new Set();
+  const fresh = {
+    classList: { add: name => classes.add(name), remove: name => classes.delete(name) },
+    addEventListener: (_, callback) => { listener = callback; },
+    removeEventListener: (_, callback) => { removed = callback === listener; },
+  };
+  const container = {
+    children: [], parentElement: { clientHeight: 500 },
+    insertAdjacentHTML() { this.children = [fresh]; this.firstElementChild = fresh; },
+  };
+  const ctx = vm.createContext({
+    window: { GWLPrinterComponents: { render: () => "<article></article>" } },
+    document: { querySelectorAll: () => [], querySelector: () => null },
+    requestAnimationFrame: () => {},
+  });
+  load(ctx, "js/feed.js");
+  ctx.window.GWLFeed.insert(container, event("cosmic"));
+  listener({ target: {}, animationName: "haunt-gate-left" });
+  assert.ok(classes.has("receipt-item--printing"));
+  assert.equal(removed, false);
+  listener({ target: fresh, animationName: "unrelated" });
+  assert.ok(classes.has("receipt-item--printing"));
+  listener({ target: fresh, animationName: "print-row" });
+  assert.equal(classes.has("receipt-item--printing"), false);
+  assert.equal(removed, true);
+});

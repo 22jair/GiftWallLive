@@ -42,10 +42,14 @@ window.GWLFeed = (() => {
 
     fresh.classList.add("receipt-item--printing");
 
-    fresh.addEventListener("animationend", () => {
+    // Theme effects also dispatch animationend; only the paper reveal ends printing.
+    const finishPrinting = (animationEvent) => {
+      if (animationEvent.target !== fresh || animationEvent.animationName !== "print-row") return;
       fresh.classList.remove("receipt-item--printing");
       trimToReceipt(container);
-    }, { once: true });
+      fresh.removeEventListener("animationend", finishPrinting);
+    };
+    fresh.addEventListener("animationend", finishPrinting);
     requestAnimationFrame(() => {
       [...container.children].slice(1).forEach((item) => {
         const oldTop = previous.get(item);

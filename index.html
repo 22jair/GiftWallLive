@@ -1,47 +1,29 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Digital gift and follower receipt for TikTok LIVE.">
-    <title>GiftWallLive</title>
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/top-three.css">
-    <link rel="stylesheet" href="css/gift-showcase.css">
-    <link rel="stylesheet" href="css/printer.css">
-    <link rel="stylesheet" href="css/printer-components.css">
-  </head>
-  <body>
-    <main class="live-stage" aria-label="LIVE activity receipt">
-      <div class="live-body">
-        <aside class="gift-showcase" aria-labelledby="gift-showcase-title">
-          <h2 id="gift-showcase-title" class="visually-hidden">Gift collection</h2>
-          <ol id="gift-tier-list" class="gift-showcase__list" aria-label="Gift tiers" tabindex="0"></ol>
-          <p class="gift-showcase__status"><span aria-hidden="true"></span><strong id="active-tier-label">Waiting for a gift</strong></p>
-        </aside>
-        <div class="printer-bay">
-          <section class="printer" aria-labelledby="receipt-title">
-            <header class="printer__slot">
-              <div class="printer__lid" aria-hidden="true"><span class="printer__brand">GIFTWALL</span><span class="printer__vents"></span></div>
-              <div class="printer__display"><span class="printer__led" aria-hidden="true"></span><h2 id="receipt-title">Now Printing</h2></div>
-              <span class="printer__feed-control" aria-hidden="true">▴</span>
-            </header>
-            <div class="printer__output" aria-hidden="true"><span></span></div>
-            <div class="receipt"><div id="activity-feed" class="receipt__feed" aria-live="polite"></div></div>
-          </section>
-        </div>
-        <aside class="top-three" aria-labelledby="top-title">
-          <h1 id="top-title" class="visually-hidden">Top gifts of the LIVE</h1>
-          <div id="podium" class="top-three__list"></div>
-        </aside>
-      </div>
-    </main>
-    <script src="js/data.js" defer></script>
-    <script src="js/gift-tiers.js" defer></script>
-    <script src="js/top-three.js" defer></script>
-    <script src="js/printer-components.js" defer></script>
-    <script src="js/feed.js" defer></script>
-    <script src="js/live-events.js" defer></script>
-    <script src="js/app.js" defer></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Choose your GiftWallLive printer design.">
+  <title>GiftWallLive · Printer collection</title>
+  <link rel="stylesheet" href="css/gallery.css">
+  <script src="js/gallery.js" defer></script>
+</head>
+<body>
+  <header class="masthead"><a href="index.html">GiftWallLive</a><span>Your LIVE, in print.</span></header>
+  <main>
+    <div class="intro"><p class="edition">The printer collection</p><h1>Make an entrance.<br>Leave a little paper trail.</h1><p>Choose the world your viewers print into. Same LIVE.<br class="desktop-break"> A different kind of keepsake.</p></div>
+    <section class="collection" aria-label="Printer designs">
+      <article class="design design--default">
+        <div class="preview" aria-hidden="true"><div class="mini-printer"><span>GiftWall</span><i></i></div><div class="mini-paper"><span class="mini-orbit"></span><strong>A moment worth keeping.</strong><span>Default collection</span><div class="perforation"></div><span class="mini-star">✦</span></div><span class="preview-caption">Metal. Light. Paper.</span></div>
+        <div class="design-info"><h2>Default</h2><p>Brushed steel, luminous portraits and a little everyday magic.</p><div class="actions"><a class="primary" href="designs/default/index.html?source=dummy">Try the demo</a><a href="designs/default/index.html">Open LIVE printer</a></div></div>
+      </article>
+      <article class="design design--halloween">
+        <div class="preview" aria-hidden="true"><div class="moon"></div><span class="bat bat--one"></span><span class="bat bat--two"></span><div class="mini-printer"><span>Spirit press</span><i></i></div><div class="mini-paper"><span class="mini-pumpkin"><i></i></span><strong>You've been summoned.</strong><span>Halloween collection</span><div class="perforation"></div><span class="mini-star">☾</span></div><span class="preview-caption">Something wicked is printing.</span></div>
+        <div class="design-info"><h2>Halloween</h2><p>Candlelit tickets, midnight wings and the rarest of apparitions.</p><div class="actions"><a class="primary" href="designs/halloween/index.html?source=dummy">Try the demo</a><a href="designs/halloween/index.html">Open LIVE printer</a></div></div>
+      </article>
+    </section>
+    <aside class="instructions"><h2>Ready for your LIVE?</h2><p>Copy the address from “Open LIVE printer” into your Link source. Use <strong>1080 × 1920</strong>. Demos use shared simulated events; LIVE printers wait for your local bridge.</p></aside>
+  </main>
+  <footer>Built for the people who show up.<span>GiftWallLive</span></footer>
+</body>
 </html>

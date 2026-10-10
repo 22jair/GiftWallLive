@@ -8,7 +8,7 @@ Prototipo local con un recibo animado que mezcla regalos y nuevos seguidores sim
 
 ## Ejecución local
 
-Abre `index.html` directamente en un navegador moderno. El diseño y los datos simulados no requieren instalaciones ni servidor local.
+Abre `index.html` directamente en un navegador moderno: ahora es la galería para elegir diseño. Usa **Try the demo** para datos simulados o **Open LIVE printer** para la fuente de transmisión. No requiere instalaciones ni servidor para explorar los diseños.
 
 Para probar eventos reales, instala e inicia el puente desde `server/`:
 
@@ -19,20 +19,36 @@ npm start -- nombre_del_creador
 
 El estado queda disponible en `http://127.0.0.1:8081/health` y los eventos en `ws://127.0.0.1:8081/live`.
 
-`index.html` abre el modo LIVE por defecto y permanece vacío hasta recibir actividad real. Para ejecutar deliberadamente el loop de demostración, abre `index.html?source=dummy`. El modo LIVE nunca mezcla ni sustituye eventos reales con datos simulados.
+Cada printer abre el modo LIVE por defecto y permanece vacío hasta recibir actividad real:
+
+- Default: `designs/default/index.html`
+- Halloween: `designs/halloween/index.html`
+
+Añade `?source=dummy` a cualquiera para ejecutar el loop de demostración. El modo LIVE nunca mezcla ni sustituye eventos reales con datos simulados. Los enlaces antiguos a `index.html?source=dummy` o `index.html?source=live` redirigen a Default conservando los parámetros. El enlace raíz sin parámetros ahora muestra la galería; si lo usabas en LIVE Studio, sustitúyelo por la ruta directa de Default.
 
 ## Estructura
 
 ```text
 GiftWallLive/
 ├── index.html
+├── designs/
+│   ├── README.md
+│   ├── default/
+│   │   └── index.html
+│   └── halloween/
+│       ├── index.html
+│       ├── components.js
+│       └── theme.css
 ├── css/
+│   ├── gallery.css
 │   ├── base.css
 │   ├── gift-showcase.css
 │   ├── printer-components.css
 │   ├── printer.css
 │   └── top-three.css
 ├── js/
+│   ├── gallery.js
+│   ├── printer-shell.js
 │   ├── app.js
 │   ├── data.js
 │   ├── feed.js
@@ -71,7 +87,9 @@ GiftWallLive/
 
 ### Aplicación principal
 
-`index.html`, `css/`, `js/` y `assets/` forman la experiencia que se mostrará durante el LIVE.
+`index.html` es únicamente el selector. Cada página en `designs/` carga el mismo escenario de `js/printer-shell.js` y el motor común de `js/`. Los estilos existentes de `css/` conservan Default; Halloween añade su renderer y estilos sin copiar datos, rangos, ranking, WebSocket ni animación de avance.
+
+Halloween incluye diez variantes (seguidor y nueve tiers), monedas redondas, podio de retratos arqueados y una prensa de hierro violeta y cobre. Sus ilustraciones SVG se dibujan en `components.js`; no necesita imágenes externas ni fuentes descargadas. Véase `designs/README.md` para añadir otro diseño.
 
 ### Prototipos visuales
 
@@ -116,6 +134,8 @@ La skill externa `frontend-design` guía la dirección artística y la implement
 - Sin frameworks de interfaz, base de datos ni autenticación mientras no sean necesarios.
 
 ### Fuente Enlace en LIVE Studio
+
+Copia la URL directa de un printer en `designs/`, no la dirección de la galería.
 
 Usa una resolución de fuente de **1080 × 1920** para un lienzo vertical de la misma proporción. Para pruebas simuladas añade `?source=dummy` a la URL. El navegador dibuja los componentes a esa resolución: las medidas son 1.5 veces las de 720 × 1280, conservando su proporción. No compenses el diseño cambiando solo el ancho a 400 px ni estirando los ejes por separado.
 

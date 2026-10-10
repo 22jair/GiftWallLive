@@ -77,6 +77,10 @@ window.GWLPrinterComponents = (() => {
   const renderers = { basic, featured: (event) => basic(event, true), stellar, epic, legendary, mythic, celestial, primordial, cosmic };
 
   function render(event) {
+    // Optional visual renderer; classification, data and feed stay shared.
+    if (window.GWLTheme?.render) {
+      return window.GWLTheme.render(event, { escapeText, avatar, message });
+    }
     if (event.type === "follow") {
       return `<article class="receipt-item follower"><span class="follower__mark" aria-hidden="true">+</span><strong class="follower__name">${escapeText(event.person.name)}</strong><span class="follower__message">New follower</span></article>`;
     }

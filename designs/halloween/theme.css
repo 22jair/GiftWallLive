@@ -1,0 +1,95 @@
+/* Halloween: engraved iron, candlelit tickets and increasingly rare apparitions.
+   All dimensions use the same shared rem scale as Default. */
+:root { --paper: #241c2b; --ink: #f2dfba; --cyan: #9cddc5; }
+.live-stage { background: radial-gradient(ellipse at 48% 15%,#56313e 0,transparent 46%),radial-gradient(ellipse at 90% 85%,#32234a,transparent 55%),#17121f; }
+.live-stage::before { background: repeating-linear-gradient(78deg,transparent 0 4rem,#e7b58305 4.05rem 4.1rem); }
+.live-stage::after { border-color: #ad785642; box-shadow: inset 0 0 3rem #100b19; }
+.gift-tier { border-color: #d7b48a22; border-radius: .65rem .65rem .15rem .15rem; background: linear-gradient(#382a3c88,#181320); }
+.gift-tier__gem { border-radius: 50%; transform: none; background: radial-gradient(circle at 35% 30%,#fff4bd,var(--tier-accent) 50%,#412c39); box-shadow: 0 0 .4rem var(--tier-accent); border: .07rem double var(--tier-accent); }
+.gift-tier.is-active { background: linear-gradient(120deg,#70483380,#21182e); }
+.gift-tier small { color: #d2bfa9; }
+.gift-tier__number { color: #f2dfba; }
+.gift-showcase__status { color: #d4b5cf; }
+.leader { --rank: #ffb968; --rank-deep: #693e28; --rank-glow: #f9a04b30; border-radius: 2rem 2rem .2rem .2rem; border: .15rem double color-mix(in srgb,var(--rank),transparent 40%); background: radial-gradient(ellipse at 50% 28%,var(--rank-glow),transparent 65%),#231a2d; box-shadow: inset 0 0 0 .15rem #140f1d,inset 0 0 1rem #0008; }
+.leader:nth-child(2) { --rank: #b5e2d0; --rank-deep: #36534e; --rank-glow: #7ce0b530; }
+.leader:nth-child(3) { --rank: #c7a1e3; --rank-deep: #543964; --rank-glow: #b080d430; }
+.leader__place { left: .5rem; top: .5rem; font-family: Georgia,serif; }
+.leader__emblem { right: .45rem; top: .5rem; }
+.leader__avatar { border-radius: 45% 45% 50% 50%; box-shadow: 0 0 0 .14rem #140e20,0 0 0 .2rem var(--rank-deep),0 .2rem .8rem var(--rank-glow); }
+.leader__total > span { border: .07rem solid currentColor; border-radius: 50%; width: .5rem; height: .5rem; font-size: 0; background: radial-gradient(circle,#fff5,transparent); }
+.leader__gift { color: #d6c3d9; }
+.printer::before { border-color: #6d4942; background: linear-gradient(90deg,#140e1d,#9e6745 2%,#342234 7% 93%,#9e6745 98%,#140e1d); }
+.printer__slot { border-color: #a37554; border-radius: 1.2rem 1.2rem .2rem .2rem; background: linear-gradient(90deg,#2b1d30,#674152 4%,#372438 12% 88%,#674152 96%,#2b1d30); }
+.printer__lid { background: repeating-linear-gradient(90deg,transparent 0 .9rem,#d6a56b12 .93rem .97rem),linear-gradient(#936d59,#563c46 30%,#302234); border-bottom: .1rem double #b28558; }
+.printer__brand { color: #ebc69a; font-family: Georgia,serif; letter-spacing: .14em; }
+.printer__vents { background: repeating-linear-gradient(90deg,#100b19 0 .14rem,#c29b6344 .14rem .2rem,transparent .2rem .36rem); }
+.printer__display { border-color: #bc8b54; border-radius: 50% 50% .1rem .1rem; background: #140e1b; }
+.printer__display h2 { font-family: Georgia,serif; color: #ffd294; font-weight: 400; }
+.printer__led { background: #ffc37b; box-shadow: 0 0 .5rem #fa862c; }
+.printer__feed-control { border-color: #d1a16a; color: #ffd08c; background: #452c32; }
+.printer__output { border-color: #b28754; background: #160f1a; box-shadow: 0 .25rem .7rem #ee853735,inset 0 .1rem .2rem #000; }
+.printer__output::after { background: linear-gradient(#ffdc9b,#845d3c,#e1b574); }
+.receipt { background: #211825; box-shadow: 0 0 0 .06rem #ce9e6055,0 .5rem 1rem #0008; }
+.receipt__feed { padding: .5rem .35rem 0; }
+.haunt-card { --a: #edba7a; --b: #613648; position: relative; isolation: isolate; height: 14rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .25rem; overflow: hidden; padding: .8rem .5rem; color: #f6e5c8; border: .07rem solid #b3936570; border-bottom: .1rem dashed #c6a98270; background: radial-gradient(ellipse at 50% 35%,var(--b),transparent 70%),#261c2c; text-align: center; }
+.haunt-card__corners { position: absolute; inset: .35rem; border: .06rem solid color-mix(in srgb,var(--a),transparent 65%); pointer-events: none; }
+.haunt-card__corners::before,.haunt-card__corners::after { content: "✦"; position: absolute; top: -.4rem; color: var(--a); font-size: .7rem; }
+.haunt-card__corners::before { left: -.2rem; } .haunt-card__corners::after { right: -.2rem; }
+.haunt-card__caption { z-index: 2; font: .66rem Georgia,serif; color: var(--a); letter-spacing: .035em; }
+.haunt-portrait { position: relative; display: grid; place-items: center; width: 10.7rem; max-width: 100%; height: 7.6rem; margin-top: .4rem; }
+.haunt-avatar { position: relative; z-index: 2; width: 5.9rem; height: 5.9rem; padding: .2rem; border: .1rem solid var(--a); border-radius: 50%; background: #211528; box-shadow: 0 0 0 .17rem #1a1322,0 0 0 .24rem var(--a),0 0 1.6rem color-mix(in srgb,var(--a),transparent 70%); }
+.haunt-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+.haunt-ring { position: absolute; width: 7rem; height: 7rem; border: .07rem dashed var(--a); border-radius: 50%; opacity: .6; }
+.haunt-wings { position: absolute; width: 100%; top: 1.5rem; color: #663f79; filter: drop-shadow(0 .2rem .2rem #0007); }
+.haunt-wings svg,.haunt-charm svg,.haunt-follow svg { display: block; width: 100%; height: 100%; }
+.haunt-charm { position: absolute; z-index: 3; bottom: -.1rem; right: 1.1rem; width: 1.8rem; height: 1.8rem; filter: drop-shadow(0 0 .4rem #eec88866); }
+.haunt-seal { z-index: 3; padding: .16rem .65rem; border: .07rem solid var(--a); border-radius: .15rem; background: #25182d; color: var(--a); font: 600 .6rem Georgia,serif; }
+.haunt-name { z-index: 2; display: block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .85rem; margin-top: .3rem; }
+.haunt-message { z-index: 2; margin: .15rem 0 0; font-size: .7rem; color: #f0d9bf; }
+.haunt-message .gift-message__icon { width: 1.9rem; height: 1.9rem; }
+.haunt-motes { position: absolute; z-index: -1; inset: 0; opacity: .45; background: radial-gradient(circle at 10% 20%,var(--a) 0 .045rem,transparent .08rem),radial-gradient(circle at 80% 70%,var(--a) 0 .045rem,transparent .08rem); background-size: 3rem 4rem,4rem 3rem; }
+.haunt-card--compact { height: 5.5rem; display: grid; grid-template-columns: 3rem minmax(0,1fr); gap: .1rem .6rem; text-align: left; padding: .6rem; }
+.haunt-card--compact .haunt-portrait { grid-row: 1 / 5; width: 3rem; height: 3rem; margin: 0; }
+.haunt-card--compact .haunt-avatar { width: 2.6rem; height: 2.6rem; box-shadow: none; padding: .12rem; }
+.haunt-card--compact .haunt-ring,.haunt-card--compact .haunt-wings,.haunt-card--compact .haunt-charm,.haunt-card--compact .haunt-motes { display: none; }
+.haunt-card--compact .haunt-card__caption { font-size: .55rem; }
+.haunt-card--compact .haunt-name { font-size: .68rem; margin: 0; }
+.haunt-card--compact .haunt-seal { justify-self: start; font-size: .5rem; padding: .08rem .3rem; }
+.haunt-card--compact .haunt-message { justify-content: start; font-size: .58rem; }
+.haunt-card--compact .gift-message__icon { width: 1.3rem; height: 1.3rem; }
+.haunt-card--basic { --a: #ccbdab; background: #302a32; }
+.haunt-card--featured { --a: #f0b56d; background: linear-gradient(120deg,#5c3a31,#2d2230); border-left: .2rem solid var(--a); }
+.haunt-card--stellar { --a: #e7d8a8; --b: #455363; height: 11.5rem; }
+.haunt-card--stellar .haunt-wings { display: none; }
+.haunt-card--stellar .haunt-portrait { height: 5.5rem; }
+.haunt-card--stellar .haunt-avatar { width: 4.5rem; height: 4.5rem; }
+.haunt-card--stellar .haunt-ring { width: 5.2rem; height: 5.2rem; border: none; box-shadow: -.35rem -.2rem 0 .05rem #ede0ba; }
+.haunt-card--epic { --a: #d7a4ee; --b: #64437c; }
+.haunt-card--epic .haunt-wings { color: #8f5898; width: 110%; }
+.haunt-card--legendary { --a: #ffd08b; --b: #934322; background: radial-gradient(ellipse at 50% 40%,#a35224,#39232d 75%); }
+.haunt-card--legendary .haunt-avatar { border-radius: 42%; border-width: .3rem; box-shadow: -.7rem 0 0 -.3rem #eb8b36,.7rem 0 0 -.3rem #eb8b36,0 0 1.5rem #e67b3544; }
+.haunt-card--legendary .haunt-wings { display: none; }
+.haunt-card--legendary .haunt-charm { width: 2.5rem; height: 2rem; right: 4.1rem; bottom: -.3rem; }
+.haunt-card--mythic { --a: #b9f0ce; --b: #295751; background: radial-gradient(ellipse at 50% 35%,#38695d,#19282f 75%); }
+.haunt-card--mythic .haunt-avatar { border-radius: 45% 45% 18% 18%; box-shadow: 0 0 0 .2rem #28443c,0 0 1.5rem #8bdfba55; }
+.haunt-card--mythic .haunt-wings { opacity: .3; color: #b9f0ce; }
+.haunt-card--mythic .haunt-ring { border-radius: 45% 45% 15% 15%; border-style: double; border-width: .2rem; }
+.haunt-card--celestial { --a: #ffb09a; --b: #973b49; background: radial-gradient(circle at 50% 36%,#bc604b 0, #632d41 35%,#2a1a30 73%); }
+.haunt-card--celestial .haunt-ring { width: 8rem; height: 8rem; border: .12rem solid #ffbc96; box-shadow: 0 0 1.2rem #f66b55,inset 0 0 1rem #f66b55; }
+.haunt-card--celestial .haunt-wings { color: #481c38; width: 115%; }
+.haunt-card--primordial { --a: #c1e89c; --b: #435a38; background: repeating-conic-gradient(from 0deg at 50% 38%,#c1e89c08 0deg 1deg,transparent 1deg 30deg),radial-gradient(ellipse at 50% 35%,#4c6042,#211c30 75%); }
+.haunt-card--primordial .haunt-ring { border-radius: 0; transform: rotate(45deg); border-style: double; border-width: .2rem; box-shadow: 0 0 1rem #9ac87944; }
+.haunt-card--primordial .haunt-wings { color: #879b66; transform: rotate(180deg); }
+.haunt-card--cosmic { --a: #edc4ff; --b: #673c83; background: radial-gradient(ellipse at 50% 34%,#81478a,#302341 48%,#160f22 80%); }
+.haunt-card--cosmic .haunt-avatar { box-shadow: 0 0 0 .25rem #10091b,0 0 0 .38rem #ecc5fa,0 0 1.7rem .3rem #c187ef77; }
+.haunt-card--cosmic .haunt-ring { width: 8.8rem; height: 8.8rem; border: .1rem double #e5c39e; transform: rotateX(55deg) rotate(-25deg); box-shadow: 0 0 .6rem #e5c39e; }
+.haunt-card--cosmic .haunt-wings { color: #9b69b4; width: 120%; }
+.haunt-card--cosmic .haunt-charm { top: -.4rem; left: 4.5rem; width: 1.4rem; height: 1.4rem; }
+.haunt-follow { height: 3rem; display: grid; grid-template-columns: 1.4rem minmax(0,1fr) auto; align-items: center; gap: .3rem; padding: .4rem; border-bottom: .07rem dashed #b9a49b70; color: #e4d5dd; background: #302635; }
+.haunt-follow__ghost { width: 1.1rem; height: 1.5rem; }
+.haunt-follow strong { font-size: .6rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.haunt-follow > span:last-child { font-size: .48rem; color: #c2d8ca; }
+@media (prefers-reduced-motion: no-preference) {
+  .haunt-card--celestial .haunt-motes,.haunt-card--primordial .haunt-motes,.haunt-card--cosmic .haunt-motes { animation: haunt-drift 8s ease-in-out infinite alternate; }
+  @keyframes haunt-drift { to { transform: translateY(-.8rem); opacity: .7; } }
+}

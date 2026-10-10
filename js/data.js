@@ -12,6 +12,8 @@ window.GWL_DATA = {
   events: [
     { type: "follow", personIndex: 0 },
     { type: "gift", personIndex: 1, gift: { name: "Rosa", amount: 2, points: 5 } },
+    { type: "gift", personIndex: 7, gift: { name: "Micrófono", amount: 1, points: 18 } },
+    { type: "gift", personIndex: 6, gift: { name: "Sombrero", amount: 1, points: 35 } },
     { type: "gift", personIndex: 2, gift: { name: "Perfume", amount: 3, points: 20 } },
     { type: "gift", personIndex: 3, gift: { name: "Corazón", amount: 2, points: 40 } },
     { type: "gift", personIndex: 4, gift: { name: "Castillo", amount: 1, points: 75 } },

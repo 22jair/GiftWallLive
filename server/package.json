@@ -1,0 +1,18 @@
+{
+  "name": "giftwalllive-server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Puente local entre TikTok LIVE y GiftWallLive.",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "start": "node live-bridge.js",
+    "check": "node --check live-bridge.js && node --check providers/piratetok-provider.js && node --check mappers/piratetok-mapper.js && node --check domain/live-event.js"
+  },
+  "dependencies": {
+    "piratetok-live-js": "0.3.0",
+    "ws": "8.22.0"
+  }
+}

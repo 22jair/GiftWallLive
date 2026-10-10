@@ -4,11 +4,20 @@ GiftWallLive será una página web visual para usar como contenido principal de 
 
 ## Estado
 
-Prototipo local con un recibo animado que mezcla regalos y nuevos seguidores simulados. La conexión real con TikTok todavía no forma parte del alcance.
+Prototipo local con un recibo animado que mezcla regalos y nuevos seguidores simulados. Incluye un puente experimental opcional que lee un LIVE público y publica eventos normalizados por WebSocket.
 
 ## Ejecución local
 
-Abre `index.html` directamente en un navegador moderno. No se requieren instalaciones, dependencias ni servidor local.
+Abre `index.html` directamente en un navegador moderno. El diseño y los datos simulados no requieren instalaciones ni servidor local.
+
+Para probar eventos reales, instala e inicia el puente desde `server/`:
+
+```bash
+npm install
+npm start -- nombre_del_creador
+```
+
+El estado queda disponible en `http://127.0.0.1:8081/health` y los eventos en `ws://127.0.0.1:8081/live`. Esta conexión todavía no alimenta el printer principal.
 
 ## Estructura
 
@@ -31,6 +40,15 @@ GiftWallLive/
 ├── prototypes/
 │   └── printer/
 │       └── printer-components.html
+├── server/
+│   ├── domain/
+│   │   └── live-event.js
+│   ├── mappers/
+│   │   └── piratetok-mapper.js
+│   ├── providers/
+│   │   └── piratetok-provider.js
+│   ├── live-bridge.js
+│   └── package.json
 ├── tests/
 │   └── legacy-effects/
 ├── AGENTS.md
@@ -64,6 +82,17 @@ El catálogo se concentra únicamente en la estructura y presentación visual de
 
 La versión visual experimental anterior se conserva en `tests/legacy-effects/` para poder recuperar sus efectos en el futuro. No forma parte del diseño principal actual.
 
+### Puente de eventos
+
+La carpeta `server/` contiene la integración experimental con proveedores de LIVE:
+
+- `providers/` recibe los eventos originales de cada proveedor.
+- `mappers/` convierte esos datos al contrato común de GiftWallLive.
+- `domain/live-event.js` define la forma estable que recibe el frontend.
+- `live-bridge.js` publica estados y eventos normalizados en `/live`.
+
+El printer no debe depender del formato particular de PirateTok. Un proveedor futuro, como TikFinity, tendrá su propio provider y mapper, pero emitirá el mismo contrato.
+
 ### Instrucciones para IA
 
 `AGENTS.md` contiene las instrucciones permanentes para trabajar con asistentes de IA dentro de este repositorio.
@@ -79,7 +108,7 @@ La skill externa `frontend-design` guía la dirección artística y la implement
 - Zona segura superior adaptable para barras de estado, notch y Dynamic Island en móviles.
 - HTML, CSS y JavaScript nativos.
 - Datos y regalos simulados durante la primera versión.
-- Sin frameworks, backend, base de datos ni autenticación mientras no sean necesarios.
+- Sin frameworks de interfaz, base de datos ni autenticación mientras no sean necesarios.
 
 ## Componentes actuales
 

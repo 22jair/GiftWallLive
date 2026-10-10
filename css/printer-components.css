@@ -256,6 +256,33 @@
 @keyframes cosmic-sweep { 0%, 48% { opacity: 0; transform: translateX(-30%); } 60% { opacity: .68; } 78%, 100% { opacity: 0; transform: translateX(30%); } }
 @keyframes cosmic-gift-shine { from { background-position: 100% 0; } to { background-position: -100% 0; } }
 
+.gift-card-sparks { position: absolute !important; z-index: 8 !important; inset: 0; overflow: hidden; pointer-events: none; }
+.gift-card-sparks__spark { --spark-color: #fff; --spark-x: 18px; --spark-y: -10px; position: absolute; width: 8px; aspect-ratio: 1; opacity: 0; background: var(--spark-color); box-shadow: 0 0 5px 1px var(--spark-color), 0 0 12px var(--spark-color); clip-path: polygon(50% 0, 61% 36%, 100% 50%, 61% 64%, 50% 100%, 39% 64%, 0 50%, 39% 36%); animation: gift-card-spark 2.8s ease-out infinite; }
+.gift-card-sparks__spark--1 { top: 14%; left: 3%; --spark-x: 27px; --spark-y: -13px; }
+.gift-card-sparks__spark--2 { top: 31%; right: 2%; --spark-x: -31px; --spark-y: -8px; animation-delay: -.4s; }
+.gift-card-sparks__spark--3 { top: 53%; left: 1%; --spark-x: 34px; --spark-y: 6px; animation-delay: -.8s; }
+.gift-card-sparks__spark--4 { top: 72%; right: 3%; --spark-x: -29px; --spark-y: 13px; animation-delay: -1.2s; }
+.gift-card-sparks__spark--5 { top: 88%; left: 12%; --spark-x: 19px; --spark-y: -19px; animation-delay: -1.6s; }
+.gift-card-sparks__spark--6 { top: 9%; right: 15%; --spark-x: -17px; --spark-y: 20px; animation-delay: -2s; }
+.gift-card-sparks__spark--7 { top: 42%; left: 9%; width: 5px; --spark-x: 20px; --spark-y: -17px; animation-delay: -2.35s; }
+.gift-card-sparks__spark--8 { top: 61%; right: 10%; width: 5px; --spark-x: -22px; --spark-y: 18px; animation-delay: -.65s; }
+.gift-card-sparks__spark--9 { top: 22%; left: 20%; width: 4px; --spark-x: 10px; --spark-y: -18px; animation-delay: -1.45s; }
+.gift-card-sparks__spark--10 { top: 82%; right: 22%; width: 4px; --spark-x: -12px; --spark-y: -17px; animation-delay: -2.15s; }
+.gift-card-sparks--celestial .gift-card-sparks__spark { --spark-color: #ffd374; }
+.gift-card-sparks--celestial .gift-card-sparks__spark:nth-child(3n) { --spark-color: #f07883; }
+.gift-card-sparks--primordial .gift-card-sparks__spark { --spark-color: #78d9c5; width: 9px; border-radius: 1px; clip-path: polygon(50% 0, 100% 42%, 68% 100%, 18% 78%, 0 31%); transform: rotate(18deg); }
+.gift-card-sparks--primordial .gift-card-sparks__spark:nth-child(3n+2) { --spark-color: #e7c66e; }
+.gift-card-sparks--primordial .gift-card-sparks__spark:nth-child(3n) { --spark-color: #a78be2; }
+.gift-card-sparks--cosmic .gift-card-sparks__spark { --spark-color: #86eaff; width: 10px; animation-duration: 2.35s; }
+.gift-card-sparks--cosmic .gift-card-sparks__spark:nth-child(even) { --spark-color: #f09aff; }
+.gift-card-sparks--cosmic .gift-card-sparks__spark:nth-child(3n) { --spark-color: #ffd873; width: 12px; }
+@keyframes gift-card-spark {
+  0% { opacity: 0; transform: translate(0, 0) scale(.2) rotate(0); }
+  20% { opacity: 1; }
+  58% { opacity: .92; }
+  100% { opacity: 0; transform: translate(var(--spark-x), var(--spark-y)) scale(1.15) rotate(90deg); }
+}
+
 .receipt-item--printing { transform-origin: top center; animation: print-row 700ms cubic-bezier(.2,.8,.2,1) both; }
 @keyframes print-row {
   from { max-height: 0; min-height: 0; padding-block: 0; clip-path: inset(0 0 100%); transform: translateY(-1rem) scaleY(.1); }

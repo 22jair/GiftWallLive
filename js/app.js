@@ -6,7 +6,8 @@ const topGiftEvents = [];
 let cursor = 0;
 let eventSequence = 0;
 let dummyTimer = null;
-let source = "dummy";
+let source = null;
+const requestedSource = new URLSearchParams(window.location.search).get("source");
 
 window.GWLGiftTiers.renderShowcase(tierList);
 
@@ -65,12 +66,11 @@ function startDummyMode() {
 }
 
 function startLiveMode() {
-  if (source === "live") return;
   source = "live";
   window.clearInterval(dummyTimer);
   dummyTimer = null;
   clearActivity();
-  document.querySelector("#active-tier-label").textContent = "LIVE connected";
+  document.querySelector("#active-tier-label").textContent = "Waiting for LIVE";
 }
 
 function adaptLiveEvent(message) {
@@ -103,16 +103,18 @@ function adaptLiveEvent(message) {
   };
 }
 
-fillWithDummyEvents();
-dummyTimer = window.setInterval(() => printEvent(nextDummyEvent(true)), 2200);
-
-window.GWLLiveEvents.connect({
-  onEvent(message) {
-    if (source !== "live") startLiveMode();
-    printEvent(adaptLiveEvent(message));
-  },
-  onAvailability(available) {
-    if (available) startLiveMode();
-    else if (source === "live") startDummyMode();
-  },
-});
+if (requestedSource === "dummy") {
+  startDummyMode();
+} else {
+  startLiveMode();
+  window.GWLLiveEvents.connect({
+    onEvent(message) {
+      printEvent(adaptLiveEvent(message));
+    },
+    onAvailability(available) {
+      document.querySelector("#active-tier-label").textContent = available
+        ? "LIVE connected"
+        : "Waiting for LIVE";
+    },
+  });
+}

@@ -17,7 +17,9 @@ npm install
 npm start -- nombre_del_creador
 ```
 
-El estado queda disponible en `http://127.0.0.1:8081/health` y los eventos en `ws://127.0.0.1:8081/live`. La página usa automáticamente el LIVE cuando el servidor confirma la conexión y conserva el loop dummy como respaldo cuando no está disponible.
+El estado queda disponible en `http://127.0.0.1:8081/health` y los eventos en `ws://127.0.0.1:8081/live`.
+
+`index.html` abre el modo LIVE por defecto y permanece vacío hasta recibir actividad real. Para ejecutar deliberadamente el loop de demostración, abre `index.html?source=dummy`. El modo LIVE nunca mezcla ni sustituye eventos reales con datos simulados.
 
 ## Estructura
 

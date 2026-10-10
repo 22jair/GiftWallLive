@@ -27,5 +27,5 @@
 .receipt__feed { padding: 12px 8px 0; }
 .receipt__feed { width: 100%; zoom: 1; }
 @media (min-width: 900px) and (orientation: portrait) {
-  .receipt { right: 8%; left: 8%; }
+  .receipt { right: 6%; left: 6%; }
 }

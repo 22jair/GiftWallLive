@@ -129,6 +129,7 @@ La skill externa `frontend-design` guía la dirección artística y la implement
 - En ventanas anchas se centra el escenario 9:16 y el sobrante se rellena con fondo. En móviles más altos se utiliza todo el ancho y la altura disponible. No hay una variante de escritorio ni un límite aislado de 360/720 px para el printer.
 - Tres columnas alineadas bajo la zona segura: niveles compactos a la izquierda, printer prioritario en el centro y Top 3 apilado a la derecha. Las columnas laterales miden 3.6 y 5.25 rem; el printer recibe el espacio restante.
 - Zona segura superior adaptable para barras de estado, notch y Dynamic Island en móviles.
+- En pantallas táctiles se conservan al menos 44 px de zona segura; en una fuente de escritorio/LIVE Studio se usan 15 px para recuperar altura útil sin alterar la composición.
 - HTML, CSS y JavaScript nativos.
 - Datos y regalos simulados durante la primera versión.
 - Sin frameworks de interfaz, base de datos ni autenticación mientras no sean necesarios.

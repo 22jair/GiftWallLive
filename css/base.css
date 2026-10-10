@@ -1,31 +1,38 @@
-:root { color-scheme: dark; --stage-width: 67.5rem; --safe-top: max(env(safe-area-inset-top, 0px), 2.75rem); --ink: #5b545a; --muted-ink: #9a9298; --paper: #fffaf1; --obsidian: #090c16; --petrol: #111e2e; --champagne: #c9aa68; --silver: #bfc9d8; --cyan: #6fe6ff; --live-pink: #eb5bb8; }
+/* One mobile composition: 464 CSS px at 16px/rem, scaled by the stage width.
+   Wide windows keep a centered 9:16 stage; taller phones use their full width. */
+:root {
+  color-scheme: dark;
+  --stage-width: min(100vw, 56.25dvh);
+  font-size: calc(var(--stage-width) / 29);
+  --safe-top: max(env(safe-area-inset-top, 0px), 44px, 2.75rem);
+  --ink: #39434b;
+  --muted-ink: #9a9298;
+  --paper: #f4f4ef;
+  --obsidian: #090c16;
+  --petrol: #111e2e;
+  --champagne: #e7ca8a;
+  --silver: #bfc9d8;
+  --cyan: #90e4e4;
+  --live-pink: #eb5bb8;
+}
 * { box-sizing: border-box; }
 .visually-hidden { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; overflow: hidden !important; clip: rect(0 0 0 0) !important; white-space: nowrap !important; border: 0 !important; }
 html, body { min-height: 100%; }
-body { margin: 0; display: grid; place-items: center; overflow: hidden; background: radial-gradient(circle at 50% 20%, #24364a 0, #0e1725 31%, #05070d 78%); font-family: "Segoe UI", Arial, Helvetica, sans-serif; }
-.live-stage { position: relative; isolation: isolate; width: min(100vw, var(--stage-width), calc(100dvh * .5625)); height: 100vh; height: 100dvh; display: grid; grid-template-rows: auto minmax(0,1fr); overflow: hidden; background-color: #080c14; background-image: linear-gradient(180deg, rgba(4,8,14,.08), rgba(4,8,14,.26) 78%, rgba(3,6,11,.54)), url("../assets/images/obsidian-gallery-bg.png"); background-position: center; background-size: cover; box-shadow: 0 0 0 1px rgba(214,229,243,.08), 0 0 4rem rgba(0,0,0,.72); }
-.live-stage::before { content: ""; position: absolute; z-index: -1; inset: 0; background: radial-gradient(circle at 22% 43%, rgba(201,170,104,.09), transparent 29%), radial-gradient(circle at 73% 46%, rgba(111,230,255,.07), transparent 36%), linear-gradient(90deg, rgba(0,0,0,.2), transparent 18% 82%, rgba(0,0,0,.24)); }
-.live-stage::after { content: ""; position: absolute; z-index: 8; inset: 0; border: 1px solid rgba(201,170,104,.22); pointer-events: none; box-shadow: inset 0 0 4rem rgba(0,0,0,.48); }
-.live-body { min-height: 0; display: grid; grid-template-columns: minmax(13.5rem, 36%) minmax(0, 64%); gap: clamp(.45rem, 1.2vw, .8rem); padding: 0 clamp(.65rem, 2vw, 1.15rem) 1rem; }
-.printer-bay { position: relative; width: min(100%, 360px); min-width: 0; min-height: 0; overflow: hidden; border: 1px solid rgba(191,201,216,.22); background: linear-gradient(145deg, rgba(24,37,52,.52), rgba(5,8,14,.68)); box-shadow: inset 0 1px rgba(255,255,255,.06), inset 0 0 2.5rem rgba(0,0,0,.42), 0 1.2rem 2.5rem rgba(0,0,0,.35); backdrop-filter: blur(2px); }
-.printer-bay::before { content: ""; position: absolute; z-index: 0; top: 0; right: 8%; left: 8%; height: 1px; background: linear-gradient(90deg, transparent, var(--champagne), transparent); box-shadow: 0 0 .8rem rgba(201,170,104,.55); }
-@media (orientation: portrait) {
-  :root { font-size: clamp(16px, 2.222222vw, 24px); }
-  .live-stage { grid-template-rows: auto minmax(0,1fr); padding-top: var(--safe-top); }
-  .live-body { grid-template-columns: minmax(0,36%) minmax(0,64%); gap: clamp(.45rem, 1.2vw, .8rem); padding: 0 clamp(.65rem, 2vw, 1.15rem) 1rem; }
+body { margin: 0; display: grid; place-items: center; overflow: hidden; background: #080e16; font-family: "Bahnschrift", "Segoe UI", sans-serif; }
+.live-stage {
+  position: relative;
+  isolation: isolate;
+  width: var(--stage-width);
+  height: 100dvh;
+  padding-top: var(--safe-top);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  overflow: hidden;
+  background: radial-gradient(ellipse at 80% 15%, #213c48 0, transparent 48%), radial-gradient(ellipse at 0 80%, #1c2336, transparent 60%), #0c1520;
+  box-shadow: inset 0 0 0 .0625rem #425260;
 }
-/* Collector press: the receipt owns the stage. */
-:root { --paper: #f4f4ef; --ink: #39434b; --champagne: #e7ca8a; --cyan: #90e4e4; }
-body { background: #080e16; font-family: "Bahnschrift", "Segoe UI", sans-serif; }
-.live-stage { background: radial-gradient(ellipse at 80% 15%, #213c48 0, transparent 48%), radial-gradient(ellipse at 0 80%, #1c2336, transparent 60%), #0c1520; box-shadow: inset 0 0 0 1px #425260; }
-.live-stage::before { background: repeating-linear-gradient(115deg, transparent 0 80px, #b9d6dd05 81px 82px); }
-.live-stage::after { border-color: #b1c7ce30; box-shadow: inset 0 0 2rem #03081055; }
-.live-body { grid-template-columns: minmax(0,22fr) minmax(0,78fr); gap: .6rem; padding: .5rem .75rem 0; }
-.printer-bay { border: 0; background: transparent; box-shadow: none; backdrop-filter: none; }
-.printer-bay::before { display: none; }
-@media (min-width: 900px) and (orientation: portrait) {
-  :root { font-size: 16px; }
-  .live-body { grid-template-columns: minmax(0,25fr) minmax(0,75fr); }
-  .printer-bay { justify-self: end; }
-}
+.live-stage::before { content: ""; position: absolute; z-index: -1; inset: 0; background: repeating-linear-gradient(115deg, transparent 0 5rem, #b9d6dd05 5.0625rem 5.125rem); }
+.live-stage::after { content: ""; position: absolute; z-index: 8; inset: 0; border: .0625rem solid #b1c7ce30; pointer-events: none; box-shadow: inset 0 0 2rem #03081055; }
+.live-body { min-height: 0; display: grid; grid-template-columns: minmax(0,22fr) minmax(0,78fr); gap: .6rem; padding: .5rem .75rem 0; }
+.printer-bay { position: relative; min-width: 0; min-height: 0; overflow: hidden; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }

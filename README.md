@@ -107,12 +107,19 @@ La skill externa `frontend-design` guía la dirección artística y la implement
 
 - Una sola página web vertical.
 - Lienzo maestro 9:16 con salida objetivo en 720 × 1280 y 1080 × 1920.
-- La composición se selecciona por orientación y relación vertical, no únicamente por el ancho del viewport.
+- Una única composición móvil de referencia de 464 px de ancho. El tamaño raíz se calcula como ancho del escenario / 29; tarjetas, avatares, texto, bordes y efectos usan `rem` para crecer juntos. No se amplía una captura ni se usa zoom de la fuente.
+- En ventanas anchas se centra el escenario 9:16 y el sobrante se rellena con fondo. En móviles más altos se utiliza todo el ancho y la altura disponible. No hay una variante de escritorio ni un límite aislado de 360/720 px para el printer.
 - Top Gifts arriba y zona inferior dividida en 22% para rangos y 78% para el printer (descontando el espacio entre columnas).
 - Zona segura superior adaptable para barras de estado, notch y Dynamic Island en móviles.
 - HTML, CSS y JavaScript nativos.
 - Datos y regalos simulados durante la primera versión.
 - Sin frameworks de interfaz, base de datos ni autenticación mientras no sean necesarios.
+
+### Fuente Enlace en LIVE Studio
+
+Usa una resolución de fuente de **1080 × 1920** para un lienzo vertical de la misma proporción. Para pruebas simuladas añade `?source=dummy` a la URL. El navegador dibuja los componentes a esa resolución: las medidas son 1.5 veces las de 720 × 1280, conservando su proporción. No compenses el diseño cambiando solo el ancho a 400 px ni estirando los ejes por separado.
+
+La previsualización de LIVE Studio puede mostrar la fuente reducida. Esa reducción no cambia la composición interna. Recarga la fuente después de publicar cambios; la validación en LIVE Studio se realiza sobre la versión publicada, no sobre los archivos locales sin publicar.
 
 ## Componentes actuales
 

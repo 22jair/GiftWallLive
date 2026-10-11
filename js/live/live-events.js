@@ -26,7 +26,7 @@ window.GWLLiveEvents = (() => {
             }
             return;
           }
-          if (message.version === 1 && ["gift", "follow"].includes(message.type)) {
+          if (message.version === 1 && ["gift", "follow", "join"].includes(message.type)) {
             onEvent(message);
           }
         } catch (error) {

@@ -13,6 +13,9 @@
 .follower__name { overflow: hidden; font-size: 0.6875rem; font-weight: 750; text-overflow: ellipsis; white-space: nowrap; }
 .follower__message { color: #88827f; font-size: 0.59375rem; white-space: nowrap; }
 .follower--focus { background: #f2f2f2; }
+.follower--join { background: linear-gradient(90deg,#eefcff,#f7f2ff); }
+.follower--join .follower__mark { background: #d9c8ff; color: #6947a8; box-shadow: 0 0 .45rem #b99cff99; }
+.follower--join .follower__message { color: #73589a; }
 
 .gift-basic { height: 5rem; display: grid; grid-template-columns: 3rem minmax(0,1fr); align-items: center; gap: 0.625rem; border-bottom: 0.0625rem dashed #aaa5a2; overflow: hidden; }
 .gift-basic__avatar { position: relative; width: 3rem; aspect-ratio: 1; display: grid; place-items: center; overflow: hidden; border: 0.0625rem solid #8d8986; border-radius: 50%; background: #e7e5e1; color: #5f5b58; font-size: 0.9375rem; font-weight: 700; }

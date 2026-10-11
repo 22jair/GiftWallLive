@@ -35,9 +35,10 @@ window.GWLTheme = (() => {
 
   function render(event, helpers) {
     const { escapeText, avatar } = helpers;
-    if (event.type === "follow") {
+    if (event.type === "follow" || event.type === "join") {
+      const joining = event.type === "join";
       return '<article class="receipt-item haunt-follow"><span class="haunt-follow__ghost" aria-hidden="true">' + ghost +
-        '</span><div><strong>' + escapeText(event.person.name) + '</strong><span>New follower</span></div></article>';
+        '</span><div><strong>' + escapeText(event.person.name) + '</strong><span>' + (joining ? 'Welcome, hello!' : 'New follower') + '</span></div></article>';
     }
     const tier = Object.hasOwn(tiers, event.gift.tier) ? event.gift.tier : "basic";
     const [label, title] = tiers[tier];

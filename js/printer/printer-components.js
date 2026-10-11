@@ -81,8 +81,9 @@ window.GWLPrinterComponents = (() => {
     if (window.GWLTheme?.render) {
       return window.GWLTheme.render(event, { escapeText, avatar, message });
     }
-    if (event.type === "follow") {
-      return `<article class="receipt-item follower"><span class="follower__mark" aria-hidden="true">+</span><strong class="follower__name">${escapeText(event.person.name)}</strong><span class="follower__message">New follower</span></article>`;
+    if (event.type === "follow" || event.type === "join") {
+      const joining = event.type === "join";
+      return `<article class="receipt-item follower${joining ? " follower--join" : ""}"><span class="follower__mark" aria-hidden="true">${joining ? "✦" : "+"}</span><strong class="follower__name">${escapeText(event.person.name)}</strong><span class="follower__message">${joining ? "Welcome, hello!" : "New follower"}</span></article>`;
     }
     return (renderers[event.gift.tier] || renderers.basic)(event);
   }

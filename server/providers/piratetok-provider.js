@@ -21,6 +21,9 @@ export class PirateTokProvider extends EventEmitter {
     this.client.on(EventType.follow, (data) => {
       this.emit("liveEvent", { type: "follow", data });
     });
+    this.client.on(EventType.join, (data) => {
+      this.emit("liveEvent", { type: "join", data });
+    });
     this.client.on(EventType.connected, (data = {}) => this.emit("connected", data));
     this.client.on(EventType.reconnecting, (data = {}) => this.emit("reconnecting", data));
     this.client.on(EventType.disconnected, () => this.emit("disconnected"));

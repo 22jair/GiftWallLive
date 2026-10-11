@@ -81,8 +81,8 @@ function adaptLiveEvent(message) {
     avatar: message.user.avatarUrl || "",
   };
 
-  if (message.type === "follow") {
-    return { id: ++eventSequence, sourceId: message.id, type: "follow", person };
+  if (message.type === "follow" || message.type === "join") {
+    return { id: ++eventSequence, sourceId: message.id, type: message.type, person };
   }
 
   const points = Number(message.gift.coinsEach) || 0;

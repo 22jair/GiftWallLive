@@ -1,7 +1,7 @@
 const EVENT_VERSION = 1;
 
 export function createLiveEvent({ id, type, occurredAt, user, gift = null, source }) {
-  if (type !== "gift" && type !== "follow") {
+  if (!["gift", "follow", "join"].includes(type)) {
     throw new Error(`Tipo de evento no soportado: ${type}`);
   }
 

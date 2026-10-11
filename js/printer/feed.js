@@ -42,8 +42,8 @@ window.GWLFeed = (() => {
 
     const label = document.querySelector("#active-tier-label");
     if (!label) return;
-    if (event.type === "follow") {
-      label.textContent = "New follower";
+    if (event.type === "follow" || event.type === "join") {
+      label.textContent = event.type === "join" ? "New viewer joined" : "New follower";
       return;
     }
     const activeName = activeItem?.querySelector("strong");

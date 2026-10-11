@@ -4,7 +4,7 @@ GiftWallLive será una página web visual para usar como contenido principal de 
 
 ## Estado
 
-Prototipo local con un recibo animado que mezcla regalos y nuevos seguidores simulados. Incluye un puente experimental opcional que lee un LIVE público y publica eventos normalizados por WebSocket.
+Prototipo local con un recibo animado que mezcla regalos, nuevos seguidores y espectadores que se unen simulados. Incluye un puente experimental opcional que lee un LIVE público y publica eventos normalizados por WebSocket.
 
 ## Ejecución local
 
@@ -129,7 +129,7 @@ La carpeta `server/` contiene la integración experimental con proveedores de LI
 - `providers/` recibe los eventos originales de cada proveedor.
 - `mappers/` convierte esos datos al contrato común de GiftWallLive.
 - `domain/live-event.js` define la forma estable que recibe el frontend.
-- `live-bridge.js` publica estados y eventos normalizados en `/live`.
+- `live-bridge.js` publica estados y eventos normalizados en `/live` (`gift`, `follow` y `join`).
 - `js/live/live-events.js` consume ese contrato y reintenta la conexión automáticamente.
 
 El printer no debe depender del formato particular de PirateTok. Un proveedor futuro, como TikFinity, tendrá su propio provider y mapper, pero emitirá el mismo contrato.
@@ -152,10 +152,10 @@ sequenceDiagram
     P-->>S: connected(roomId)
     S-->>W: status: connected
     W-->>A: estado de conexión
-    P-->>S: gift/follow del LIVE
+    P-->>S: gift/follow/join del LIVE
     S->>M: evento original + sequence + roomId
     M-->>S: evento normalizado v1
-    S-->>W: JSON gift/follow
+    S-->>W: JSON gift/follow/join
     W-->>A: mensaje WebSocket
     A->>A: adapta persona, puntos y tier
     A->>F: imprime recibo y actualiza Top 3

@@ -90,8 +90,10 @@ provider.on("liveEvent", ({ type, data }) => {
     console.log(
       `[gift] @${event.user.username} · ${event.gift.name} ×${event.gift.quantity} · ${event.gift.totalCoins} monedas`,
     );
-  } else {
+  } else if (event.type === "follow") {
     console.log(`[follow] @${event.user.username}`);
+  } else {
+    console.log(`[join] @${event.user.username}`);
   }
 });
 

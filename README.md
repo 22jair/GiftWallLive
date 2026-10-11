@@ -87,7 +87,7 @@ GiftWallLive/
 
 ### Aplicación principal
 
-`index.html` es únicamente el selector. Cada página en `designs/` carga el mismo escenario de `js/printer-shell.js` y el motor común de `js/`. Los estilos existentes de `css/` conservan Default; Halloween añade su renderer y estilos sin copiar datos, rangos, ranking, WebSocket ni animación de avance.
+`index.html` es únicamente el selector. Cada página en `designs/` carga el mismo escenario de `js/printer-shell.js` y el motor común de `js/`. Los estilos existentes de `css/` conservan Default; Halloween añade su renderer y estilos sin copiar datos, rangos, ranking, WebSocket ni animación de avance. Los dos diseños tienen un `preview.html` que reutiliza el catálogo común; solo cambia el arte y el renderer.
 
 Halloween incluye diez variantes (seguidor y nueve tiers), monedas redondas, podio de retratos arqueados y una prensa de hierro violeta y cobre. Las cards progresan desde un registro de vela hasta seis escenas cinematográficas ilustradas de Epic a Cosmic. Reutilizan los mismos avatares, regalos, rangos y datos; Default no cambia.
 

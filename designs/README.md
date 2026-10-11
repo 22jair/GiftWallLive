@@ -4,8 +4,8 @@ Cada carpeta contiene una entrada independiente que se abre directamente o se us
 
 | Diseño | Entrada | Vista simulada |
 | --- | --- | --- |
-| Default | `default/index.html` | `default/index.html?source=dummy` |
-| Halloween | `halloween/index.html` | `halloween/index.html?source=dummy` |
+| Default | `default/index.html` | `default/preview.html` / `default/index.html?source=dummy` |
+| Halloween | `halloween/index.html` | `halloween/preview.html` / `halloween/index.html?source=dummy` |
 
 ## Qué se comparte
 
@@ -17,6 +17,7 @@ Cada carpeta contiene una entrada independiente que se abre directamente o se us
 - `../js/feed.js`: inserción, animación de avance y recorte del recibo.
 - `../js/live-events.js` y `../js/app.js`: conexión y ejecución.
 - `../css/`: escala proporcional, layout y apariencia original. Halloween extiende estos estilos; Default no carga ningún recurso de Halloween.
+- `../css/collection-preview.css` y `../js/collection-preview.js`: catálogo compartido de los dos diseños. Cada preview solo cambia su tema, título y renderer.
 
 ## Qué puede cambiar un diseño
 
@@ -38,7 +39,7 @@ Halloween combina fondos originales WebP en `assets/images/halloween/` con capas
 
 ## Colección Halloween
 
-El [catálogo interactivo](halloween/preview.html) permite comparar y repetir entradas sin arrancar la conexión LIVE. Reutiliza `js/data.js` y `js/gift-tiers.js`; no agrega eventos al printer.
+Los catálogos [Default](default/preview.html) y [Halloween](halloween/preview.html) permiten comparar y repetir entradas sin arrancar la conexión LIVE. Comparten `js/data.js`, `js/gift-tiers.js`, `css/collection-preview.css` y `js/collection-preview.js`; cada diseño solo aporta su renderer/tema.
 
 | Nivel | Escena | Acción y material |
 | --- | --- | --- |

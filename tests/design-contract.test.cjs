@@ -54,6 +54,19 @@ test("entrypoints reuse the common engine and local resource paths exist", () =>
     }
     if (theme === "default") assert.ok(!html.includes("halloween"));
   }
+  for (const theme of ["default", "halloween"]) {
+    const file = path.join(root, "designs", theme, "preview.html");
+    const html = fs.readFileSync(file, "utf8");
+    assert.ok(html.includes("../../css/collection-preview.css"));
+    assert.ok(html.includes("../../js/collection-preview.js"));
+    for (const [, resource] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
+      if (resource.startsWith("http") || resource.includes("?")) continue;
+      assert.ok(fs.existsSync(path.resolve(path.dirname(file), resource)), resource);
+    }
+  }
+  const prototype = fs.readFileSync(path.join(root, "prototypes/printer/printer-components.html"), "utf8");
+  assert.ok(prototype.includes("designs/default/preview.html"));
+  assert.ok(prototype.includes("designs/halloween/preview.html"));
 });
 
 test("Halloween scenes are local, bounded assets with distinct effects", () => {

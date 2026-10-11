@@ -25,6 +25,16 @@ document.body.insertAdjacentHTML("afterbegin", `    <main class="live-stage" ari
             <span class="top-three__guide-line"><strong>1–9 coins</strong><em>Banner</em></span>
             <span class="top-three__guide-line"><strong>10+ coins</strong><em>Full card</em></span>
           </p>
+          <div class="gift-mascot" aria-label="Friendly printer mascot">
+            <p class="gift-mascot__bubble"><span id="gift-mascot-greeting" aria-live="polite">Hello!</span></p>
+            <div class="gift-mascot__printer">
+              <i class="gift-mascot__ear gift-mascot__ear--left"></i><i class="gift-mascot__ear gift-mascot__ear--right"></i>
+              <div class="gift-mascot__face"><i></i><i></i><b></b></div>
+              <span class="gift-mascot__slot"></span>
+              <i class="gift-mascot__arm gift-mascot__arm--left"></i><i class="gift-mascot__arm gift-mascot__arm--right"></i>
+              <i class="gift-mascot__foot gift-mascot__foot--left"></i><i class="gift-mascot__foot gift-mascot__foot--right"></i>
+            </div>
+          </div>
         </aside>
       </div>
     </main>`);

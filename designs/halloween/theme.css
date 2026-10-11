@@ -16,7 +16,7 @@
 .leader__place { left: .5rem; top: .5rem; font-family: Georgia,serif; }
 .leader__emblem { right: .45rem; top: .5rem; }
 .leader__avatar { border-radius: 45% 45% 50% 50%; box-shadow: 0 0 0 .14rem #140e20,0 0 0 .2rem var(--rank-deep),0 .2rem .8rem var(--rank-glow); }
-.leader__total > span { border: .07rem solid currentColor; border-radius: 50%; width: .5rem; height: .5rem; font-size: 0; background: radial-gradient(circle,#fff5,transparent); }
+.leader__total > span { width: auto; height: auto; border: 0; border-radius: 0; font-size: .56rem; background: none; }
 .leader__gift { color: #d6c3d9; }
 .printer::before { border-color: #6d4942; background: linear-gradient(90deg,#140e1d,#9e6745 2%,#342234 7% 93%,#9e6745 98%,#140e1d); }
 .printer__slot { border-color: #a37554; border-radius: 1.2rem 1.2rem .2rem .2rem; background: linear-gradient(90deg,#2b1d30,#674152 4%,#372438 12% 88%,#674152 96%,#2b1d30); }

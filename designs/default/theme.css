@@ -69,3 +69,198 @@
 @media (prefers-reduced-motion: reduce) {
   .live-stage::before, .live-body::before { animation: none; }
 }
+
+/* Premium pass: the Default collection gets a luminous studio finish without
+   changing the receipt/card geometry or the live data contract. */
+:root {
+  --default-ice: #b8fbff;
+  --default-aqua: #5cf5ff;
+  --default-rose: #ff67d0;
+  --default-violet: #a98aff;
+  --default-glass: rgba(10, 20, 42, .72);
+}
+
+.live-stage {
+  background:
+    radial-gradient(ellipse at 50% -4%, rgba(136, 235, 255, .26), transparent 30%),
+    radial-gradient(ellipse at 4% 36%, rgba(255, 103, 208, .18), transparent 39%),
+    radial-gradient(ellipse at 98% 56%, rgba(84, 127, 255, .2), transparent 42%),
+    radial-gradient(ellipse at 44% 104%, rgba(169, 138, 255, .14), transparent 45%),
+    linear-gradient(155deg, #050b1e 0%, #111546 46%, #07091d 100%);
+  box-shadow:
+    inset 0 0 0 .0625rem rgba(184, 251, 255, .62),
+    inset 0 0 2.8rem rgba(64, 93, 255, .3),
+    inset 0 -5rem 6rem rgba(255, 52, 190, .08),
+    0 0 2.4rem rgba(56, 94, 255, .28);
+}
+
+.live-stage::before {
+  opacity: .95;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(184, 251, 255, .85) 0 .055rem, transparent .14rem),
+    radial-gradient(circle at 86% 20%, rgba(255, 103, 208, .8) 0 .065rem, transparent .15rem),
+    radial-gradient(circle at 78% 76%, rgba(169, 138, 255, .9) 0 .07rem, transparent .16rem),
+    radial-gradient(circle at 28% 88%, rgba(92, 245, 255, .7) 0 .05rem, transparent .13rem),
+    repeating-linear-gradient(115deg, transparent 0 4.9rem, rgba(184, 251, 255, .075) 4.95rem 5rem),
+    linear-gradient(128deg, transparent 0 38%, rgba(92, 245, 255, .12) 47%, transparent 56%),
+    linear-gradient(32deg, transparent 0 44%, rgba(255, 103, 208, .1) 50%, transparent 57%);
+  background-size: 7rem 10rem, 12rem 9rem, 14rem 14rem, 10rem 13rem, auto, 180% 180%, 180% 180%;
+  mix-blend-mode: screen;
+  animation: default-neon-drift 16s ease-in-out infinite alternate;
+}
+
+.live-stage::after {
+  border-color: rgba(184, 251, 255, .45);
+  box-shadow:
+    inset 0 0 2.2rem rgba(27, 35, 104, .78),
+    inset 0 0 0 .15rem rgba(255, 103, 208, .1),
+    0 0 1.75rem rgba(92, 245, 255, .16);
+}
+
+.live-body::before {
+  inset: 4% 3% 2%;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(92, 245, 255, .2), transparent 40%),
+    radial-gradient(ellipse at 52% 74%, rgba(255, 103, 208, .16), transparent 45%),
+    radial-gradient(ellipse at 50% 100%, rgba(169, 138, 255, .12), transparent 40%);
+  filter: blur(1.25rem);
+  animation: default-neon-pulse 5.5s ease-in-out infinite;
+}
+
+.live-body::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: .2rem .25rem 0;
+  border: .0625rem solid rgba(184, 251, 255, .1);
+  border-radius: .6rem .6rem .2rem .2rem;
+  box-shadow: inset 0 0 1.4rem rgba(92, 245, 255, .08), 0 0 1.2rem rgba(255, 103, 208, .05);
+  pointer-events: none;
+}
+
+.live-body > * { position: relative; z-index: 1; }
+
+.gift-showcase {
+  isolation: isolate;
+  border-right: .0625rem solid rgba(184, 251, 255, .12);
+  filter: drop-shadow(0 0 .55rem rgba(92, 245, 255, .1));
+}
+
+.gift-showcase::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: .12rem 0 2.35rem;
+  border-radius: .45rem;
+  background: linear-gradient(180deg, rgba(33, 63, 108, .38), rgba(4, 10, 27, .18));
+  box-shadow: inset 0 0 1.25rem rgba(92, 245, 255, .08), inset -.1rem 0 rgba(255, 103, 208, .08);
+}
+
+.gift-tier {
+  border-color: rgba(184, 251, 255, .16);
+  border-radius: .38rem .38rem .16rem .16rem;
+  background: linear-gradient(135deg, rgba(35, 65, 100, .48), rgba(6, 14, 31, .42));
+  box-shadow: inset 0 .0625rem rgba(255, 255, 255, .06), 0 .18rem .4rem rgba(0, 0, 0, .18);
+}
+
+.gift-tier::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(115deg, transparent 20%, rgba(184, 251, 255, .13) 45%, transparent 60%);
+  background-size: 220% 100%;
+  opacity: .32;
+  pointer-events: none;
+  animation: default-tier-glint 7s ease-in-out infinite;
+}
+
+.gift-tier.is-active {
+  border-color: color-mix(in srgb, var(--tier-accent) 80%, white 12%);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--tier-accent) 24%, #142b46), rgba(7, 16, 34, .7));
+  box-shadow: inset .15rem 0 var(--tier-accent), inset 0 0 1rem color-mix(in srgb, var(--tier-accent) 16%, transparent), 0 0 .7rem color-mix(in srgb, var(--tier-accent) 18%, transparent);
+}
+
+.gift-showcase__status {
+  color: #c4e5e7;
+  border-top-color: rgba(184, 251, 255, .16);
+  text-shadow: 0 0 .45rem rgba(92, 245, 255, .2);
+}
+
+.gift-showcase__status > span { background: var(--default-aqua); box-shadow: 0 0 .4rem rgba(92, 245, 255, .8); }
+.gift-showcase__hint { color: #d3c6ee; }
+
+.top-three { filter: drop-shadow(0 0 .7rem rgba(255, 103, 208, .1)); }
+.top-three__list { gap: .42rem; }
+
+.leader {
+  border-color: color-mix(in srgb, var(--rank) 52%, rgba(184, 251, 255, .2));
+  border-radius: .58rem .58rem .22rem .22rem;
+  background: radial-gradient(ellipse at 50% 0, color-mix(in srgb, var(--rank) 20%, transparent), transparent 65%), linear-gradient(145deg, rgba(30, 52, 77, .86), rgba(5, 13, 29, .82));
+  box-shadow: inset 0 .0625rem rgba(255, 255, 255, .15), inset 0 0 1rem rgba(92, 245, 255, .05), 0 .28rem .7rem rgba(0, 0, 0, .4), 0 0 .65rem color-mix(in srgb, var(--rank) 14%, transparent);
+}
+
+.leader::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(112deg, transparent 30%, rgba(255, 255, 255, .13) 47%, transparent 62%);
+  background-size: 230% 100%;
+  opacity: .42;
+  pointer-events: none;
+  animation: default-tier-glint 6.5s ease-in-out infinite;
+}
+
+.leader__avatar { box-shadow: 0 0 0 .125rem #07111c, 0 0 0 .2rem color-mix(in srgb, var(--rank) 46%, transparent), 0 0 .8rem color-mix(in srgb, var(--rank) 38%, transparent), 0 .35rem .95rem #0008; }
+.leader__gift img { filter: drop-shadow(0 .12rem .18rem #0008) drop-shadow(0 0 .3rem color-mix(in srgb, var(--rank) 45%, transparent)); }
+.leader__total strong { text-shadow: 0 0 .5rem color-mix(in srgb, var(--rank) 42%, transparent); }
+
+.printer {
+  filter: drop-shadow(0 .5rem .9rem rgba(0, 0, 0, .38)) drop-shadow(0 0 .6rem rgba(92, 245, 255, .1));
+}
+
+.printer::before {
+  border-color: rgba(184, 251, 255, .2);
+  background: linear-gradient(90deg, #070f1b, #557886 3%, #172d3b 9% 91%, #608893 97%, #07111c);
+  box-shadow: 0 .4rem .7rem #000a, inset 0 .0625rem rgba(255, 255, 255, .2), inset 0 -.18rem .1rem #04080b, 0 0 .8rem rgba(92, 245, 255, .08);
+}
+
+.printer__slot {
+  border-color: #8ccbd1;
+  background: linear-gradient(90deg, #0d1d2a, #668b98 2%, #243f4d 7% 93%, #6b9da6 98%, #0d1d2a);
+  box-shadow: inset 0 .0625rem rgba(232, 255, 255, .62), inset 0 -.2rem .25rem #040a10, 0 .18rem .2rem #0009, 0 0 .7rem rgba(92, 245, 255, .18);
+}
+
+.printer__slot::before { animation: default-printer-scan 4.8s ease-in-out infinite; }
+.printer__lid { background: repeating-linear-gradient(90deg, transparent 0 .9rem, rgba(184, 251, 255, .07) .93rem .97rem), linear-gradient(180deg, #829ca8, #536f7d 14%, #233c4b 82%, #122432); box-shadow: inset 0 .1rem rgba(232, 255, 255, .38), 0 .15rem .35rem rgba(0, 0, 0, .3); }
+.printer__brand { color: #b8fbff; text-shadow: 0 0 .5rem rgba(92, 245, 255, .45); }
+.printer__display { border-color: rgba(184, 251, 255, .56); background: linear-gradient(180deg, #050d16, #112e3a); box-shadow: 0 .0625rem rgba(217, 238, 240, .18), inset 0 .1rem .25rem #000b, 0 0 .75rem rgba(92, 245, 255, .16); }
+.printer__display h2 { color: #d9ffff; text-shadow: 0 0 .42rem rgba(92, 245, 255, .55); }
+.printer__led { background: #c8fff0; box-shadow: 0 0 .28rem #8fe5c8, 0 0 .65rem rgba(92, 245, 255, .7); }
+.printer__output { box-shadow: 0 -.0625rem rgba(165, 183, 198, .45), inset 0 .15rem .25rem #000, 0 .3rem .4rem #000a, 0 0 .65rem rgba(92, 245, 255, .16); }
+.receipt { box-shadow: 0 0 0 .0625rem rgba(184, 251, 255, .22), 0 .5rem 1.5rem #000a, inset 0 0 1.2rem rgba(72, 115, 130, .12); }
+
+/* The high-value cards keep their exact dimensions; these are only finish layers. */
+.gift-epic { filter: drop-shadow(0 0 .22rem rgba(161, 138, 255, .2)); }
+.gift-legendary { filter: drop-shadow(0 0 .28rem rgba(255, 213, 115, .25)); }
+.gift-mythic { filter: drop-shadow(0 0 .28rem rgba(121, 239, 231, .22)); }
+.gift-celestial { filter: drop-shadow(0 0 .32rem rgba(255, 144, 108, .24)); }
+.gift-primordial { filter: drop-shadow(0 0 .36rem rgba(137, 255, 214, .24)); }
+.gift-cosmic { filter: drop-shadow(0 0 .45rem rgba(141, 169, 255, .35)); }
+.gift-epic__name, .gift-legendary__name, .gift-mythic__name, .gift-celestial__name, .gift-primordial__name, .gift-cosmic__name { text-shadow: 0 0 .38rem rgba(255, 255, 255, .14); }
+
+@keyframes default-tier-glint {
+  0%, 42% { background-position: 125% 0; opacity: .08; }
+  62% { background-position: -125% 0; opacity: .55; }
+  100% { background-position: -125% 0; opacity: .08; }
+}
+
+@keyframes default-printer-scan {
+  0%, 62% { opacity: .65; box-shadow: 0 .0625rem rgba(210, 228, 236, .16); }
+  72% { opacity: 1; box-shadow: 0 .0625rem rgba(210, 228, 236, .5), 0 0 .5rem rgba(92, 245, 255, .35); }
+  82%, 100% { opacity: .65; box-shadow: 0 .0625rem rgba(210, 228, 236, .16); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gift-tier::after, .leader::after, .printer__slot::before { animation: none; }
+}

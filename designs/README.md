@@ -43,10 +43,10 @@ Los catálogos [Default](default/preview.html) y [Halloween](halloween/preview.h
 
 | Nivel | Escena | Acción y material |
 | --- | --- | --- |
-| Follow | Aparición breve | Fantasma discreto y nombre |
-| Basic | A little spark | Retrato pequeño y vela |
-| Featured | Sealed in wax | Nota con sello de cera granate |
-| Stellar | The looking glass | Espejo plateado y reflejo |
+| Join | Aparición breve | Fantasma discreto y nombre |
+| Basic | New follower | Retrato gris y bienvenida |
+| Featured | Sealed in wax | Espejo plateado en escala gris |
+| Stellar | The looking glass | Espejo plateado con brillo y reflejo |
 | Epic | Nightfall | Murciélago cavernario y enjambre en primer plano |
 | Legendary | The gilded curse | Calavera coronada, impacto y fragmentos dorados |
 | Mythic | Soul keeper | Espectro de plata, niebla y almas ascendentes |
@@ -54,7 +54,7 @@ Los catálogos [Default](default/preview.html) y [Halloween](halloween/preview.h
 | Primordial | Night rider | Vehículo original de carbono, llegada y haces de luz |
 | Cosmic | Sovereign of the eclipse | Puertas que se abren, catedral, eclipse y fragmentos orbitales |
 
-Las dimensiones son las mismas que Default: Follow 2.5rem, Basic/Featured 5rem, Stellar 10rem y Epic–Cosmic 15rem. El lujo aumenta mediante arte y efectos, nunca agrandando las cards. El motor sigue imprimiendo cada evento con sus tiempos originales. No se garantiza un tiempo mínimo exclusivo: una futura cola de celebraciones sería una mejora funcional independiente.
+Las dimensiones son las mismas que Default: Join 1.75rem, Basic 4.25rem, Featured 9rem, Stellar 9rem y Epic–Cosmic 15rem. El lujo aumenta mediante arte y efectos, nunca agrandando las cards. El motor sigue imprimiendo cada evento con sus tiempos originales. No se garantiza un tiempo mínimo exclusivo: una futura cola de celebraciones sería una mejora funcional independiente.
 
 Las entradas de escena comienzan después de los 700 ms de impresión. El listener compartido de `feed.js` solo finaliza al recibir `print-row` del artículo; un `animationend` de las capas decorativas no debe recortar prematuramente el papel. Evita animar el transform del artículo: úsalo únicamente para la impresión y anima hijos para efectos visuales.
 

@@ -27,7 +27,7 @@ window.GWLFeed = (() => {
   }
 
   function updateShowcase(event, animate) {
-    const activeTier = event.type === "gift" ? event.gift.tier : "follow";
+    const activeTier = event.type === "gift" ? event.gift.tier : event.type === "join" ? "follow" : "basic";
     let activeItem = null;
     document.querySelectorAll("[data-tier-card]").forEach((item) => {
       const isActive = item.dataset.tierCard === activeTier;

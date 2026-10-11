@@ -1,10 +1,10 @@
 window.GWLGiftTiers = (() => {
-  const follow = Object.freeze({ id: "follow", label: "New Follow", accent: "#e889b5" });
+  const follow = Object.freeze({ id: "follow", label: "Join", accent: "#e889b5" });
   const tiers = Object.freeze([
-    Object.freeze({ id: "basic", label: "Basic", min: 1, max: 4, accent: "#a7adb7" }),
-    Object.freeze({ id: "featured", label: "Featured", min: 4, max: 9, accent: "#e889b5" }),
-    Object.freeze({ id: "stellar", label: "Stellar", min: 10, max: 45, accent: "#6ebbd1" }),
-    Object.freeze({ id: "epic", label: "Epic", min: 46, max: 100, accent: "#9d70ed" }),
+    Object.freeze({ id: "basic", label: "Basic", min: 0, max: 0, accent: "#a7adb7" }),
+    Object.freeze({ id: "featured", label: "Featured", min: 1, max: 9, accent: "#a7adb7" }),
+    Object.freeze({ id: "stellar", label: "Stellar", min: 10, max: 30, accent: "#6ebbd1" }),
+    Object.freeze({ id: "epic", label: "Epic", min: 31, max: 100, accent: "#9d70ed" }),
     Object.freeze({ id: "legendary", label: "Legendary", min: 101, max: 350, accent: "#dfb95d" }),
     Object.freeze({ id: "mythic", label: "Mythic", min: 351, max: 499, accent: "#79c7c1" }),
     Object.freeze({ id: "celestial", label: "Celestial", min: 500, max: 1500, accent: "#f19d73" }),
@@ -14,7 +14,7 @@ window.GWLGiftTiers = (() => {
 
   function fromPoints(points) {
     const value = Number(points);
-    // Featured intentionally starts at 4; when ranges overlap, prefer the higher tier.
+    // Basic is reserved for followers; gifts begin at Featured and prefer the highest matching tier.
     for (let index = tiers.length - 1; index >= 0; index -= 1) {
       const tier = tiers[index];
       if (value >= tier.min && value <= tier.max) return tier;
@@ -24,12 +24,14 @@ window.GWLGiftTiers = (() => {
 
   function rangeLabel(tier) {
     if (tier.id === "follow") return "No coins";
+    if (tier.id === "basic") return "New follower";
     if (tier.max === Infinity) return `${tier.min.toLocaleString("en-US")}+`;
     return `${tier.min.toLocaleString("en-US")}–${tier.max.toLocaleString("en-US")}`;
   }
 
   function compactRangeLabel(tier) {
     if (tier.id === "follow") return "—";
+    if (tier.id === "basic") return "Follow";
     if (tier.id === "celestial") return "500–1.5K";
     if (tier.id === "primordial") return "1.5K–4.8K";
     if (tier.id === "cosmic") return "4.8K+";

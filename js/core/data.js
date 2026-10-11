@@ -14,7 +14,7 @@ window.GWL_DATA = {
     { type: "follow", personIndex: 0 },
     { type: "join", personIndex: 4 },
     { type: "gift", personIndex: 1, gift: { name: "Rosa", amount: 1, points: 2 } },
-    { type: "gift", personIndex: 7, gift: { name: "Micrófono", amount: 1, points: 4 } },
+    { type: "gift", personIndex: 7, gift: { name: "Micrófono", amount: 1, points: 10 } },
     { type: "gift", personIndex: 6, gift: { name: "Sombrero", amount: 1, points: 35 } },
     { type: "gift", personIndex: 2, gift: { name: "Perfume", amount: 3, points: 20 } },
     { type: "gift", personIndex: 5, gift: { name: "León", amount: 1, points: 220 } },

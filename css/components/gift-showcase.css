@@ -12,10 +12,11 @@
 .gift-tier strong { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .gift-tier small { display: block; color: #9fb2bf; font-size: .48rem; line-height: 1.35; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .gift-tier__coin { display: inline-block; margin-right: .12rem; font-size: .55rem; line-height: 1; vertical-align: -.08rem; }
-.gift-tier[data-tier-card="follow"] .gift-tier__coin { display: none; }
+.gift-tier[data-tier-card="follow"] .gift-tier__coin,
+.gift-tier[data-tier-card="basic"] .gift-tier__coin { display: none; }
 .gift-tier__range-compact { display: none; }
 .gift-tier[data-tier-card="follow"] .gift-tier__number { font-size: 0; }
-.gift-tier[data-tier-card="follow"] .gift-tier__number::before { content: "Follow"; font-size: .56rem; color: #c3d0d9; }
+.gift-tier[data-tier-card="follow"] .gift-tier__number::before { content: "Join"; font-size: .56rem; color: #c3d0d9; }
 .gift-tier.is-active { border-color: color-mix(in srgb, var(--tier-accent) 65%, transparent); background: linear-gradient(135deg, color-mix(in srgb, var(--tier-accent) 22%, #14212b), #0d1822); box-shadow: inset .125rem 0 var(--tier-accent); }
 .gift-tier.is-active small, .gift-tier.is-active .gift-tier__number { color: #f2f7fa; }
 .gift-tier.is-active .gift-tier__gem { box-shadow: 0 0 .35rem #fff8, 0 0 .8rem var(--tier-accent); }

@@ -22,7 +22,8 @@ document.body.insertAdjacentHTML("afterbegin", `    <main class="live-stage" ari
           <div id="podium" class="top-three__list"></div>
           <p class="top-three__guide" aria-label="Gift display guide">
             <span class="top-three__guide-title">Gift guide</span>
-            <span class="top-three__guide-line"><strong>1–9 coins</strong><em>Banner</em></span>
+            <span class="top-three__guide-line"><strong>Join</strong><em>Welcome banner</em></span>
+            <span class="top-three__guide-line"><strong>1–9 coins</strong><em>Featured card</em></span>
             <span class="top-three__guide-line"><strong>10+ coins</strong><em>Full card</em></span>
           </p>
           <div class="gift-mascot" aria-label="Friendly printer mascot">

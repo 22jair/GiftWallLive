@@ -46,8 +46,12 @@ window.GWLPrinterComponents = (() => {
     return `<article class="receipt-item gift-basic${variant}">${avatar(event.person, "gift-basic__avatar")}<div class="gift-basic__content"><strong class="gift-basic__name">${escapeText(event.person.name)}</strong>${message(event.gift, "gift-basic__gift")}</div></article>`;
   }
 
-  function stellar(event) {
-    return `<article class="receipt-item gift-stellar">${avatar(event.person, "gift-stellar__avatar")}<strong class="gift-stellar__name">${escapeText(event.person.name)}</strong>${message(event.gift, "gift-stellar__gift")}</article>`;
+  function followerCard(event) {
+    return `<article class="receipt-item gift-basic gift-basic--gray gift-basic--follower">${avatar(event.person, "gift-basic__avatar")}<div class="gift-basic__content"><strong class="gift-basic__name">${escapeText(event.person.name)}</strong><p class="gift-basic__gift">New follower · Welcome!</p></div></article>`;
+  }
+
+  function stellar(event, featured = false) {
+    return `<article class="receipt-item gift-stellar${featured ? " gift-stellar--featured" : ""}">${avatar(event.person, "gift-stellar__avatar")}<strong class="gift-stellar__name">${escapeText(event.person.name)}</strong>${message(event.gift, "gift-stellar__gift")}</article>`;
   }
 
   function epic(event) {
@@ -74,15 +78,16 @@ window.GWLPrinterComponents = (() => {
     return `<article class="receipt-item gift-cosmic">${cardSparks("cosmic")}<div class="gift-cosmic__portrait"><span class="gift-cosmic__galaxy" aria-hidden="true"></span><span class="gift-cosmic__orbit" aria-hidden="true"></span><span class="gift-cosmic__orbit gift-cosmic__orbit--inner" aria-hidden="true"></span>${avatar(event.person, "gift-cosmic__avatar")}<span class="gift-cosmic__nova" aria-hidden="true"></span><span class="gift-cosmic__comet" aria-hidden="true"></span><span class="gift-cosmic__star gift-cosmic__star--one" aria-hidden="true"></span><span class="gift-cosmic__star gift-cosmic__star--two" aria-hidden="true"></span><span class="gift-cosmic__star gift-cosmic__star--three" aria-hidden="true"></span><span class="gift-cosmic__seal">Cosmic</span></div><strong class="gift-cosmic__name">${escapeText(event.person.name)}</strong>${message(event.gift, "gift-cosmic__gift")}</article>`;
   }
 
-  const renderers = { basic, featured: (event) => basic(event, true), stellar, epic, legendary, mythic, celestial, primordial, cosmic };
+  const renderers = { basic, featured: (event) => stellar(event, true), stellar, epic, legendary, mythic, celestial, primordial, cosmic };
 
   function render(event) {
     // Optional visual renderer; classification, data and feed stay shared.
     if (window.GWLTheme?.render) {
       return window.GWLTheme.render(event, { escapeText, avatar, message });
     }
-    if (event.type === "follow" || event.type === "join") {
-      const joining = event.type === "join";
+    if (event.type === "follow") return followerCard(event);
+    if (event.type === "join") {
+      const joining = true;
       return `<article class="receipt-item follower${joining ? " follower--join" : ""}"><span class="follower__mark" aria-hidden="true">${joining ? "✦" : "+"}</span><strong class="follower__name">${escapeText(event.person.name)}</strong><span class="follower__message">${joining ? "Welcome, hello!" : "New follower"}</span></article>`;
     }
     return (renderers[event.gift.tier] || renderers.basic)(event);

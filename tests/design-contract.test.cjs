@@ -12,7 +12,7 @@ function load(context, file) {
 function context(theme) {
   const ctx = vm.createContext({ window: {} });
   if (theme) load(ctx, "designs/halloween/components.js");
-  load(ctx, "js/printer-components.js");
+  load(ctx, "js/printer/printer-components.js");
   return ctx.window.GWLPrinterComponents;
 }
 const tiers = ["basic", "featured", "stellar", "epic", "legendary", "mythic", "celestial", "primordial", "cosmic"];
@@ -46,8 +46,16 @@ test("entrypoints reuse the common engine and local resource paths exist", () =>
   for (const theme of ["default", "halloween"]) {
     const file = path.join(root, "designs", theme, "index.html");
     const html = fs.readFileSync(file, "utf8");
-    for (const script of ["data", "gift-tiers", "top-three", "feed", "live-events", "app", "printer-shell"]) {
-      assert.ok(html.includes("../../js/" + script + ".js"));
+    for (const script of [
+      "../../js/core/data.js",
+      "../../js/core/gift-tiers.js",
+      "../../js/ui/top-three.js",
+      "../../js/printer/feed.js",
+      "../../js/live/live-events.js",
+      "../../js/printer/app.js",
+      "../../js/printer/printer-shell.js",
+    ]) {
+      assert.ok(html.includes(script));
     }
     for (const [, resource] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
       assert.ok(fs.existsSync(path.resolve(path.dirname(file), resource)), resource);
@@ -57,8 +65,8 @@ test("entrypoints reuse the common engine and local resource paths exist", () =>
   for (const theme of ["default", "halloween"]) {
     const file = path.join(root, "designs", theme, "preview.html");
     const html = fs.readFileSync(file, "utf8");
-    assert.ok(html.includes("../../css/collection-preview.css"));
-    assert.ok(html.includes("../../js/collection-preview.js"));
+    assert.ok(html.includes("../../css/pages/collection-preview.css"));
+    assert.ok(html.includes("../../js/ui/collection-preview.js"));
     for (const [, resource] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
       if (resource.startsWith("http") || resource.includes("?")) continue;
       assert.ok(fs.existsSync(path.resolve(path.dirname(file), resource)), resource);
@@ -85,8 +93,8 @@ test("Halloween scenes are local, bounded assets with distinct effects", () => {
   assert.ok(css.includes("prefers-reduced-motion: reduce"));
   assert.ok(css.includes("nth-child(n+4)"));
   const html = fs.readFileSync(path.join(root, "designs/halloween/preview.html"), "utf8");
-  assert.ok(html.includes("../../js/data.js"));
-  assert.ok(html.includes("../../js/gift-tiers.js"));
+  assert.ok(html.includes("../../js/core/data.js"));
+  assert.ok(html.includes("../../js/core/gift-tiers.js"));
   assert.ok(!html.includes("live-events.js"));
   assert.ok(!html.includes("app.js"));
 });
@@ -109,7 +117,7 @@ test("decorative animationend events cannot finish the paper reveal", () => {
     document: { querySelectorAll: () => [], querySelector: () => null },
     requestAnimationFrame: () => {},
   });
-  load(ctx, "js/feed.js");
+  load(ctx, "js/printer/feed.js");
   ctx.window.GWLFeed.insert(container, event("cosmic"));
   listener({ target: {}, animationName: "haunt-gate-left" });
   assert.ok(classes.has("receipt-item--printing"));

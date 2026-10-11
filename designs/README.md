@@ -9,15 +9,15 @@ Cada carpeta contiene una entrada independiente que se abre directamente o se us
 
 ## Qué se comparte
 
-- `../js/printer-shell.js`: única estructura de tres columnas y carcasa.
-- `../js/data.js`: mismos datos dummy para todos.
-- `../js/gift-tiers.js`: clasificación y rangos, nunca duplicarlos por diseño.
-- `../js/top-three.js`: ranking y contenido del podio.
-- `../js/printer-components.js`: renderer Default y helpers de avatar, texto y regalo.
-- `../js/feed.js`: inserción, animación de avance y recorte del recibo.
-- `../js/live-events.js` y `../js/app.js`: conexión y ejecución.
-- `../css/`: escala proporcional, layout y apariencia original. Halloween extiende estos estilos; Default no carga ningún recurso de Halloween.
-- `../css/collection-preview.css` y `../js/collection-preview.js`: catálogo compartido de los dos diseños. Cada preview solo cambia su tema, título y renderer.
+- `../js/printer/printer-shell.js`: única estructura de tres columnas y carcasa.
+- `../js/core/data.js`: mismos datos dummy para todos.
+- `../js/core/gift-tiers.js`: clasificación y rangos, nunca duplicarlos por diseño.
+- `../js/ui/top-three.js`: ranking y contenido del podio.
+- `../js/printer/printer-components.js`: renderer Default y helpers de avatar, texto y regalo.
+- `../js/printer/feed.js`: inserción, animación de avance y recorte del recibo.
+- `../js/live/live-events.js` y `../js/printer/app.js`: conexión y ejecución.
+- `../css/core/` y `../css/components/`: escala proporcional, layout y apariencia compartida. Halloween extiende estos estilos; Default no carga ningún recurso de Halloween.
+- `../css/pages/collection-preview.css` y `../js/ui/collection-preview.js`: catálogo compartido de los dos diseños. Cada preview solo cambia su tema, título y renderer.
 
 ## Qué puede cambiar un diseño
 
@@ -39,7 +39,7 @@ Halloween combina fondos originales WebP en `assets/images/halloween/` con capas
 
 ## Colección Halloween
 
-Los catálogos [Default](default/preview.html) y [Halloween](halloween/preview.html) permiten comparar y repetir entradas sin arrancar la conexión LIVE. Comparten `js/data.js`, `js/gift-tiers.js`, `css/collection-preview.css` y `js/collection-preview.js`; cada diseño solo aporta su renderer/tema.
+Los catálogos [Default](default/preview.html) y [Halloween](halloween/preview.html) permiten comparar y repetir entradas sin arrancar la conexión LIVE. Comparten `js/core/data.js`, `js/core/gift-tiers.js`, `css/pages/collection-preview.css` y `js/ui/collection-preview.js`; cada diseño solo aporta su renderer/tema.
 
 | Nivel | Escena | Acción y material |
 | --- | --- | --- |

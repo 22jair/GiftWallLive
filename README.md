@@ -40,22 +40,33 @@ GiftWallLive/
 │       ├── components.js
 │       └── theme.css
 ├── css/
-│   ├── gallery.css
-│   ├── base.css
-│   ├── gift-showcase.css
-│   ├── printer-components.css
-│   ├── printer.css
-│   └── top-three.css
+│   ├── README.md
+│   ├── core/
+│   │   └── base.css
+│   ├── components/
+│   │   ├── gift-showcase.css
+│   │   ├── printer-components.css
+│   │   ├── printer.css
+│   │   └── top-three.css
+│   └── pages/
+│       ├── collection-preview.css
+│       └── gallery.css
 ├── js/
-│   ├── gallery.js
-│   ├── printer-shell.js
-│   ├── app.js
-│   ├── data.js
-│   ├── feed.js
-│   ├── gift-tiers.js
-│   ├── live-events.js
-│   ├── printer-components.js
-│   └── top-three.js
+│   ├── README.md
+│   ├── core/
+│   │   ├── data.js
+│   │   └── gift-tiers.js
+│   ├── live/
+│   │   └── live-events.js
+│   ├── printer/
+│   │   ├── app.js
+│   │   ├── feed.js
+│   │   ├── printer-components.js
+│   │   └── printer-shell.js
+│   └── ui/
+│       ├── collection-preview.js
+│       ├── gallery.js
+│       └── top-three.js
 ├── prototypes/
 │   └── printer/
 │       └── printer-components.html
@@ -87,11 +98,11 @@ GiftWallLive/
 
 ### Aplicación principal
 
-`index.html` es únicamente el selector. Cada página en `designs/` carga el mismo escenario de `js/printer-shell.js` y el motor común de `js/`. Los estilos existentes de `css/` conservan Default; Halloween añade su renderer y estilos sin copiar datos, rangos, ranking, WebSocket ni animación de avance. Los dos diseños tienen un `preview.html` que reutiliza el catálogo común; solo cambia el arte y el renderer.
+`index.html` es únicamente el selector. Cada página en `designs/` carga el mismo escenario de `js/printer/printer-shell.js` y los módulos comunes separados por responsabilidad. Los estilos compartidos viven en `css/core/`, `css/components/` y `css/pages/`; Halloween añade su renderer y estilos sin copiar datos, rangos, ranking, WebSocket ni animación de avance. Los dos diseños tienen un `preview.html` que reutiliza el catálogo común; solo cambia el arte y el renderer.
 
 Halloween incluye diez variantes (seguidor y nueve tiers), monedas redondas, podio de retratos arqueados y una prensa de hierro violeta y cobre. Las cards progresan desde un registro de vela hasta seis escenas cinematográficas ilustradas de Epic a Cosmic. Reutilizan los mismos avatares, regalos, rangos y datos; Default no cambia.
 
-Abre [el catálogo Halloween](designs/halloween/preview.html) para comparar todos los niveles, repetir una entrada o pausar el movimiento, sin WebSocket ni servidor. El catálogo usa los eventos de `js/data.js`, no un segundo juego de datos. Sus archivos son `preview.html`, `preview.css` y `preview.js` dentro del diseño.
+Abre [el catálogo Halloween](designs/halloween/preview.html) para comparar todos los niveles, repetir una entrada o pausar el movimiento, sin WebSocket ni servidor. El catálogo usa los eventos de `js/core/data.js`, no un segundo juego de datos. Su página carga el CSS de catálogo desde `css/pages/collection-preview.css` y el comportamiento desde `js/ui/collection-preview.js`.
 
 Los seis fondos originales se guardan en `assets/images/halloween/`: WebP de 1024 × 1536 (aproximadamente 1.6 MB en total), generados con imagegen y con prompts/procedencia documentados en su README. La profundidad es una composición 2.5D de arte, CSS y SVG, no modelos 3D. Los nombres, avatares y regalos permanecen en HTML a resolución nativa.
 
@@ -119,9 +130,79 @@ La carpeta `server/` contiene la integración experimental con proveedores de LI
 - `mappers/` convierte esos datos al contrato común de GiftWallLive.
 - `domain/live-event.js` define la forma estable que recibe el frontend.
 - `live-bridge.js` publica estados y eventos normalizados en `/live`.
-- `js/live-events.js` consume ese contrato y reintenta la conexión automáticamente.
+- `js/live/live-events.js` consume ese contrato y reintenta la conexión automáticamente.
 
 El printer no debe depender del formato particular de PirateTok. Un proveedor futuro, como TikFinity, tendrá su propio provider y mapper, pero emitirá el mismo contrato.
+
+### Flujo de eventos LIVE
+
+El server mantiene la conexión con el proveedor y entrega al navegador un contrato único. El navegador nunca consume directamente el formato específico de PirateTok u otro proveedor.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant P as Proveedor LIVE
+    participant S as live-bridge.js
+    participant M as Mapper
+    participant W as WebSocket /live
+    participant A as app.js
+    participant F as Feed + Top 3
+
+    S->>P: connect(username)
+    P-->>S: connected(roomId)
+    S-->>W: status: connected
+    W-->>A: estado de conexión
+    P-->>S: gift/follow del LIVE
+    S->>M: evento original + sequence + roomId
+    M-->>S: evento normalizado v1
+    S-->>W: JSON gift/follow
+    W-->>A: mensaje WebSocket
+    A->>A: adapta persona, puntos y tier
+    A->>F: imprime recibo y actualiza Top 3
+    S-->>W: status offline/error/waiting
+    W-->>A: reintento automático
+```
+
+El endpoint `GET /health` solo expone el estado actual para diagnóstico. Los eventos viajan por `ws://127.0.0.1:8081/live`; si el proveedor se desconecta, el bridge publica el estado y programa una reconexión.
+
+### Flujo de diseños y previews
+
+Los diseños comparten motor, datos y estilos base. La carpeta del diseño solo decide el tema y, cuando hace falta, su renderer visual.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant U as Usuario / LIVE Studio
+    participant G as index.html
+    participant D as Design entrypoint
+    participant T as Tema del diseño
+    participant C as Core compartido
+    participant R as Printer runtime
+    participant S as Bridge WebSocket
+    participant V as Preview page
+
+    U->>G: abre la galería
+    G-->>U: enlaces Default y Halloween
+    U->>D: abre printer (?source=dummy o LIVE)
+    D->>T: carga theme.css/components.js opcionales
+    D->>C: carga data, gift-tiers y estilos comunes
+    D->>R: carga shell, renderer, feed y app
+    R->>R: construye la composición vertical
+    alt source=dummy
+        R->>C: solicita eventos simulados
+        C-->>R: follow/gift con tier calculado
+    else source LIVE
+        R->>S: conecta al WebSocket local
+        S-->>R: eventos normalizados
+    end
+    R-->>U: printer, cards y Top 3
+    U->>V: abre catálogo del tema
+    V->>C: reutiliza datos y niveles
+    V->>T: aplica únicamente la apariencia del tema
+    V-->>U: preview reproducible sin server
+```
+
+En la fuente Enlace se recomienda usar directamente `designs/default/index.html` o `designs/halloween/index.html`; la galería raíz es solo un selector visual.
 
 ### Instrucciones para IA
 
@@ -161,8 +242,8 @@ La previsualización de LIVE Studio puede mostrar la fuente reducida. Esa reducc
 - Registro de seguidor a media altura, sin fotografía.
 - Catálogo visual con nueve niveles de regalo: Basic, Featured, Stellar, Epic, Legendary, Mythic, Celestial, Primordial y Cosmic.
 - Loop de impresión con datos simulados que recorre New Follower y los nueve componentes visuales.
-- `js/printer-components.js`: genera el HTML de cada componente reutilizable del printer.
-- `css/printer-components.css`: contiene su presentación, jerarquía visual y animaciones.
+- `js/printer/printer-components.js`: genera el HTML de cada componente reutilizable del printer.
+- `css/components/printer-components.css`: contiene su presentación, jerarquía visual y animaciones.
 - La carcasa del printer y el escenario se dibujan con CSS. La colección progresa desde tinta monocroma hasta acabados iridiscentes, oro, cristal, luz solar, mineral y espacio profundo. Se respeta `prefers-reduced-motion`.
 - `assets/images/printer-frame-obsidian.png`: marco de la versión anterior conservado como recurso; no se muestra en la propuesta visual actual.
 - `assets/images/printer-frame.png`: versión arcade anterior conservada como referencia visual.
@@ -172,7 +253,7 @@ En los datos simulados, `gift.points` representa el valor unitario del regalo. E
 
 ## Rangos de regalos
 
-`js/gift-tiers.js` es la fuente única para clasificar regalos y generar los rangos visibles en `Gift collection`. La clasificación utiliza el aporte total de la acción (`valor unitario × cantidad`), por lo que enviar varias unidades sí puede elevar el componente visual. Un regalo de 1 punto enviado 20 veces utiliza Featured.
+`js/core/gift-tiers.js` es la fuente única para clasificar regalos y generar los rangos visibles en `Gift collection`. La clasificación utiliza el aporte total de la acción (`valor unitario × cantidad`), por lo que enviar varias unidades sí puede elevar el componente visual. Un regalo de 1 punto enviado 20 veces utiliza Featured.
 
 | Evento o tier | Aporte total de la acción |
 | --- | ---: |
@@ -187,4 +268,4 @@ En los datos simulados, `gift.points` representa el valor unitario del regalo. E
 | Primordial | 1,501–4,800 |
 | Cosmic | 4,801 o más |
 
-Los datos dummy de `js/data.js` solo declaran los puntos y la cantidad. La aplicación obtiene automáticamente el `tier` desde esta configuración antes de imprimir cada evento.
+Los datos dummy de `js/core/data.js` solo declaran los puntos y la cantidad. La aplicación obtiene automáticamente el `tier` desde esta configuración antes de imprimir cada evento.

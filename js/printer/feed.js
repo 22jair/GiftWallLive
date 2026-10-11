@@ -1,4 +1,31 @@
 window.GWLFeed = (() => {
+  const PRINT_SOUND_URL = "../../assets/sounds/audio-printer.mp3";
+  let printSound = null;
+  let printSoundBusy = false;
+
+  function playPrintSound() {
+    const AudioConstructor = window.Audio;
+    if (typeof AudioConstructor !== "function" || printSoundBusy) return;
+    if (!printSound) {
+      printSound = new AudioConstructor(PRINT_SOUND_URL);
+      printSound.preload = "auto";
+      printSound.addEventListener("ended", () => {
+        printSoundBusy = false;
+        printSound.currentTime = 0;
+      });
+      printSound.addEventListener("error", () => {
+        printSoundBusy = false;
+      });
+    }
+
+    printSoundBusy = true;
+    const playback = printSound.play();
+    playback?.catch(() => {
+      // Browsers can block audio until the page receives a user gesture.
+      printSoundBusy = false;
+    });
+  }
+
   function updateShowcase(event, animate) {
     const activeTier = event.type === "gift" ? event.gift.tier : "follow";
     let activeItem = null;
@@ -40,6 +67,7 @@ window.GWLFeed = (() => {
     const fresh = container.firstElementChild;
     if (!animate) return;
 
+    playPrintSound();
     fresh.classList.add("receipt-item--printing");
 
     // Theme effects also dispatch animationend; only the paper reveal ends printing.

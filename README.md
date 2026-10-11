@@ -244,6 +244,7 @@ La previsualización de LIVE Studio puede mostrar la fuente reducida. Esa reducc
 - Loop de impresión con datos simulados que recorre New Follower y los nueve componentes visuales.
 - `js/printer/printer-components.js`: genera el HTML de cada componente reutilizable del printer.
 - `css/components/printer-components.css`: contiene su presentación, jerarquía visual y animaciones.
+- `assets/sounds/audio-printer.mp3`: sonido compartido de impresión. Se reproduce una vez por tanda mientras el audio anterior termina, sin superponer sonidos cuando llegan varios eventos juntos.
 - La carcasa del printer y el escenario se dibujan con CSS. La colección progresa desde tinta monocroma hasta acabados iridiscentes, oro, cristal, luz solar, mineral y espacio profundo. Se respeta `prefers-reduced-motion`.
 - `assets/images/printer-frame-obsidian.png`: marco de la versión anterior conservado como recurso; no se muestra en la propuesta visual actual.
 - `assets/images/printer-frame.png`: versión arcade anterior conservada como referencia visual.

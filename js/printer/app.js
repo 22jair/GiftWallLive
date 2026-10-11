@@ -47,11 +47,16 @@ function clearActivity() {
 
 function fillWithDummyEvents() {
   let initialCount = 0;
+  const initialEvents = [];
   while (feed.scrollHeight < feed.parentElement.clientHeight && initialCount < 20) {
     const event = nextDummyEvent(false);
+    initialEvents.push(event);
+    initialCount += 1;
+  }
+  // Insert from oldest to newest so the first dummy event (Join welcome) stays visible on top.
+  for (const event of initialEvents.reverse()) {
     rememberGift(event);
     window.GWLFeed.insert(feed, event, false);
-    initialCount += 1;
   }
   window.GWLTopThree.render(podium, topGiftEvents);
 }

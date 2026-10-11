@@ -11,8 +11,8 @@ window.GWL_DATA = {
   ],
   // One sample event per tier so the dummy loop previews every visual level once.
   events: [
-    { type: "follow", personIndex: 0 },
     { type: "join", personIndex: 4 },
+    { type: "follow", personIndex: 0 },
     { type: "gift", personIndex: 1, gift: { name: "Rosa", amount: 1, points: 2 } },
     { type: "gift", personIndex: 7, gift: { name: "Micrófono", amount: 1, points: 10 } },
     { type: "gift", personIndex: 6, gift: { name: "Sombrero", amount: 1, points: 35 } },

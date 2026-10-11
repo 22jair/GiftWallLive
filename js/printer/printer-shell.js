@@ -9,7 +9,7 @@ document.body.insertAdjacentHTML("afterbegin", `    <main class="live-stage" ari
         <div class="printer-bay">
           <section class="printer" aria-labelledby="receipt-title">
             <header class="printer__slot">
-              <div class="printer__lid" aria-hidden="true"><span class="printer__brand">GIFTWALL</span><span class="printer__vents"></span></div>
+              <div class="printer__lid" aria-hidden="true"><span class="printer__vents"></span></div>
               <div class="printer__display"><span class="printer__led" aria-hidden="true"></span><h2 id="receipt-title">Now Printing</h2></div>
               <span class="printer__feed-control" aria-hidden="true">▴</span>
             </header>

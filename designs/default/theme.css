@@ -1,3 +1,45 @@
+/* Sculpted pearl-alloy printer. The paper origin and card geometry stay shared. */
+.live-stage .printer__slot {
+  border-radius: 1.2rem 1.2rem .45rem .45rem;
+  border-color: #d4efff;
+  background: linear-gradient(100deg,#263054,#bac5e1 3%,#42486b 7%,#171e38 15% 85%,#657292 94%,#e1faff 98%,#303752);
+  box-shadow: inset 0 .12rem #fff9,inset 0 -.16rem #060c20,0 .15rem .5rem #000b;
+}
+.live-stage .printer__lid {
+  height: 1.7rem;
+  border-radius: 1.15rem 1.15rem 40% 40%;
+  background: linear-gradient(115deg,transparent 30%,#fff8 45%,transparent 60%),linear-gradient(180deg,#f2edff,#a5b8d3 18%,#677699 58%,#2e385d 92%,#10162d);
+  box-shadow: inset 0 .12rem #fff9,0 .09rem #c5edff88,0 .22rem .45rem #040920aa;
+}
+.live-stage .printer__lid::before {
+  content: ""; position: absolute; left: 14%; right: 14%; bottom: .2rem; height: .14rem;
+  border-radius: 50%; background: linear-gradient(90deg,transparent,#80faff,#fff,#eaa3ff,transparent);
+  box-shadow: 0 .1rem .5rem #77eaff77;
+}
+.live-stage .printer__vents { margin-left: auto; opacity: .65; height: .3rem; background: repeating-linear-gradient(90deg,#18233d 0 .1rem,#effaff44 .1rem .14rem,transparent .14rem .3rem); }
+.live-stage .printer__slot::before {
+  top: 1.8rem; left: .42rem; right: .42rem; height: 1.23rem; border-radius: .28rem;
+  background: linear-gradient(90deg,#141a32,#303b56 50%,#141a32);
+  box-shadow: inset 0 .08rem .16rem #0009,0 .05rem #b9d5ff33; animation: none;
+}
+.live-stage .printer__slot::after { top: 2rem; bottom: auto; left: .7rem; width: .38rem; height: .68rem; background: repeating-linear-gradient(0deg,#89ffff 0 .08rem,transparent .08rem .18rem); box-shadow: -.12rem 0 .5rem #73ffff66; }
+.live-stage .printer__display {
+  border-radius: .25rem; border-color: #778dbb;
+  background: radial-gradient(ellipse at 50% 0,#385267,#071220 80%);
+  box-shadow: inset 0 .13rem .25rem #000c,0 .06rem #e0faff77,0 0 .45rem #8bafff33;
+}
+.live-stage .printer__display h2 { color: #f0ffff; text-shadow: 0 0 .35rem #67edff; }
+.live-stage .printer__feed-control { background: radial-gradient(circle at 35% 25%,#fff,#b0c5df 25%,#46597b 60%,#1b2945); border-color: #ddf3ff; color: #0d2645; box-shadow: 0 .1rem .2rem #000b,inset 0 .06rem #fff; }
+.live-stage .printer__output {
+  border-radius: .4rem .4rem .17rem .17rem; border-color: #c2dafa;
+  background: linear-gradient(180deg,#d5e6f9,#788bac 10%,#030914 24% 72%,#435f7c 82%,#d1fbff 91%,#152c48);
+  box-shadow: 0 -.08rem #080b20,inset 0 .08rem #fff7,0 .3rem .45rem #0009,0 .08rem .45rem #75f5ff66;
+}
+.live-stage .printer__output::before { background: repeating-linear-gradient(90deg,transparent 0 .13rem,#ffffff0b .13rem .16rem),linear-gradient(#040b16,#3c5163 38%,#0c1c2a 55%,#020710); }
+.live-stage .printer__output::after { background: linear-gradient(#f4ffff,#7eacc4 35%,#bdfff4 55%,#648db2); }
+.live-stage .printer::before { border-color: #748aa6; background: linear-gradient(90deg,#15233c,#d0e1fc 2%,#465673 5%,#0b1428 12% 88%,#566887 95%,#e2edff 98%,#142039); }
+.live-stage .printer::after { border-inline-color: #a0eaff66; background: linear-gradient(90deg,#59deff20,transparent 8% 92%,#ab83ff25); }
+
 /* Default neon atmosphere: the shared cards remain untouched. */
 :root {
   --neon-cyan: #5cf5ff;

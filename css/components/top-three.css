@@ -1,5 +1,5 @@
 /* Vertical podium beside the printer; gold, platinum and copper stay distinct. */
-.top-three { min-width: 0; align-self: start; color: #e9eef5; line-height: 1.2; }
+.top-three { position: relative; min-width: 0; align-self: start; color: #e9eef5; line-height: 1.2; }
 .top-three__list { display: grid; grid-template-columns: minmax(0,1fr); gap: .5rem; }
 .leader { height: 9.5rem; }
 .leader { --rank: #e8c66d; --rank-deep: #71501d; --rank-glow: #e8c66d2e; position: relative; min-width: 0; display: grid; justify-items: center; align-content: start; gap: .4rem; margin: 0; padding: 1.3rem .3rem .6rem; overflow: hidden; border: .0625rem solid color-mix(in srgb, var(--rank) 36%, transparent); border-radius: .45rem .45rem .2rem .2rem; background: radial-gradient(ellipse at 0 0,var(--rank-glow),transparent 75%),linear-gradient(130deg,#24323c,#111c26 65%); box-shadow: inset 0 .0625rem #fff2,0 .25rem .625rem #0003; text-align: center; }
@@ -20,3 +20,10 @@
 .leader--empty .leader__avatar { filter: grayscale(1); opacity: .52; }
 .leader--empty .leader__name, .leader--empty .leader__gift { color: #7f8995; }
 .leader--empty .leader__emblem { opacity: .42; }
+.top-three__guide { position: relative; margin: .72rem .05rem 0; padding: .58rem .35rem .62rem; overflow: hidden; border: .0625rem solid rgba(184, 251, 255, .16); border-radius: .42rem; color: #c4d6df; background: linear-gradient(145deg, rgba(31, 53, 76, .68), rgba(5, 13, 28, .64)); box-shadow: inset 0 .0625rem rgba(255,255,255,.09), 0 .2rem .55rem rgba(0,0,0,.24); text-align: center; }
+.top-three__guide::before { content: ""; position: absolute; top: 0; left: 18%; right: 18%; height: .0625rem; background: linear-gradient(90deg, transparent, #91eff2, transparent); box-shadow: 0 0 .4rem #5cf5ff; }
+.top-three__guide-title { display: block; margin-bottom: .38rem; color: #9ceff0; font-size: .38rem; font-weight: 800; letter-spacing: .12em; line-height: 1; text-transform: uppercase; }
+.top-three__guide-line { display: grid; gap: .08rem; justify-items: center; padding: .25rem .1rem; border-top: .0625rem solid rgba(184, 251, 255, .1); }
+.top-three__guide-line + .top-three__guide-line { margin-top: .1rem; }
+.top-three__guide-line strong { color: #f3f7fa; font-size: .53rem; font-weight: 800; line-height: 1.1; }
+.top-three__guide-line em { color: #9db4c2; font-size: .42rem; font-style: normal; line-height: 1.1; }

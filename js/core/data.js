@@ -9,14 +9,13 @@ window.GWL_DATA = {
     { name: "@carlos", score: 290, initials: "C", avatar: "linear-gradient(145deg,#888,#333)" },
     { name: "@josep.r", score: 255, initials: "JR", avatar: "linear-gradient(145deg,#777,#292929)" },
   ],
+  // One sample event per tier so the dummy loop previews every visual level once.
   events: [
     { type: "follow", personIndex: 0 },
-    { type: "gift", personIndex: 1, gift: { name: "Rosa", amount: 2, points: 5 } },
-    { type: "gift", personIndex: 7, gift: { name: "Micrófono", amount: 1, points: 18 } },
+    { type: "gift", personIndex: 1, gift: { name: "Rosa", amount: 1, points: 2 } },
+    { type: "gift", personIndex: 7, gift: { name: "Micrófono", amount: 1, points: 4 } },
     { type: "gift", personIndex: 6, gift: { name: "Sombrero", amount: 1, points: 35 } },
     { type: "gift", personIndex: 2, gift: { name: "Perfume", amount: 3, points: 20 } },
-    { type: "gift", personIndex: 3, gift: { name: "Corazón", amount: 2, points: 40 } },
-    { type: "gift", personIndex: 4, gift: { name: "Castillo", amount: 1, points: 75 } },
     { type: "gift", personIndex: 5, gift: { name: "León", amount: 1, points: 220 } },
     { type: "gift", personIndex: 6, gift: { name: "Universo", amount: 1, points: 420 } },
     { type: "gift", personIndex: 7, gift: { name: "Castillo fantástico", amount: 1, points: 900 } },

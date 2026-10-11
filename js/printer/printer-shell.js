@@ -4,7 +4,7 @@ document.body.insertAdjacentHTML("afterbegin", `    <main class="live-stage" ari
         <aside class="gift-showcase" aria-labelledby="gift-showcase-title">
           <h2 id="gift-showcase-title" class="visually-hidden">Gift collection</h2>
           <ol id="gift-tier-list" class="gift-showcase__list" aria-label="Gift tiers" tabindex="0"></ol>
-          <p class="gift-showcase__status"><span aria-hidden="true"></span><strong id="active-tier-label">Waiting for a gift</strong><small class="gift-showcase__hint">30+ coins → larger cards</small></p>
+          <p class="gift-showcase__status"><span aria-hidden="true"></span><strong id="active-tier-label">Waiting for a gift</strong><small class="gift-showcase__hint">10+ coins → larger cards</small></p>
         </aside>
         <div class="printer-bay">
           <section class="printer" aria-labelledby="receipt-title">
@@ -20,6 +20,11 @@ document.body.insertAdjacentHTML("afterbegin", `    <main class="live-stage" ari
         <aside class="top-three" aria-labelledby="top-title">
           <h1 id="top-title" class="visually-hidden">Top gifts of the LIVE</h1>
           <div id="podium" class="top-three__list"></div>
+          <p class="top-three__guide" aria-label="Gift display guide">
+            <span class="top-three__guide-title">Gift guide</span>
+            <span class="top-three__guide-line"><strong>1–9 coins</strong><em>Banner</em></span>
+            <span class="top-three__guide-line"><strong>10+ coins</strong><em>Full card</em></span>
+          </p>
         </aside>
       </div>
     </main>`);

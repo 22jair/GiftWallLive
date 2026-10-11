@@ -254,17 +254,17 @@ En los datos simulados, `gift.points` representa el valor unitario del regalo. E
 
 ## Rangos de regalos
 
-`js/core/gift-tiers.js` es la fuente única para clasificar regalos y generar los rangos visibles en `Gift collection`. La clasificación utiliza el aporte total de la acción (`valor unitario × cantidad`), por lo que enviar varias unidades sí puede elevar el componente visual. Un regalo de 1 punto enviado 20 veces utiliza Featured.
+`js/core/gift-tiers.js` es la fuente única para clasificar regalos y generar los rangos visibles en `Gift collection`. La clasificación utiliza el aporte total de la acción (`valor unitario × cantidad`), por lo que enviar varias unidades sí puede elevar el componente visual. Un regalo de 1 punto enviado 20 veces utiliza Stellar.
 
-La escala visual grande comienza en **Stellar**, desde 30 monedas. El panel muestra el símbolo de moneda junto a cada rango y la leyenda `30+ coins → larger cards` para que el público entienda la progresión.
+La escala visual grande comienza en **Stellar**, desde 10 monedas. El panel muestra el símbolo de moneda junto a cada rango y la leyenda `10+ coins → larger cards` para que el público entienda la progresión. El valor 4 aparece en Basic y Featured por continuidad visual, pero se clasifica como Featured (el nivel superior).
 
 | Evento o tier | Aporte total de la acción |
 | --- | ---: |
 | New Follow | Sin monedas |
-| Basic | 1–10 |
-| Featured | 11–29 |
-| Stellar | 30–50 |
-| Epic | 51–100 |
+| Basic | 1–4 |
+| Featured | 4–9 |
+| Stellar | 10–45 |
+| Epic | 46–100 |
 | Legendary | 101–350 |
 | Mythic | 351–499 |
 | Celestial | 500–1,500 |

@@ -1,10 +1,10 @@
 window.GWLGiftTiers = (() => {
   const follow = Object.freeze({ id: "follow", label: "New Follow", accent: "#e889b5" });
   const tiers = Object.freeze([
-    Object.freeze({ id: "basic", label: "Basic", min: 1, max: 10, accent: "#a7adb7" }),
-    Object.freeze({ id: "featured", label: "Featured", min: 11, max: 29, accent: "#e889b5" }),
-    Object.freeze({ id: "stellar", label: "Stellar", min: 30, max: 50, accent: "#6ebbd1" }),
-    Object.freeze({ id: "epic", label: "Epic", min: 51, max: 100, accent: "#9d70ed" }),
+    Object.freeze({ id: "basic", label: "Basic", min: 1, max: 4, accent: "#a7adb7" }),
+    Object.freeze({ id: "featured", label: "Featured", min: 4, max: 9, accent: "#e889b5" }),
+    Object.freeze({ id: "stellar", label: "Stellar", min: 10, max: 45, accent: "#6ebbd1" }),
+    Object.freeze({ id: "epic", label: "Epic", min: 46, max: 100, accent: "#9d70ed" }),
     Object.freeze({ id: "legendary", label: "Legendary", min: 101, max: 350, accent: "#dfb95d" }),
     Object.freeze({ id: "mythic", label: "Mythic", min: 351, max: 499, accent: "#79c7c1" }),
     Object.freeze({ id: "celestial", label: "Celestial", min: 500, max: 1500, accent: "#f19d73" }),
@@ -14,7 +14,12 @@ window.GWLGiftTiers = (() => {
 
   function fromPoints(points) {
     const value = Number(points);
-    return tiers.find((tier) => value >= tier.min && value <= tier.max) || tiers[0];
+    // Featured intentionally starts at 4; when ranges overlap, prefer the higher tier.
+    for (let index = tiers.length - 1; index >= 0; index -= 1) {
+      const tier = tiers[index];
+      if (value >= tier.min && value <= tier.max) return tier;
+    }
+    return tiers[0];
   }
 
   function rangeLabel(tier) {

@@ -15,7 +15,7 @@
 .leader__gift span { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .leader__gift img { width: 1.55rem; height: 1.55rem; object-fit: contain; filter: drop-shadow(0 .1rem .16rem #0006); }
 .leader__total { display: flex; align-items: center; justify-content: center; gap: .2rem; width: 100%; margin: 0; color: var(--rank); }
-.leader__total > span { font-size: .42rem; }
+.leader__total > span { display: inline-block; font-size: .56rem; line-height: 1; }
 .leader__total strong { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-size: .78rem; font-weight: 700; font-variant-numeric: tabular-nums; }
 .leader--empty .leader__avatar { filter: grayscale(1); opacity: .52; }
 .leader--empty .leader__name, .leader--empty .leader__gift { color: #7f8995; }

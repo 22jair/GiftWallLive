@@ -21,7 +21,7 @@ window.GWLTopThree = (() => {
         item = document.createElement("article");
         item.className = "leader";
         item.dataset.event = key;
-        item.innerHTML = '<span class="leader__emblem" aria-hidden="true"></span><span class="leader__place"></span><div class="leader__avatar"><img></div><p class="leader__name"></p><p class="leader__gift"><span></span><img data-tiktok-gift-icon></p><p class="leader__total"><span aria-hidden="true">◆</span><strong></strong></p>';
+        item.innerHTML = '<span class="leader__emblem" aria-hidden="true"></span><span class="leader__place"></span><div class="leader__avatar"><img></div><p class="leader__name"></p><p class="leader__gift"><span></span><img data-tiktok-gift-icon></p><p class="leader__total"><span aria-hidden="true">🪙</span><strong></strong></p>';
       }
 
       item.classList.toggle("leader--empty", event.empty === true);

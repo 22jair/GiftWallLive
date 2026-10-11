@@ -4,7 +4,7 @@ document.body.insertAdjacentHTML("afterbegin", `    <main class="live-stage" ari
         <aside class="gift-showcase" aria-labelledby="gift-showcase-title">
           <h2 id="gift-showcase-title" class="visually-hidden">Gift collection</h2>
           <ol id="gift-tier-list" class="gift-showcase__list" aria-label="Gift tiers" tabindex="0"></ol>
-          <p class="gift-showcase__status"><span aria-hidden="true"></span><strong id="active-tier-label">Waiting for a gift</strong></p>
+          <p class="gift-showcase__status"><span aria-hidden="true"></span><strong id="active-tier-label">Waiting for a gift</strong><small class="gift-showcase__hint">30+ coins → larger cards</small></p>
         </aside>
         <div class="printer-bay">
           <section class="printer" aria-labelledby="receipt-title">

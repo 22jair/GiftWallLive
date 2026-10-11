@@ -256,6 +256,8 @@ En los datos simulados, `gift.points` representa el valor unitario del regalo. E
 
 `js/core/gift-tiers.js` es la fuente única para clasificar regalos y generar los rangos visibles en `Gift collection`. La clasificación utiliza el aporte total de la acción (`valor unitario × cantidad`), por lo que enviar varias unidades sí puede elevar el componente visual. Un regalo de 1 punto enviado 20 veces utiliza Featured.
 
+La escala visual grande comienza en **Stellar**, desde 30 monedas. El panel muestra el símbolo de moneda junto a cada rango y la leyenda `30+ coins → larger cards` para que el público entienda la progresión.
+
 | Evento o tier | Aporte total de la acción |
 | --- | ---: |
 | New Follow | Sin monedas |

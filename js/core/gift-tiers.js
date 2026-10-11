@@ -38,7 +38,7 @@ window.GWLGiftTiers = (() => {
       item.dataset.tierCard = tier.id;
       item.style.setProperty("--tier-accent", tier.accent);
       item.title = `${tier.label}: ${rangeLabel(tier)}`;
-      item.innerHTML = `<span class="gift-tier__number">${String(index).padStart(2, "0")}</span><span class="gift-tier__gem"></span><span class="gift-tier__copy"><strong>${tier.label}</strong><small><span class="gift-tier__range-full">${rangeLabel(tier)}</span><span class="gift-tier__range-compact">${compactRangeLabel(tier)}</span></small></span>`;
+      item.innerHTML = `<span class="gift-tier__number">${String(index).padStart(2, "0")}</span><span class="gift-tier__gem"></span><span class="gift-tier__copy"><strong>${tier.label}</strong><small><span class="gift-tier__coin" aria-hidden="true">🪙</span><span class="gift-tier__range-full">${rangeLabel(tier)}</span><span class="gift-tier__range-compact">${compactRangeLabel(tier)}</span></small></span>`;
       return item;
     }));
   }

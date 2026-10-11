@@ -11,6 +11,8 @@
 /* The full name remains in the DOM for assistive technology and the activity label. */
 .gift-tier strong { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .gift-tier small { display: block; color: #9fb2bf; font-size: .48rem; line-height: 1.35; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.gift-tier__coin { display: inline-block; margin-right: .12rem; font-size: .55rem; line-height: 1; vertical-align: -.08rem; }
+.gift-tier[data-tier-card="follow"] .gift-tier__coin { display: none; }
 .gift-tier__range-compact { display: none; }
 .gift-tier[data-tier-card="follow"] .gift-tier__number { font-size: 0; }
 .gift-tier[data-tier-card="follow"] .gift-tier__number::before { content: "Follow"; font-size: .56rem; color: #c3d0d9; }
@@ -20,3 +22,4 @@
 .gift-showcase__status { position: absolute; bottom: .6rem; left: .15rem; right: .15rem; margin: 0; padding-top: .5rem; border-top: .0625rem solid #b6c5d025; font-size: .45rem; line-height: 1.4; color: #94a8b6; overflow-wrap: anywhere; }
 .gift-showcase__status > span { display: inline-block; width: .25rem; height: .25rem; margin-right: .2rem; border-radius: 50%; background: #8ad9c2; box-shadow: 0 0 .4rem #8ad9c250; }
 .gift-showcase__status strong { font-weight: 500; }
+.gift-showcase__hint { display: block; margin-top: .18rem; color: #b8c7d0; font-size: .42rem; letter-spacing: .01em; }

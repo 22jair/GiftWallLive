@@ -227,30 +227,37 @@
 @keyframes haunt-flight { 0% { transform: translate(0,3rem) scale(.25); opacity: 0; } 12% { opacity: .9; } 48% { transform: translate(calc(var(--flight) * 2rem),-2rem) scale(1.6) rotate(-12deg); opacity: .85; } 65%,100% { transform: translate(calc(var(--flight) * 8rem),-8rem) scale(2.3) rotate(12deg); opacity: 0; } }
 @keyframes haunt-wing { to { transform: scaleX(.5) rotateY(35deg); } }
 
-/* Fixed Default dimensions: luxury changes the scene, never the tape geometry. */
-.haunt-follow { height: 2.5rem; min-height: 0; padding-block: .25rem; }
-.haunt-follow__ghost { width: 1.1rem; flex-basis: 1.1rem; }
-.haunt-follow strong { font-size: .65rem; }
-.haunt-follow > div > span { margin-top: .08rem; font-size: .5rem; }
-.haunt-card--basic, .haunt-card--featured { height: 5rem; padding-block: .4rem; }
-.haunt-card--stellar { height: 10rem; }
+/* Compact tape trial: preserve the theme while showing more entries. */
+.haunt-follow { height: 1.75rem; min-height: 0; padding: .15rem .5rem; gap: .4rem; }
+.haunt-follow__ghost { width: .9rem; flex-basis: .9rem; }
+.haunt-follow > div { display: flex; align-items: baseline; min-width: 0; gap: .35rem; }
+.haunt-follow strong { overflow: hidden; font-size: .75rem; text-overflow: ellipsis; white-space: nowrap; }
+.haunt-follow > div > span { margin-top: 0; font-size: .56rem; white-space: nowrap; }
+.haunt-card--basic, .haunt-card--featured { height: 4.25rem; padding-block: .3rem; zoom: .92; margin-inline: auto; }
+.haunt-card--stellar { height: 8.5rem; }
+.haunt-card--stellar { zoom: .92; margin-inline: auto; }
 .haunt-card--stellar .haunt-looking-glass { top: 1.3rem; height: 3.8rem; width: 3.2rem; left: calc(50% - 1.6rem); }
 .haunt-card--stellar .haunt-identity { bottom: .35rem; }
 .haunt-card--stellar .haunt-title { display: none; }
 .haunt-card--epic, .haunt-card--legendary, .haunt-card--mythic,
-.haunt-card--celestial, .haunt-card--primordial, .haunt-card--cosmic { height: 15rem; }
+.haunt-card--celestial, .haunt-card--primordial, .haunt-card--cosmic { height: 13.5rem; zoom: .88; margin-inline: auto; }
+.haunt-card--epic .haunt-portrait { transform: scale(.82); transform-origin: center; }
+.haunt-card--featured > .haunt-avatar { transform: rotate(-4deg) scale(.82); transform-origin: center; }
 .haunt-card .haunt-portrait { top: 31%; width: 4rem; height: 4.3rem; left: calc(50% - 2rem); }
 .haunt-card .haunt-identity { bottom: .5rem; }
 .haunt-card .haunt-title { font-size: .85rem; line-height: 1.1; margin-bottom: .25rem; }
-.haunt-card .haunt-name { font-size: .85rem; line-height: 1.15; }
+.haunt-card .haunt-name { font-size: 1rem; line-height: 1.15; }
 .haunt-card .haunt-message { margin-top: .2rem; font-size: .64rem; }
 .haunt-card .haunt-message .gift-message__icon { width: 1.7rem; height: 1.7rem; }
 .haunt-card--cosmic .haunt-title { font-size: .95rem; max-width: none; }
 .haunt-card--cosmic .haunt-portrait { top: 29%; height: 4.5rem; }
-.haunt-card--stellar .haunt-name { font-size: .8rem; }
-.haunt-card .haunt-compact-content .haunt-name { font-size: .7rem; }
+.haunt-card--stellar .haunt-name { font-size: .92rem; }
+.haunt-card .haunt-compact-content .haunt-name { font-size: .82rem; }
 .haunt-card .haunt-compact-content .haunt-message { font-size: .58rem; gap: .2rem; }
 .haunt-card .haunt-compact-content .gift-message__icon { width: 1.2rem; height: 1.2rem; }
+.haunt-card--legendary .haunt-portrait, .haunt-card--mythic .haunt-portrait,
+.haunt-card--celestial .haunt-portrait, .haunt-card--primordial .haunt-portrait,
+.haunt-card--cosmic .haunt-portrait { transform: scale(.82); transform-origin: center; }
 
 /* Bound work on the continuous tape: only the nearest three cards animate. */
 .receipt__feed > .receipt-item:nth-child(n+4) *, .receipt__feed > .receipt-item:nth-child(n+4) *::before, .receipt__feed > .receipt-item:nth-child(n+4) *::after { animation-play-state: paused; }

@@ -332,6 +332,27 @@
   from { max-height: 0; min-height: 0; padding-block: 0; clip-path: inset(0 0 100%); transform: translateY(-1rem) scaleY(.1); }
   to { max-height: var(--item-height, 15rem); clip-path: inset(0); transform: translateY(0) scaleY(1); }
 }
+
+/* Compact tape trial: more visible entries without changing the mobile composition. */
+.follower { height: 1.75rem; }
+.follower__mark { width: .9rem; font-size: .65rem; }
+.follower__name { font-size: .78rem; }
+.follower__message { font-size: .6rem; }
+.gift-basic { height: 4.25rem; }
+.gift-basic__avatar { width: 2.6rem; }
+.gift-basic__name { font-size: .82rem; }
+.gift-highlighted .gift-basic__avatar { transform: scale(.82); transform-origin: center; }
+.gift-stellar { height: 8.5rem; }
+.gift-stellar__avatar { width: 4.2rem; }
+.gift-stellar__name { font-size: .88rem; }
+.gift-basic, .gift-stellar { zoom: .92; margin-inline: auto; }
+.gift-epic, .gift-legendary, .gift-mythic, .gift-celestial, .gift-primordial, .gift-cosmic { height: 13.5rem; zoom: .88; margin-inline: auto; }
+.gift-epic__portrait { transform: scale(.82); transform-origin: center; }
+.gift-epic__name, .gift-legendary__name, .gift-mythic__name,
+.gift-celestial__name, .gift-primordial__name, .gift-cosmic__name { font-size: 1rem; }
+.gift-legendary__portrait, .gift-mythic__portrait, .gift-celestial__portrait,
+.gift-primordial__portrait, .gift-cosmic__portrait { transform: scale(.78); transform-origin: center; }
+
 @media (prefers-reduced-motion: reduce) {
   .gift-epic, .gift-epic *, .gift-legendary, .gift-legendary *, .gift-mythic, .gift-mythic *, .gift-celestial, .gift-celestial *, .gift-primordial, .gift-primordial *, .gift-cosmic, .gift-cosmic * { animation: none !important; }
 }

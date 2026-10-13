@@ -205,7 +205,7 @@ sequenceDiagram
 
 En la fuente Enlace se recomienda usar directamente `designs/printer/index.html` o `designs/halloween/index.html`; la galería raíz es solo un selector visual.
 
-La radio mantiene su propio layout vertical en `designs/radio/`. Su PNG contiene únicamente el cuerpo de la impresora; `designs/radio/js/ticket-components.js` mapea las variantes visuales (`music`, `gift`, `gift-special` y `join`), mientras `tickets.js` solo controla datos, cola y animación. Las impresiones se acumulan hacia abajo sin un límite artificial de tres tarjetas, hasta quedar fuera del lienzo vertical. El demo añade una impresión cada cuatro segundos y expone `window.radioTickets.add(ticket)` para conectar después los eventos reales sin cambiar la composición.
+La radio mantiene su propio layout vertical en `designs/radio/`. Su PNG contiene únicamente el cuerpo de la impresora; `designs/radio/js/ticket-components.js` mapea las variantes visuales (`music`, `gift`, `gift-special` y `join`), mientras `tickets.js` solo controla datos, cola y animación. Los regalos de 1 a 30 monedas usan la tarjeta básica; desde 31 monedas usan la tarjeta especial. Las impresiones se acumulan hacia abajo sin un límite artificial de tres tarjetas, hasta quedar fuera del lienzo vertical. El demo añade una impresión cada cuatro segundos y expone `window.radioTickets.add(ticket)` para conectar después los eventos reales sin cambiar la composición.
 
 La radio solo activa datos simulados con `designs/radio/index.html?source=dummy`. Sin ese parámetro permanece visualmente disponible, pero no inserta cola, tarjetas ni animaciones demo; queda preparada para recibir eventos reales.
 

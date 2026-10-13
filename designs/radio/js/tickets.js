@@ -9,7 +9,7 @@
   const demoTickets = [
     { user: 'LunaDream', song: 'Sueños de Medianoche', artist: 'Neon Luna', avatar: '../../assets/images/radio-mascot-wink.png' },
     { type: 'gift', user: 'Ariel12323x', gift: 'Rosa lunar', coins: 1, avatar: '../../assets/images/radio-mascot-mouth-open.png' },
-    { type: 'gift', giftModel: 'special', user: 'MikaMoon', gift: 'Cofre estelar', coins: 50, avatar: '../../assets/images/radio-mascot-wink.png' },
+    { type: 'gift', user: 'MikaMoon', gift: 'Cofre estelar', coins: 50, avatar: '../../assets/images/radio-mascot-wink.png' },
     { type: 'join', user: 'NovaVibes', avatar: '../../assets/images/radio-mascot-mouth-closed.png' },
     { user: 'Estrella.la', song: 'Levitating', artist: 'Dua Lipa', avatar: '../../assets/images/radio-mascot-mouth-closed.png' },
     { user: 'MikaMoon', song: 'A Sky Full of Stars', artist: 'Coldplay', avatar: '../../assets/images/radio-mascot-wink.png' }

@@ -1,6 +1,7 @@
 // Variantes visuales de las tarjetas que salen del printer.
 (() => {
   const fallbackAvatar = '../../assets/images/radio-mascot-wink.png';
+  const SPECIAL_GIFT_MIN_COINS = 31;
 
   const field = (fragment, selector, value) => {
     fragment.querySelector(selector).textContent = value ?? '';
@@ -38,7 +39,8 @@
 
   const resolveType = (ticket) => {
     if (ticket.type === 'gift') {
-      return ticket.giftModel === 'special' || ticket.variant === 'premium' ? 'gift-special' : 'gift';
+      const coins = Number(ticket.coins ?? 0);
+      return coins >= SPECIAL_GIFT_MIN_COINS ? 'gift-special' : 'gift';
     }
     if (ticket.type === 'join') return 'join';
     return 'music';
@@ -57,5 +59,5 @@
     return fragment;
   };
 
-  window.radioTicketComponents = Object.freeze({ render, resolveType, renderers });
+  window.radioTicketComponents = Object.freeze({ render, resolveType, renderers, SPECIAL_GIFT_MIN_COINS });
 })();

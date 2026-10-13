@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="0; url=../../designs/default/preview.html">
+  <meta http-equiv="refresh" content="0; url=../../designs/printer/preview.html">
   <title>GiftWallLive · Card previews</title>
   <style>
     :root { color-scheme: dark; font: 16px/1.5 "Segoe UI",sans-serif; }
@@ -16,12 +16,12 @@
   <main>
     <h1>GiftWallLive card previews</h1>
     <p>Choose a visual collection. This legacy prototype now points to the maintained previews.</p>
-    <a href="../../designs/default/preview.html">Open Default preview</a>
+    <a href="../../designs/printer/preview.html">Open Printer preview</a>
     <a href="../../designs/halloween/preview.html">Open Halloween preview</a>
   </main>
   <script>
     const target = new URLSearchParams(location.search).get("design");
-    if (target === "default" || target === "halloween") location.replace(`../../designs/${target}/preview.html`);
+    if (target === "printer" || target === "halloween") location.replace(`../../designs/${target}/preview.html`);
   </script>
 </body>
 </html>

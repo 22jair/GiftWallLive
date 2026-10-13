@@ -4,7 +4,7 @@ Cada carpeta contiene una entrada independiente que se abre directamente o se us
 
 | Diseño | Entrada | Vista simulada |
 | --- | --- | --- |
-| Default | `default/index.html` | `default/preview.html` / `default/index.html?source=dummy` |
+| Printer | `printer/index.html` | `printer/preview.html` / `printer/index.html?source=dummy` |
 | Halloween | `halloween/index.html` | `halloween/preview.html` / `halloween/index.html?source=dummy` |
 
 ## Qué se comparte
@@ -39,7 +39,7 @@ Halloween combina fondos originales WebP en `assets/images/halloween/` con capas
 
 ## Colección Halloween
 
-Los catálogos [Default](default/preview.html) y [Halloween](halloween/preview.html) permiten comparar y repetir entradas sin arrancar la conexión LIVE. Comparten `js/core/data.js`, `js/core/gift-tiers.js`, `css/pages/collection-preview.css` y `js/ui/collection-preview.js`; cada diseño solo aporta su renderer/tema.
+Los catálogos [Printer](printer/preview.html) y [Halloween](halloween/preview.html) permiten comparar y repetir entradas sin arrancar la conexión LIVE. Comparten `js/core/data.js`, `js/core/gift-tiers.js`, `css/pages/collection-preview.css` y `js/ui/collection-preview.js`; cada diseño solo aporta su renderer/tema.
 
 | Nivel | Escena | Acción y material |
 | --- | --- | --- |

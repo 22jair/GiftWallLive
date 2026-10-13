@@ -21,7 +21,7 @@ El estado queda disponible en `http://127.0.0.1:8081/health` y los eventos en `w
 
 Cada printer abre el modo LIVE por defecto y permanece vacío hasta recibir actividad real:
 
-- Default: `designs/default/index.html`
+- Printer: `designs/printer/index.html`
 - Halloween: `designs/halloween/index.html`
 
 Añade `?source=dummy` a cualquiera para ejecutar el loop de demostración. El modo LIVE nunca mezcla ni sustituye eventos reales con datos simulados. Los enlaces antiguos a `index.html?source=dummy` o `index.html?source=live` redirigen a Default conservando los parámetros. El enlace raíz sin parámetros ahora muestra la galería; si lo usabas en LIVE Studio, sustitúyelo por la ruta directa de Default.
@@ -33,7 +33,7 @@ GiftWallLive/
 ├── index.html
 ├── designs/
 │   ├── README.md
-│   ├── default/
+│   ├── printer/
 │   │   └── index.html
 │   └── halloween/
 │       ├── index.html
@@ -202,7 +202,7 @@ sequenceDiagram
     V-->>U: preview reproducible sin server
 ```
 
-En la fuente Enlace se recomienda usar directamente `designs/default/index.html` o `designs/halloween/index.html`; la galería raíz es solo un selector visual.
+En la fuente Enlace se recomienda usar directamente `designs/printer/index.html` o `designs/halloween/index.html`; la galería raíz es solo un selector visual.
 
 ### Instrucciones para IA
 

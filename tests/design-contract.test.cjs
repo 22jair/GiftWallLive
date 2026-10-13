@@ -43,7 +43,7 @@ test("Halloween preserves real gift images and avatars", () => {
   assert.ok(html.includes(data.gift.icon));
 });
 test("entrypoints reuse the common engine and local resource paths exist", () => {
-  for (const theme of ["default", "halloween"]) {
+  for (const theme of ["printer", "halloween"]) {
     const file = path.join(root, "designs", theme, "index.html");
     const html = fs.readFileSync(file, "utf8");
     for (const script of [
@@ -60,9 +60,9 @@ test("entrypoints reuse the common engine and local resource paths exist", () =>
     for (const [, resource] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
       assert.ok(fs.existsSync(path.resolve(path.dirname(file), resource)), resource);
     }
-    if (theme === "default") assert.ok(!html.includes("halloween"));
+    if (theme === "printer") assert.ok(!html.includes("halloween"));
   }
-  for (const theme of ["default", "halloween"]) {
+  for (const theme of ["printer", "halloween"]) {
     const file = path.join(root, "designs", theme, "preview.html");
     const html = fs.readFileSync(file, "utf8");
     assert.ok(html.includes("../../css/pages/collection-preview.css"));
@@ -73,7 +73,7 @@ test("entrypoints reuse the common engine and local resource paths exist", () =>
     }
   }
   const prototype = fs.readFileSync(path.join(root, "prototypes/printer/printer-components.html"), "utf8");
-  assert.ok(prototype.includes("designs/default/preview.html"));
+  assert.ok(prototype.includes("designs/printer/preview.html"));
   assert.ok(prototype.includes("designs/halloween/preview.html"));
 });
 

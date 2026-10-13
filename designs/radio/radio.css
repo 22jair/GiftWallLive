@@ -1,0 +1,21 @@
+/* Wireframe y animaciones iniciales de la radio. */
+body { margin: 0; min-height: 100vh; background: #160d24; }
+.radio-frame { width: min(100vw, 56.25dvh); min-height: 100dvh; margin: 0 auto; border: 0; background: #120f2b url('../../assets/images/radio-background.png') center top / cover no-repeat; }
+.radio-zone { padding: 12px; border-bottom: 1px solid #aaa; box-sizing: border-box; }
+.radio-zone:last-child { border-bottom: 0; }
+.radio-now-playing { min-height: 70px; }
+.radio-mascot-zone { min-height: 320px; overflow: visible; text-align: center; }
+.radio-bottom { display: grid; grid-template-columns: 42% 58%; min-height: 650px; }
+.radio-bottom > .radio-zone + .radio-zone { border-left: 1px solid #aaa; }
+.radio-placeholder { min-height: 90px; border: 1px dashed #999; padding: 12px; }
+.radio-stage { min-height: 130px; }
+.radio-left, .radio-right { min-width: 0; }
+.radio-mascot-image { display: block; width: 94%; max-width: none; height: auto; margin: -14px auto 0; filter: drop-shadow(0 0 .7rem #d77cff99); animation: radio-mascot-idle 3.2s ease-in-out infinite; }
+.radio-mascot-image.is-greeting { animation: radio-mascot-greeting 1.2s ease-in-out 2; }
+.radio-mascot-image.is-listening { animation: radio-mascot-listening 1.4s ease-in-out infinite; }
+.radio-mascot-image.is-happy { animation: radio-mascot-happy .8s ease-in-out 3; }
+@keyframes radio-mascot-idle { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-8px) rotate(1deg); } }
+@keyframes radio-mascot-greeting { 0%, 100% { transform: rotate(0) translateY(0); } 25% { transform: rotate(-4deg) translateY(-7px); } 75% { transform: rotate(4deg) translateY(-7px); } }
+@keyframes radio-mascot-listening { 0%, 100% { transform: rotate(-2deg) scale(1); } 50% { transform: rotate(2deg) scale(1.025); } }
+@keyframes radio-mascot-happy { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-14px) scale(1.05); filter: drop-shadow(0 0 1.2rem #ffd76dcc); } }
+@media (prefers-reduced-motion: reduce) { .radio-mascot-image { animation: none; } }

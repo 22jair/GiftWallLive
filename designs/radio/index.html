@@ -31,7 +31,7 @@
         <!-- Zona 2: columna inferior izquierda -->
         <section class="radio-zone radio-left" data-slot="left-column" aria-label="Columna izquierda">
           <div class="now-playing-label" aria-label="Sonando ahora"><span aria-hidden="true">♫</span> Sonando ahora</div>
-          <article class="radio-current-request" data-slot="current-request">
+          <article class="radio-current-request" data-slot="current-request" data-demo-only>
             <img src="../../assets/images/radio-mascot-wink.png" alt="Estrella.la" class="request-avatar">
             <div class="request-copy"><strong>Sueños de Medianoche</strong><small>Neon Luna · pedido por Estrella.la</small><span class="request-progress"><i></i></span></div>
           </article>
@@ -44,16 +44,31 @@
 
         <!-- Zona 3: columna inferior derecha -->
         <section class="radio-zone radio-right" data-slot="right-column" aria-label="Columna derecha">
-          <h2>Printers y cards</h2>
-          <div class="radio-placeholder" data-slot="printer-cards">
-            Printer y cards
-          </div>
+          <section class="radio-printer" data-slot="printer" aria-label="Printer de radio">
+            <img class="radio-printer-image" src="../../assets/images/radio-printer-body-soft.png" alt="Printer mágico listo para imprimir un ticket musical">
+            <div class="printed-stack" data-list="printed-items" aria-label="Tickets impresos" aria-live="polite"></div>
+            <template id="printed-ticket-template">
+              <article class="printed-ticket">
+                <div class="printed-ticket__ornament">✦　☾　✦</div>
+                <small class="printed-ticket__kind"></small>
+                <img class="printed-ticket__avatar" src="" alt="">
+                <strong class="printed-ticket__song"></strong>
+                <small class="printed-ticket__artist"></small>
+                <span class="printed-ticket__wave"></span>
+                <small class="printed-ticket__thanks"></small>
+                <div class="printed-ticket__seal">✦</div>
+              </article>
+            </template>
+          </section>
         </section>
       </div>
     </div>
   </main>
+  <script src="./js/source.js" defer></script>
   <script src="./js/mascot-motion.js" defer></script>
   <script src="./js/mascot-demo.js" defer></script>
   <script src="./js/queue.js" defer></script>
+  <script src="./js/ticket-components.js" defer></script>
+  <script src="./js/tickets.js" defer></script>
 </body>
 </html>

@@ -11,6 +11,63 @@ body { margin: 0; min-height: 100vh; background: #160d24; }
 .radio-placeholder { min-height: 90px; border: 1px dashed #999; padding: 12px; }
 .radio-stage { min-height: 130px; }
 .radio-left, .radio-right { min-width: 0; }
+.radio-right { display: flex; align-items: flex-start; justify-content: center; padding: 24px 5px 0; }
+.radio-printer { position: relative; width: 100%; color: #ffe9ae; }
+.radio-printer-image { display: block; width: 108%; max-width: none; height: auto; margin: 0 -4% 0; opacity: .88; filter: drop-shadow(0 0 .7rem #b57cff55) drop-shadow(0 .35rem .4rem #0009); }
+.radio-printer.is-printing .radio-printer-image { animation: printer-glow .9s ease-out both; }
+.printed-stack { position: absolute; z-index: 3; top: 68%; left: 15%; width: 70%; display: grid; gap: 5px; margin: 0; transform-origin: top center; pointer-events: none; }
+.printed-ticket { position: relative; display: grid; gap: 2px; min-height: 94px; padding: 8px 7px 9px; border: 1px solid #e4d4ab; color: #2e2450; background: linear-gradient(145deg,#fff8e9,#efe0ff); box-shadow: 0 4px 10px #0008; text-align: center; clip-path: polygon(0 0,100% 0,100% 96%,96% 100%,92% 96%,88% 100%,84% 96%,80% 100%,76% 96%,72% 100%,68% 96%,64% 100%,60% 96%,56% 100%,52% 96%,48% 100%,44% 96%,40% 100%,36% 96%,32% 100%,28% 96%,24% 100%,20% 96%,16% 100%,12% 96%,8% 100%,4% 96%,0 100%); }
+.printed-ticket__ornament { color: #7651b5; font-size: .58rem; letter-spacing: .12em; }
+.printed-ticket__kind { color: #8a6a9f; font-size: .42rem; font-weight: 800; letter-spacing: .08em; }
+.printed-ticket__avatar { width: 2.25rem; height: 2.25rem; justify-self: center; object-fit: cover; object-position: 50% 18%; border: 1px solid #f6d77d; border-radius: 50%; box-shadow: 0 0 8px #bc7dff88; }
+.printed-ticket__song { font-size: .62rem; }
+.printed-ticket__artist, .printed-ticket__thanks { font-size: .48rem; }
+.printed-ticket__thanks { display: none; }
+.printed-ticket__wave { color: #8053b2; font-size: .7rem; letter-spacing: .04em; }
+.printed-ticket__seal { position: absolute; right: 6px; bottom: 3px; color: #b980df; font-size: .65rem; }
+.printed-ticket--gift { border-color: #f4c36d; color: #3b214f; background: linear-gradient(145deg,#fff4cf,#f3d9ff 52%,#e4c6ff); box-shadow: 0 4px 10px #0008, 0 0 12px #f7c76766; }
+.printed-ticket--gift .printed-ticket__ornament,
+.printed-ticket--gift .printed-ticket__wave { color: #c17b2d; }
+.printed-ticket--gift .printed-ticket__kind { color: #a55b30; }
+.printed-ticket--gift-special { min-height: 112px; padding: 10px 8px 12px; overflow: hidden; border: 1px solid #ffe8a6; color: #fff5d0; background: radial-gradient(circle at 18% 18%,#ffeaa766 0 2%,transparent 16%), radial-gradient(circle at 82% 78%,#f5b83f66 0 1%,transparent 22%), linear-gradient(135deg,#241340 0%,#523078 38%,#bd713a 62%,#3a1b5d 100%); background-size: auto,auto,220% 220%; box-shadow: 0 4px 10px #0009, 0 0 16px #bf70ffbb, 0 0 28px #f4b63e66, inset 0 0 18px #ffe79d55; animation: gift-card-bg 5s ease-in-out infinite; }
+.printed-ticket--gift-special::before { content: ""; position: absolute; inset: -45% -70%; background: linear-gradient(115deg,transparent 38%,#fff8cf99 48%,transparent 58%); transform: translateX(-60%) rotate(8deg); animation: gift-card-sheen 3.2s ease-in-out infinite; pointer-events: none; }
+.printed-ticket--gift-special::after { content: "✦  ✧  ✦"; position: absolute; top: 5px; right: 7px; color: #fff4af; font-size: .5rem; letter-spacing: .08em; text-shadow: 0 0 6px #ffb938; animation: gift-card-sparkle 1.8s ease-in-out infinite; pointer-events: none; }
+.printed-ticket--gift-special .printed-ticket__ornament,
+.printed-ticket--gift-special .printed-ticket__wave { color: #ffe08a; text-shadow: 0 0 5px #ffd96b, 0 0 10px #d978ff; }
+.printed-ticket--gift-special .printed-ticket__kind { color: #ffe3a0; text-shadow: 0 0 5px #ffb83e; }
+.printed-ticket--gift-special .printed-ticket__avatar { width: 2.65rem; height: 2.65rem; border-width: 2px; box-shadow: 0 0 10px #ffd76d, 0 0 16px #bd70ff; }
+.printed-ticket--gift-special .printed-ticket__song { color: #fff8dd; text-shadow: 0 0 6px #f3b74f99; }
+.printed-ticket--gift-special .printed-ticket__artist { color: #f5dcff; }
+@keyframes gift-card-bg { 0%, 100% { background-position: center, center, 0% 50%; } 50% { background-position: center, center, 100% 50%; } }
+@keyframes gift-card-sheen { 0%, 25% { transform: translateX(-60%) rotate(8deg); } 65%, 100% { transform: translateX(60%) rotate(8deg); } }
+@keyframes gift-card-sparkle { 0%, 100% { opacity: .55; transform: scale(.9); } 50% { opacity: 1; transform: scale(1.18); } }
+.printed-ticket--music { min-height: 56px; padding: 5px 6px 6px; gap: 1px; }
+.printed-ticket--music .printed-ticket__ornament,
+.printed-ticket--music .printed-ticket__wave { display: none; }
+.printed-ticket--music .printed-ticket__kind { font-size: .36rem; }
+.printed-ticket--music .printed-ticket__avatar { width: 1.55rem; height: 1.55rem; }
+.printed-ticket--music .printed-ticket__song { font-size: .53rem; }
+.printed-ticket--music .printed-ticket__artist { font-size: .4rem; }
+.printed-ticket--join { min-height: 24px; padding: 4px 6px; gap: 0; border-color: #8bd9e6; color: #26345b; background: linear-gradient(145deg,#e8fbff,#e8dcff); box-shadow: 0 4px 10px #0008, 0 0 10px #70d9e477; }
+.printed-ticket--join .printed-ticket__ornament,
+.printed-ticket--join .printed-ticket__wave,
+.printed-ticket--join .printed-ticket__avatar,
+.printed-ticket--join .printed-ticket__artist { display: none; }
+.printed-ticket--join .printed-ticket__kind { display: none; }
+.printed-ticket--join .printed-ticket__song { overflow: hidden; font-size: .5rem; text-overflow: ellipsis; white-space: nowrap; }
+.printed-ticket.is-printing { animation: printed-ticket-in .9s cubic-bezier(.2,.8,.25,1) both; }
+@keyframes printed-ticket-in { from { opacity: 0; transform: translateY(-72px) scale(.86) rotate(-1deg); } 65% { opacity: 1; transform: translateY(7px) scale(1.01) rotate(.5deg); } to { opacity: 1; transform: translateY(0) scale(1) rotate(0); } }
+@keyframes printer-glow { 0%, 100% { filter: drop-shadow(0 0 .7rem #b57cff55) drop-shadow(0 .35rem .4rem #0009); } 45% { filter: drop-shadow(0 0 1.05rem #ffd978aa) drop-shadow(0 .35rem .4rem #0009); } }
+.radio-printer__header { display: flex; justify-content: center; gap: 5px; margin-bottom: 7px; padding: 5px 3px; border: 1px solid #ffd676; border-radius: 8px; background: linear-gradient(180deg,#38204c,#170e2c); box-shadow: 0 0 10px #ffbb4a66; font-size: .58rem; font-weight: 900; letter-spacing: .04em; }
+.radio-printer__header span { color: #fff4b5; }
+.radio-printer__machine { position: relative; padding: 9px 7px 0; border: 1px solid #bd8a55; border-radius: 13px 13px 5px 5px; background: linear-gradient(145deg,#4b3a54,#1a1734 48%,#382339); box-shadow: inset 0 0 13px #f7b86633, 0 0 12px #b26c4c55; }
+.radio-printer__display { margin: 0 auto 8px; padding: 4px 2px; border: 1px solid #a7f4db; border-radius: 5px; background: #081b28; color: #aaffdf; box-shadow: 0 0 7px #69f7d788; font-size: .47rem; text-align: center; }
+.radio-printer__slot { height: 7px; margin: 0 -2px; border: 1px solid #c8b4a0; border-radius: 4px; background: linear-gradient(#090a16,#6e6576,#151020); box-shadow: 0 0 8px #8bd8ff66; }
+.radio-ticket { display: grid; gap: 3px; min-height: 150px; margin: 7px auto -2px; padding: 10px 6px; border: 1px solid #f4dca5; color: #332442; background: linear-gradient(135deg,#fff8e5,#ead8ff); box-shadow: 0 4px 9px #0008; text-align: center; transform: rotate(.8deg); }
+.radio-ticket__moon { color: #9d65d0; font-size: 1.5rem; }
+.radio-ticket strong { font-size: .62rem; }
+.radio-ticket small { font-size: .47rem; }
+.radio-ticket__wave { color: #a34ec1; font-size: .75rem; letter-spacing: .03em; }
 .now-playing-label { display: flex; align-items: center; gap: 4px; margin: 0 0 5px; padding: 3px 7px; color: #ffe9a7; font-size: .66rem; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; text-shadow: 0 0 .5rem #ffbd5c99; }
 .now-playing-label span { color: #ff77ed; font-size: 1.05rem; animation: music-pulse 1.4s ease-in-out infinite; }
 .radio-current-request { position: relative; display: grid; grid-template-columns: 2.8rem minmax(0,1fr); align-items: center; gap: 9px; min-height: 4.1rem; margin-bottom: 9px; padding: 10px; border: 1px solid #ffe08a; border-radius: 16px; background: linear-gradient(115deg,#29145ee8,#18245ee8 38%,#47145ee8 72%,#151844ee); background-size: 220% 220%; color: #fff; box-shadow: 0 0 18px #d85dff77, 0 0 32px #4b9dff33, inset 0 0 14px #ff8ee944; overflow: hidden; animation: now-playing-shift 8s ease-in-out infinite; }
@@ -47,4 +104,15 @@ body { margin: 0; min-height: 100vh; background: #160d24; }
 @keyframes radio-mascot-greeting { 0%, 100% { transform: rotate(0) translateY(0); } 25% { transform: rotate(-4deg) translateY(-7px); } 75% { transform: rotate(4deg) translateY(-7px); } }
 @keyframes radio-mascot-listening { 0%, 100% { transform: rotate(-2deg) scale(1); } 50% { transform: rotate(2deg) scale(1.025); } }
 @keyframes radio-mascot-happy { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-14px) scale(1.05); filter: drop-shadow(0 0 1.2rem #ffd76dcc); } }
-@media (prefers-reduced-motion: reduce) { .radio-mascot-image { animation: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .radio-mascot-image,
+  .radio-printer.is-printing .radio-printer-image,
+  .printed-ticket.is-printing,
+  .printed-ticket--gift-special,
+  .printed-ticket--gift-special::before,
+  .printed-ticket--gift-special::after,
+  .radio-current-request,
+  .request-avatar,
+  .request-progress i,
+  .now-playing-label span { animation: none; }
+}

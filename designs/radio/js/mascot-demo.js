@@ -1,5 +1,6 @@
 // Demo local: recorre los estados sin depender de datos reales.
 (() => {
+  if (window.radioSource !== 'dummy') return;
   if (!window.radioMascot) return;
   const states = ['idle', 'greeting', 'listening', 'happy'];
   let index = 0;

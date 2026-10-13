@@ -20,5 +20,5 @@
     return row;
   }));
   window.radioQueue = Object.freeze({ render });
-  render(demoQueue);
+  if (window.radioSource === 'dummy') render(demoQueue);
 })();

@@ -30,14 +30,15 @@
       <div class="radio-bottom">
         <!-- Zona 2: columna inferior izquierda -->
         <section class="radio-zone radio-left" data-slot="left-column" aria-label="Columna izquierda">
-          <h2>Cola Spotify</h2>
+          <div class="now-playing-label" aria-label="Sonando ahora"><span aria-hidden="true">♫</span> Sonando ahora</div>
+          <article class="radio-current-request" data-slot="current-request">
+            <img src="../../assets/images/radio-mascot-wink.png" alt="Estrella.la" class="request-avatar">
+            <div class="request-copy"><strong>Sueños de Medianoche</strong><small>Neon Luna · pedido por Estrella.la</small><span class="request-progress"><i></i></span></div>
+          </article>
           <aside class="radio-queue" data-slot="queue" aria-label="Cola de Spotify">
-            <ol data-list="queue-items">
-              <li>Ahora · Solicitud</li>
-              <li>Siguiente · Solicitud</li>
-              <li>Turno 3</li>
-              <li>Turno 4</li>
-            </ol>
+            <h2 class="queue-title"><span aria-hidden="true">♬</span> Fila de turnos</h2>
+            <ol class="queue-list" data-list="queue-items"></ol>
+            <template id="queue-item-template"><li class="queue-item"><span class="queue-position"></span><img class="queue-avatar" alt=""><span class="queue-copy"><strong></strong><small></small></span></li></template>
           </aside>
         </section>
 
@@ -53,5 +54,6 @@
   </main>
   <script src="./js/mascot-motion.js" defer></script>
   <script src="./js/mascot-demo.js" defer></script>
+  <script src="./js/queue.js" defer></script>
 </body>
 </html>

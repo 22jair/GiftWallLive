@@ -4,6 +4,7 @@
   const template = document.querySelector('#printed-ticket-template');
   const components = window.radioTicketComponents;
   if (!list || !template || !components) return;
+  const MAX_PRINTED_TICKETS = 10;
   const printer = list.closest('.radio-printer');
 
   const demoTickets = [
@@ -17,12 +18,23 @@
 
   const createTicket = (ticket) => components.render(template, ticket);
 
-  const render = (tickets) => list.replaceChildren(...tickets.map(createTicket));
+  const trimPrintedTickets = () => {
+    while (list.children.length > MAX_PRINTED_TICKETS) {
+      list.lastElementChild?.remove();
+    }
+  };
+
+  const render = (tickets) => {
+    const visibleTickets = Array.isArray(tickets) ? tickets.slice(-MAX_PRINTED_TICKETS) : [];
+    list.replaceChildren(...visibleTickets.map(createTicket));
+  };
+
   const addPrintedTicket = (ticket) => {
     const node = createTicket(ticket);
     const element = node.querySelector('.printed-ticket');
     element.classList.add('is-printing');
     list.prepend(node);
+    trimPrintedTickets();
 
     if (printer) {
       printer.classList.add('is-printing');
@@ -30,7 +42,11 @@
     }
   };
 
-  window.radioTickets = Object.freeze({ render, add: addPrintedTicket });
+  window.radioTickets = Object.freeze({
+    render,
+    add: addPrintedTicket,
+    maxItems: MAX_PRINTED_TICKETS
+  });
 
   if (window.radioSource !== 'dummy') return;
 

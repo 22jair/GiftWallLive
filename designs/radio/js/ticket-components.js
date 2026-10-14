@@ -1,7 +1,8 @@
 // Variantes visuales de las tarjetas que salen del printer.
 (() => {
   const fallbackAvatar = '../../assets/images/radio-mascot-wink.png';
-  const SPECIAL_GIFT_MIN_COINS = 31;
+  // Gifts up to 150 coins stay basic; 151+ uses the premium card and unlocks music requests.
+  const SPECIAL_GIFT_MIN_COINS = 151;
 
   const field = (fragment, selector, value) => {
     fragment.querySelector(selector).textContent = value ?? '';

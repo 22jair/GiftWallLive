@@ -104,6 +104,14 @@ body { margin: 0; min-height: 100vh; background: #160d24; }
 .radio-ticket strong { font-size: .62rem; }
 .radio-ticket small { font-size: .47rem; }
 .radio-ticket__wave { color: #a34ec1; font-size: .75rem; letter-spacing: .03em; }
+.music-request-alert { position: relative; display: grid; grid-template-columns: 1.25rem minmax(0, 1fr); align-items: center; gap: 6px; margin: 0 0 6px; padding: 6px 8px; border: 1px solid #7de2efaa; border-radius: 10px 10px 10px 3px; background: linear-gradient(120deg,#142848e8,#39205be8 58%,#5b2b68d9); color: #f5f5ff; box-shadow: 0 4px 10px #08031566, 0 0 12px #69deea44, inset 0 1px #ffffff33; overflow: hidden; }
+.music-request-alert::after { content: ""; position: absolute; right: 8px; bottom: 0; left: 8px; height: 1px; background: linear-gradient(90deg,#7de2ef,#ff8bdd,transparent); opacity: .85; }
+.music-request-alert__icon { display: grid; place-items: center; width: 1.15rem; height: 1.15rem; border: 1px solid #ffe08a; border-radius: 50%; background: #ffcf6e22; color: #ffe69b; font-size: .72rem; font-weight: 950; box-shadow: 0 0 8px #ffd76d88; }
+.music-request-alert__copy { display: grid; min-width: 0; gap: 2px; }
+.music-request-alert__copy strong { color: #fff2bd; font-size: .43rem; line-height: 1.2; overflow-wrap: anywhere; }
+.music-request-alert__copy code { color: #bdf7ff; font-family: inherit; font-size: .41rem; font-weight: 800; overflow-wrap: anywhere; }
+.music-request-alert__copy small { color: #e5d9ff; font-size: .4rem; line-height: 1.15; }
+.music-request-alert__copy b { color: #ffcaee; font-weight: 900; }
 .now-playing-label { position: relative; display: flex; align-items: center; gap: 5px; margin: 0 0 7px; padding: 5px 9px 6px; border: 1px solid #f3d27d88; border-radius: 9px 9px 9px 2px; background: linear-gradient(100deg,#17102ed9,#2c1749c7 58%,#17102ebd); color: #fff0b7; font-size: .66rem; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; text-shadow: 0 0 .5rem #ffbd5c99; box-shadow: 0 4px 10px #10051d66, inset 0 1px #fff3; overflow: hidden; }
 .now-playing-label::after { content: ""; position: absolute; right: 10px; bottom: 0; left: 9px; height: 1px; background: linear-gradient(90deg,#ff78e8, #83e9ff, transparent); opacity: .8; }
 .now-playing-label span { color: #ff77ed; font-size: 1.05rem; animation: music-pulse 1.4s ease-in-out infinite; }

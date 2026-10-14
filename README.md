@@ -149,7 +149,7 @@ La carpeta `server/spotify/` contiene la integración preparada para Spotify sin
 - `integration.js` lee el Client ID, redirect URI, scopes y ventana de solicitud desde variables de entorno.
 - `client.js` e `integration.js` preparan OAuth PKCE y las rutas locales `/spotify/login`, `/spotify/callback`, `/spotify/status`, `/spotify/player` y `/spotify/queue`.
 - `requests.js` reconoce una búsqueda libre como `play: Sueños de Medianoche Neon Luna`; opcionalmente acepta `play: "Canción" | "Artista"` o el separador `-` para afinar resultados.
-- `requests.js` clasifica regalos elegibles: 31–100 normal, 101–500 prioritario y 501+ superprioritario.
+- `requests.js` clasifica regalos elegibles: 151–399 normal y 400+ prioritario. Los regalos de hasta 150 monedas no abren una ventana para pedir música; por ahora no existe una categoría de superprioridad.
 - `requests.js` abre una ventana de 60 segundos después de un regalo elegible, valida que el chat pertenezca al mismo usuario y ordena la cola por prioridad con FIFO dentro de cada nivel.
 
 Para activar la autorización, copia `server/.env.example` como `.env`, completa `SPOTIFY_CLIENT_ID`, registra exactamente `http://127.0.0.1:8081/spotify/callback` en el panel de Spotify y abre `http://127.0.0.1:8081/spotify/login` con el puente iniciado. Los tokens se mantienen solo en memoria durante esta primera base; no se escriben en el repositorio. La cola interna queda separada del reproductor para que el siguiente paso pueda despachar canciones respetando prioridades sin depender de un orden que Spotify no garantiza.
@@ -226,7 +226,7 @@ sequenceDiagram
 
 En la fuente Enlace se recomienda usar directamente `designs/printer/index.html` o `designs/halloween/index.html`; la galería raíz es solo un selector visual.
 
-La radio mantiene su propio layout vertical en `designs/radio/`. Su PNG contiene únicamente el cuerpo de la impresora; `designs/radio/js/ticket-components.js` mapea las variantes visuales (`music`, `gift`, `gift-special` y `join`), mientras `tickets.js` solo controla datos, cola y animación. Los regalos de 1 a 30 monedas usan la tarjeta básica; desde 31 monedas usan la tarjeta especial. El printer conserva como máximo las 10 impresiones más recientes y elimina la más antigua cuando llega una nueva, evitando que el DOM crezca indefinidamente. El demo añade una impresión cada cuatro segundos y expone `window.radioTickets.add(ticket)` para conectar después los eventos reales sin cambiar la composición.
+La radio mantiene su propio layout vertical en `designs/radio/`. Su PNG contiene únicamente el cuerpo de la impresora; `designs/radio/js/ticket-components.js` mapea las variantes visuales (`music`, `gift`, `gift-special` y `join`), mientras `tickets.js` solo controla datos, cola y animación. Los regalos de 1 a 150 monedas usan la tarjeta básica; desde 151 monedas usan la tarjeta especial y habilitan el pedido musical. El printer conserva como máximo las 10 impresiones más recientes y elimina la más antigua cuando llega una nueva, evitando que el DOM crezca indefinidamente. El demo añade una impresión cada cuatro segundos y expone `window.radioTickets.add(ticket)` para conectar después los eventos reales sin cambiar la composición.
 
 La radio solo activa datos simulados con `designs/radio/index.html?source=dummy`. Sin ese parámetro permanece visualmente disponible, pero no inserta cola, tarjetas ni animaciones demo; queda preparada para recibir eventos reales. La cola visual conserva como máximo cinco solicitudes y el printer diez impresiones.
 

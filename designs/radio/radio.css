@@ -100,14 +100,20 @@ body { margin: 0; min-height: 100vh; background: #160d24; }
 .queue-copy small { color: #c9c4e8; font-size: .49rem; }
 .radio-mascot-image { display: block; width: 94%; max-width: none; height: auto; margin: -14px auto 0; filter: drop-shadow(0 0 .7rem #d77cff99); animation: radio-mascot-idle 3.2s ease-in-out infinite; }
 .radio-mascot-image.is-greeting { animation: radio-mascot-greeting 1.2s ease-in-out 2; }
-.radio-mascot-image.is-listening { animation: radio-mascot-listening 1.4s ease-in-out infinite; }
+.radio-mascot-image.is-listening { animation: radio-mascot-listening 1.4s ease-in-out infinite, radio-mascot-listening-glow 2.4s ease-in-out infinite; }
 .radio-mascot-image.is-happy { animation: radio-mascot-happy .8s ease-in-out 3; }
 @keyframes radio-mascot-idle { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-8px) rotate(1deg); } }
 @keyframes radio-mascot-greeting { 0%, 100% { transform: rotate(0) translateY(0); } 25% { transform: rotate(-4deg) translateY(-7px); } 75% { transform: rotate(4deg) translateY(-7px); } }
 @keyframes radio-mascot-listening { 0%, 100% { transform: rotate(-2deg) scale(1); } 50% { transform: rotate(2deg) scale(1.025); } }
+@keyframes radio-mascot-listening-glow {
+  0%, 100% { filter: drop-shadow(0 0 .7rem #62eaffaa) drop-shadow(0 0 1.2rem #ff6fd477); }
+  33% { filter: drop-shadow(0 0 1rem #ff6fd4cc) drop-shadow(0 0 1.5rem #9d7bffff); }
+  66% { filter: drop-shadow(0 0 1rem #ffe28dcc) drop-shadow(0 0 1.5rem #62eaffaa); }
+}
 @keyframes radio-mascot-happy { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-14px) scale(1.05); filter: drop-shadow(0 0 1.2rem #ffd76dcc); } }
 @media (prefers-reduced-motion: reduce) {
   .radio-mascot-image,
+  .radio-mascot-image.is-listening,
   .radio-printer.is-printing .radio-printer-image,
   .printed-ticket.is-printing,
   .printed-ticket--gift-special,

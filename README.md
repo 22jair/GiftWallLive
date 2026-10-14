@@ -228,7 +228,7 @@ En la fuente Enlace se recomienda usar directamente `designs/printer/index.html`
 
 La radio mantiene su propio layout vertical en `designs/radio/`. Su PNG contiene únicamente el cuerpo de la impresora; `designs/radio/js/ticket-components.js` mapea las variantes visuales (`music`, `gift`, `gift-special` y `join`), mientras `tickets.js` solo controla datos, cola y animación. Los regalos de 1 a 30 monedas usan la tarjeta básica; desde 31 monedas usan la tarjeta especial. El printer conserva como máximo las 10 impresiones más recientes y elimina la más antigua cuando llega una nueva, evitando que el DOM crezca indefinidamente. El demo añade una impresión cada cuatro segundos y expone `window.radioTickets.add(ticket)` para conectar después los eventos reales sin cambiar la composición.
 
-La radio solo activa datos simulados con `designs/radio/index.html?source=dummy`. Sin ese parámetro permanece visualmente disponible, pero no inserta cola, tarjetas ni animaciones demo; queda preparada para recibir eventos reales.
+La radio solo activa datos simulados con `designs/radio/index.html?source=dummy`. Sin ese parámetro permanece visualmente disponible, pero no inserta cola, tarjetas ni animaciones demo; queda preparada para recibir eventos reales. La cola visual conserva como máximo cinco solicitudes y el printer diez impresiones.
 
 En modo LIVE, `designs/radio/js/live-bridge.js` consume `ws://127.0.0.1:8081/live`, convierte regalos, follows, entradas y solicitudes musicales aceptadas en sus componentes visuales y reintenta la conexión si el puente se reinicia. La URL se puede cambiar con `?socket=ws://host:puerto/live`.
 

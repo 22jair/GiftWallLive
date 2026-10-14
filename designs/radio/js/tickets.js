@@ -52,6 +52,7 @@
 
   let demoIndex = 0;
   let demoMusicActive = false;
+  let demoTimer = null;
   const printNextDemo = () => {
     const ticket = demoTickets[demoIndex];
     addPrintedTicket(ticket);
@@ -73,7 +74,11 @@
   // Demo visual: una impresión nueva cada 4 segundos.
   printNextDemo();
   window.radioTicketsDemo = Object.freeze({
-    start: () => setInterval(printNextDemo, 4000)
+    start: () => {
+      if (demoTimer) return demoTimer;
+      demoTimer = setInterval(printNextDemo, 4000);
+      return demoTimer;
+    }
   });
   window.radioTicketsDemo.start();
 })();

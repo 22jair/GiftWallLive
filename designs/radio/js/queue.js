@@ -3,6 +3,7 @@
   const list = document.querySelector('[data-list="queue-items"]');
   const template = document.querySelector('#queue-item-template');
   if (!list || !template) return;
+  const MAX_QUEUE_ITEMS = 5;
   const demoQueue = [
     { user: 'Estrella.la', request: 'Neon Luna · Sueños de Medianoche', avatar: '../../assets/images/radio-mascot-wink.png' },
     { user: 'Fede.T', request: 'Dua Lipa · Levitating', avatar: '../../assets/images/radio-mascot-mouth-open.png' },
@@ -10,7 +11,7 @@
     { user: 'LunaDream', request: 'The Weeknd · Blinding Lights', avatar: '../../assets/images/radio-mascot-mouth-open.png' },
     { user: 'NovaVibes', request: 'Billie Eilish · Birds of a Feather', avatar: '../../assets/images/radio-mascot-wink.png' }
   ];
-  const render = (items) => list.replaceChildren(...items.map((item, index) => {
+  const render = (items) => list.replaceChildren(...items.slice(0, MAX_QUEUE_ITEMS).map((item, index) => {
     const row = template.content.cloneNode(true);
     row.querySelector('.queue-item').classList.toggle('queue-item--active', index === 0);
     row.querySelector('.queue-position').textContent = index + 1;
@@ -19,6 +20,6 @@
     row.querySelector('.queue-copy small').textContent = item.request;
     return row;
   }));
-  window.radioQueue = Object.freeze({ render });
+  window.radioQueue = Object.freeze({ render, maxItems: MAX_QUEUE_ITEMS });
   if (window.radioSource === 'dummy') render(demoQueue);
 })();

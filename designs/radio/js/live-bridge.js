@@ -6,6 +6,7 @@
   const params = new URLSearchParams(window.location.search);
   const socketUrl = params.get("socket") || "ws://127.0.0.1:8081/live";
   const liveQueue = [];
+  const MAX_LIVE_QUEUE = 5;
   let socket = null;
   let retryTimer = null;
   let stopped = false;
@@ -66,6 +67,7 @@
 
   function addMusicRequest(item) {
     liveQueue.push(item);
+    if (liveQueue.length > MAX_LIVE_QUEUE) liveQueue.shift();
     renderQueue();
     window.radioTickets.add({
       type: "music",

@@ -5,7 +5,7 @@ export const MUSIC_PRIORITY = Object.freeze({
 
 export function classifyGiftCoins(value) {
   const coins = Number(value);
-  if (!Number.isFinite(coins) || coins <= 150) return null;
+  if (!Number.isFinite(coins) || coins < 100) return null;
   if (coins >= 400) return "priority";
   return "normal";
 }

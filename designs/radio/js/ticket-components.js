@@ -30,11 +30,17 @@
     field(fragment, '.printed-ticket__song', `WELCOME · ¡Bienvenido, ${ticket.user || 'usuario'}!`);
   };
 
+  const renderFollow = (fragment, ticket) => {
+    fragment.querySelector('.printed-ticket').classList.add('printed-ticket--join');
+    field(fragment, '.printed-ticket__song', `Gracias por seguir, ${ticket.user || 'usuario'}`);
+  };
+
   const renderers = Object.freeze({
     music: renderMusic,
     gift: (fragment, ticket) => renderGift(fragment, ticket),
     'gift-special': (fragment, ticket) => renderGift(fragment, ticket, true),
-    join: renderJoin
+    join: renderJoin,
+    follow: renderFollow
   });
 
   const resolveType = (ticket) => {
@@ -43,6 +49,7 @@
       return coins >= SPECIAL_GIFT_MIN_COINS ? 'gift-special' : 'gift';
     }
     if (ticket.type === 'join') return 'join';
+    if (ticket.type === 'follow') return 'follow';
     return 'music';
   };
 

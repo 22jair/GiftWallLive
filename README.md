@@ -230,7 +230,7 @@ La radio mantiene su propio layout vertical en `designs/radio/`. Su PNG contiene
 
 La radio solo activa datos simulados con `designs/radio/index.html?source=dummy`. Sin ese parámetro permanece visualmente disponible, pero no inserta cola, tarjetas ni animaciones demo; queda preparada para recibir eventos reales.
 
-En modo LIVE, `designs/radio/js/live-bridge.js` consume `ws://127.0.0.1:8081/live`, convierte regalos, entradas y solicitudes musicales aceptadas en sus componentes visuales y reintenta la conexión si el puente se reinicia. La URL se puede cambiar con `?socket=ws://host:puerto/live`.
+En modo LIVE, `designs/radio/js/live-bridge.js` consume `ws://127.0.0.1:8081/live`, convierte regalos, follows, entradas y solicitudes musicales aceptadas en sus componentes visuales y reintenta la conexión si el puente se reinicia. La URL se puede cambiar con `?socket=ws://host:puerto/live`.
 
 Las reacciones de la mascota siguen cuatro reglas: música activa usa `listening`, un regalo usa `happy`, un follow usa `greeting` y, cuando no hay actividad, vuelve a `idle`. El modo dummy deja la mascota en `idle` y expone esas acciones desde `window.radioMascotDemo` para probarlas manualmente.
 

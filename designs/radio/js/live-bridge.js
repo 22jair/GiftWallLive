@@ -60,6 +60,10 @@
     window.radioTickets.add({ type: "join", user: username(event), avatar: avatar(event) });
   }
 
+  function addFollow(event) {
+    window.radioTickets.add({ type: "follow", user: username(event), avatar: avatar(event) });
+  }
+
   function addMusicRequest(item) {
     liveQueue.push(item);
     renderQueue();
@@ -87,7 +91,10 @@
       try {
         const message = JSON.parse(data);
         if (message.type === "gift") addGift(message);
-        if (message.type === "follow") reactToFollow();
+        if (message.type === "follow") {
+          reactToFollow();
+          addFollow(message);
+        }
         if (message.type === "join") addJoin(message);
         if (message.type === "spotify-fallback-started") reactToMusic();
         if (message.type === "music-request-queued" && message.item) {

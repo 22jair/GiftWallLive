@@ -5,21 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Wireframe estructural del diseño Radio para GiftWallLive."
+      content="Radio vertical interactiva de GiftWallLive con mascota, cola musical y printer."
     />
     <title>GiftWallLive · Radio</title>
     <link rel="stylesheet" href="./radio.css" />
     <link rel="stylesheet" href="./now-playing.css" />
   </head>
   <body>
-    <!--
-    Wireframe estructural del modo Radio.
-    Esta página solo define las zonas de contenido. El diseño visual,
-    los datos y las conexiones se añadirán en etapas posteriores.
-  -->
+    <!-- Composición vertical de la radio: mascota, cola musical y printer. -->
     <main class="radio-layout" aria-label="GiftWallLive Radio">
       <div class="radio-frame">
-        <!-- Zona superior: reproductor pequeño y mascota debajo -->
+        <!-- Zona superior reservada para la mascota y sus reacciones. -->
         <header class="radio-zone radio-now-playing" data-slot="now-playing">
           <h1>Ahora suena</h1>
           <p data-field="track-title">Canción actual</p>
@@ -36,6 +32,7 @@
               src="../../assets/images/radio-mascot.png"
               alt="Mascota gatita de radio con audífonos y micrófono"
             />
+            <div class="mascot-speech" data-mascot-speech role="status" aria-live="polite"></div>
           </div>
         </section>
 

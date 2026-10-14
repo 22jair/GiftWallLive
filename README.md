@@ -1,5 +1,7 @@
 # GiftWallLive
 
+La radio escala su composición desde una referencia de 400 px de ancho. Tipografía, cards, avatares y desplazamientos usan `rem` proporcionales al escenario 9:16, conservando las proporciones en fuentes de 720 × 1280 y 1080 × 1920.
+
 GiftWallLive será una página web visual para usar como contenido principal de un TikTok LIVE. Representará los regalos de los espectadores en una cinta digital animada y mostrará los tres envíos de regalos más valiosos del LIVE.
 
 ## Estado

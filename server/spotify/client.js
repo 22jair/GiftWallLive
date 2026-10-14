@@ -152,6 +152,13 @@ export class SpotifyClient {
     return this.request(`/me/player/queue?uri=${encodeURIComponent(uri)}`, { method: "POST" });
   }
 
+  startPlayback(uri) {
+    return this.request("/me/player", {
+      method: "PUT",
+      body: JSON.stringify({ uris: [uri] }),
+    });
+  }
+
   getPlaybackState() {
     return this.request("/me/player");
   }

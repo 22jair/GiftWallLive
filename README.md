@@ -154,6 +154,8 @@ La carpeta `server/spotify/` contiene la integración preparada para Spotify sin
 
 Para activar la autorización, copia `server/.env.example` como `.env`, completa `SPOTIFY_CLIENT_ID`, registra exactamente `http://127.0.0.1:8081/spotify/callback` en el panel de Spotify y abre `http://127.0.0.1:8081/spotify/login` con el puente iniciado. Los tokens se mantienen solo en memoria durante esta primera base; no se escriben en el repositorio. La cola interna queda separada del reproductor para que el siguiente paso pueda despachar canciones respetando prioridades sin depender de un orden que Spotify no garantiza.
 
+Cuando Spotify está autorizado, la canción actual terminó, la cola real está vacía y no hay solicitudes pendientes, `server/spotify/fallback.js` elige una canción aleatoria de la lista predeterminada de BTS y BLACKPINK e intenta iniciarla en el dispositivo Spotify activo. Una pausa manual no dispara otra canción. La lista y el intervalo de comprobación son configurables en ese archivo.
+
 ### Flujo de eventos LIVE
 
 El server mantiene la conexión con el proveedor y entrega al navegador un contrato único. El navegador nunca consume directamente el formato específico de PirateTok u otro proveedor.

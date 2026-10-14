@@ -3,6 +3,7 @@ import process from "node:process";
 import { WebSocket, WebSocketServer } from "ws";
 import { createSpotifyIntegration, loadSpotifyConfig } from "./spotify/integration.js";
 import { MusicRequestService } from "./spotify/requests.js";
+import { SpotifyFallbackRadio } from "./spotify/fallback.js";
 import { mapPirateTokEvent } from "./mappers/piratetok-mapper.js";
 import { PirateTokProvider } from "./providers/piratetok-provider.js";
 
@@ -37,6 +38,10 @@ const status = {
 
 const spotify = createSpotifyIntegration(loadSpotifyConfig());
 const musicRequests = new MusicRequestService({ spotifyClient: spotify.client });
+const fallbackRadio = new SpotifyFallbackRadio({
+  spotifyClient: spotify.client,
+  hasPendingRequests: () => Boolean(musicRequests.queue.peek()),
+});
 
 function setStatus(state, details = {}) {
   Object.assign(status, details, {
@@ -102,6 +107,13 @@ musicRequests.on("request-rejected", (result) => {
 });
 musicRequests.on("spotify-error", (error) => {
   console.error(`[spotify] ${error.message || error}`);
+});
+fallbackRadio.on("started", (track) => {
+  broadcast({ version: 1, type: "spotify-fallback-started", track });
+  console.log(`[spotify] Radio automática: ${track.name} · ${track.artist}`);
+});
+fallbackRadio.on("error", (error) => {
+  if (error?.status !== 404) console.error(`[spotify] Radio automática: ${error.message || error}`);
 });
 
 websocketServer.on("connection", (client) => {
@@ -217,4 +229,5 @@ httpServer.listen(port, host, () => {
   console.log(`[server] Estado: http://${host}:${port}/health`);
   console.log(`[server] Eventos: ws://${host}:${port}/live`);
   connect();
+  fallbackRadio.start();
 });

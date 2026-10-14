@@ -41,7 +41,10 @@ function mapGift(data) {
 }
 
 export function mapPirateTokEvent({ type, data, sequence, roomId }) {
-  const rawId = data.msgId || data.msg_id || data.eventId || data.event_id || sequence;
+  const rawId = data.msgId || data.msg_id || data.common?.msgId || data.common?.msg_id || data.eventId || data.event_id || sequence;
+  const chat = type === "chat"
+    ? { text: String(data.content || data.message || data.comment || "") }
+    : null;
 
   return createLiveEvent({
     id: `piratetok:${rawId}`,
@@ -51,6 +54,7 @@ export function mapPirateTokEvent({ type, data, sequence, roomId }) {
     source: {
       provider: "piratetok",
       roomId: roomId || null,
+      chat,
     },
   });
 }

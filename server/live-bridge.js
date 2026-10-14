@@ -1,6 +1,8 @@
 import http from "node:http";
 import process from "node:process";
 import { WebSocket, WebSocketServer } from "ws";
+import { createSpotifyIntegration, loadSpotifyConfig } from "./spotify/integration.js";
+import { MusicRequestService } from "./spotify/requests.js";
 import { mapPirateTokEvent } from "./mappers/piratetok-mapper.js";
 import { PirateTokProvider } from "./providers/piratetok-provider.js";
 
@@ -33,6 +35,9 @@ const status = {
   updatedAt: new Date().toISOString(),
 };
 
+const spotify = createSpotifyIntegration(loadSpotifyConfig());
+const musicRequests = new MusicRequestService({ spotifyClient: spotify.client });
+
 function setStatus(state, details = {}) {
   Object.assign(status, details, {
     type: "status",
@@ -54,13 +59,19 @@ function errorMessage(error) {
   }
 }
 
-const httpServer = http.createServer((request, response) => {
+const httpServer = http.createServer(async (request, response) => {
   response.setHeader("Access-Control-Allow-Origin", "*");
   response.setHeader("Cache-Control", "no-store");
 
+  if (await spotify.handleHttpRequest(request, response)) return;
+
   if (request.method === "GET" && request.url === "/health") {
     response.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
-    response.end(JSON.stringify({ ...status, websocket: `ws://${host}:${port}/live` }));
+    response.end(JSON.stringify({
+      ...status,
+      spotify: spotify.client.status(),
+      websocket: `ws://${host}:${port}/live`,
+    }));
     return;
   }
 
@@ -77,6 +88,22 @@ function broadcast(payload) {
   });
 }
 
+musicRequests.on("window-opened", (pending) => {
+  broadcast({ version: 1, type: "music-request-window", pending });
+});
+musicRequests.on("window-expired", (pending) => {
+  broadcast({ version: 1, type: "music-request-window-expired", pending });
+});
+musicRequests.on("queued", (item) => {
+  broadcast({ version: 1, type: "music-request-queued", item });
+});
+musicRequests.on("request-rejected", (result) => {
+  broadcast({ version: 1, type: "music-request-rejected", ...result });
+});
+musicRequests.on("spotify-error", (error) => {
+  console.error(`[spotify] ${error.message || error}`);
+});
+
 websocketServer.on("connection", (client) => {
   client.send(JSON.stringify(status));
 });
@@ -86,12 +113,16 @@ const provider = new PirateTokProvider(username);
 provider.on("liveEvent", ({ type, data }) => {
   const event = mapPirateTokEvent({ type, data, sequence: ++sequence, roomId: status.roomId });
   broadcast(event);
+  if (event.type === "gift") musicRequests.registerGift(event);
+  if (event.type === "chat") void musicRequests.handleChat(event);
   if (event.type === "gift") {
     console.log(
       `[gift] @${event.user.username} · ${event.gift.name} ×${event.gift.quantity} · ${event.gift.totalCoins} monedas`,
     );
   } else if (event.type === "follow") {
     console.log(`[follow] @${event.user.username}`);
+  } else if (event.type === "chat") {
+    console.log(`[chat] @${event.user.username}: ${event.chat.text}`);
   } else {
     console.log(`[join] @${event.user.username}`);
   }

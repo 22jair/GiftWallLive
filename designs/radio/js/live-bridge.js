@@ -51,7 +51,9 @@
       type: "gift",
       user: username(event),
       gift: event.gift?.name || "Regalo",
+      quantity: event.gift?.quantity || 1,
       coins: event.gift?.totalCoins || 0,
+      giftImage: event.gift?.imageUrl || "",
       avatar: avatar(event),
     });
     reactToGift();

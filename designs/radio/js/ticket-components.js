@@ -16,13 +16,26 @@
 
   const renderGift = (fragment, ticket, special = false) => {
     const element = fragment.querySelector('.printed-ticket');
+    const giftIcon = fragment.querySelector('.printed-ticket__gift-icon');
     element.classList.add('printed-ticket--gift');
     if (special) element.classList.add('printed-ticket--gift-special');
-    field(fragment, '.printed-ticket__kind', special ? 'REGALO ESPECIAL' : 'REGALO RECIBIDO');
-    field(fragment, '.printed-ticket__song', ticket.gift || 'Regalo especial');
-    field(fragment, '.printed-ticket__artist', `de ${ticket.user || 'usuario'}`);
+    field(fragment, '.printed-ticket__kind', '');
+    const username = String(ticket.user || 'usuario').replace(/^@/u, '');
+    const quantity = Number(ticket.quantity ?? 1);
+    const safeQuantity = Number.isFinite(quantity) && quantity > 0 ? quantity : 1;
     const coins = Number(ticket.coins ?? 1);
-    field(fragment, '.printed-ticket__wave', `✦ ${coins} moneda${coins === 1 ? '' : 's'} ✦`);
+    const safeCoins = Number.isFinite(coins) && coins >= 0 ? coins : 1;
+    field(fragment, '.printed-ticket__song', 'Gracias');
+    field(fragment, '.printed-ticket__artist', `@${username}`);
+    field(fragment, '.printed-ticket__thanks', `${safeCoins} moneda${safeCoins === 1 ? '' : 's'}`);
+    field(fragment, '.printed-ticket__wave', `x${safeQuantity}`);
+    if (ticket.giftImage && giftIcon) {
+      const image = document.createElement('img');
+      image.src = ticket.giftImage;
+      image.alt = ticket.gift || 'Regalo';
+      image.className = 'printed-ticket__gift-icon-image';
+      giftIcon.replaceChildren(image);
+    }
   };
 
   const renderJoin = (fragment, ticket) => {
@@ -31,7 +44,7 @@
   };
 
   const renderFollow = (fragment, ticket) => {
-    fragment.querySelector('.printed-ticket').classList.add('printed-ticket--join');
+    fragment.querySelector('.printed-ticket').classList.add('printed-ticket--join', 'printed-ticket--follow');
     field(fragment, '.printed-ticket__song', `Gracias por seguir, ${ticket.user || 'usuario'}`);
   };
 

@@ -6,7 +6,7 @@ body { margin: 0; min-height: 100vh; background: #160d24; }
 .radio-zone:last-child { border-bottom: 0; }
 .radio-now-playing { display: none; }
 .radio-mascot-zone { min-height: 38%; height: 38%; overflow: visible; text-align: center; padding-top: 14px; }
-.radio-bottom { position: absolute; z-index: 4; inset: 29% 0 0; display: grid; grid-template-columns: 58% 42%; min-height: 0; background: transparent; }
+.radio-bottom { position: absolute; z-index: 4; inset: 29% 0 0; display: grid; grid-template-columns: 45% 55%; min-height: 0; background: transparent; }
 .radio-bottom > .radio-zone + .radio-zone { border-left: 0; }
 .radio-placeholder { min-height: 90px; border: 1px dashed #999; padding: 12px; }
 .radio-stage { min-height: 130px; }
@@ -15,7 +15,7 @@ body { margin: 0; min-height: 100vh; background: #160d24; }
 .radio-printer { position: relative; width: 100%; color: #ffe9ae; }
 .radio-printer-image { display: block; width: 108%; max-width: none; height: auto; margin: 0 -4% 0; opacity: .88; filter: drop-shadow(0 0 .7rem #b57cff55) drop-shadow(0 .35rem .4rem #0009); }
 .radio-printer.is-printing .radio-printer-image { animation: printer-glow .9s ease-out both; }
-.printed-stack { position: absolute; z-index: 3; top: 68%; left: 15%; width: 70%; display: grid; gap: 5px; margin: 0; transform-origin: top center; pointer-events: none; }
+.printed-stack { position: absolute; z-index: 3; top: 68%; left: 4%; width: 92%; display: grid; gap: 6px; margin: 0; transform-origin: top center; pointer-events: none; }
 .printed-ticket { position: relative; display: grid; gap: 2px; min-height: 94px; padding: 8px 7px 9px; border: 1px solid #e4d4ab; color: #2e2450; background: linear-gradient(145deg,#fff8e9,#efe0ff); box-shadow: 0 4px 10px #0008; text-align: center; clip-path: polygon(0 0,100% 0,100% 96%,96% 100%,92% 96%,88% 100%,84% 96%,80% 100%,76% 96%,72% 100%,68% 96%,64% 100%,60% 96%,56% 100%,52% 96%,48% 100%,44% 96%,40% 100%,36% 96%,32% 100%,28% 96%,24% 100%,20% 96%,16% 100%,12% 96%,8% 100%,4% 96%,0 100%); }
 .printed-ticket__ornament { color: #7651b5; font-size: .58rem; letter-spacing: .12em; }
 .printed-ticket__kind { color: #8a6a9f; font-size: .42rem; font-weight: 800; letter-spacing: .08em; }
@@ -25,6 +25,39 @@ body { margin: 0; min-height: 100vh; background: #160d24; }
 .printed-ticket__thanks { display: none; }
 .printed-ticket__wave { color: #8053b2; font-size: .7rem; letter-spacing: .04em; }
 .printed-ticket__seal { position: absolute; right: 6px; bottom: 3px; color: #b980df; font-size: .65rem; }
+.printed-ticket { grid-template-columns: 3.15rem minmax(0, 1fr); align-items: stretch; column-gap: 18px; text-align: left; }
+.printed-ticket__media { display: flex; align-items: center; justify-content: center; min-width: 0; }
+.printed-ticket__body { position: relative; display: grid; align-content: center; min-width: 0; gap: 2px; padding-right: 5px; padding-left: 6px; }
+.printed-ticket__media .printed-ticket__avatar { width: 3rem; height: 3.5rem; border-radius: 12px; border-width: 2px; }
+.printed-ticket__body .printed-ticket__ornament { font-size: .46rem; letter-spacing: .08em; }
+.printed-ticket__body .printed-ticket__kind { font-size: .4rem; }
+.printed-ticket__body .printed-ticket__song { overflow: hidden; font-size: .66rem; font-weight: 850; text-overflow: ellipsis; white-space: nowrap; }
+.printed-ticket__body .printed-ticket__artist { overflow: hidden; font-size: .49rem; text-overflow: ellipsis; white-space: nowrap; }
+.printed-ticket__gift-line { display: none; align-items: center; gap: 5px; min-height: 1.35rem; }
+.printed-ticket__gift-icon { display: grid; place-items: center; width: 1.55rem; height: 1.55rem; font-size: 1.1rem; filter: drop-shadow(0 0 5px #f7bb5c99); }
+.printed-ticket--gift .printed-ticket__gift-line { display: flex; }
+.printed-ticket--gift .printed-ticket__gift-icon { position: static; transform: none; }
+.printed-ticket--gift .printed-ticket__body { align-content: start; padding-top: 5px; padding-right: 0; }
+.printed-ticket--gift .printed-ticket__kind { display: none; }
+.printed-ticket--gift .printed-ticket__artist { color: #8a5a2a; font-weight: 850; }
+.printed-ticket--gift .printed-ticket__thanks { display: block; color: #8a5a2a; font-weight: 850; }
+.printed-ticket--gift .printed-ticket__wave { color: #8a5a2a; font-weight: 850; }
+.printed-ticket__gift-icon-image { width: 100%; height: 100%; object-fit: contain; }
+.printed-ticket--music .printed-ticket__gift-icon { display: none; }
+.printed-ticket--gift .printed-ticket__media .printed-ticket__avatar { border-radius: 13px; }
+.printed-ticket--join { grid-template-columns: 1fr; }
+.printed-ticket--join .printed-ticket__media { display: none; }
+.printed-ticket--join .printed-ticket__body { padding-right: 0; text-align: center; }
+.printed-ticket--join .printed-ticket__gift-line,
+.printed-ticket--follow .printed-ticket__gift-line { display: none; }
+.printed-ticket__body .printed-ticket__kind { font-size: .47rem; }
+.printed-ticket__body .printed-ticket__song { font-size: .76rem; line-height: 1.2; }
+.printed-ticket__body .printed-ticket__artist { font-size: .56rem; line-height: 1.2; }
+.printed-ticket__body .printed-ticket__wave { font-size: .64rem; }
+.printed-ticket--music .printed-ticket__body .printed-ticket__kind { font-size: .43rem; }
+.printed-ticket--music .printed-ticket__body .printed-ticket__song { font-size: .68rem; }
+.printed-ticket--music .printed-ticket__body .printed-ticket__artist { font-size: .51rem; }
+.printed-ticket--join .printed-ticket__body .printed-ticket__song { font-size: .62rem; }
 .printed-ticket--gift { border-color: #f4c36d; color: #3b214f; background: linear-gradient(145deg,#fff4cf,#f3d9ff 52%,#e4c6ff); box-shadow: 0 4px 10px #0008, 0 0 12px #f7c76766; }
 .printed-ticket--gift .printed-ticket__ornament,
 .printed-ticket--gift .printed-ticket__wave { color: #c17b2d; }
@@ -55,6 +88,9 @@ body { margin: 0; min-height: 100vh; background: #160d24; }
 .printed-ticket--join .printed-ticket__artist { display: none; }
 .printed-ticket--join .printed-ticket__kind { display: none; }
 .printed-ticket--join .printed-ticket__song { overflow: hidden; font-size: .5rem; text-overflow: ellipsis; white-space: nowrap; }
+.printed-ticket--follow { min-height: 24px; }
+.printed-ticket--follow .printed-ticket__song { font-size: .52rem; line-height: 1; }
+.printed-ticket--follow .printed-ticket__gift-icon { display: none; }
 .printed-ticket.is-printing { animation: printed-ticket-in .9s cubic-bezier(.2,.8,.25,1) both; }
 @keyframes printed-ticket-in { from { opacity: 0; transform: translateY(-72px) scale(.86) rotate(-1deg); } 65% { opacity: 1; transform: translateY(7px) scale(1.01) rotate(.5deg); } to { opacity: 1; transform: translateY(0) scale(1) rotate(0); } }
 @keyframes printer-glow { 0%, 100% { filter: drop-shadow(0 0 .7rem #b57cff55) drop-shadow(0 .35rem .4rem #0009); } 45% { filter: drop-shadow(0 0 1.05rem #ffd978aa) drop-shadow(0 .35rem .4rem #0009); } }
@@ -71,7 +107,7 @@ body { margin: 0; min-height: 100vh; background: #160d24; }
 .now-playing-label { position: relative; display: flex; align-items: center; gap: 5px; margin: 0 0 7px; padding: 5px 9px 6px; border: 1px solid #f3d27d88; border-radius: 9px 9px 9px 2px; background: linear-gradient(100deg,#17102ed9,#2c1749c7 58%,#17102ebd); color: #fff0b7; font-size: .66rem; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; text-shadow: 0 0 .5rem #ffbd5c99; box-shadow: 0 4px 10px #10051d66, inset 0 1px #fff3; overflow: hidden; }
 .now-playing-label::after { content: ""; position: absolute; right: 10px; bottom: 0; left: 9px; height: 1px; background: linear-gradient(90deg,#ff78e8, #83e9ff, transparent); opacity: .8; }
 .now-playing-label span { color: #ff77ed; font-size: 1.05rem; animation: music-pulse 1.4s ease-in-out infinite; }
-.radio-current-request { position: relative; display: grid; grid-template-columns: 2.8rem minmax(0,1fr); align-items: center; gap: 9px; min-height: 4.1rem; margin-bottom: 9px; padding: 10px; border: 1px solid #ffe08a; border-radius: 16px; background: linear-gradient(115deg,#29145ee8,#18245ee8 38%,#47145ee8 72%,#151844ee); background-size: 220% 220%; color: #fff; box-shadow: 0 0 18px #d85dff77, 0 0 32px #4b9dff33, inset 0 0 14px #ff8ee944; overflow: hidden; animation: now-playing-shift 8s ease-in-out infinite; }
+.radio-current-request { position: relative; display: grid; grid-template-columns: 60px minmax(0,1fr); align-items: center; gap: 16px; min-height: 4.1rem; margin-bottom: 9px; padding: 10px; border: 1px solid #ffe08a; border-radius: 16px; background: linear-gradient(115deg,#29145ee8,#18245ee8 38%,#47145ee8 72%,#151844ee); background-size: 220% 220%; color: #fff; box-shadow: 0 0 18px #d85dff77, 0 0 32px #4b9dff33, inset 0 0 14px #ff8ee944; overflow: hidden; animation: now-playing-shift 8s ease-in-out infinite; }
 .radio-current-request::before { content: ""; position: absolute; inset: 0; background: linear-gradient(105deg,transparent 20%,#fff4a522 45%,transparent 68%); transform: translateX(-100%); animation: now-playing-sheen 4.5s ease-in-out infinite; pointer-events: none; }
 .request-avatar { width: 2.7rem; height: 2.7rem; object-fit: cover; object-position: 50% 18%; border: 2px solid #ffe28d; border-radius: 50%; box-shadow: 0 0 8px #ffdc7d99, 0 0 16px #ff6fe477; animation: avatar-color-pulse 3s ease-in-out infinite; }
 .request-copy { min-width: 0; }
@@ -90,7 +126,8 @@ body { margin: 0; min-height: 100vh; background: #160d24; }
 .queue-title::after { content: ""; position: absolute; right: 9px; bottom: 0; left: 9px; height: 1px; background: linear-gradient(90deg,#ffd978, #ff78e8, transparent); opacity: .75; }
 .queue-title span { color: #ff78e8; font-size: 1rem; }
 .queue-list { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
-.queue-item { display: grid; grid-template-columns: 1.25rem 1.55rem minmax(0,1fr); align-items: center; gap: 6px; min-height: 39px; padding: 5px 6px; border: 1px solid #8f8ccc66; border-radius: 10px; background: linear-gradient(100deg,#171841e8,#20164bd9); font-size: .56rem; box-shadow: inset 0 0 10px #755ac522; }
+.queue-item { display: grid; grid-template-columns: 1.75rem minmax(0, 1fr); align-items: center; gap: 9px; min-height: 39px; padding: 5px 6px; border: 1px solid #8f8ccc66; border-radius: 10px; background: linear-gradient(100deg,#171841e8,#20164bd9); font-size: .56rem; box-shadow: inset 0 0 10px #755ac522; }
+.queue-position { display: none; }
 .queue-item--active { border-color: #ffd675; box-shadow: 0 0 10px #f7c95a55; }
 .queue-position { color: #ffe29a; font-size: .7rem; font-weight: 900; text-align: center; }
 .queue-avatar { width: 1.45rem; height: 1.45rem; object-fit: cover; object-position: 50% 18%; border: 1px solid #f1c5ff; border-radius: 50%; background: #3c326e; }
@@ -100,9 +137,9 @@ body { margin: 0; min-height: 100vh; background: #160d24; }
 .queue-copy small { color: #c9c4e8; font-size: .49rem; }
 .radio-mascot-image { display: block; width: 94%; max-width: none; height: auto; margin: -14px auto 0; filter: drop-shadow(0 0 .7rem #d77cff99); animation: radio-mascot-idle 3.2s ease-in-out infinite; }
 .radio-placeholder { position: relative; }
-.mascot-speech { position: absolute; z-index: 2; top: 30%; left: 3%; max-width: 68%; min-width: 12rem; padding: 15px 22px 16px 28px; border: 2px solid #ffe39a; border-radius: 22px 22px 22px 7px; background: linear-gradient(135deg,#fff8dff7 0%,#f4d9fff2 52%,#e7c9fff0 100%); color: #321b55; font-size: .98rem; font-weight: 900; line-height: 1.3; box-shadow: 0 7px 18px #12051daa, 0 0 22px #ffcf7dcc, inset 0 1px #fff; opacity: 0; transform: translateY(6px) scale(.92); pointer-events: none; transition: opacity .2s ease, transform .2s ease; }
+.mascot-speech { position: absolute; z-index: 2; top: 30%; left: 4%; max-width: 54%; min-width: 0; padding: 9px 13px 10px 23px; border: 1px solid #ffe39a; border-radius: 15px 15px 15px 4px; background: linear-gradient(135deg,#fff8dff7 0%,#f4d9fff2 52%,#e7c9fff0 100%); color: #321b55; font-size: .7rem; font-weight: 900; line-height: 1.25; box-shadow: 0 5px 13px #12051daa, 0 0 16px #ffcf7dcc, inset 0 1px #fff; opacity: 0; transform: translateY(6px) scale(.92); pointer-events: none; transition: opacity .2s ease, transform .2s ease; }
 .mascot-speech::before { content: "✦"; position: absolute; top: 6px; left: 10px; color: #d99842; font-size: .75rem; text-shadow: 0 0 6px #ffbd5c; }
-.mascot-speech::after { content: ""; position: absolute; right: 15%; bottom: -13px; width: 19px; height: 19px; border-right: 2px solid #ffe39a; border-bottom: 2px solid #ffe39a; background: #eccfff; transform: rotate(45deg); filter: drop-shadow(3px 3px 3px #12051d55); }
+.mascot-speech::after { content: ""; position: absolute; right: 15%; bottom: -8px; width: 11px; height: 11px; border-right: 1px solid #ffe39a; border-bottom: 1px solid #ffe39a; background: #eccfff; transform: rotate(45deg); filter: drop-shadow(2px 2px 2px #12051d55); }
 .mascot-speech[data-state="listening"] { border-color: #9df4ff; background: linear-gradient(135deg,#dffafff7 0%,#f2d9fff2 48%,#ffc8f3f0 100%); color: #261b61; box-shadow: 0 7px 18px #12051daa, 0 0 24px #6beaffcc, inset 0 1px #fff; }
 .mascot-speech[data-state="listening"]::before { content: "♫"; color: #b44bdf; font-size: 1rem; text-shadow: 0 0 7px #ff5eea; }
 .mascot-speech[data-state="listening"]::after { border-color: #9df4ff; background: #f0d5ff; }
@@ -139,3 +176,10 @@ body { margin: 0; min-height: 100vh; background: #160d24; }
   .now-playing-label span { animation: none; }
   .mascot-speech { transition: none; }
 }
+
+/* Printer cards: portrait on the left, readable event details on the right. */
+.printed-ticket .printed-ticket__media .printed-ticket__avatar,
+.printed-ticket--music .printed-ticket__media .printed-ticket__avatar,
+.printed-ticket--gift-special .printed-ticket__media .printed-ticket__avatar { width: 3rem; height: 3.5rem; border-radius: 12px; }
+.printed-ticket--join .printed-ticket__media { display: none; }
+.printed-ticket--join .printed-ticket__body { padding-right: 0; text-align: center; }

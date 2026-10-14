@@ -9,9 +9,33 @@
   let socket = null;
   let retryTimer = null;
   let stopped = false;
+  let musicActive = false;
+  let reactionTimer = null;
 
   const username = (event) => event?.user?.username || event?.user?.displayName || "usuario";
   const avatar = (event) => event?.user?.avatarUrl || "../../assets/images/radio-mascot-wink.png";
+
+  function returnToBaseReaction() {
+    window.clearTimeout(reactionTimer);
+    reactionTimer = window.setTimeout(() => {
+      window.radioMascot?.[musicActive ? "listening" : "idle"]();
+    }, 1800);
+  }
+
+  function reactToGift() {
+    window.radioMascot?.happy();
+    returnToBaseReaction();
+  }
+
+  function reactToFollow() {
+    window.radioMascot?.greeting();
+    returnToBaseReaction();
+  }
+
+  function reactToMusic() {
+    musicActive = true;
+    window.radioMascot?.listening();
+  }
 
   function renderQueue() {
     window.radioQueue.render(liveQueue.map((item) => ({
@@ -29,6 +53,7 @@
       coins: event.gift?.totalCoins || 0,
       avatar: avatar(event),
     });
+    reactToGift();
   }
 
   function addJoin(event) {
@@ -62,8 +87,13 @@
       try {
         const message = JSON.parse(data);
         if (message.type === "gift") addGift(message);
+        if (message.type === "follow") reactToFollow();
         if (message.type === "join") addJoin(message);
-        if (message.type === "music-request-queued" && message.item) addMusicRequest(message.item);
+        if (message.type === "spotify-fallback-started") reactToMusic();
+        if (message.type === "music-request-queued" && message.item) {
+          reactToMusic();
+          addMusicRequest(message.item);
+        }
       } catch (error) {
         console.warn("[GiftWallLive] Evento de radio inválido", error);
       }

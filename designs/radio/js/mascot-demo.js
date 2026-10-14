@@ -1,11 +1,12 @@
-// Demo local: recorre los estados sin depender de datos reales.
+// En dummy dejamos la mascota en reposo. Las acciones se disparan desde eventos LIVE.
 (() => {
   if (window.radioSource !== 'dummy') return;
   if (!window.radioMascot) return;
-  const states = ['idle', 'greeting', 'listening', 'happy'];
-  let index = 0;
-  const runNext = () => { window.radioMascot[states[index]](); index = (index + 1) % states.length; };
-  runNext();
-  window.radioMascotDemo = Object.freeze({ start: () => { runNext(); return setInterval(runNext, 5000); } });
-  window.radioMascotDemo.start();
+  window.radioMascot.idle();
+  window.radioMascotDemo = Object.freeze({
+    idle: () => window.radioMascot.idle(),
+    greeting: () => window.radioMascot.greeting(),
+    listening: () => window.radioMascot.listening(),
+    happy: () => window.radioMascot.happy(),
+  });
 })();

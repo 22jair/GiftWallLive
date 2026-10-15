@@ -8,7 +8,7 @@
     "node": ">=20.0.0"
   },
   "scripts": {
-    "start": "node live-bridge.js",
+    "start": "node --env-file=.env live-bridge.js",
     "check": "node --check live-bridge.js && node --check providers/piratetok-provider.js && node --check mappers/piratetok-mapper.js && node --check domain/live-event.js && node --check spotify/client.js && node --check spotify/requests.js && node --check spotify/integration.js && node --check spotify/fallback.js",
     "test": "node --test tests/*.test.js"
   },

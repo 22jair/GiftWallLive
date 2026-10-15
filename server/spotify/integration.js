@@ -114,7 +114,8 @@ export function createSpotifyIntegration(config) {
       }
       if (request.method === "GET" && url.pathname === "/spotify/callback") {
         await callback(url.href);
-        html(response, 200, "Spotify conectado", "Spotify quedó conectado. Ya puedes cerrar esta pestaña.");
+        response.writeHead(303, { Location: "/" });
+        response.end();
         return true;
       }
       if (request.method === "GET" && url.pathname === "/spotify/status") {

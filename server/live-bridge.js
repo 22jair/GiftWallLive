@@ -1,4 +1,5 @@
 import http from "node:http";
+import { readFileSync } from "node:fs";
 import process from "node:process";
 import { WebSocket, WebSocketServer } from "ws";
 import { createSpotifyIntegration, loadSpotifyConfig } from "./spotify/integration.js";
@@ -7,14 +8,10 @@ import { SpotifyFallbackRadio } from "./spotify/fallback.js";
 import { mapPirateTokEvent } from "./mappers/piratetok-mapper.js";
 import { PirateTokProvider } from "./providers/piratetok-provider.js";
 
-const username = (process.argv[2] || process.env.TIKTOK_USERNAME || "").replace(/^@/, "").trim();
+// El usuario se elige desde el panel; el argumento CLI mantiene compatibilidad.
+let username = (process.argv[2] || "").replace(/^@/, "").trim();
 const host = process.env.GIFTWALL_HOST || "127.0.0.1";
 const port = Number.parseInt(process.env.GIFTWALL_PORT || "8081", 10);
-
-if (!username) {
-  console.error("Falta el username. Usa: npm start -- nombre_del_creador");
-  process.exit(1);
-}
 
 if (!Number.isInteger(port) || port < 1 || port > 65535) {
   console.error("GIFTWALL_PORT debe ser un puerto válido.");
@@ -31,7 +28,7 @@ let connected = false;
 const status = {
   type: "status",
   state: "starting",
-  username: `@${username}`,
+  username: username ? `@${username}` : "",
   roomId: null,
   updatedAt: new Date().toISOString(),
 };
@@ -43,11 +40,32 @@ const fallbackRadio = new SpotifyFallbackRadio({
   hasPendingRequests: () => Boolean(musicRequests.queue.peek()),
 });
 
+// Mantiene sincronizada la tarjeta de música con lo que esté sonando en Spotify.
+let lastPlayingId = "";
+const syncSpotifyPlayback = async () => {
+  if (!spotify.client.isAuthenticated()) return;
+  try {
+    const playback = await spotify.client.getPlaybackState();
+    const track = playback?.item;
+    if (!track?.id) return;
+    lastPlayingId = track.id;
+    broadcast({ version: 1, type: "spotify-now-playing", playing: Boolean(playback.is_playing), track: {
+      id: track.id,
+      name: track.name,
+      artist: track.artists?.map((artist) => artist.name).join(", ") || "",
+      albumImageUrl: track.album?.images?.[0]?.url || "",
+    } });
+  } catch (error) {
+    if (error?.status !== 204) console.error(`[spotify] Estado no disponible: ${error.message || error}`);
+  }
+};
+setInterval(syncSpotifyPlayback, 5000);
+
 function setStatus(state, details = {}) {
   Object.assign(status, details, {
     type: "status",
     state,
-    username: `@${username}`,
+    username: username ? `@${username}` : "",
     updatedAt: new Date().toISOString(),
   });
   broadcast(status);
@@ -69,6 +87,28 @@ const httpServer = http.createServer(async (request, response) => {
   response.setHeader("Cache-Control", "no-store");
 
   if (await spotify.handleHttpRequest(request, response)) return;
+
+  if (request.method === "GET" && request.url === "/") {
+    response.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+    response.end(readFileSync(new URL('./panel.html', import.meta.url), 'utf8'));
+    return;
+  }
+
+  if (request.method === "POST" && ["/tiktok/connect", "/tiktok/stop"].includes(request.url)) {
+    try {
+    let body = "";
+    for await (const chunk of request) body += chunk;
+    const input = body ? JSON.parse(body) : {};
+    if (request.url === "/tiktok/stop") await stopTikTok();
+    else await connectTikTok(input.username);
+    response.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
+    response.end(JSON.stringify(status));
+    } catch (error) {
+      response.writeHead(400, { 'Content-Type': 'application/json' });
+      response.end(JSON.stringify({ error: errorMessage(error) }));
+    }
+    return;
+  }
 
   if (request.method === "GET" && request.url === "/health") {
     response.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
@@ -120,9 +160,10 @@ websocketServer.on("connection", (client) => {
   client.send(JSON.stringify(status));
 });
 
-const provider = new PirateTokProvider(username);
+let provider = null;
 
-provider.on("liveEvent", ({ type, data }) => {
+function bindProvider(instance) {
+instance.on("liveEvent", ({ type, data }) => {
   const event = mapPirateTokEvent({ type, data, sequence: ++sequence, roomId: status.roomId });
   broadcast(event);
   if (event.type === "gift") musicRequests.registerGift(event);
@@ -140,7 +181,7 @@ provider.on("liveEvent", ({ type, data }) => {
   }
 });
 
-provider.on("connected", (data = {}) => {
+instance.on("connected", (data = {}) => {
   connecting = false;
   connected = true;
   retryAttempt = 0;
@@ -148,34 +189,35 @@ provider.on("connected", (data = {}) => {
   console.log(`[tiktok] Conectado a @${username}${status.roomId ? ` · room ${status.roomId}` : ""}`);
 });
 
-provider.on("reconnecting", (data = {}) => {
+instance.on("reconnecting", (data = {}) => {
   connected = false;
   setStatus("reconnecting", { error: data.error ? errorMessage(data.error) : null });
 });
 
-provider.on("disconnected", () => {
+instance.on("disconnected", () => {
   connecting = false;
   connected = false;
   setStatus("disconnected");
   if (!stopping) scheduleReconnect();
 });
 
-provider.on("liveEnded", () => {
+instance.on("liveEnded", () => {
   connecting = false;
   connected = false;
   setStatus("offline");
-  provider.disconnect();
+  instance.disconnect();
   if (!stopping) scheduleReconnect();
 });
 
-provider.on("providerError", (error) => {
+instance.on("providerError", (error) => {
   const message = errorMessage(error);
   setStatus("error", { error: message });
   console.error(`[tiktok] ${message}`);
 });
+}
 
 async function connect() {
-  if (stopping || connecting || connected) return;
+  if (stopping || connecting || connected || !provider) return;
   clearTimeout(retryTimer);
   retryTimer = null;
   connecting = true;
@@ -197,6 +239,30 @@ async function connect() {
   }
 }
 
+async function connectTikTok(value) {
+  const nextUsername = String(value || "").replace(/^@/, "").trim();
+  if (!nextUsername) throw new Error("Falta el usuario de TikTok");
+  if (provider) await stopTikTok();
+  username = nextUsername;
+  provider = new PirateTokProvider(username);
+  bindProvider(provider);
+  stopping = false;
+  await connect();
+}
+
+async function stopTikTok() {
+  clearTimeout(retryTimer);
+  retryTimer = null;
+  stopping = true;
+  connected = false;
+  connecting = false;
+  const previous = provider;
+  provider = null;
+  previous?.removeAllListeners();
+  try { await previous?.disconnect(); } catch (error) { console.warn(errorMessage(error)); }
+  setStatus("offline", { roomId: null });
+}
+
 function scheduleReconnect() {
   if (stopping || retryTimer) return;
   const delay = Math.min(60_000, 5_000 * (2 ** Math.min(retryAttempt, 4)));
@@ -206,14 +272,13 @@ function scheduleReconnect() {
 }
 
 async function shutdown(signal) {
-  if (stopping) return;
   stopping = true;
   clearTimeout(retryTimer);
   setStatus("stopping", { signal });
   console.log(`\n[server] Cerrando por ${signal}...`);
 
   try {
-    provider.disconnect();
+    provider?.disconnect();
   } catch {}
 
   websocketServer.clients.forEach((client) => client.close(1001, "Server shutting down"));
@@ -228,6 +293,13 @@ process.on("SIGTERM", () => shutdown("SIGTERM"));
 httpServer.listen(port, host, () => {
   console.log(`[server] Estado: http://${host}:${port}/health`);
   console.log(`[server] Eventos: ws://${host}:${port}/live`);
-  connect();
+  if (username) {
+    provider = new PirateTokProvider(username);
+    bindProvider(provider);
+    connect();
+  } else {
+    setStatus("offline");
+    console.log(`[server] Abre http://${host}:${port} para conectar TikTok`);
+  }
   fallbackRadio.start();
 });

@@ -11,6 +11,7 @@
   let retryTimer = null;
   let stopped = false;
   let musicActive = false;
+  let currentTrackId = "";
   let reactionTimer = null;
 
   const username = (event) => event?.user?.username || event?.user?.displayName || "usuario";
@@ -33,9 +34,9 @@
     returnToBaseReaction();
   }
 
-  function reactToMusic() {
+  function reactToMusic(silent = false) {
     musicActive = true;
-    window.radioMascot?.listening();
+    window.radioMascot?.listening({ silent });
   }
 
   function renderQueue() {
@@ -80,6 +81,22 @@
     });
   }
 
+  function updateNowPlaying(message) {
+    const current = document.querySelector('.radio-current-request');
+    if (!current || !message.track) return;
+    const title = current.querySelector('.request-copy strong');
+    const artist = current.querySelector('.request-copy small');
+    const avatar = current.querySelector('.request-avatar');
+    const changed = message.track.id && message.track.id !== currentTrackId;
+    if (title) title.textContent = message.track.name || 'Canción actual';
+    if (artist) artist.textContent = message.track.artist || 'Spotify';
+    if (avatar && message.track.albumImageUrl) avatar.src = message.track.albumImageUrl;
+    currentTrackId = message.track.id || currentTrackId;
+    musicActive = Boolean(message.playing);
+    if (changed) window.radioMascot?.listening({ silent: true });
+    else if (!musicActive) window.radioMascot?.idle();
+  }
+
   function scheduleReconnect() {
     if (stopped || retryTimer) return;
     retryTimer = window.setTimeout(() => {
@@ -100,7 +117,8 @@
           addFollow(message);
         }
         if (message.type === "join") addJoin(message);
-        if (message.type === "spotify-fallback-started") reactToMusic();
+        if (message.type === "spotify-fallback-started") reactToMusic(true);
+        if (message.type === "spotify-now-playing") updateNowPlaying(message);
         if (message.type === "music-request-queued" && message.item) {
           reactToMusic();
           addMusicRequest(message.item);

@@ -27,7 +27,7 @@ const speak = (text, duration = 2600) => {
   speechTimer = setTimeout(hideSpeech, duration);
 };
 
-const setState = (state) => {
+const setState = (state, options = {}) => {
   stopMouthAnimation();
   hideSpeech();
   if (speech) speech.dataset.state = state;
@@ -38,7 +38,7 @@ const setState = (state) => {
     speak('Gracias por seguir');
   } else if (state === 'listening') {
     mascot.src = mascotOpen;
-    speak('Nueva música en cola');
+    if (!options.silent) speak('Nueva música en cola');
     mouthTimer = setInterval(() => {
       mascot.src = mascot.src.endsWith('mouth-open.png') ? mascotBase : mascotOpen;
     }, 360);
@@ -52,6 +52,6 @@ const setState = (state) => {
 
 window.radioMascot = Object.freeze({
   idle: () => setState('idle'), greeting: () => setState('greeting'),
-  listening: () => setState('listening'), happy: () => setState('happy'), speak, setState
+  listening: (options) => setState('listening', options), happy: () => setState('happy'), speak, setState
 });
 window.radioMascot.idle();

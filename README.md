@@ -1,5 +1,11 @@
 # GiftWallLive
 
+El panel local está separado en `server/panel.html`. Spotify vuelve a `/` después de autorizar; sus tokens continúan en memoria y requieren autorización al reiniciar. Detener TikTok mantiene abierto el servidor.
+
+### Propuesta K-pop Orbit
+
+Abre `designs/kpop-orbit/index.html` para un mock interactivo independiente: túnel espacial CSS, ambientes BTS/BLACKPINK y homenaje al usuario durante cinco segundos. Los botones simulan regalos y selección musical; no reproducen audio ni conectan eventos reales. El diseño respeta movimiento reducido y limita el efecto a ocho anillos y un homenaje visible.
+
 La radio escala su composición desde una referencia de 400 px de ancho. Tipografía, cards, avatares y desplazamientos usan `rem` proporcionales al escenario 9:16, conservando las proporciones en fuentes de 720 × 1280 y 1080 × 1920.
 
 GiftWallLive será una página web visual para usar como contenido principal de un TikTok LIVE. Representará los regalos de los espectadores en una cinta digital animada y mostrará los tres envíos de regalos más valiosos del LIVE.
@@ -16,8 +22,10 @@ Para probar eventos reales, instala e inicia el puente desde `server/`:
 
 ```bash
 npm install
-npm start -- nombre_del_creador
+npm start
 ```
+
+El comando carga automáticamente `server/.env` y abre el puente local. Visita `http://127.0.0.1:8081` para escribir el usuario de TikTok, conectar o detener el LIVE y autorizar Spotify. El formato antiguo `npm start -- nombre_del_creador` también sigue funcionando.
 
 El estado queda disponible en `http://127.0.0.1:8081/health` y los eventos en `ws://127.0.0.1:8081/live`.
 

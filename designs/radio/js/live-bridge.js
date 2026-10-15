@@ -20,7 +20,8 @@
   function returnToBaseReaction() {
     window.clearTimeout(reactionTimer);
     reactionTimer = window.setTimeout(() => {
-      window.radioMascot?.[musicActive ? "listening" : "idle"]();
+      if (musicActive) window.radioMascot?.listening({ silent: true });
+      else window.radioMascot?.idle();
     }, 1800);
   }
 

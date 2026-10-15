@@ -41,7 +41,7 @@
 
   const renderJoin = (fragment, ticket) => {
     fragment.querySelector('.printed-ticket').classList.add('printed-ticket--join');
-    field(fragment, '.printed-ticket__song', `WELCOME · ¡Bienvenido, ${ticket.user || 'usuario'}!`);
+    field(fragment, '.printed-ticket__song', `¡Bienvenido, ${ticket.user || 'usuario'}!`);
   };
 
   const renderFollow = (fragment, ticket) => {

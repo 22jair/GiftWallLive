@@ -94,8 +94,9 @@ body { margin: 0; min-height: 100vh; background: #160d24; }
 .printed-ticket--join .printed-ticket__artist { display: none; }
 .printed-ticket--join .printed-ticket__kind { display: none; }
 .printed-ticket--join .printed-ticket__song { overflow: hidden; font-size: .5rem; text-overflow: ellipsis; white-space: nowrap; }
-.printed-ticket--follow { min-height: 1.5rem; }
-.printed-ticket--follow .printed-ticket__song { font-size: .52rem; line-height: 1; }
+.printed-ticket--follow { min-height: 1.7rem; border-color: #f0a8ff; color: #fff7ff; background: linear-gradient(105deg,#34205e,#8b3c99 56%,#e06ca8); box-shadow: 0 0.25rem 0.625rem #0008, 0 0 0.8rem #e78dff88; }
+.printed-ticket--follow::before { content: '✦'; position: absolute; left: .55rem; color: #ffe39a; font-size: .7rem; }
+.printed-ticket--follow .printed-ticket__song { padding: 0 .9rem; color: #fff7d2; font-size: .56rem; font-weight: 850; line-height: 1.1; text-shadow: 0 1px 0 #3d1e56; }
 .printed-ticket--follow .printed-ticket__gift-icon { display: none; }
 .printed-ticket.is-printing { animation: printed-ticket-in .9s cubic-bezier(.2,.8,.25,1) both; }
 @keyframes printed-ticket-in { from { opacity: 0; transform: translateY(-4.5rem) scale(.86) rotate(-1deg); } 65% { opacity: 1; transform: translateY(0.4375rem) scale(1.01) rotate(.5deg); } to { opacity: 1; transform: translateY(0) scale(1) rotate(0); } }

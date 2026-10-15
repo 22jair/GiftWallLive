@@ -54,6 +54,7 @@ export class MusicRequestQueue {
 }
 
 const PLAY_COMMAND = /^play\s*:\s*/iu;
+const HOST_PLAY_COMMAND = /^(play_[np])\s+(.+)$/iu;
 const MAX_FIELD_LENGTH = 120;
 
 function cleanField(value) {
@@ -92,6 +93,15 @@ export function parsePlayCommand(content) {
     artist,
     query: [song, artist].filter(Boolean).join(" "),
   };
+}
+
+export function parseHostPlayCommand(content) {
+  if (typeof content !== "string") return null;
+  const match = content.trim().match(HOST_PLAY_COMMAND);
+  if (!match) return null;
+  const parsed = parsePlayCommand(`play: ${match[2]}`);
+  if (!parsed) return null;
+  return { ...parsed, priority: match[1].toLowerCase() === "play_p" ? "priority" : "normal" };
 }
 
 import { EventEmitter } from "node:events";
@@ -171,6 +181,31 @@ export class MusicRequestService extends EventEmitter {
           user: event.user,
           coins: pending.coins,
           priority: pending.priority,
+          song: track.name || parsed.song,
+          artist: track.artist || parsed.artist,
+        },
+        track,
+      });
+      this.emit("queued", item);
+      return { status: "queued", item };
+    } catch (error) {
+      this.emit("spotify-error", error);
+      return { status: "error", code: "spotify-api-error", error };
+    }
+  }
+
+  async handleHostChat(event) {
+    const parsed = parseHostPlayCommand(event?.chat?.text || "");
+    if (!parsed || !this.spotifyClient?.isAuthenticated()) return { status: "ignored" };
+    try {
+      const track = await this.spotifyClient.searchTrack(parsed);
+      if (!track) return { status: "rejected", code: "track-not-found", parsed };
+      const item = this.queue.enqueue({
+        request: {
+          id: `host-music-request:${event.id}`,
+          user: event.user,
+          coins: parsed.priority === "priority" ? 400 : 100,
+          priority: parsed.priority,
           song: track.name || parsed.song,
           artist: track.artist || parsed.artist,
         },

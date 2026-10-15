@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import process from "node:process";
 import { WebSocket, WebSocketServer } from "ws";
 import { createSpotifyIntegration, loadSpotifyConfig } from "./spotify/integration.js";
-import { MusicRequestService } from "./spotify/requests.js";
+import { MusicRequestService, parseHostPlayCommand } from "./spotify/requests.js";
 import { SpotifyFallbackRadio } from "./spotify/fallback.js";
 import { mapPirateTokEvent } from "./mappers/piratetok-mapper.js";
 import { PirateTokProvider } from "./providers/piratetok-provider.js";
@@ -167,7 +167,10 @@ instance.on("liveEvent", ({ type, data }) => {
   const event = mapPirateTokEvent({ type, data, sequence: ++sequence, roomId: status.roomId });
   broadcast(event);
   if (event.type === "gift") musicRequests.registerGift(event);
-  if (event.type === "chat") void musicRequests.handleChat(event);
+  if (event.type === "chat") {
+    const isTestCommand = parseHostPlayCommand(event.chat?.text || "");
+    void (isTestCommand ? musicRequests.handleHostChat(event) : musicRequests.handleChat(event));
+  }
   if (event.type === "gift") {
     console.log(
       `[gift] @${event.user.username} · ${event.gift.name} ×${event.gift.quantity} · ${event.gift.totalCoins} monedas`,

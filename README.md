@@ -27,6 +27,8 @@ npm start
 
 El comando carga automáticamente `server/.env` y abre el puente local. Visita `http://127.0.0.1:8081` para escribir el usuario de TikTok, conectar o detener el LIVE y autorizar Spotify. El formato antiguo `npm start -- nombre_del_creador` también sigue funcionando.
 
+Durante las pruebas, cualquier usuario puede escribir `play_n canción - artista` para añadir una canción normal o `play_p canción - artista` para añadirla con prioridad. Estos comandos son atajos de prueba independientes del regalo; el resto del chat mantiene el flujo de regalo y ventana de 60 segundos.
+
 El estado queda disponible en `http://127.0.0.1:8081/health` y los eventos en `ws://127.0.0.1:8081/live`.
 
 Cada printer abre el modo LIVE por defecto y permanece vacío hasta recibir actividad real:

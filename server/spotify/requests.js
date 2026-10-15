@@ -53,7 +53,7 @@ export class MusicRequestQueue {
   }
 }
 
-const PLAY_COMMAND = /^play\s*:\s*/iu;
+const PLAY_COMMAND = /^play(?:\s*:\s*|\s+)/iu;
 const HOST_PLAY_COMMAND = /^(play_[np])\s+(.+)$/iu;
 const MAX_FIELD_LENGTH = 120;
 
@@ -155,7 +155,7 @@ export class MusicRequestService extends EventEmitter {
 
     const pending = this.pendingByUser.get(userId);
     if (!pending) {
-      const result = { status: "rejected", code: "no-active-window", user: event.user };
+      const result = { status: "rejected", code: "no-active-window", user: event.user, parsed };
       this.emit("request-rejected", result);
       return result;
     }
@@ -196,7 +196,8 @@ export class MusicRequestService extends EventEmitter {
 
   async handleHostChat(event) {
     const parsed = parseHostPlayCommand(event?.chat?.text || "");
-    if (!parsed || !this.spotifyClient?.isAuthenticated()) return { status: "ignored" };
+    if (!parsed) return { status: "ignored" };
+    if (!this.spotifyClient?.isAuthenticated()) return { status: "rejected", code: "spotify-not-connected", parsed };
     try {
       const track = await this.spotifyClient.searchTrack(parsed);
       if (!track) return { status: "rejected", code: "track-not-found", parsed };

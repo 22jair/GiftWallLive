@@ -169,7 +169,12 @@ instance.on("liveEvent", ({ type, data }) => {
   if (event.type === "gift") musicRequests.registerGift(event);
   if (event.type === "chat") {
     const isTestCommand = parseHostPlayCommand(event.chat?.text || "");
-    void (isTestCommand ? musicRequests.handleHostChat(event) : musicRequests.handleChat(event));
+    const requestPromise = isTestCommand
+      ? musicRequests.handleHostChat(event)
+      : musicRequests.handleChat(event);
+    void requestPromise.then((result) => {
+      if (isTestCommand) console.log(`[music-test] ${event.chat.text} → ${result.status}${result.code ? ` (${result.code})` : ""}`);
+    }).catch((error) => console.error(`[music-test] ${errorMessage(error)}`));
   }
   if (event.type === "gift") {
     console.log(

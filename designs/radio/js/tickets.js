@@ -6,6 +6,19 @@
   if (!list || !template || !components) return;
   const MAX_PRINTED_TICKETS = 10;
   const printer = list.closest('.radio-printer');
+  const giftSound = new Audio('../../assets/sounds/audio-impresion-magica.mp3');
+  giftSound.preload = 'auto';
+  let giftSoundBusy = false;
+
+  const playGiftSound = () => {
+    if (giftSoundBusy) return;
+    giftSoundBusy = true;
+    giftSound.currentTime = 0;
+    const playback = giftSound.play();
+    playback?.catch(() => { giftSoundBusy = false; });
+  };
+  giftSound.addEventListener('ended', () => { giftSoundBusy = false; });
+  giftSound.addEventListener('error', () => { giftSoundBusy = false; });
 
   const demoTickets = [
     { user: 'LunaDream', song: 'Sueños de Medianoche', artist: 'Neon Luna', avatar: '../../assets/images/radio-mascot-wink.png' },
@@ -35,6 +48,7 @@
     element.classList.add('is-printing');
     list.prepend(node);
     trimPrintedTickets();
+    if (ticket.type === 'gift') playGiftSound();
 
     if (printer) {
       printer.classList.add('is-printing');

@@ -12,6 +12,7 @@
   let stopped = false;
   let musicActive = false;
   let currentTrackId = "";
+  let currentRequester = "automático";
   let reactionTimer = null;
 
   const username = (event) => event?.user?.username || event?.user?.displayName || "usuario";
@@ -73,6 +74,7 @@
     liveQueue.push(item);
     if (liveQueue.length > MAX_LIVE_QUEUE) liveQueue.shift();
     renderQueue();
+    currentRequester = item.user?.username ? `@${item.user.username}` : "automático";
     window.radioTickets.add({
       type: "music",
       user: item.user?.username || "usuario",
@@ -88,14 +90,30 @@
     const title = current.querySelector('.request-copy strong');
     const artist = current.querySelector('.request-copy small');
     const avatar = current.querySelector('.request-avatar');
+    const progress = current.querySelector('.request-progress i');
+    const time = current.querySelector('.request-time');
     const changed = message.track.id && message.track.id !== currentTrackId;
     if (title) title.textContent = message.track.name || 'Canción actual';
-    if (artist) artist.textContent = message.track.artist || 'Spotify';
+    if (artist) {
+      const artistName = message.track.artist || 'Spotify';
+      artist.textContent = currentRequester === 'automático'
+        ? artistName
+        : `${artistName} · por ${currentRequester}`;
+    }
     if (avatar && message.track.albumImageUrl) avatar.src = message.track.albumImageUrl;
+    const duration = Number(message.track.durationMs || 0);
+    const elapsed = Math.min(Number(message.progressMs || 0), duration || Number.MAX_SAFE_INTEGER);
+    if (progress && duration) progress.style.width = `${Math.round((elapsed / duration) * 100)}%`;
+    if (time) time.textContent = `${formatTime(elapsed)} / ${formatTime(duration)}`;
     currentTrackId = message.track.id || currentTrackId;
     musicActive = Boolean(message.playing);
     if (changed) window.radioMascot?.listening({ silent: true });
     else if (!musicActive) window.radioMascot?.idle();
+  }
+
+  function formatTime(milliseconds) {
+    const seconds = Math.max(0, Math.floor(Number(milliseconds || 0) / 1000));
+    return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
   }
 
   function scheduleReconnect() {

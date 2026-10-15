@@ -49,9 +49,10 @@ const syncSpotifyPlayback = async () => {
     const track = playback?.item;
     if (!track?.id) return;
     lastPlayingId = track.id;
-    broadcast({ version: 1, type: "spotify-now-playing", playing: Boolean(playback.is_playing), track: {
+    broadcast({ version: 1, type: "spotify-now-playing", playing: Boolean(playback.is_playing), progressMs: playback.progress_ms || 0, track: {
       id: track.id,
       name: track.name,
+      durationMs: track.duration_ms || 0,
       artist: track.artists?.map((artist) => artist.name).join(", ") || "",
       albumImageUrl: track.album?.images?.[0]?.url || "",
     } });

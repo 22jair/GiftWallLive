@@ -48,7 +48,7 @@
     element.classList.add('is-printing');
     list.prepend(node);
     trimPrintedTickets();
-    if (ticket.type === 'gift') playGiftSound();
+    if (['gift', 'follow', 'music'].includes(ticket.type)) playGiftSound();
 
     if (printer) {
       printer.classList.add('is-printing');

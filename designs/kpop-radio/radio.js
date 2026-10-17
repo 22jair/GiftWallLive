@@ -18,10 +18,23 @@ const largeReaction = document.querySelector('#large-reaction');
 const largeReactionArt = document.querySelector('#large-reaction-art');
 const largeAvatar = document.querySelector('#large-avatar');
 const bubbleField = document.querySelector('#bubble-field');
+const giftRail = document.querySelector('.gift-rail');
 const demoAvatar = '../../assets/images/kpop-demo-user-avatar.svg';
 const specialDurationMs = 15000;
+const bubbleMinDurationMs = 30000;
+const maxBubbles = 15;
+const bubbleRadius = 24;
+const bubbleCollisionDistance = 54;
+const reduceBubbleMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const activeBubbles = [];
+const bubbleQueue = [];
 let largeTimer;
 let bubbleIndex = 0;
+let demoBubbleCount = 0;
+let selectedGroup = 'BTS';
+let bubbleFrame = 0;
+let lastBubbleFrame = 0;
+let nextBubbleSwapAt = 0;
 
 largeAvatar.addEventListener('error', () => {
   if (largeAvatar.getAttribute('src') === demoAvatar) return;
@@ -41,30 +54,32 @@ largeAvatar.addEventListener('error', () => {
 });
 
 function setGroup(group) {
+  selectedGroup = group;
   document.querySelectorAll('.group-chip').forEach((chip) => {
     chip.classList.toggle('is-active', chip.dataset.group === group);
   });
 }
 
 document.querySelectorAll('.group-chip').forEach((chip) => {
-  const details = chip.querySelector('small');
   const group = chip.dataset.group;
-  const premium = document.createElement('span');
-  premium.className = 'premium-gift';
-  premium.innerHTML = '<span class="coin-icon" aria-hidden="true">●</span>100<span class="gift-art" aria-label="Espacio para imagen del regalo especial">＋</span>';
-  details.after(premium);
-  chip.setAttribute('aria-label', `${group}, regalos de 30 y 100 monedas`);
+  chip.setAttribute('aria-label', `${group}, regalos recibidos`);
 });
+
+function incrementGroupCount(group, type) {
+  const count = document.querySelector(`[data-group-count="${group}-${type}"]`);
+  if (!count) return;
+  count.textContent = String(Number(count.textContent || 0) + 1);
+}
 
 function showLargeReaction(group = 'BTS', username = '@moonlight', coins = 100, avatarUrl = '') {
   const card = specialCards[group];
   if (!card || Number(coins) !== 100) return;
+  incrementGroupCount(group, 'card');
   window.clearTimeout(largeTimer);
   largeReaction.dataset.group = group;
   largeReactionArt.src = card.image;
   largeReactionArt.alt = card.alt;
   document.querySelector('#large-user').textContent = username;
-  document.querySelector('#large-message').textContent = `¡Envió un regalo para ${group}!`;
   largeAvatar.src = avatarUrl || demoAvatar;
   largeAvatar.alt = avatarUrl ? `Foto de perfil de ${username}` : 'Avatar de muestra';
   largeReaction.setAttribute('aria-label', `${username} envió un regalo especial de 100 monedas para ${group}`);
@@ -78,20 +93,80 @@ function showLargeReaction(group = 'BTS', username = '@moonlight', coins = 100, 
   }, specialDurationMs);
 }
 
-function spawnBubble(group = 'BTS', username = '@fan', avatarUrl = '') {
-  if (!bubbleMarks[group]) return;
-  if (bubbleField.childElementCount >= 20) bubbleField.firstElementChild.remove();
+function bubbleBounds() {
+  const width = bubbleField.clientWidth;
+  const height = bubbleField.clientHeight;
+  const minX = Math.min(42, width / 2);
+  const minY = Math.min(42, height / 2);
+  return { minX, maxX: Math.max(minX, width - 42), minY, maxY: Math.max(minY, height - 52) };
+}
+
+function railObstacle() {
+  const field = bubbleField.getBoundingClientRect();
+  const rail = giftRail.getBoundingClientRect();
+  const gap = 4;
+  return {
+    left: rail.left - field.left - gap,
+    right: rail.right - field.left + gap,
+    top: rail.top - field.top - gap,
+    bottom: rail.bottom - field.top + gap,
+  };
+}
+
+function circleTouchesRail(x, y, rail) {
+  const closestX = Math.max(rail.left, Math.min(rail.right, x));
+  const closestY = Math.max(rail.top, Math.min(rail.bottom, y));
+  return Math.hypot(x - closestX, y - closestY) < bubbleRadius;
+}
+
+function bounceOffRail(bubble, rail) {
+  if (!circleTouchesRail(bubble.x, bubble.y, rail)) return;
+  const closestX = Math.max(rail.left, Math.min(rail.right, bubble.x));
+  const closestY = Math.max(rail.top, Math.min(rail.bottom, bubble.y));
+  const dx = bubble.x - closestX;
+  const dy = bubble.y - closestY;
+  const distance = Math.hypot(dx, dy);
+  let nx;
+  let ny;
+  if (distance) {
+    nx = dx / distance;
+    ny = dy / distance;
+    bubble.x += nx * (bubbleRadius - distance);
+    bubble.y += ny * (bubbleRadius - distance);
+  } else {
+    // Si el panel cambia de tamaño sobre una bolita, la sacamos hacia su lado libre.
+    nx = -1;
+    ny = 0;
+    bubble.x = rail.left - bubbleRadius;
+  }
+  const towardRail = bubble.vx * nx + bubble.vy * ny;
+  if (towardRail < 0) {
+    bubble.vx -= 2 * towardRail * nx;
+    bubble.vy -= 2 * towardRail * ny;
+  }
+}
+
+function placeBubble(bubble) {
+  bubble.element.style.transform = `translate3d(${bubble.x - bubbleRadius}px, ${bubble.y - bubbleRadius}px, 0)`;
+}
+
+function bubbleSpawnPoint(bounds, rail) {
+  let point;
+  for (let attempt = 0; attempt < 60; attempt += 1) {
+    point = {
+      x: bounds.minX + Math.random() * (bounds.maxX - bounds.minX),
+      y: attempt === 0 ? bounds.maxY : bounds.minY + Math.random() * (bounds.maxY - bounds.minY),
+    };
+    if (!circleTouchesRail(point.x, point.y, rail) && activeBubbles.every((bubble) => Math.hypot(bubble.x - point.x, bubble.y - point.y) >= bubbleCollisionDistance + 8)) return point;
+  }
+  return { x: bounds.minX, y: bounds.maxY };
+}
+
+function createBubble({ group, username, avatarUrl }, now) {
   const bubble = document.createElement('span');
-  const x = 10 + Math.random() * 78;
-  bubble.className = 'orbit-bubble';
+  bubble.className = 'orbit-bubble is-entering';
   bubble.dataset.group = group;
   bubble.dataset.user = username;
-  bubble.style.left = `${x}%`;
-  bubble.style.setProperty('--flight', `${8.5 + Math.random() * 1.5}s`);
-  bubble.style.setProperty('--drift-a', `${-18 + Math.random() * 36}px`);
-  bubble.style.setProperty('--drift-b', `${-55 + Math.random() * 110}px`);
-  bubble.style.setProperty('--drift-c', `${-80 + Math.random() * 160}px`);
-  bubble.style.setProperty('--drift-d', `${-120 + Math.random() * 240}px`);
   const avatar = document.createElement('img');
   avatar.className = 'orbit-bubble__avatar';
   avatar.src = avatarUrl || demoAvatar;
@@ -104,7 +179,88 @@ function spawnBubble(group = 'BTS', username = '@fan', avatarUrl = '') {
   badge.innerHTML = bubbleMarks[group];
   bubble.append(avatar, badge);
   bubbleField.append(bubble);
-  bubble.addEventListener('animationend', () => bubble.remove(), { once: true });
+  const point = bubbleSpawnPoint(bubbleBounds(), railObstacle());
+  const bubbleState = {
+    element: bubble,
+    x: point.x,
+    y: point.y,
+    vx: (Math.random() < .5 ? -1 : 1) * (42 + Math.random() * 30),
+    vy: (Math.random() < .5 ? -1 : 1) * (18 + Math.random() * 28),
+    enteredAt: now,
+  };
+  activeBubbles.push(bubbleState);
+  placeBubble(bubbleState);
+}
+
+function fillBubbleSlots(now) {
+  while (bubbleQueue.length) {
+    if (activeBubbles.length >= maxBubbles) {
+      const oldest = activeBubbles[0];
+      if (now - oldest.enteredAt < bubbleMinDurationMs || now < nextBubbleSwapAt) break;
+      activeBubbles.shift();
+      oldest.element.remove();
+      nextBubbleSwapAt = now + 650;
+    }
+    createBubble(bubbleQueue.shift(), now);
+  }
+}
+
+function moveBubbles(now) {
+  const elapsed = lastBubbleFrame ? Math.min((now - lastBubbleFrame) / 1000, .05) : 0;
+  lastBubbleFrame = now;
+  fillBubbleSlots(now);
+  const bounds = bubbleBounds();
+  const rail = railObstacle();
+  if (!reduceBubbleMotion.matches) {
+    for (const bubble of activeBubbles) {
+      bubble.x += bubble.vx * elapsed;
+      bubble.y += bubble.vy * elapsed;
+      if (bubble.x <= bounds.minX || bubble.x >= bounds.maxX) bubble.vx *= -1;
+      if (bubble.y <= bounds.minY || bubble.y >= bounds.maxY) bubble.vy *= -1;
+      bubble.x = Math.max(bounds.minX, Math.min(bounds.maxX, bubble.x));
+      bubble.y = Math.max(bounds.minY, Math.min(bounds.maxY, bubble.y));
+    }
+    for (let i = 0; i < activeBubbles.length; i += 1) {
+      for (let j = i + 1; j < activeBubbles.length; j += 1) {
+        const first = activeBubbles[i];
+        const second = activeBubbles[j];
+        const dx = second.x - first.x;
+        const dy = second.y - first.y;
+        const distance = Math.hypot(dx, dy);
+        if (distance >= bubbleCollisionDistance) continue;
+        const nx = distance ? dx / distance : 1;
+        const ny = distance ? dy / distance : 0;
+        const overlap = (bubbleCollisionDistance - distance) / 2;
+        first.x -= nx * overlap;
+        first.y -= ny * overlap;
+        second.x += nx * overlap;
+        second.y += ny * overlap;
+        const approachingSpeed = (second.vx - first.vx) * nx + (second.vy - first.vy) * ny;
+        if (approachingSpeed < 0) {
+          const impulse = -approachingSpeed * .94;
+          first.vx -= impulse * nx;
+          first.vy -= impulse * ny;
+          second.vx += impulse * nx;
+          second.vy += impulse * ny;
+        }
+      }
+    }
+  }
+  for (const bubble of activeBubbles) {
+    bubble.x = Math.max(bounds.minX, Math.min(bounds.maxX, bubble.x));
+    bubble.y = Math.max(bounds.minY, Math.min(bounds.maxY, bubble.y));
+    bounceOffRail(bubble, rail);
+    placeBubble(bubble);
+  }
+  bubbleFrame = window.requestAnimationFrame(moveBubbles);
+}
+
+function spawnBubble(group = 'BTS', username = '@fan', avatarUrl = '') {
+  if (!bubbleMarks[group]) return;
+  incrementGroupCount(group, 'bubble');
+  bubbleQueue.push({ group, username, avatarUrl });
+  fillBubbleSlots(performance.now());
+  if (!bubbleFrame) bubbleFrame = window.requestAnimationFrame(moveBubbles);
 }
 
 function demoBubbles() {
@@ -143,6 +299,12 @@ if (isDummy) {
     });
   });
   document.querySelector('[data-demo="bubble"]').addEventListener('click', demoBubbles);
+  document.querySelector('[data-demo="bubble-one"]').addEventListener('click', () => {
+    demoBubbleCount += 1;
+    window.dispatchEvent(new CustomEvent('kpop:bubble', {
+      detail: { group: selectedGroup, coins: 30, username: `@prueba${demoBubbleCount}` },
+    }));
+  });
   window.setTimeout(demoBubbles, 1100);
 } else {
   modeLabel.textContent = 'en espera';

@@ -16,47 +16,240 @@
           <p class="eyebrow">live music room</p>
           <h1>K-pop radio</h1>
         </div>
-        <span class="connection-pill"><i></i><span id="mode-label">en espera</span></span>
+        <span class="connection-pill"
+          ><i></i><span id="mode-label">en espera</span></span
+        >
       </header>
 
       <section class="player-card" aria-label="Reproductor actual">
-        <div class="album-art" aria-hidden="true"><span>✦</span><b>radio<br />orbit</b></div>
+        <div class="album-art" aria-hidden="true">
+          <span>✦</span><b>radio<br />orbit</b>
+        </div>
         <div class="player-copy">
           <p class="eyebrow">sonando ahora</p>
           <h2 id="song-title">Esperando música</h2>
           <p id="song-artist">Conecta Spotify para comenzar</p>
-          <div class="progress-line" role="progressbar" aria-label="Progreso de la canción" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"><i id="progress"></i></div>
-          <div class="time-row"><span id="elapsed">00:00</span><span id="duration">--:--</span></div>
+          <div
+            class="progress-line"
+            role="progressbar"
+            aria-label="Progreso de la canción"
+            aria-valuenow="0"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          >
+            <i id="progress"></i>
+          </div>
+          <div class="time-row">
+            <span id="elapsed">00:00</span><span id="duration">--:--</span>
+          </div>
         </div>
       </section>
 
-      <aside class="gift-rail" aria-label="Regalos disponibles">
-        <div class="rail-heading"><span>regalos</span><small>reacciones</small></div>
-        <button class="gift-item gift-item--music" data-gift="tortuga" data-coins="50"><span class="gift-icon">🐢</span><span><b>Tortuga</b><small>pide tu música</small></span><strong>50</strong></button>
-        <button class="gift-item" data-gift="dona" data-group="BTS" data-coins="30"><span class="gift-icon">🍩</span><span><b>Dona</b><small>BTS · integrante</small></span><strong>30</strong></button>
-        <button class="gift-item" data-gift="paleta" data-group="BLACKPINK" data-coins="30"><span class="gift-icon">🍭</span><span><b>Paleta</b><small>BLACKPINK · integrante</small></span><strong>30</strong></button>
-        <button class="gift-item" data-gift="cangrejo" data-group="TWICE" data-coins="30"><span class="gift-icon">🦀</span><span><b>Cangrejo</b><small>TWICE · integrante</small></span><strong>30</strong></button>
-        <button class="gift-item" data-gift="mesa" data-group="ENHYPEN" data-coins="30"><span class="gift-icon">🪩</span><span><b>Mesa</b><small>ENHYPEN · integrante</small></span><strong>30</strong></button>
-      <div class="reaction-limit" aria-label="Hasta 20 reacciones a la vez">
-        <svg viewBox="0 0 30 22" aria-hidden="true"><circle cx="15" cy="6" r="4"/><circle cx="5" cy="9" r="3"/><circle cx="25" cy="9" r="3"/><path d="M7 21v-4c0-4 3-6 8-6s8 2 8 6v4H7ZM1 20v-3c0-3 2-5 5-5M29 20v-3c0-3-2-5-5-5"/></svg>
-        <span>20 máx.</span>
-      </div>
-      <nav class="group-nav" aria-label="Grupos disponibles">
-        <button class="group-chip is-active" data-group="BTS" aria-label="BTS, 30 monedas"><span class="group-icon group-icon--bts" aria-hidden="true"><svg viewBox="0 0 40 48"><path d="M6 3 18 10v34L6 38Z"/><path d="M34 3 22 10v34l12-6Z"/></svg></span><b>BTS</b><small><span class="coin-icon" aria-hidden="true">●</span>30<span class="gift-art" aria-label="Espacio para imagen del regalo BTS">＋</span></small></button>
-        <button class="group-chip" data-group="BLACKPINK" aria-label="BLACKPINK, 30 monedas"><span class="group-icon group-icon--blackpink" aria-hidden="true"><svg viewBox="0 0 48 45"><defs><linearGradient id="blackpink-heart" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff0fa"/><stop offset=".38" stop-color="#ff9cdd"/><stop offset=".72" stop-color="#ff57bf"/><stop offset="1" stop-color="#ffbce8"/></linearGradient></defs><path class="heart-halo" d="M24 39C17 32 5 23 5 14 5 5 15 2 24 12 33 2 43 5 43 14c0 9-12 18-19 25Z"/><path class="heart-main" d="M24 39C17 32 5 23 5 14 5 5 15 2 24 12 33 2 43 5 43 14c0 9-12 18-19 25Z"/><path class="heart-shine" d="M9 13c1-5 5-7 9-5"/><path class="heart-spark" d="M38 2v6m-3-3h6"/></svg></span><b>BLACKPINK</b><small><span class="coin-icon" aria-hidden="true">●</span>30<span class="gift-art" aria-label="Espacio para imagen del regalo BLACKPINK">＋</span></small></button>
-        <button class="group-chip" data-group="TWICE" aria-label="TWICE, 30 monedas"><span class="group-icon group-icon--twice" aria-hidden="true"><svg viewBox="0 0 54 46"><path class="twice-t" d="M4 7h29v7H22v27h-8V14H4Z"/><path class="twice-flourish" d="M30 19c-2 8-2 16 2 16 3 0 6-7 8-12-1 8 1 12 4 11 3-1 5-5 6-8"/></svg></span><b>TWICE</b><small><span class="coin-icon" aria-hidden="true">●</span>30<span class="gift-art" aria-label="Espacio para imagen del regalo TWICE">＋</span></small></button>
-        <button class="group-chip" data-group="ENHYPEN" aria-label="ENHYPEN, 30 monedas"><span class="group-icon group-icon--enhypen" aria-hidden="true"><svg viewBox="0 0 57 42"><defs><linearGradient id="enhypen-blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d4f6ff"/><stop offset=".48" stop-color="#78d4ff"/><stop offset="1" stop-color="#448fff"/></linearGradient></defs><path class="enhypen-letter" d="M23 6H12c-3 0-5 2-5 5v20c0 3 2 5 5 5h11M8 21h13M32 36V11c0-5 3-6 6-2l11 21V6"/><path class="enhypen-highlight" d="M11 10h10M35 14l11 19"/></svg></span><b>ENHYPEN</b><small><span class="coin-icon" aria-hidden="true">●</span>30<span class="gift-art" aria-label="Espacio para imagen del regalo ENHYPEN">＋</span></small></button>
-      </nav>
+      <aside class="gift-rail" aria-label="Últimos regalos enviados">
+        <div class="rail-heading">
+          <span>Últimos regalos enviados</span>
+        </div>
+        <button
+          class="gift-item gift-item--music"
+          data-gift="tortuga"
+          data-coins="50"
+        >
+          <span class="gift-icon">🐢</span
+          ><span><b>Tortuga</b><small>pide tu música</small></span
+          ><strong>50</strong>
+        </button>
+        <button
+          class="gift-item"
+          data-gift="dona"
+          data-group="BTS"
+          data-coins="30"
+        >
+          <span class="gift-icon">🍩</span
+          ><span><b>Dona</b><small>BTS · integrante</small></span
+          ><strong>30</strong>
+        </button>
+        <button
+          class="gift-item"
+          data-gift="paleta"
+          data-group="BLACKPINK"
+          data-coins="30"
+        >
+          <span class="gift-icon">🍭</span
+          ><span><b>Paleta</b><small>BLACKPINK · integrante</small></span
+          ><strong>30</strong>
+        </button>
+        <button
+          class="gift-item"
+          data-gift="cangrejo"
+          data-group="TWICE"
+          data-coins="30"
+        >
+          <span class="gift-icon">🦀</span
+          ><span><b>Cangrejo</b><small>TWICE · integrante</small></span
+          ><strong>30</strong>
+        </button>
+        <button
+          class="gift-item"
+          data-gift="mesa"
+          data-group="ENHYPEN"
+          data-coins="30"
+        >
+          <span class="gift-icon">🪩</span
+          ><span><b>Mesa</b><small>ENHYPEN · integrante</small></span
+          ><strong>30</strong>
+        </button>
+        <div
+          class="reaction-guide"
+          aria-label="30 monedas: círculo, máximo 15. 100 monedas: card especial del grupo"
+        >
+          <span
+            ><i class="coin-icon" aria-hidden="true"></i><b>30</b
+            ><small>círculo · máx. 15</small></span
+          >
+          <span
+            ><i class="coin-icon" aria-hidden="true"></i><b>100</b
+            ><small>card especial del grupo</small></span
+          >
+          <span class="love-guide"
+            ><b
+              >Después de enviar el regalo, tienes 60 segundos para elegir un
+              solo grupo y escribirlo en el chat:</b
+            >
+            <b>Love + grupo</b>
+          </span>
+          <span class="love-guide"
+            ><small>ej.: Love BTS | Love BP | Love Tw | Love En</small></span
+          >
+        </div>
+        <nav class="group-nav" aria-label="Grupos disponibles">
+          <button
+            class="group-chip is-active"
+            data-group="BTS"
+            aria-label="BTS, regalos recibidos"
+          >
+            <span class="group-icon group-icon--bts" aria-hidden="true"
+              ><svg viewBox="0 0 40 48">
+                <path d="M6 3 18 10v34L6 38Z" />
+                <path d="M34 3 22 10v34l12-6Z" /></svg></span
+            ><b>BTS</b
+            ><small class="group-counts"
+              ><span class="group-count group-count--bubble">Círculo <b data-group-count="BTS-bubble">0</b></span
+              ><span class="group-count group-count--card">Card <b data-group-count="BTS-card">0</b></span></small
+            >
+          </button>
+          <button
+            class="group-chip"
+            data-group="BLACKPINK"
+            aria-label="BLACKPINK, regalos recibidos"
+          >
+            <span class="group-icon group-icon--blackpink" aria-hidden="true"
+              ><svg viewBox="0 0 48 45">
+                <defs>
+                  <linearGradient
+                    id="blackpink-heart"
+                    x1="0"
+                    y1="0"
+                    x2="1"
+                    y2="1"
+                  >
+                    <stop stop-color="#fff0fa" />
+                    <stop offset=".38" stop-color="#ff9cdd" />
+                    <stop offset=".72" stop-color="#ff57bf" />
+                    <stop offset="1" stop-color="#ffbce8" />
+                  </linearGradient>
+                </defs>
+                <path
+                  class="heart-halo"
+                  d="M24 39C17 32 5 23 5 14 5 5 15 2 24 12 33 2 43 5 43 14c0 9-12 18-19 25Z"
+                />
+                <path
+                  class="heart-main"
+                  d="M24 39C17 32 5 23 5 14 5 5 15 2 24 12 33 2 43 5 43 14c0 9-12 18-19 25Z"
+                />
+                <path class="heart-shine" d="M9 13c1-5 5-7 9-5" />
+                <path class="heart-spark" d="M38 2v6m-3-3h6" /></svg></span
+            ><b>BLACKPINK</b
+            ><small class="group-counts"
+              ><span class="group-count group-count--bubble">Círculo <b data-group-count="BLACKPINK-bubble">0</b></span
+              ><span class="group-count group-count--card">Card <b data-group-count="BLACKPINK-card">0</b></span></small
+            >
+          </button>
+          <button
+            class="group-chip"
+            data-group="TWICE"
+            aria-label="TWICE, regalos recibidos"
+          >
+            <span class="group-icon group-icon--twice" aria-hidden="true"
+              ><svg viewBox="0 0 54 46">
+                <path class="twice-t" d="M4 7h29v7H22v27h-8V14H4Z" />
+                <path
+                  class="twice-flourish"
+                  d="M30 19c-2 8-2 16 2 16 3 0 6-7 8-12-1 8 1 12 4 11 3-1 5-5 6-8"
+                /></svg></span
+            ><b>TWICE</b
+            ><small class="group-counts"
+              ><span class="group-count group-count--bubble">Círculo <b data-group-count="TWICE-bubble">0</b></span
+              ><span class="group-count group-count--card">Card <b data-group-count="TWICE-card">0</b></span></small
+            >
+          </button>
+          <button
+            class="group-chip"
+            data-group="ENHYPEN"
+            aria-label="ENHYPEN, regalos recibidos"
+          >
+            <span class="group-icon group-icon--enhypen" aria-hidden="true"
+              ><svg viewBox="0 0 57 42">
+                <defs>
+                  <linearGradient id="enhypen-blue" x1="0" y1="0" x2="1" y2="1">
+                    <stop stop-color="#d4f6ff" />
+                    <stop offset=".48" stop-color="#78d4ff" />
+                    <stop offset="1" stop-color="#448fff" />
+                  </linearGradient>
+                </defs>
+                <path
+                  class="enhypen-letter"
+                  d="M23 6H12c-3 0-5 2-5 5v20c0 3 2 5 5 5h11M8 21h13M32 36V11c0-5 3-6 6-2l11 21V6"
+                />
+                <path
+                  class="enhypen-highlight"
+                  d="M11 10h10M35 14l11 19"
+                /></svg></span
+            ><b>ENHYPEN</b
+            ><small class="group-counts"
+              ><span class="group-count group-count--bubble">Círculo <b data-group-count="ENHYPEN-bubble">0</b></span
+              ><span class="group-count group-count--card">Card <b data-group-count="ENHYPEN-card">0</b></span></small
+            >
+          </button>
+        </nav>
       </aside>
 
-      <section class="reaction-layer" id="reaction-layer" aria-live="polite" aria-atomic="true">
-        <article class="large-reaction" id="large-reaction" aria-label="Regalo especial de 100 monedas para BTS" hidden>
-          <img class="large-reaction-art" id="large-reaction-art" src="../../assets/images/kpop-bts-special-card-photo.png" alt="Los siete integrantes de BTS dentro de un marco violeta con lightsticks y un regalo luminoso" />
+      <section
+        class="reaction-layer"
+        id="reaction-layer"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        <article
+          class="large-reaction"
+          id="large-reaction"
+          aria-label="Regalo especial de 100 monedas para BTS"
+          hidden
+        >
+          <img
+            class="large-reaction-art"
+            id="large-reaction-art"
+            src="../../assets/images/kpop-bts-special-card-photo.png"
+            alt="Los siete integrantes de BTS dentro de un marco violeta con lightsticks y un regalo luminoso"
+          />
           <div class="large-reaction-copy">
-            <img class="large-reaction-avatar" id="large-avatar" src="../../assets/images/kpop-demo-user-avatar.svg" alt="Avatar de muestra" />
+            <img
+              class="large-reaction-avatar"
+              id="large-avatar"
+              src="../../assets/images/kpop-demo-user-avatar.svg"
+              alt="Avatar de muestra"
+            />
             <div class="large-reaction-text">
               <h2 id="large-user">@moonlight</h2>
-              <p id="large-message">¡Envió un regalo para BTS!</p>
             </div>
           </div>
         </article>
@@ -69,6 +262,12 @@
         <button data-demo-group="BLACKPINK">100 · BLACKPINK</button>
         <button data-demo-group="TWICE">100 · TWICE</button>
         <button data-demo-group="ENHYPEN">100 · ENHYPEN</button>
+        <button
+          data-demo="bubble-one"
+          aria-label="Añadir una bolita de 30 monedas del grupo seleccionado"
+        >
+          +1 bolita
+        </button>
         <button data-demo="bubble">30 · burbujas</button>
       </div>
     </main>

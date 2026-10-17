@@ -36,6 +36,9 @@ Cada printer abre el modo LIVE por defecto y permanece vacío hasta recibir acti
 - Printer: `designs/printer/index.html`
 - Halloween: `designs/halloween/index.html`
 - Radio: `designs/radio/index.html`
+- K-pop Radio: `designs/kpop-radio/index.html`
+
+El experimento independiente K-pop Radio usa un escenario espacial vertical y deja las reacciones preparadas para conectarse a Spotify/TikTok. Para probarlo con eventos simulados abre `designs/kpop-radio/index.html?source=dummy`; muestra una reacción grande de 100 monedas y burbujas flotantes de 30 monedas.
 
 Añade `?source=dummy` a cualquiera para ejecutar el loop de demostración. El modo LIVE nunca mezcla ni sustituye eventos reales con datos simulados. Los enlaces antiguos a `index.html?source=dummy` o `index.html?source=live` redirigen a Default conservando los parámetros. El enlace raíz sin parámetros ahora muestra la galería; si lo usabas en LIVE Studio, sustitúyelo por la ruta directa de Default.
 
@@ -48,10 +51,15 @@ GiftWallLive/
 │   ├── README.md
 │   ├── printer/
 │   │   └── index.html
-│   └── halloween/
+│   ├── halloween/
+│   │   ├── index.html
+│   │   ├── components.js
+│   │   └── theme.css
+│   └── kpop-radio/
 │       ├── index.html
-│       ├── components.js
-│       └── theme.css
+│       ├── radio.css
+│       ├── radio.js
+│       └── README.md
 ├── css/
 │   ├── README.md
 │   ├── core/

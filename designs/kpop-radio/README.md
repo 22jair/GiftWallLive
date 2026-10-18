@@ -2,6 +2,8 @@
 
 Radio K-pop vertical de GiftWallLive. La página consume el WebSocket del servidor local para mostrar regalos de TikTok LIVE y la canción que el anfitrión reproduce en Spotify.
 
+La composición usa un lienzo lógico de **393 × 852** (formato de celular). Se escala como una sola pieza para ajustarse a la ventana o a la fuente de TikTok LIVE Studio, conservando la misma proporción del contenido y el tamaño relativo de los textos. En una fuente más ancha quedan bandas laterales oscuras.
+
 ## Probar en local
 
 Inicia el servidor desde `server/` y conecta TikTok y Spotify en su panel. Abre `index.html` directamente o desde GitHub Pages. El modo normal intenta conectarse a `ws://127.0.0.1:8081/live`; puedes especificar otra dirección con `?source=live&socket=ws%3A%2F%2F127.0.0.1%3A8081%2Flive`. Por defecto el servidor deja Spotify bajo control manual y solo transmite la canción actual. Para recuperar los pedidos musicales y la reproducción automática de la radio anterior, configura `GIFTWALL_AUTO_MUSIC=true` en `server/.env` y reinicia el servidor. El modo de demostración no abre el WebSocket:

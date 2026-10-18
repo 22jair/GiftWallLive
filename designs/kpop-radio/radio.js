@@ -15,6 +15,7 @@ const specialCards = {
   ENHYPEN: { image: '../../assets/images/kpop-enhypen-special-card.png', alt: 'Los siete integrantes de ENHYPEN en un marco azul con estrellas y un regalo' },
 };
 const modeLabel = document.querySelector('#mode-label');
+const stage = document.querySelector('#app');
 const largeReaction = document.querySelector('#large-reaction');
 const largeReactionArt = document.querySelector('#large-reaction-art');
 const largeAvatar = document.querySelector('#large-avatar');
@@ -38,6 +39,14 @@ let demoBubbleCount = 0;
 let bubbleFrame = 0;
 let lastBubbleFrame = 0;
 let nextBubbleSwapAt = 0;
+
+function fitStage() {
+  const scale = Math.min(window.innerWidth / 393, window.innerHeight / 852);
+  stage.style.setProperty('--stage-scale', String(scale));
+}
+
+fitStage();
+window.addEventListener('resize', fitStage);
 
 largeAvatar.addEventListener('error', () => {
   if (largeAvatar.getAttribute('src') === demoAvatar) return;
@@ -106,12 +115,13 @@ function bubbleBounds() {
 function railObstacle() {
   const field = bubbleField.getBoundingClientRect();
   const rail = giftRail.getBoundingClientRect();
+  const scale = field.width / bubbleField.clientWidth || 1;
   const gap = 4;
   return {
-    left: rail.left - field.left - gap,
-    right: rail.right - field.left + gap,
-    top: rail.top - field.top - gap,
-    bottom: rail.bottom - field.top + gap,
+    left: (rail.left - field.left) / scale - gap,
+    right: (rail.right - field.left) / scale + gap,
+    top: (rail.top - field.top) / scale - gap,
+    bottom: (rail.bottom - field.top) / scale + gap,
   };
 }
 

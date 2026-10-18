@@ -11,18 +11,20 @@
 
 * { box-sizing: border-box; }
 html, body { min-height: 100%; }
-body { margin: 0; min-height: 100dvh; background: #06091c; color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+body { display: grid; place-items: center; width: 100%; height: 100dvh; margin: 0; overflow: hidden; background: #06091c; color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
 button { font: inherit; color: inherit; }
 
 #app {
   position: relative;
-  width: min(100vw, 56.25dvh);
-  height: 100dvh;
-  margin: auto;
+  width: 393px;
+  height: 852px;
+  flex: none;
   overflow: hidden;
   isolation: isolate;
   background: #101742 url("../../assets/images/kpop-radio-background.png") center / cover no-repeat;
   padding: 15px 13px 12px;
+  transform: scale(var(--stage-scale, 1));
+  transform-origin: center;
 }
 
 #app::before, #app::after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: -1; }
@@ -33,7 +35,7 @@ button { font: inherit; color: inherit; }
 .brand-bar { display: flex; align-items: flex-start; justify-content: space-between; position: relative; z-index: 2; }
 .eyebrow { margin: 0 0 4px; color: var(--muted); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; }
 h1, h2, p { margin-top: 0; }
-.brand-bar h1 { margin: 0; font-size: clamp(1.25rem, 5.4vw, 2rem); letter-spacing: -.06em; line-height: .95; text-shadow: 0 0 22px #a996ff99; }
+.brand-bar h1 { margin: 0; font-size: 1.33rem; letter-spacing: -.06em; line-height: .95; text-shadow: 0 0 22px #a996ff99; }
 .connection-pill { display: inline-flex; align-items: center; gap: 5px; margin-top: 4px; padding: 5px 8px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: #090e32aa; font-size: .58rem; }
 .connection-pill i { width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 9px var(--cyan); }
 
@@ -43,14 +45,14 @@ h1, h2, p { margin-top: 0; }
 .album-art b { font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; }
 .album-art.has-cover { background-size: cover; background-position: center; }
 .album-art.has-cover > * { display: none; }
-.player-copy h2 { margin: 0; font-size: clamp(.82rem, 3.2vw, 1.1rem); line-height: 1.05; }
+.player-copy h2 { margin: 0; font-size: .82rem; line-height: 1.05; }
 .player-copy > p:not(.eyebrow) { overflow: hidden; margin: 4px 0 8px; color: var(--muted); font-size: .59rem; text-overflow: ellipsis; white-space: nowrap; }
 .progress-line { height: 4px; overflow: hidden; border-radius: 99px; background: #ffffff22; }
 .progress-line i { display: block; width: 34%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--cyan), var(--pink)); box-shadow: 0 0 11px var(--pink); }
 .time-row { display: flex; justify-content: space-between; color: #d6d5ee; font-size: .58rem; }
 
 .gift-rail { position: absolute; top: 11%; right: 13px; left: 63%; z-index: 2; display: grid; gap: 5px; }
-.rail-heading { display: flex; align-items: baseline; min-width: 0; padding: 0 4px 3px; color: var(--gold); font-size: clamp(.55rem, 2.4vw, .75rem); font-weight: 700; line-height: 1.15; }
+.rail-heading { display: flex; align-items: baseline; min-width: 0; padding: 0 4px 3px; color: var(--gold); font-size: .59rem; font-weight: 700; line-height: 1.15; }
 .recent-gifts { display: grid; gap: 5px; }
 .recent-gifts:empty::before { content: "Esperando regalos…"; display: block; padding: 8px 6px; color: var(--muted); background: #0a103bd9; border-radius: 10px; font-size: .56rem; }
 .recent-gift { display: grid; grid-template-columns: 22px minmax(0,1fr) 23px; align-items: center; gap: 4px; min-height: 39px; padding: 4px; border: 1px solid #c6c8ff44; border-radius: 10px; background: #0a103bd9; }
@@ -88,10 +90,10 @@ h1, h2, p { margin-top: 0; }
 .large-reaction-art { display: block; width: 100%; height: 100%; object-fit: contain; }
 .large-reaction-copy { position: absolute; right: 10%; bottom: 11%; left: 10%; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 7px; min-height: 36px; color: #fff8ff; text-align: left; text-shadow: 0 1px 4px #130925, 0 0 8px #130925; }
 .large-reaction.is-celebrating .large-reaction-copy { animation: card-caption 15s ease-in-out both; }
-.large-reaction-avatar { width: clamp(28px, 8vw, 36px); aspect-ratio: 1; flex: none; border: 2px solid #f4d9ff; border-radius: 50%; object-fit: cover; background: #3d2474; box-shadow: 0 0 9px var(--card-glow); }
+.large-reaction-avatar { width: 31px; aspect-ratio: 1; flex: none; border: 2px solid #f4d9ff; border-radius: 50%; object-fit: cover; background: #3d2474; box-shadow: 0 0 9px var(--card-glow); }
 .large-reaction-text { min-width: 0; }
-.large-reaction-copy h2 { overflow: hidden; margin: 0; font-size: clamp(.68rem, 2.9vw, .88rem); font-weight: 800; line-height: 1.15; text-overflow: ellipsis; white-space: nowrap; }
-.reaction-spark { position: absolute; z-index: 3; top: var(--spark-y); left: var(--spark-x); color: #fff4ca; font-size: clamp(.8rem, 3.5vw, 1.15rem); line-height: 1; opacity: 0; text-shadow: 0 0 7px #fff, 0 0 17px #ee9dff, 0 0 26px #8a5cff; }
+.large-reaction-copy h2 { overflow: hidden; margin: 0; font-size: .71rem; font-weight: 800; line-height: 1.15; text-overflow: ellipsis; white-space: nowrap; }
+.reaction-spark { position: absolute; z-index: 3; top: var(--spark-y); left: var(--spark-x); color: #fff4ca; font-size: .86rem; line-height: 1; opacity: 0; text-shadow: 0 0 7px #fff, 0 0 17px #ee9dff, 0 0 26px #8a5cff; }
 .large-reaction.is-celebrating .reaction-spark { animation: card-spark 2s ease-in-out var(--spark-delay) 7 both; }
 .bubble-field { position: absolute; z-index: 1; inset: 0; overflow: hidden; }
 .orbit-bubble { --bubble-accent: #b68aff; --bubble-metal: #f2d9ff; --bubble-dark: #211347; position: absolute; top: 0; left: 0; width: 38px; height: 38px; display: grid; place-items: center; padding: 3px; border: 1px solid var(--bubble-metal); border-radius: 50%; background: conic-gradient(from -35deg, var(--bubble-dark), var(--bubble-metal) 15%, var(--bubble-accent) 27%, var(--bubble-dark) 45%, var(--bubble-metal) 63%, var(--bubble-accent) 76%, var(--bubble-dark)); box-shadow: 0 0 5px var(--bubble-accent), 0 0 10px color-mix(in srgb, var(--bubble-accent) 65%, transparent), inset 0 0 5px #fff7; isolation: isolate; will-change: transform; }
@@ -192,5 +194,4 @@ h1, h2, p { margin-top: 0; }
 @keyframes bubble-impact { 0% { transform: scale(1); } 35% { transform: scale(1.16, .86); } 72% { transform: scale(.93, 1.08); } 100% { transform: scale(1); } }
 @keyframes bubble-flash { 0% { opacity: 0; transform: translate(-50%, 4px) scale(.2) rotate(-25deg); } 30% { opacity: .95; transform: translate(-50%, -2px) scale(1.2) rotate(8deg); } 100% { opacity: 0; transform: translate(-50%, -12px) scale(.45) rotate(35deg); } }
 @keyframes bubble-leave { to { opacity: 0; filter: blur(2px) brightness(1.7); } }
-@media (max-width: 360px) { #app { padding-left: 9px; padding-right: 9px; } .player-card { left: 9px; } .gift-rail { right: 9px; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; } .space-motion { opacity: .2; } .large-reaction.is-celebrating { animation: none !important; opacity: 1; transform: none; filter: drop-shadow(0 0 13px #a65fffbb); } .large-reaction.is-celebrating .large-reaction-copy { animation: none !important; opacity: 1; transform: none; } .reaction-spark, .large-reaction::after, .orbit-bubble::before, .orbit-bubble__flash { display: none; } .orbit-bubble__avatar { animation: none !important; } }

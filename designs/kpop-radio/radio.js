@@ -26,16 +26,15 @@ const giftImages = { bubble: '../../assets/images/gift-dona.webp', card: '../../
 const reactionGiftIds = { '5879': 'bubble', '5660': 'card' };
 const specialDurationMs = 15000;
 const bubbleMinDurationMs = 15000;
-const maxBubbles = 15;
-const bubbleRadius = 24;
-const bubbleCollisionDistance = 54;
+const maxBubbles = 20;
+const bubbleRadius = 19;
+const bubbleCollisionDistance = 44;
 const reduceBubbleMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const activeBubbles = [];
 const bubbleQueue = [];
 let largeTimer;
 let bubbleIndex = 0;
 let demoBubbleCount = 0;
-let selectedGroup = 'BTS';
 let bubbleFrame = 0;
 let lastBubbleFrame = 0;
 let nextBubbleSwapAt = 0;
@@ -58,7 +57,6 @@ largeAvatar.addEventListener('error', () => {
 });
 
 function setGroup(group) {
-  selectedGroup = group;
   document.querySelectorAll('.group-chip').forEach((chip) => {
     chip.classList.toggle('is-active', chip.dataset.group === group);
   });
@@ -100,9 +98,9 @@ function showLargeReaction(group = 'BTS', username = '@moonlight', coins = 100, 
 function bubbleBounds() {
   const width = bubbleField.clientWidth;
   const height = bubbleField.clientHeight;
-  const minX = Math.min(42, width / 2);
-  const minY = Math.min(42, height / 2);
-  return { minX, maxX: Math.max(minX, width - 42), minY, maxY: Math.max(minY, height - 52) };
+  const minX = Math.min(34, width / 2);
+  const minY = Math.min(34, height / 2);
+  return { minX, maxX: Math.max(minX, width - 34), minY, maxY: Math.max(minY, height - 48) };
 }
 
 function railObstacle() {
@@ -152,6 +150,16 @@ function bounceOffRail(bubble, rail) {
 
 function placeBubble(bubble) {
   bubble.element.style.transform = `translate3d(${bubble.x - bubbleRadius}px, ${bubble.y - bubbleRadius}px, 0)`;
+  bubble.element.style.setProperty('--trail-angle', `${Math.atan2(bubble.vy, bubble.vx)}rad`);
+}
+
+function flashBubble(bubble, now) {
+  if (reduceBubbleMotion.matches || now - (bubble.lastFlashAt ?? -Infinity) < 500) return;
+  bubble.lastFlashAt = now;
+  bubble.element.classList.remove('is-impact');
+  void bubble.element.offsetWidth;
+  bubble.element.classList.add('is-impact');
+  window.setTimeout(() => bubble.element.classList.remove('is-impact'), 360);
 }
 
 function bubbleSpawnPoint(bounds, rail) {
@@ -181,7 +189,10 @@ function createBubble({ group, username, avatarUrl }, now) {
   const badge = document.createElement('span');
   badge.className = 'orbit-bubble__badge';
   badge.innerHTML = bubbleMarks[group];
-  bubble.append(avatar, badge);
+  const flash = document.createElement('span');
+  flash.className = 'orbit-bubble__flash';
+  flash.setAttribute('aria-hidden', 'true');
+  bubble.append(avatar, badge, flash);
   bubbleField.append(bubble);
   const point = bubbleSpawnPoint(bubbleBounds(), railObstacle());
   const bubbleState = {
@@ -200,10 +211,16 @@ function fillBubbleSlots(now) {
   while (bubbleQueue.length) {
     if (activeBubbles.length >= maxBubbles) {
       const oldest = activeBubbles[0];
-      if (now - oldest.enteredAt < bubbleMinDurationMs || now < nextBubbleSwapAt) break;
-      activeBubbles.shift();
-      oldest.element.remove();
+      if (oldest.leaving || now - oldest.enteredAt < bubbleMinDurationMs || now < nextBubbleSwapAt) break;
+      oldest.leaving = true;
+      oldest.element.classList.add('is-leaving');
       nextBubbleSwapAt = now + 650;
+      window.setTimeout(() => {
+        activeBubbles.shift();
+        oldest.element.remove();
+        fillBubbleSlots(performance.now());
+      }, reduceBubbleMotion.matches ? 0 : 300);
+      break;
     }
     createBubble(bubbleQueue.shift(), now);
   }
@@ -217,10 +234,11 @@ function moveBubbles(now) {
   const rail = railObstacle();
   if (!reduceBubbleMotion.matches) {
     for (const bubble of activeBubbles) {
+      if (bubble.leaving) continue;
       bubble.x += bubble.vx * elapsed;
       bubble.y += bubble.vy * elapsed;
-      if (bubble.x <= bounds.minX || bubble.x >= bounds.maxX) bubble.vx *= -1;
-      if (bubble.y <= bounds.minY || bubble.y >= bounds.maxY) bubble.vy *= -1;
+      if (bubble.x <= bounds.minX || bubble.x >= bounds.maxX) { bubble.vx *= -1; flashBubble(bubble, now); }
+      if (bubble.y <= bounds.minY || bubble.y >= bounds.maxY) { bubble.vy *= -1; flashBubble(bubble, now); }
       bubble.x = Math.max(bounds.minX, Math.min(bounds.maxX, bubble.x));
       bubble.y = Math.max(bounds.minY, Math.min(bounds.maxY, bubble.y));
     }
@@ -228,6 +246,7 @@ function moveBubbles(now) {
       for (let j = i + 1; j < activeBubbles.length; j += 1) {
         const first = activeBubbles[i];
         const second = activeBubbles[j];
+        if (first.leaving || second.leaving) continue;
         const dx = second.x - first.x;
         const dy = second.y - first.y;
         const distance = Math.hypot(dx, dy);
@@ -246,13 +265,17 @@ function moveBubbles(now) {
           first.vy -= impulse * ny;
           second.vx += impulse * nx;
           second.vy += impulse * ny;
+          flashBubble(first, now);
+          flashBubble(second, now);
         }
       }
     }
   }
   for (const bubble of activeBubbles) {
+    if (bubble.leaving) continue;
     bubble.x = Math.max(bounds.minX, Math.min(bounds.maxX, bubble.x));
     bubble.y = Math.max(bounds.minY, Math.min(bounds.maxY, bubble.y));
+    if (circleTouchesRail(bubble.x, bubble.y, rail)) flashBubble(bubble, now);
     bounceOffRail(bubble, rail);
     placeBubble(bubble);
   }
@@ -451,11 +474,15 @@ if (isDummy) {
     });
   });
   document.querySelector('[data-demo="bubble"]').addEventListener('click', demoBubbles);
-  document.querySelector('[data-demo="bubble-one"]').addEventListener('click', () => {
-    demoBubbleCount += 1;
-    window.dispatchEvent(new CustomEvent('kpop:bubble', {
-      detail: { group: selectedGroup, coins: 30, username: `@prueba${demoBubbleCount}` },
-    }));
+  document.querySelectorAll('[data-demo-bubble-group]').forEach((button) => {
+    button.addEventListener('click', () => {
+      demoBubbleCount += 1;
+      const group = button.dataset.demoBubbleGroup;
+      setGroup(group);
+      window.dispatchEvent(new CustomEvent('kpop:bubble', {
+        detail: { group, coins: 30, username: `@prueba${demoBubbleCount}` },
+      }));
+    });
   });
   window.setTimeout(demoBubbles, 1100);
 } else {

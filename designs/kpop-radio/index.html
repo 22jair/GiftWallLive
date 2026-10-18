@@ -54,8 +54,15 @@
           class="reaction-guide"
           aria-label="Dona: círculo. Corazón: card especial. Envía Love y un grupo en el chat"
         >
-          <span><img src="../../assets/images/gift-dona.webp" alt="" /><b>Dona</b><small>1 círculo</small></span>
-          <span><img src="../../assets/images/gift-corazon.webp" alt="" /><b>Corazón</b><small>card del grupo</small></span>
+          <span
+            ><img src="../../assets/images/gift-dona.webp" alt="" /><b>Dona</b
+            ><small>1 círculo</small></span
+          >
+          <span
+            ><img src="../../assets/images/gift-corazon.webp" alt="" /><b
+              >Corazón</b
+            ><small>card del grupo</small></span
+          >
           <span class="love-guide"
             ><b
               >Después de enviar el regalo, tienes 60 segundos para elegir un
@@ -63,9 +70,10 @@
             >
             <b>Love + grupo</b>
           </span>
-          <span class="love-guide"
-            ><small>ej.: Love BTS | Love BP | Love Tw | Love En</small></span
-          >
+          <span class="love-guide">
+            <small>Ejemplo:</small>
+            <small>Love BTS | Love BP | Love Tw | Love En</small>
+          </span>
         </div>
         <nav class="group-nav" aria-label="Grupos disponibles">
           <button
@@ -79,8 +87,11 @@
                 <path d="M34 3 22 10v34l12-6Z" /></svg></span
             ><b>BTS</b
             ><small class="group-counts"
-              ><span class="group-count group-count--bubble">Círculo <b data-group-count="BTS-bubble">0</b></span
-              ><span class="group-count group-count--card">Card <b data-group-count="BTS-card">0</b></span></small
+              ><span class="group-count group-count--bubble"
+                >Círculo <b data-group-count="BTS-bubble">0</b></span
+              ><span class="group-count group-count--card"
+                >Card <b data-group-count="BTS-card">0</b></span
+              ></small
             >
           </button>
           <button
@@ -116,8 +127,11 @@
                 <path class="heart-spark" d="M38 2v6m-3-3h6" /></svg></span
             ><b>BLACKPINK</b
             ><small class="group-counts"
-              ><span class="group-count group-count--bubble">Círculo <b data-group-count="BLACKPINK-bubble">0</b></span
-              ><span class="group-count group-count--card">Card <b data-group-count="BLACKPINK-card">0</b></span></small
+              ><span class="group-count group-count--bubble"
+                >Círculo <b data-group-count="BLACKPINK-bubble">0</b></span
+              ><span class="group-count group-count--card"
+                >Card <b data-group-count="BLACKPINK-card">0</b></span
+              ></small
             >
           </button>
           <button
@@ -134,8 +148,11 @@
                 /></svg></span
             ><b>TWICE</b
             ><small class="group-counts"
-              ><span class="group-count group-count--bubble">Círculo <b data-group-count="TWICE-bubble">0</b></span
-              ><span class="group-count group-count--card">Card <b data-group-count="TWICE-card">0</b></span></small
+              ><span class="group-count group-count--bubble"
+                >Círculo <b data-group-count="TWICE-bubble">0</b></span
+              ><span class="group-count group-count--card"
+                >Card <b data-group-count="TWICE-card">0</b></span
+              ></small
             >
           </button>
           <button
@@ -162,8 +179,11 @@
                 /></svg></span
             ><b>ENHYPEN</b
             ><small class="group-counts"
-              ><span class="group-count group-count--bubble">Círculo <b data-group-count="ENHYPEN-bubble">0</b></span
-              ><span class="group-count group-count--card">Card <b data-group-count="ENHYPEN-card">0</b></span></small
+              ><span class="group-count group-count--bubble"
+                >Círculo <b data-group-count="ENHYPEN-bubble">0</b></span
+              ><span class="group-count group-count--card"
+                >Card <b data-group-count="ENHYPEN-card">0</b></span
+              ></small
             >
           </button>
         </nav>
@@ -208,13 +228,11 @@
         <button data-demo-group="BLACKPINK">100 · BLACKPINK</button>
         <button data-demo-group="TWICE">100 · TWICE</button>
         <button data-demo-group="ENHYPEN">100 · ENHYPEN</button>
-        <button
-          data-demo="bubble-one"
-          aria-label="Añadir una bolita de 30 monedas del grupo seleccionado"
-        >
-          +1 bolita
-        </button>
-        <button data-demo="bubble">30 · burbujas</button>
+        <button data-demo-bubble-group="BTS">Círculo · BTS</button>
+        <button data-demo-bubble-group="BLACKPINK">Círculo · BLACKPINK</button>
+        <button data-demo-bubble-group="TWICE">Círculo · TWICE</button>
+        <button data-demo-bubble-group="ENHYPEN">Círculo · ENHYPEN</button>
+        <button data-demo="bubble">Llenar círculos</button>
       </div>
     </main>
     <script src="./radio.js" defer></script>

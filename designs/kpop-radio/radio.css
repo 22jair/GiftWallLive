@@ -94,16 +94,21 @@ h1, h2, p { margin-top: 0; }
 .reaction-spark { position: absolute; z-index: 3; top: var(--spark-y); left: var(--spark-x); color: #fff4ca; font-size: clamp(.8rem, 3.5vw, 1.15rem); line-height: 1; opacity: 0; text-shadow: 0 0 7px #fff, 0 0 17px #ee9dff, 0 0 26px #8a5cff; }
 .large-reaction.is-celebrating .reaction-spark { animation: card-spark 2s ease-in-out var(--spark-delay) 7 both; }
 .bubble-field { position: absolute; z-index: 1; inset: 0; overflow: hidden; }
-.orbit-bubble { --bubble-accent: #b68aff; --bubble-metal: #f2d9ff; --bubble-dark: #211347; position: absolute; top: 0; left: 0; width: 48px; height: 48px; display: grid; place-items: center; padding: 4px; border: 1px solid var(--bubble-metal); border-radius: 50%; background: conic-gradient(from -35deg, var(--bubble-dark), var(--bubble-metal) 15%, var(--bubble-accent) 27%, var(--bubble-dark) 45%, var(--bubble-metal) 63%, var(--bubble-accent) 76%, var(--bubble-dark)); box-shadow: 0 0 7px var(--bubble-accent), 0 0 17px var(--bubble-accent), inset 0 0 7px #fff7; isolation: isolate; will-change: transform; }
+.orbit-bubble { --bubble-accent: #b68aff; --bubble-metal: #f2d9ff; --bubble-dark: #211347; position: absolute; top: 0; left: 0; width: 38px; height: 38px; display: grid; place-items: center; padding: 3px; border: 1px solid var(--bubble-metal); border-radius: 50%; background: conic-gradient(from -35deg, var(--bubble-dark), var(--bubble-metal) 15%, var(--bubble-accent) 27%, var(--bubble-dark) 45%, var(--bubble-metal) 63%, var(--bubble-accent) 76%, var(--bubble-dark)); box-shadow: 0 0 5px var(--bubble-accent), 0 0 10px color-mix(in srgb, var(--bubble-accent) 65%, transparent), inset 0 0 5px #fff7; isolation: isolate; will-change: transform; }
 .orbit-bubble.is-entering { animation: bubble-appear .55s ease-out both; }
+.orbit-bubble.is-leaving { animation: bubble-leave .3s ease-in both; pointer-events: none; }
 .orbit-bubble[data-group="BLACKPINK"] { --bubble-accent: #ff68c5; --bubble-metal: #ffe0f2; --bubble-dark: #320e32; }
 .orbit-bubble[data-group="TWICE"] { --bubble-accent: #ffd070; --bubble-metal: #fff3d2; --bubble-dark: #493047; }
 .orbit-bubble[data-group="ENHYPEN"] { --bubble-accent: #65d7ff; --bubble-metal: #dcf8ff; --bubble-dark: #0c2c50; }
-.orbit-bubble::before { content: ""; position: absolute; inset: -5px; border: 1px solid var(--bubble-accent); border-radius: 50%; box-shadow: 0 0 8px var(--bubble-accent), inset 0 0 7px var(--bubble-accent); opacity: .8; pointer-events: none; }
-.orbit-bubble::after { content: attr(data-user); position: absolute; top: 52px; left: 50%; width: max-content; max-width: 84px; min-width: 56px; overflow: hidden; padding: 2px 5px 3px; border: 1px solid var(--bubble-accent); border-radius: 99px; color: #fff; background: var(--bubble-dark); box-shadow: 0 0 8px var(--bubble-accent); font-size: .44rem; font-weight: 700; line-height: 1.2; text-align: center; text-overflow: ellipsis; text-shadow: 0 1px 3px #000; white-space: nowrap; transform: translateX(-50%); }
-.orbit-bubble__avatar { display: block; width: 100%; height: 100%; border: 2px solid #fff9; border-radius: 50%; background: var(--bubble-dark); object-fit: cover; box-shadow: inset 0 0 8px #0009; }
-.orbit-bubble__badge { position: absolute; top: -7px; right: -7px; width: 20px; height: 20px; display: grid; place-items: center; padding: 3px; border: 1px solid var(--bubble-metal); border-radius: 50%; color: var(--bubble-metal); background: radial-gradient(circle at 35% 20%, var(--bubble-accent), var(--bubble-dark) 72%); box-shadow: 0 0 8px var(--bubble-accent), inset 0 1px #fff8; }
+.orbit-bubble::before { content: ""; position: absolute; top: 50%; left: 50%; width: 26px; height: 8px; border-radius: 50%; background: linear-gradient(90deg, transparent, var(--bubble-accent)); filter: blur(3px); opacity: .56; transform: translate(-50%, -50%) rotate(var(--trail-angle, 0rad)) translateX(-27px); pointer-events: none; }
+.orbit-bubble::after { content: attr(data-user); position: absolute; z-index: 3; top: 41px; left: 50%; width: max-content; max-width: 82px; min-width: 42px; overflow: hidden; padding: 2px 4px; border: 1px solid color-mix(in srgb, var(--bubble-accent) 75%, transparent); border-radius: 99px; color: #fff; background: #101330ec; box-shadow: 0 1px 5px #05061aab; font-size: .5rem; font-weight: 700; line-height: 1.15; text-align: center; text-overflow: ellipsis; text-shadow: 0 1px 3px #000; white-space: nowrap; transform: translateX(-50%); }
+.orbit-bubble__avatar { position: relative; z-index: 1; display: block; width: 100%; height: 100%; border: 1px solid #fff9; border-radius: 50%; background: var(--bubble-dark); object-fit: cover; box-shadow: inset 0 0 5px #0009; animation: bubble-glow 3.2s ease-in-out infinite; }
+.orbit-bubble.is-impact .orbit-bubble__avatar { animation: bubble-impact .32s ease-out both; }
+.orbit-bubble__badge { position: absolute; z-index: 2; top: -5px; right: -5px; width: 16px; height: 16px; display: grid; place-items: center; padding: 2px; border: 1px solid var(--bubble-metal); border-radius: 50%; color: var(--bubble-metal); background: radial-gradient(circle at 35% 20%, var(--bubble-accent), var(--bubble-dark) 72%); box-shadow: 0 0 6px var(--bubble-accent), inset 0 1px #fff8; }
 .orbit-bubble__badge svg { display: block; width: 100%; height: 100%; filter: drop-shadow(0 0 3px var(--bubble-accent)); }
+.orbit-bubble__flash { position: absolute; z-index: 4; top: -12px; left: 50%; color: #fff; font-size: 19px; line-height: 1; opacity: 0; pointer-events: none; text-shadow: 0 0 5px #fff, 0 0 12px var(--bubble-accent); }
+.orbit-bubble__flash::before { content: "✦"; }
+.orbit-bubble.is-impact .orbit-bubble__flash { animation: bubble-flash .35s ease-out both; }
 
 .reaction-guide { display: grid; gap: 2px; margin-top: 4px; padding: 5px 6px; border: 1px solid #6a9effa8; border-radius: 10px; color: #f8f3ff; background: #0d1c4ee8; box-shadow: 0 0 12px #388aff55, inset 0 1px #fff3; }
 .reaction-guide > span { display: flex; align-items: center; gap: 3px; min-width: 0; white-space: nowrap; }
@@ -152,11 +157,15 @@ h1, h2, p { margin-top: 0; }
 .gift-art { display: inline-grid; place-items: center; width: 14px; height: 14px; margin-left: 2px; border: 1px dashed #b6b7d5; border-radius: 3px; color: #d6ccf0; font-size: .58rem; line-height: 1; }
 .group-chip:not(.is-active):hover { border-color: var(--group-color); }
 .group-chip:focus-visible { outline: 2px solid var(--group-color); outline-offset: 2px; }
-.dummy-tools { position: absolute; left: 13px; right: 43%; bottom: 2%; z-index: 6; display: flex; flex-wrap: wrap; gap: 5px; padding: 6px; border: 1px dashed #ffffff44; border-radius: 10px; background: #090d2de8; font-size: .5rem; }
+.dummy-tools { position: absolute; left: 13px; right: 13px; bottom: 2%; z-index: 6; display: flex; flex-wrap: wrap; gap: 5px; padding: 6px; border: 1px dashed #ffffff44; border-radius: 10px; background: #090d2de8; font-size: .5rem; }
 .dummy-tools[hidden] { display: none; }
 .dummy-tools span { width: 100%; color: var(--gold); }
 .dummy-tools button { padding: 4px 7px; border: 1px solid #ffffff33; border-radius: 99px; background: #ffffff0d; cursor: pointer; font-size: .5rem; }
-.dummy-tools [data-demo="bubble-one"] { border-color: #83dfff99; color: #e2f9ff; background: #16486d88; box-shadow: inset 0 1px #ffffff33; }
+.dummy-tools [data-demo-bubble-group] { border-color: #83dfff99; color: #e2f9ff; background: #16486d88; box-shadow: inset 0 1px #ffffff33; }
+.dummy-tools [data-demo-bubble-group="BLACKPINK"] { border-color: #ff8ed499; color: #ffd7ef; background: #6c265c88; }
+.dummy-tools [data-demo-bubble-group="TWICE"] { border-color: #ffd77c99; color: #fff0c7; background: #70512588; }
+.dummy-tools [data-demo-bubble-group="ENHYPEN"] { border-color: #77d6ff99; color: #ddf7ff; background: #16486d88; }
+.dummy-tools button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 
 @keyframes drift { to { background-position: 130px 170px, -180px 210px; } }
 @keyframes reveal { from { opacity: 0; transform: scale(.86) translateY(18px); } to { opacity: 1; transform: scale(1) translateY(0); } }
@@ -179,5 +188,9 @@ h1, h2, p { margin-top: 0; }
 @keyframes card-spark { 0%, 100% { opacity: 0; transform: scale(.2) rotate(-30deg); } 32% { opacity: 1; transform: scale(1.4) rotate(10deg); } 56% { opacity: .35; transform: scale(.7) rotate(30deg); } }
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes bubble-appear { from { opacity: 0; filter: brightness(1.8); } to { opacity: 1; filter: brightness(1); } }
+@keyframes bubble-glow { 0%, 100% { box-shadow: 0 0 3px var(--bubble-accent), inset 0 0 5px #0009; } 50% { box-shadow: 0 0 8px var(--bubble-accent), inset 0 0 4px #0008; } }
+@keyframes bubble-impact { 0% { transform: scale(1); } 35% { transform: scale(1.16, .86); } 72% { transform: scale(.93, 1.08); } 100% { transform: scale(1); } }
+@keyframes bubble-flash { 0% { opacity: 0; transform: translate(-50%, 4px) scale(.2) rotate(-25deg); } 30% { opacity: .95; transform: translate(-50%, -2px) scale(1.2) rotate(8deg); } 100% { opacity: 0; transform: translate(-50%, -12px) scale(.45) rotate(35deg); } }
+@keyframes bubble-leave { to { opacity: 0; filter: blur(2px) brightness(1.7); } }
 @media (max-width: 360px) { #app { padding-left: 9px; padding-right: 9px; } .player-card { left: 9px; } .gift-rail { right: 9px; } }
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; } .space-motion { opacity: .2; } .large-reaction.is-celebrating { animation: none !important; opacity: 1; transform: none; filter: drop-shadow(0 0 13px #a65fffbb); } .large-reaction.is-celebrating .large-reaction-copy { animation: none !important; opacity: 1; transform: none; } .reaction-spark, .large-reaction::after { display: none; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; } .space-motion { opacity: .2; } .large-reaction.is-celebrating { animation: none !important; opacity: 1; transform: none; filter: drop-shadow(0 0 13px #a65fffbb); } .large-reaction.is-celebrating .large-reaction-copy { animation: none !important; opacity: 1; transform: none; } .reaction-spark, .large-reaction::after, .orbit-bubble::before, .orbit-bubble__flash { display: none; } .orbit-bubble__avatar { animation: none !important; } }

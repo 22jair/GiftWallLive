@@ -9,7 +9,9 @@ Crear una experiencia atractiva para ocupar el área principal de un TikTok LIVE
 
 ## Resultado esperado
 
-- Diseñar primero para un lienzo vertical de relación 9:16 y comprobar que siga funcionando en otros tamaños razonables.
+- Usar siempre un lienzo lógico base de **393 × 852 px**, equivalente a una pantalla celular vertical.
+- Mantener la relación **393:852** al mostrarlo en cualquier ventana, navegador o fuente de TikTok LIVE Studio. El lienzo completo debe escalarse como una sola pieza; no debe ensancharse cuando aumenta el espacio disponible.
+- Diseñar primero para ese lienzo vertical y comprobar que siga funcionando en otros tamaños razonables.
 - Mantener visibles y distinguibles el avatar, el nombre, el regalo, la cantidad y el aporte acumulado de cada participante.
 - Dar jerarquía permanente al Top 3 sin competir con la llegada de regalos nuevos.
 - Usar animación para comunicar entrada, avance y celebración; evitar movimiento decorativo que dificulte la lectura.

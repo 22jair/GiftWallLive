@@ -49,67 +49,13 @@
         <div class="rail-heading">
           <span>Últimos regalos enviados</span>
         </div>
-        <button
-          class="gift-item gift-item--music"
-          data-gift="tortuga"
-          data-coins="50"
-        >
-          <span class="gift-icon">🐢</span
-          ><span><b>Tortuga</b><small>pide tu música</small></span
-          ><strong>50</strong>
-        </button>
-        <button
-          class="gift-item"
-          data-gift="dona"
-          data-group="BTS"
-          data-coins="30"
-        >
-          <span class="gift-icon">🍩</span
-          ><span><b>Dona</b><small>BTS · integrante</small></span
-          ><strong>30</strong>
-        </button>
-        <button
-          class="gift-item"
-          data-gift="paleta"
-          data-group="BLACKPINK"
-          data-coins="30"
-        >
-          <span class="gift-icon">🍭</span
-          ><span><b>Paleta</b><small>BLACKPINK · integrante</small></span
-          ><strong>30</strong>
-        </button>
-        <button
-          class="gift-item"
-          data-gift="cangrejo"
-          data-group="TWICE"
-          data-coins="30"
-        >
-          <span class="gift-icon">🦀</span
-          ><span><b>Cangrejo</b><small>TWICE · integrante</small></span
-          ><strong>30</strong>
-        </button>
-        <button
-          class="gift-item"
-          data-gift="mesa"
-          data-group="ENHYPEN"
-          data-coins="30"
-        >
-          <span class="gift-icon">🪩</span
-          ><span><b>Mesa</b><small>ENHYPEN · integrante</small></span
-          ><strong>30</strong>
-        </button>
+        <div class="recent-gifts" id="recent-gifts" aria-live="polite"></div>
         <div
           class="reaction-guide"
-          aria-label="30 monedas: círculo, máximo 15. 100 monedas: card especial del grupo"
+          aria-label="Dona: círculo. Corazón: card especial. Envía Love y un grupo en el chat"
         >
-          <span
-            ><i class="coin-icon" aria-hidden="true"></i><b>30</b
-            ><small>círculo · máx. 15</small></span
-          >
-          <span
-            ><i class="coin-icon" aria-hidden="true"></i><b>100</b
-            ><small>card especial del grupo</small></span
-          >
+          <span><img src="../../assets/images/gift-dona.webp" alt="" /><b>Dona</b><small>1 círculo · máx. 15</small></span>
+          <span><img src="../../assets/images/gift-corazon.webp" alt="" /><b>Corazón</b><small>card del grupo</small></span>
           <span class="love-guide"
             ><b
               >Después de enviar el regalo, tienes 60 segundos para elegir un
@@ -232,7 +178,7 @@
         <article
           class="large-reaction"
           id="large-reaction"
-          aria-label="Regalo especial de 100 monedas para BTS"
+          aria-label="Card especial para BTS"
           hidden
         >
           <img

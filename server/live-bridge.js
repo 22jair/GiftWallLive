@@ -12,6 +12,7 @@ import { PirateTokProvider } from "./providers/piratetok-provider.js";
 let username = (process.argv[2] || "").replace(/^@/, "").trim();
 const host = process.env.GIFTWALL_HOST || "127.0.0.1";
 const port = Number.parseInt(process.env.GIFTWALL_PORT || "8081", 10);
+const autoMusicEnabled = process.env.GIFTWALL_AUTO_MUSIC === "true";
 
 if (!Number.isInteger(port) || port < 1 || port > 65535) {
   console.error("GIFTWALL_PORT debe ser un puerto válido.");
@@ -167,8 +168,8 @@ function bindProvider(instance) {
 instance.on("liveEvent", ({ type, data }) => {
   const event = mapPirateTokEvent({ type, data, sequence: ++sequence, roomId: status.roomId });
   broadcast(event);
-  if (event.type === "gift") musicRequests.registerGift(event);
-  if (event.type === "chat") {
+  if (autoMusicEnabled && event.type === "gift") musicRequests.registerGift(event);
+  if (autoMusicEnabled && event.type === "chat") {
     const isTestCommand = parseHostPlayCommand(event.chat?.text || "");
     const requestPromise = isTestCommand
       ? musicRequests.handleHostChat(event)
@@ -179,7 +180,7 @@ instance.on("liveEvent", ({ type, data }) => {
   }
   if (event.type === "gift") {
     console.log(
-      `[gift] @${event.user.username} · ${event.gift.name} ×${event.gift.quantity} · ${event.gift.totalCoins} monedas`,
+      `[gift] id=${event.gift.id} · @${event.user.username} · ${event.gift.name} ×${event.gift.quantity} · ${event.gift.totalCoins} monedas`,
     );
   } else if (event.type === "follow") {
     console.log(`[follow] @${event.user.username}`);
@@ -310,5 +311,5 @@ httpServer.listen(port, host, () => {
     setStatus("offline");
     console.log(`[server] Abre http://${host}:${port} para conectar TikTok`);
   }
-  fallbackRadio.start();
+  if (autoMusicEnabled) fallbackRadio.start();
 });

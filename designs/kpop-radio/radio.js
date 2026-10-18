@@ -1,5 +1,6 @@
 const params = new URLSearchParams(window.location.search);
 const isDummy = params.get('source') === 'dummy';
+const socketUrl = params.get('socket') || 'ws://127.0.0.1:8081/live';
 const bubbleMarks = {
   BTS: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3 10 6v15l-7-3zm18 0-7 3v15l7-3z" fill="currentColor"/></svg>',
   BLACKPINK: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20c-3-2.8-9-7-9-12a4.5 4.5 0 0 1 9-1 4.5 4.5 0 0 1 9 1c0 5-6 9.2-9 12Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round"/></svg>',
@@ -19,9 +20,12 @@ const largeReactionArt = document.querySelector('#large-reaction-art');
 const largeAvatar = document.querySelector('#large-avatar');
 const bubbleField = document.querySelector('#bubble-field');
 const giftRail = document.querySelector('.gift-rail');
+const recentGifts = document.querySelector('#recent-gifts');
 const demoAvatar = '../../assets/images/kpop-demo-user-avatar.svg';
+const giftImages = { bubble: '../../assets/images/gift-dona.webp', card: '../../assets/images/gift-corazon.webp' };
+const reactionGiftIds = { '5879': 'bubble', '5660': 'card' };
 const specialDurationMs = 15000;
-const bubbleMinDurationMs = 30000;
+const bubbleMinDurationMs = 15000;
 const maxBubbles = 15;
 const bubbleRadius = 24;
 const bubbleCollisionDistance = 54;
@@ -73,7 +77,7 @@ function incrementGroupCount(group, type) {
 
 function showLargeReaction(group = 'BTS', username = '@moonlight', coins = 100, avatarUrl = '') {
   const card = specialCards[group];
-  if (!card || Number(coins) !== 100) return;
+  if (!card) return;
   incrementGroupCount(group, 'card');
   window.clearTimeout(largeTimer);
   largeReaction.dataset.group = group;
@@ -82,7 +86,7 @@ function showLargeReaction(group = 'BTS', username = '@moonlight', coins = 100, 
   document.querySelector('#large-user').textContent = username;
   largeAvatar.src = avatarUrl || demoAvatar;
   largeAvatar.alt = avatarUrl ? `Foto de perfil de ${username}` : 'Avatar de muestra';
-  largeReaction.setAttribute('aria-label', `${username} envió un regalo especial de 100 monedas para ${group}`);
+  largeReaction.setAttribute('aria-label', `${username} envió un corazón para ${group}`);
   largeReaction.classList.remove('is-celebrating');
   largeReaction.hidden = false;
   void largeReaction.offsetWidth;
@@ -272,9 +276,157 @@ function demoBubbles() {
 }
 
 document.querySelectorAll('.group-chip').forEach((chip) => chip.addEventListener('click', () => setGroup(chip.dataset.group)));
-document.querySelectorAll('.gift-item').forEach((gift) => gift.addEventListener('click', () => {
-  if (gift.dataset.group) spawnBubble(gift.dataset.group, '@demo_user');
-}));
+
+function safeImage(url, fallback) {
+  return typeof url === 'string' && /^(https?:\/\/|\.\.\/\.\.\/assets\/images\/)/i.test(url) ? url : fallback;
+}
+
+function addRecentGift(event) {
+  const gift = event.gift || {};
+  const username = `@${String(event.user?.username || 'usuario').replace(/^@/, '')}`;
+  const row = document.createElement('div');
+  row.className = 'recent-gift';
+  const avatar = document.createElement('img');
+  avatar.className = 'recent-gift__avatar';
+  avatar.src = safeImage(event.user?.avatarUrl, demoAvatar);
+  avatar.alt = '';
+  avatar.onerror = () => { avatar.onerror = null; avatar.src = demoAvatar; };
+  const details = document.createElement('span');
+  details.className = 'recent-gift__details';
+  const name = document.createElement('b');
+  name.textContent = username;
+  const description = document.createElement('small');
+  description.textContent = `${gift.name || 'Regalo'} · ${Number(gift.totalCoins) || 0} monedas`;
+  details.append(name, description);
+  const image = document.createElement('img');
+  image.className = 'recent-gift__image';
+  const kind = giftKind(gift);
+  image.src = safeImage(gift.imageUrl, giftImages[kind] || '');
+  image.alt = gift.name || 'Regalo';
+  image.onerror = () => {
+    if (kind && image.src !== new URL(giftImages[kind], document.baseURI).href) {
+      image.onerror = null;
+      image.src = giftImages[kind];
+    } else {
+      const placeholder = document.createElement('span');
+      placeholder.className = 'recent-gift__image';
+      placeholder.textContent = '🎁';
+      placeholder.setAttribute('aria-label', gift.name || 'Regalo');
+      image.replaceWith(placeholder);
+    }
+  };
+  row.append(avatar, details, image);
+  recentGifts.prepend(row);
+  while (recentGifts.childElementCount > 5) recentGifts.lastElementChild.remove();
+}
+
+function normalizeText(value) {
+  return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+}
+
+function giftKind(gift = {}) {
+  const kindById = reactionGiftIds[String(gift.id || '')];
+  if (kindById) return kindById;
+  const normalized = normalizeText(gift.name);
+  if (normalized === 'doughnut') return 'bubble';
+  if (normalized === 'hand heart') return 'card';
+  return null;
+}
+
+function requestedGroup(text) {
+  const match = normalizeText(text).match(/^love\s+(bts|blackpink|bp|twice|tw|enhypen|en)\s*[!.]?$/);
+  return { bts: 'BTS', blackpink: 'BLACKPINK', bp: 'BLACKPINK', twice: 'TWICE', tw: 'TWICE', enhypen: 'ENHYPEN', en: 'ENHYPEN' }[match?.[1]] || null;
+}
+
+function liveTestCommand(text) {
+  const match = normalizeText(text).match(/^(dona|cora)_(b|bp|tw|en)$/);
+  if (!match) return null;
+  return {
+    kind: match[1] === 'dona' ? 'bubble' : 'card',
+    group: { b: 'BTS', bp: 'BLACKPINK', tw: 'TWICE', en: 'ENHYPEN' }[match[2]],
+  };
+}
+
+const pendingReactions = new Map();
+const seenGifts = new Set();
+function onLiveGift(event) {
+  if (event.id && seenGifts.has(event.id)) return;
+  if (event.id) {
+    seenGifts.add(event.id);
+    if (seenGifts.size > 500) seenGifts.delete(seenGifts.values().next().value);
+  }
+  addRecentGift(event);
+  const kind = giftKind(event.gift);
+  const userId = String(event.user?.id || event.user?.username || '');
+  if (!kind || !userId) return;
+  const queue = pendingReactions.get(userId) || [];
+  queue.push({ kind, expiresAt: Date.now() + 60000, user: event.user });
+  pendingReactions.set(userId, queue);
+}
+
+function onLiveChat(event) {
+  const test = liveTestCommand(event.chat?.text);
+  if (test) {
+    const username = `@${String(event.user?.username || 'fan').replace(/^@/, '')}`;
+    if (test.kind === 'bubble') spawnBubble(test.group, username, event.user?.avatarUrl);
+    else showLargeReaction(test.group, username, 100, event.user?.avatarUrl);
+    return;
+  }
+  const group = requestedGroup(event.chat?.text);
+  const userId = String(event.user?.id || event.user?.username || '');
+  if (!group || !userId) return;
+  const queue = (pendingReactions.get(userId) || []).filter((item) => item.expiresAt > Date.now());
+  const next = queue.shift();
+  if (queue.length) pendingReactions.set(userId, queue);
+  else pendingReactions.delete(userId);
+  if (!next) return;
+  const username = `@${String(next.user.username || 'fan').replace(/^@/, '')}`;
+  if (next.kind === 'bubble') spawnBubble(group, username, next.user.avatarUrl);
+  else showLargeReaction(group, username, 100, next.user.avatarUrl);
+}
+
+function formatTime(milliseconds) {
+  const seconds = Math.max(0, Math.floor(Number(milliseconds || 0) / 1000));
+  return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
+}
+
+function onSpotifyPlayback(message) {
+  if (!message.track) return;
+  const track = message.track;
+  document.querySelector('#song-title').textContent = track.name || 'Esperando música';
+  document.querySelector('#song-artist').textContent = track.artist || 'Spotify';
+  const duration = Number(track.durationMs) || 0;
+  const elapsed = Math.min(Number(message.progressMs) || 0, duration || Infinity);
+  document.querySelector('#elapsed').textContent = formatTime(elapsed);
+  document.querySelector('#duration').textContent = formatTime(duration);
+  const progress = duration ? Math.round(elapsed / duration * 100) : 0;
+  document.querySelector('#progress').style.width = `${progress}%`;
+  document.querySelector('.progress-line').setAttribute('aria-valuenow', String(progress));
+  const album = document.querySelector('.album-art');
+  if (track.albumImageUrl) {
+    album.style.backgroundImage = `url("${encodeURI(track.albumImageUrl).replace(/"/g, '%22')}")`;
+    album.classList.add('has-cover');
+  }
+}
+
+function connectLive() {
+  const socket = new WebSocket(socketUrl);
+  socket.addEventListener('open', () => { modeLabel.textContent = 'en vivo'; });
+  socket.addEventListener('message', ({ data }) => {
+    try {
+      const event = JSON.parse(data);
+      if (event.type === 'gift') onLiveGift(event);
+      else if (event.type === 'chat') onLiveChat(event);
+      else if (event.type === 'spotify-now-playing') onSpotifyPlayback(event);
+      else if (event.type === 'status') modeLabel.textContent = event.state === 'connected' ? 'en vivo' : 'conectando';
+    } catch (error) { console.warn('[K-pop radio] Evento inválido', error); }
+  });
+  socket.addEventListener('close', () => {
+    modeLabel.textContent = 'reconectando';
+    window.setTimeout(connectLive, 3000);
+  });
+  socket.addEventListener('error', () => socket.close());
+}
 
 window.addEventListener('kpop:gift', (event) => {
   const gift = event.detail || {};
@@ -307,7 +459,8 @@ if (isDummy) {
   });
   window.setTimeout(demoBubbles, 1100);
 } else {
-  modeLabel.textContent = 'en espera';
+  modeLabel.textContent = 'conectando';
+  connectLive();
 }
 
 setGroup('BTS');

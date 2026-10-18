@@ -27,7 +27,7 @@ npm start
 
 El comando carga automáticamente `server/.env` y abre el puente local. Visita `http://127.0.0.1:8081` para escribir el usuario de TikTok, conectar o detener el LIVE y autorizar Spotify. El formato antiguo `npm start -- nombre_del_creador` también sigue funcionando.
 
-Para pedir música con monedas, el usuario debe tener un regalo válido y puede escribir `play canción artista` para buscarla. Se reconoce sin importar mayúsculas, con o sin `:` y con texto libre, por ejemplo `play bruno mars` o `play bruno mars lazy song`. También existen `play_n canción - artista` para una canción normal y `play_p canción - artista` para prioridad durante pruebas.
+Los pedidos musicales por monedas y los comandos `play`, `play_n` y `play_p` de la radio anterior están disponibles al configurar `GIFTWALL_AUTO_MUSIC=true` en `server/.env`. Por defecto el servidor solo informa qué reproduce el anfitrión en Spotify, sin aceptar pedidos del LIVE ni iniciar música automáticamente.
 
 El estado queda disponible en `http://127.0.0.1:8081/health` y los eventos en `ws://127.0.0.1:8081/live`.
 
@@ -38,7 +38,7 @@ Cada printer abre el modo LIVE por defecto y permanece vacío hasta recibir acti
 - Radio: `designs/radio/index.html`
 - K-pop Radio: `designs/kpop-radio/index.html`
 
-El experimento independiente K-pop Radio usa un escenario espacial vertical y deja las reacciones preparadas para conectarse a Spotify/TikTok. Para probarlo con eventos simulados abre `designs/kpop-radio/index.html?source=dummy`; muestra una reacción grande de 100 monedas y burbujas flotantes de 30 monedas.
+K-pop Radio consume los regalos, mensajes y la reproducción actual de Spotify desde el WebSocket del servidor. La Dona seguida de `Love + grupo` crea un círculo y el Corazón seguido del mismo mensaje crea una card; otros regalos aparecen entre los cinco más recientes. Para probar el diseño sin conectar el LIVE abre `designs/kpop-radio/index.html?source=dummy`.
 
 Añade `?source=dummy` a cualquiera para ejecutar el loop de demostración. El modo LIVE nunca mezcla ni sustituye eventos reales con datos simulados. Los enlaces antiguos a `index.html?source=dummy` o `index.html?source=live` redirigen a Default conservando los parámetros. El enlace raíz sin parámetros ahora muestra la galería; si lo usabas en LIVE Studio, sustitúyelo por la ruta directa de Default.
 
@@ -174,7 +174,7 @@ La carpeta `server/spotify/` contiene la integración preparada para Spotify sin
 
 Para activar la autorización, copia `server/.env.example` como `.env`, completa `SPOTIFY_CLIENT_ID`, registra exactamente `http://127.0.0.1:8081/spotify/callback` en el panel de Spotify y abre `http://127.0.0.1:8081/spotify/login` con el puente iniciado. Los tokens se mantienen solo en memoria durante esta primera base; no se escriben en el repositorio. La cola interna queda separada del reproductor para que el siguiente paso pueda despachar canciones respetando prioridades sin depender de un orden que Spotify no garantiza.
 
-Cuando Spotify está autorizado, la canción actual terminó, la cola real está vacía y no hay solicitudes pendientes, `server/spotify/fallback.js` elige una canción aleatoria de la lista predeterminada de BTS y BLACKPINK e intenta iniciarla en el dispositivo Spotify activo. Una pausa manual no dispara otra canción. La lista y el intervalo de comprobación son configurables en ese archivo.
+Con `GIFTWALL_AUTO_MUSIC=true`, cuando Spotify está autorizado, la canción actual terminó, la cola real está vacía y no hay solicitudes pendientes, `server/spotify/fallback.js` elige una canción aleatoria de la lista predeterminada de BTS y BLACKPINK e intenta iniciarla en el dispositivo Spotify activo. Una pausa manual no dispara otra canción. La lista y el intervalo de comprobación son configurables en ese archivo.
 
 ### Flujo de eventos LIVE
 

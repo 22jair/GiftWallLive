@@ -41,6 +41,8 @@ h1, h2, p { margin-top: 0; }
 .album-art { width: 56px; aspect-ratio: 1; display: grid; place-content: center; border: 1px solid #dad4ff77; border-radius: 11px; background: radial-gradient(circle at 50% 36%, #f2cbff, #754cb6 44%, #182755 72%); color: #fff; text-align: center; box-shadow: 0 0 18px #bda9ff55; }
 .album-art span { color: var(--gold); font-size: 1.35rem; line-height: 1; }
 .album-art b { font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; }
+.album-art.has-cover { background-size: cover; background-position: center; }
+.album-art.has-cover > * { display: none; }
 .player-copy h2 { margin: 0; font-size: clamp(.82rem, 3.2vw, 1.1rem); line-height: 1.05; }
 .player-copy > p:not(.eyebrow) { overflow: hidden; margin: 4px 0 8px; color: var(--muted); font-size: .59rem; text-overflow: ellipsis; white-space: nowrap; }
 .progress-line { height: 4px; overflow: hidden; border-radius: 99px; background: #ffffff22; }
@@ -49,6 +51,17 @@ h1, h2, p { margin-top: 0; }
 
 .gift-rail { position: absolute; top: 11%; right: 13px; left: 63%; z-index: 2; display: grid; gap: 5px; }
 .rail-heading { display: flex; align-items: baseline; min-width: 0; padding: 0 4px 3px; color: var(--gold); font-size: clamp(.55rem, 2.4vw, .75rem); font-weight: 700; line-height: 1.15; }
+.recent-gifts { display: grid; gap: 5px; }
+.recent-gifts:empty::before { content: "Esperando regalos…"; display: block; padding: 8px 6px; color: var(--muted); background: #0a103bd9; border-radius: 10px; font-size: .56rem; }
+.recent-gift { display: grid; grid-template-columns: 22px minmax(0,1fr) 23px; align-items: center; gap: 4px; min-height: 39px; padding: 4px; border: 1px solid #c6c8ff44; border-radius: 10px; background: #0a103bd9; }
+.recent-gift__avatar, .recent-gift__image { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; background: #26335e; }
+.recent-gift__image { border-radius: 5px; }
+.recent-gift__details { min-width: 0; }
+.recent-gift__details b, .recent-gift__details small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.recent-gift__details b { font-size: .52rem; }
+.recent-gift__details small { color: var(--muted); font-size: .46rem; }
+.recent-gift__coins { display: flex; align-items: center; gap: 3px; color: var(--gold); font-size: .52rem; }
+.recent-gift__coins .coin-icon { flex: none; }
 .gift-item { display: grid; grid-template-columns: 23px 1fr auto; align-items: center; gap: 5px; min-width: 0; padding: 6px; border: 1px solid #c6c8ff44; border-radius: 10px; background: #0a103bd9; cursor: pointer; text-align: left; transition: transform .2s, border-color .2s, background .2s; }
 .gift-item > span:nth-child(2) { min-width: 0; }
 .gift-item:hover, .gift-item:focus-visible { transform: translateX(-2px); border-color: var(--cyan); background: #18205be8; outline: none; }
@@ -94,6 +107,7 @@ h1, h2, p { margin-top: 0; }
 
 .reaction-guide { display: grid; gap: 2px; margin-top: 4px; padding: 5px 6px; border: 1px solid #6a9effa8; border-radius: 10px; color: #f8f3ff; background: #0d1c4ee8; box-shadow: 0 0 12px #388aff55, inset 0 1px #fff3; }
 .reaction-guide > span { display: flex; align-items: center; gap: 3px; min-width: 0; white-space: nowrap; }
+.reaction-guide img { width: 15px; height: 15px; flex: none; object-fit: contain; }
 .reaction-guide b { color: #ffe6a8; font-size: .54rem; }
 .reaction-guide small { overflow: hidden; color: #dfe8ff; font-size: .47rem; text-overflow: ellipsis; }
 .reaction-guide .coin-icon { flex: none; }
